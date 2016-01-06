@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE sqlMapConfig
+  PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+  "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true" enhancementEnabled="false"
+		lazyLoadingEnabled="false" maxRequests="3000" maxSessions="3000"
+		maxTransactions="3000" useStatementNamespaces="true" />
+	<sqlMap resource="sqlmap/supply.xml" />
+	<sqlMap resource="sqlmap/sysuser.xml" />
+	<sqlMap resource="sqlmap/sysmenu.xml" />
+	<sqlMap resource="sqlmap/link.xml" />
+	<sqlMap resource="sqlmap/link_group.xml" />
+	<sqlMap resource="sqlmap/role.xml" />
+	<sqlMap resource="sqlmap/logs.xml" />
+	<sqlMap resource="sqlmap/roleright.xml"/>
+	<sqlMap resource="sqlmap/filterword.xml" />
+	<sqlMap resource="sqlmap/nav.xml"/>
+	<sqlMap resource="sqlmap/ban_ip.xml" />
+	<sqlMap resource="sqlmap/keyword.xml" />
+	<sqlMap resource="sqlmap/commpara.xml" />
+	<sqlMap resource="sqlmap/sysconfig.xml" />
+	<sqlMap resource="sqlmap/backup.xml" />
+    <sqlMap resource="sqlmap/vote.xml" />
+	<sqlMap resource="sqlmap/vote_log.xml" />
+	<sqlMap resource="sqlmap/vote_option.xml" />
+	<sqlMap resource="sqlmap/advpos.xml" />
+	<sqlMap resource="sqlmap/advinfo.xml" />
+    <sqlMap resource="sqlmap/message.xml" />
+    <sqlMap resource="sqlmap/aboutus.xml" />
+	<sqlMap resource="sqlmap/news.xml" />
+	<sqlMap resource="sqlmap/memberfund.xml" />
+	<sqlMap resource="sqlmap/fundrecharge.xml" />
+	<sqlMap resource="sqlmap/job.xml" />
+	<sqlMap resource="sqlmap/resume.xml" />
+	<sqlMap resource="sqlmap/member.xml" />
+	<sqlMap resource="sqlmap/memberlevel.xml" />
+    <sqlMap resource="sqlmap/fundtocash.xml" />
+	<sqlMap resource="sqlmap/fundhistory.xml" />
+	<sqlMap resource="sqlmap/memberinter.xml" />
+	<sqlMap resource="sqlmap/interhistory.xml" />
+	<sqlMap resource="sqlmap/emailtemplate.xml" />
+	<sqlMap resource="sqlmap/emailhistory.xml" />
+	<sqlMap resource="sqlmap/memberuser.xml" />
+	<sqlMap resource="sqlmap/levelinfo.xml" />
+	<sqlMap resource="sqlmap/smshistory.xml" />
+	<sqlMap resource="sqlmap/membercert.xml" />
+	<sqlMap resource="sqlmap/membernews.xml" />
+	<sqlMap resource="sqlmap/memberlink.xml" />
+	<sqlMap resource="sqlmap/subject.xml" />
+	<sqlMap resource="sqlmap/ask.xml" />
+	<sqlMap resource="sqlmap/answer.xml" />
+	<sqlMap resource="sqlmap/categoryattr.xml" />	
+    <sqlMap resource="sqlmap/collect.xml" /> 
+	<sqlMap resource="sqlmap/subscribe.xml" />
+	<sqlMap resource="sqlmap/subscribeinfo.xml" />
+	<sqlMap resource="sqlmap/video.xml" />
+	<sqlMap resource="sqlmap/product.xml" />
+	<sqlMap resource="sqlmap/gallery.xml" />
+	<sqlMap resource="sqlmap/gallerypic.xml" />
+	<sqlMap resource="sqlmap/download.xml" />
+	<sqlMap resource="sqlmap/showinfo.xml" />
+	<sqlMap resource="sqlmap/membercomment.xml" />
+	<sqlMap resource="sqlmap/memberleave.xml" />
+	<sqlMap resource="sqlmap/buy.xml" />
+	<sqlMap resource="sqlmap/memberupgrade.xml" />
+	<sqlMap resource="sqlmap/membercat.xml" />
+	<sqlMap resource="sqlmap/resumeinbox.xml" />
+	<sqlMap resource="sqlmap/topdomain.xml" />
+	<sqlMap resource="sqlmap/jobtalent.xml" />
+	<sqlMap resource="sqlmap/memberfriend.xml" />
+	<sqlMap resource="sqlmap/memberinbox.xml" />
+	<sqlMap resource="sqlmap/index_history.xml" />
+	<sqlMap resource="sqlmap/channel.xml" />
+	<sqlMap resource="sqlmap/membertemplate.xml" />
+	<sqlMap resource="sqlmap/memberchconfig.xml" />
+	<sqlMap resource="sqlmap/memberchannel.xml" />
+	<sqlMap resource="sqlmap/memberconfig.xml" /> 
+	<sqlMap resource="sqlmap/membersendbox.xml" />
+	<sqlMap resource="sqlmap/membertrash.xml" />
+	<sqlMap resource="sqlmap/classified.xml" />
+	<sqlMap resource="sqlmap/buyeraddr.xml" />
+	<sqlMap resource="sqlmap/payment.xml" />
+	<sqlMap resource="sqlmap/orderinfo.xml" />
+	<sqlMap resource="sqlmap/orderhistory.xml" />
+	<sqlMap resource="sqlmap/brand.xml" />
+	<sqlMap resource="sqlmap/organize.xml" />
+	<sqlMap resource="sqlmap/interrule.xml" />
+	<sqlMap resource="sqlmap/audithistory.xml" />
+	<sqlMap resource="sqlmap/tradecomment.xml" />
+	<sqlMap resource="sqlmap/certification.xml" />
+	<sqlMap resource="sqlmap/credithistory.xml" />
+	<sqlMap resource="sqlmap/membercredit.xml" />
+	<sqlMap resource="sqlmap/memberreport.xml" />
+    <sqlMap resource="sqlmap/complaint.xml" />
+    <sqlMap resource="sqlmap/creditdetail.xml" />
+    <sqlMap resource="sqlmap/category.xml" />
+    <sqlMap resource="sqlmap/area.xml" />
+    <sqlMap resource="sqlmap/sysmodule.xml" />
+	<sqlMap resource="sqlmap/goods.xml" />
+	<sqlMap resource="sqlmap/goodsbrand.xml" />
+	<sqlMap resource="sqlmap/malllevelset.xml" />
+	<sqlMap resource="sqlmap/shopconfig.xml" />
+	<sqlMap resource="sqlmap/groupgoods.xml" />
+	<sqlMap resource="sqlmap/goodsorder.xml" />
+	<sqlMap resource="sqlmap/coupon.xml" />
+	<sqlMap resource="sqlmap/goodsask.xml" />
+	<sqlMap resource="sqlmap/goodseval.xml" />
+	<sqlMap resource="sqlmap/sendmode.xml" />
+	<sqlMap resource="sqlmap/busimes.xml" />
+	<sqlMap resource="sqlmap/orderdetail.xml" />
+	<sqlMap resource="sqlmap/buyercoupon.xml" />
+	<sqlMap resource="sqlmap/areaset.xml" />
+	<sqlMap resource="sqlmap/sellerscore.xml" />
+	<sqlMap resource="sqlmap/infoattr.xml" />
+	<sqlMap resource="sqlmap/shiptemplate.xml" />
+	<sqlMap resource="sqlmap/indexrecord.xml" />
+	<sqlMap resource="sqlmap/attrvalue.xml" />
+	<sqlMap resource="sqlmap/auditmodel.xml" />
+<!--tagbody-->
+</sqlMapConfig>
+
+
+
+
+

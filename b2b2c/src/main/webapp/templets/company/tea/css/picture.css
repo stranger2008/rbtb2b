@@ -1,0 +1,95 @@
+/*图片类别页*/
+.lpictback{
+	width:235px;
+	height:34px;
+	background:url(../images/othertitle_03.gif) no-repeat;
+	background-position:0 -160px;
+	float:left;
+}
+.picture{
+	width:700px;
+}
+.picture ul{
+	padding-left:10px;
+}
+.picture li{
+	width:138px;
+	float:left;
+	padding-right:34px;
+	padding-top:15px;
+}
+.picture li div{
+	width:138px;
+	height:108px;
+	cursor:pointer;
+}
+.picture li p{
+	text-align:center;
+	line-height:22px;
+}
+
+/*按钮*/
+.but{
+	padding-left:10px;
+	margin-top:20px;
+}
+.but a{
+	text-align:center;
+	line-height:20px;
+	margin-right:10px;
+}
+.but span{
+	text-align:center;
+	line-height:20px;
+	margin-right:10px;
+}
+.but a:hover{
+	border:#fb4e0b solid 1px;
+}
+.but .page{
+	width:60px;
+	height:20px;
+	border:#cccccc solid 1px;
+	display:inline-block;
+}
+.but .pagenum{
+	width:20px;
+	height:20px;
+	border:#cccccc solid 1px;
+	display:inline-block;
+}
+.but .buttext{
+	width:30px;
+	border:#cccccc solid 1px;
+}
+.but .surebut{
+	width:40px;
+	height:20px;
+	background:url(../images/button.gif) no-repeat;
+	background-position:0 -56px;
+	border:none;
+	cursor:pointer;
+}
+
+/*图片详细页*/
+.piccont{
+	width:680px;
+	padding-left:10px;
+	padding-top:15px;
+}
+.bigpic{
+	width:680px;
+	text-align:center;
+	font-size:14px;
+	font-weight:bold;
+	color:#fb4e0b;
+	line-height:28px;
+}
+.piccont  p{
+	padding-top:5px;
+	text-align:center;
+}
+.piccont span{
+	padding-left:20px;
+	padding-right:20px;
+}

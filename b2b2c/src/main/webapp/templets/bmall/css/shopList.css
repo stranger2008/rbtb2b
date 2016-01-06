@@ -1,0 +1,248 @@
+.position{
+	height:33px;
+	line-height:33px;
+	background:url(../images/position_03.gif) no-repeat left center;
+	padding-left:20px;
+	border-bottom:1px solid #dcdcdc;
+	width:960px;
+	margin:0 auto;
+	}
+.xg{
+	color:#a7a7a7;
+	padding-right:20px;
+	}								
+.xg span{
+	color:#dd0000;
+	padding:0 5px;
+	}	
+
+.propItem{
+	width:978px;
+	margin:10px auto 0;
+	border:1px solid #E5E5E5;
+	padding-bottom:5px;
+	}
+.propItem li {
+    display: inline;
+    float: left;
+    height: 18px;
+    margin: 10px 0 0 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 225px;
+    }
+.propItem a,.searchHot a,.shop-about a{
+	color:#2953A6;
+	}
+.propItem a:hover,.searchHot a:hover{
+	color:#2953A6;
+	text-decoration:underline;
+	}		
+	
+.searchFilter{
+	width:978px;
+	border:1px solid #E5E5E5;
+	border-top:2px solid #9A0000;
+	margin:10px auto 0;
+	background:#FAFAFA;
+	font-size:12px;
+	}	
+.searchBar-text{
+	border:1px solid #E5E5E5;
+	width:300px;
+	height:17px;
+	line-height:17px;
+	float:left;
+	margin:9px 0 0 30px;
+	}
+.selectOp{
+	height:20px;
+	float:left;
+	border:1px solid #E5E5E5;
+	margin:9px 0 0 10px;
+	}	
+.searchBar-button{
+	width:46px;
+	float:left;
+	height:20px;
+	border:none;
+	margin:9px 0 0 10px;
+	background:url(../images/searchBar-button.gif) no-repeat;
+	}
+.searchHot{
+	float:left;
+	line-height:37px;
+	padding-left:30px;
+	}	
+.searchHot a{
+	padding-right:10px;
+	}
+
+
+.shopInfo{
+	border-bottom:1px dotted #DDDDDD;
+	height:90px;
+	margin-bottom:10px;
+	}	
+.shop-img, .shop-about, .shop-loc {
+    display: inline;
+    float: left;
+    line-height: 22px;
+   }
+.shop-img {
+    height: 80px;
+    text-align: center;
+    width: 120px;
+   }
+.shop-about {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 280px;
+   } 
+.shop-about h2 {
+    font-size: 14px;
+    height: 22px;
+    overflow: hidden;
+   } 
+.shop-about p {
+    height: 23px;
+    overflow: hidden;
+   }
+.shop-about a:hover{
+	text-decoration:underline;
+	color:#d00202;
+	} 
+.shop-hw{
+	width:127px;
+	height:24px;
+	float:left;
+	line-height:24px;
+	color:#2953A6;
+	margin-top:50px;
+	padding-left:10px
+	}	
+.shop-loc {
+    margin-left: 40px;
+   }
+.shop-grade, .shop-loc {
+    margin-top: 50px;
+  } 
+  
+ .shop-grade {
+    cursor: pointer;
+    float: right;
+    text-align: right;
+	padding-right:20px;
+    width: 200px;
+}
+em{
+    font-style: normal;
+} 	
+.rateinfo b {
+    background-color: #A1001A;
+    border-radius: 2px 2px 2px 2px;
+    color: #FFFFFF;
+    display: inline-block;
+    font-weight: normal;
+    height: 15px;
+    line-height: 15px;
+    margin: 0 5px 0 15px;
+    overflow: hidden;
+    padding: 1px 2px 1px 3px;
+    vertical-align: bottom;
+    width: 24px;
+} 
+.rateinfo {
+    color: #A1001A;
+    font-weight: bold;
+}
+
+.gradeMoreBtn{
+	height:11px;
+	width:11px;
+	display:inline-block;
+	background:url(../images/shopINof.jpg) no-repeat;
+	} 
+.gradeMoreBtn:hover{
+	height:11px;
+	width:11px;
+	display:inline-block;
+	background:url(../images/shopINof.jpg) no-repeat;
+	background-position:0 -39px;
+	}	
+	
+	
+.page_main{
+	width:720px;
+	height:56px;
+	padding-top:50px;
+	margin:0 auto;
+	}
+.page_main p{
+	height:40px;
+	margin-left:10px;
+	display:inline;
+	}
+	
+.page_main .page_up{
+	border:1px solid #dcdcdc;
+	background:url(../images/next.gif) no-repeat;
+	background-position:5px 1px;
+	padding-left:15px;
+	*margin-top:-2px;
+	margin-top:0;
+	}
+.page_main .page_up:hover{
+	border:1px solid #2953a6;
+	color:#2953a6;
+	background:url(../images/next.gif) no-repeat;
+	background-position:5px 1px;
+	padding-left:15px;
+	}	
+.page_main .page_next{
+	border:1px solid #dcdcdc;
+	background:url(../images/next.gif) no-repeat;
+	background-position:47px -44px;
+	padding-right:15px;
+	height:18px;
+	line-height:18px;
+	}
+.page_main .page_next:hover{
+	border:1px solid #2953a6;
+	background:url(../images/next.gif) no-repeat;
+	background-position:47px -44px;
+	padding-right:15px;
+	color:#2953a6;
+	}			
+	
+.page_main a{
+	height:18px;
+	border:1px solid #cccccc;
+	display:inline-block;
+	margin-right:8px;
+	padding:0 6px;
+	line-height:18px;
+	}
+
+	
+.page_main a:hover{
+	border:1px solid #2953a6;
+	background:#e5eeff;
+	color:#2953a6;
+	display:inline-block;
+	}
+	
+.page_main_input{
+	width:60px;
+	height:15px;
+	border:1px solid #ccc;
+	margin:0 5px;
+	}	
+.pageButtom{
+	border:0;
+	width:40px;
+	height:20px;
+	cursor:pointer;
+	margin-left:2px;
+	background:url(../images/pageButtom.gif) no-repeat;
+	}	  					

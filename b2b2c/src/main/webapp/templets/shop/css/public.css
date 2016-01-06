@@ -1,0 +1,252 @@
+﻿/*
+ ISConsole Copyright 2011 ruibaotong COMPANY, Co.ltd . 
+ All rights reserved.
+ FileName: public.css
+ */
+body {
+    margin:0;
+    padding: 0px;
+    font-size: 12px;
+	font-family:tahoma,arial,宋体;
+	background:#FFF;
+	color:#333;
+}
+
+ul ,li{
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
+
+div, ul, p, h1,h2 ,h3,h4{
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+img {
+    border:0;
+	vertical-align:middle;
+}
+a{ 
+ text-decoration:none;
+ color:#333333;
+ }
+a:hover{
+	text-decoration:none;
+	color:#d00202;
+	}
+.w980{
+	width:980px;
+	margin:0 auto;
+	margin-top:10px;
+	}		
+.f_left{
+	float:left;
+	}
+.f_right{
+	float:right;
+	}	
+.clear {
+    clear: both;
+}
+
+
+/* * * * * * * * * * * * * * * * * 头部开始 * * * * * * * * * * * * * * * * * */
+
+
+.user_top{
+	width:100%;
+	height:33px;
+	background:url(../images/user_bg.gif) repeat-x;
+	}
+.user{
+	width:980px;
+	margin:0 auto;
+	height:33px;
+	line-height:33px;
+	}
+.welcome span{
+	color:#d00202;
+	}		
+.welcome span a,.welcome span{
+	color:#d00202;
+	}
+.welcome span a:hover{
+	color:#d00202;
+	text-decoration:underline;
+	}
+.help span{
+	padding:0 20px;
+	border-right:1px solid #cccccc;
+	background:url(../images/help_a.gif) no-repeat 75px center;
+	}
+.help .order{
+	background:none;
+	padding:0 15px;
+	}
+.help .help_sp{
+	background:url(../images/help_a.gif) no-repeat 87px center;
+	}	
+.help_car{
+	background:url(../images/car.gif) no-repeat;
+	padding-left:25px;
+	}
+.help_car:hover{
+	background:url(../images/car.gif) no-repeat;
+	background-position:0 -30px;
+	padding-left:25px;
+	}	
+
+.shop{
+	height:53px;
+	width:710px;
+	border:1px solid #ececec;
+	background:#f9f9f9;
+	}
+.shopInfo{
+	float:left;
+	width:250px;
+	height:43px;
+	padding:10px 0 0 20px;
+	border-right:1px solid #ececec;
+	}
+.shopInfo span{
+	height:22px;
+	display:block;
+	}	
+.shopInfo span .djsc{
+	padding-left:110px;
+	display:inline-block;
+	}
+.sear{
+	padding:15px 0 0 10px;
+	}
+.sear input{
+	float:left;
+	}
+.searText{
+	width:270px;
+	border:1px solid #cfcfcf; 
+	height:21px;
+	padding-left:5px;
+	line-height:21px;
+	border-right:none;
+	}
+.searSc{
+	width:70px;
+	height:25px;
+	border:none;
+	cursor:pointer;
+	background:url(../images/searSc.jpg);
+	}
+.searDp{
+	width:69px;
+	height:25px;
+	border:none;
+	cursor:pointer;
+	background:url(../images/searDp.jpg);
+	}
+.ShopCalled{
+	height:105px;
+	margin-top:10px; 
+	width:100%;
+	text-align:center;
+	}
+.nav{
+	width:100%;
+	height:35px;
+	line-height:35px;
+	background:#000;
+	}
+
+.nav li{
+	padding:0 20px;
+	float:left;
+	background:url(../images/navLb1.jpg) no-repeat right center;
+	}
+.nav a{
+	color:#bababa;
+	font-size:14px;
+	font-weight:bold;
+	}
+.nav a:hover{
+	color:#ffffff;
+	font-size:14px;
+	font-weight:bold;
+	}					
+
+
+.banner,.nav ul{
+	width:980px;
+	margin:0 auto;
+	}	
+			
+/* * * * * * * * * * * * * * * * * 头部结束 * * * * * * * * * * * * * * * * * */	
+
+.bottom{
+	width:100%;
+	margin-top:15px;
+	padding-bottom:20px;
+	background:url(../images/bottom.gif) repeat-x;
+	}
+.bottom_help{
+	width:225px;
+	float:left;
+	padding:20px 0 0 20px;
+	}
+.bottom_help .bottom_t{
+	font-size:18px;
+	height:32px;
+	font-family:"微软雅黑";
+	padding-left:40px;
+	}
+.bottom_help li{
+	line-height:25px;
+	padding-left:40px;
+	}	
+.way{
+	height:32px;
+	background:url(../images/bottom_help.gif) no-repeat;
+	}
+.security{
+	height:32px;
+	background:url(../images/bottom_help.gif) no-repeat;
+	background-position:0 -32px;
+	}
+.after_sales{
+	height:32px;
+	background:url(../images/bottom_help.gif) no-repeat;
+	background-position:0 -64px;
+	}
+.about{
+	height:32px;
+	background:url(../images/bottom_help.gif) no-repeat;
+	background-position:0 -96px;
+	}
+.copyright{
+	border-top:1px solid #d5d5d5;
+	text-align:center;
+	line-height:30px;
+	padding-top:10px;
+	}
+.copyright_about a{
+	color:#3366cc;
+	padding:0 10px;
+	border-right:1px solid #d4d4d4;
+	}
+.copyright_about a:hover{
+	color:#3366cc;
+	text-decoration:underline;
+	}		
+	
+.noinfor{
+	width:100%;
+	background:#FFF;
+	line-height:25px;
+	padding:7px 0 0 10px;
+	margin:0px auto 10px;
+	text-align:center
+}	
+	
+							

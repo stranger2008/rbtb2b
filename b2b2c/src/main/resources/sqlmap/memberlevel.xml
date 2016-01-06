@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="memberlevel">
+
+	<typeAlias alias="memberlevel" type="com.rbt.model.Memberlevel" />
+
+	<select id="getByPk" parameterClass="java.lang.String"              
+		resultClass="memberlevel">
+		<![CDATA[ 
+    SELECT level_id,level_name,menu_right,oper_right,remark,syslevel,module_attr,num_control FROM memberlevel WHERE level_id=$level_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="memberlevel">
+		UPDATE memberlevel SET level_id=#level_id#,level_name=#level_name#,menu_right=#menu_right#,oper_right=#oper_right#,remark=#remark#,syslevel=#syslevel#,module_attr=#module_attr#,num_control=#num_control# WHERE level_id=$level_id$
+	</update>
+
+	<insert id="insert" parameterClass="memberlevel">
+		INSERT INTO memberlevel (level_id,level_name,menu_right,oper_right,remark,syslevel,module_attr,num_control) VALUES (#level_id#,#level_name#,#menu_right#,#oper_right#,#remark#,#syslevel#,#module_attr#,#num_control#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM memberlevel WHERE level_id in ($level_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM memberlevel 
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="level_name">
+			  INSTR(level_name,#level_name#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="level_id">
+			  level_id=#level_id#
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT level_id,level_name,menu_right,oper_right,remark,syslevel,module_attr,num_control
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY level_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

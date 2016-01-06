@@ -1,0 +1,35 @@
+.introback{
+	width:573px;
+	height:470px;
+	margin-left:200px;
+	margin-top:20px;
+	margin-bottom:20px;
+	background:url(../images/xzintropic_03.jpg) no-repeat;
+}
+.introcont{
+	width:400px;
+	margin-left:100px;
+	padding-top:30px;
+}
+.introcont h2{
+	font-size:12px;
+	height:26px;
+	line-height:26px;
+}
+.introcont .nh2{
+	width:400px;
+	height:50px;
+	line-height:50px;
+	font-size:16px;
+	text-align:center;
+}
+.introcont ul{
+	padding-left:10px;
+}
+.introcont  li{
+	height:24px;
+	line-height:24px;
+}
+.introcont span{
+	padding-left:10px;
+}

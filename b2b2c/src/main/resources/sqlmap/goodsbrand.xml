@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="goodsbrand">
+
+	<typeAlias alias="goodsbrand" type="com.rbt.model.Goodsbrand" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="goodsbrand">
+		<![CDATA[ 
+    SELECT brand_id,brand_name,brand_site,logo,content,goods_attr,sort_no,info_state,is_recom FROM goodsbrand WHERE brand_id=$brand_id$
+    ]]>
+	</select>
+<!--批量更新sort_no字段 -->
+	<update id="updatesort_no" parameterClass="java.util.HashMap">
+    	UPDATE goodsbrand SET sort_no=#sort_no# WHERE brand_id=$brand_id$
+	</update>
+	<update id="update" parameterClass="goodsbrand">
+		UPDATE goodsbrand SET brand_id=#brand_id#,brand_name=#brand_name#,brand_site=#brand_site#,logo=#logo#,content=#content#,goods_attr=#goods_attr#,sort_no=#sort_no#,info_state=#info_state#,is_recom=#is_recom# WHERE brand_id=$brand_id$
+	</update>
+
+	<insert id="insert" parameterClass="goodsbrand">
+		INSERT INTO goodsbrand (brand_id,brand_name,brand_site,logo,content,goods_attr,sort_no,info_state,is_recom) VALUES (#brand_id#,#brand_name#,#brand_site#,#logo#,#content#,#goods_attr#,#sort_no#,#info_state#,#is_recom#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM goodsbrand WHERE brand_id in ($brand_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM goodsbrand 
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="brand_name">
+				instr(brand_name,#brand_name#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="info_state">
+				info_state=#info_state#
+			</isNotNull>
+			<isNotNull prepend="and" property="is_recom">
+				is_recom=#is_recom#
+			</isNotNull>
+			<isNotNull prepend="and" property="goods_attr">
+				INSTR(goods_attr,#goods_attr#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="is_recom">
+				INSTR(is_recom,#is_recom#)>0
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT brand_id,brand_name,brand_site,logo,content,goods_attr,sort_no,info_state,is_recom
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY sort_no ASC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

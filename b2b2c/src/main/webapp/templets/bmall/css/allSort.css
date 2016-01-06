@@ -1,0 +1,59 @@
+.allBox{
+	float:left;
+	padding-top:10px;
+	padding-right:10px;
+	}
+.wie6{
+	width:990px;
+	margin:0 auto;
+	padding-left:10px;
+	}
+		
+.mt{
+	width:483px;
+	height:28px;
+	line-height:28px;
+	background:url(../images/allSortT.jpg) repeat-x;
+	border:1px solid #E9E9E9;
+	font-size:14px;
+	}
+.mt a{
+	background:url(../images/allsortS.jpg) no-repeat 10px center;
+	padding-left:20px;
+	height:28px;
+	display:block;
+	}	
+.mc {
+	width:483px;
+	border:1px solid #E9E9E9;
+	border-top:none;
+	margin-bottom:8px;
+  }	
+.mcT{
+    color: #CC0000;
+    float: left;
+    font-weight: bold;
+    padding-left: 10px;
+    text-align: right;
+    width:55px;
+   } 
+.mcT a{
+    color: #CC0000;
+   }  
+.mcC {
+    float: left;
+    width: 413px;
+    } 
+.mcC  a{
+	padding:0 10px 0 10px;
+	}	
+.fore{
+	border-bottom: 1px dotted #CCCCCC;
+    width:478px;
+	padding:5px 0;
+	margin-left:2px;
+	line-height:24px;
+	}	
+.mc .bN{
+	border:none;
+	}	

@@ -1,0 +1,224 @@
+.position{
+	height:33px;
+	background:#f6f5f5;
+	width:960px;
+	margin:10px auto 0;
+	line-height:33px;
+	font-size:14px;
+	}
+.position p{
+	padding-left:20px;
+	}
+	
+.contM{
+	width:696px;
+	border:1px solid #dddddd;
+	float:left;
+	padding:0 20px 20px;
+	}	
+	
+
+
+.detailTitle {
+    border-bottom: 1px solid #DDDDDD;
+    margin-bottom: 13px;
+    padding-bottom: 10px;
+	width:696px;
+   }
+.detailTitle .contMT{
+	font-family:"微软雅黑";
+	font-size:18px;
+	text-align:center;
+	line-height:30px;
+	padding:20px 0;
+	}	
+.pageviews{
+	padding-left:100px;
+	}	
+.detailTitle a{
+	text-decoration:none;
+	color:#2244dd;
+	}
+.detailTitle a:hover{
+	text-decoration:underline;
+	color:#f11f1f;
+	}	 
+	
+	
+.pic{
+	width:310px;
+	float:left;
+	}
+.pic_sm{
+	 width:310px;
+	 height:50px;
+	 padding-top:10px;
+	}
+.pic_sm li{
+	float:left;
+	width:48px;
+	margin-right:7px;
+	}	
+.pic_sm img ,.cont_t_r_size_c img{	
+	border:1px solid #dcdcdc;  
+	display:block; 
+	background: #fff; 
+	margin:0px auto; 
+	}
+.pic_sm  a:hover img ,.cont_t_r_size_c a:hover img{	
+	border:2px solid #c30008 ; 
+	}	
+	 
+.contact{
+	float:left;
+	padding-left:20px;
+	line-height:40px;
+	}	
+.contact li{
+	height:40px;
+	}	
+.contact li .bds_more{
+	line-height:18px;
+	}
+.contact li .bdshare_t{
+	padding-top:8px;
+	}	
+
+.contact li.InQy a,.contact li.InQy a:hover{
+	height:36px;
+	width:121px;
+	display:block;
+	line-height:36px;
+	font-size:14px;
+	text-align:center;
+	color:#FFF;
+	background:url(../images/InQy.jpg) no-repeat;
+	}
+	
+
+.contact .ts a{
+	padding-right:10px;
+	}
+
+	
+.attribute{
+	background:#f9f9f9;
+	border:1px solid #e9e9e9;
+	line-height:25px;
+	padding:5px 0;
+	width:696px;
+	margin-top:10px;
+	}
+.attribute li{
+	float:left;
+	width:153px;
+	padding-left:20px;
+	}	
+.contmain{
+	padding-top:10px;
+	line-height:25px;
+	color:#808080;
+	}				 
+
+
+.sidebar{
+	width:210px;
+	float:right;
+	}
+.sidebar img{
+	margin-bottom:10px;
+	}
+.s_ad li {
+	float:right;
+   }		
+.s_ad h3 {
+    font-size: 14px;
+    font-weight:normal;
+    margin-bottom: 5px;
+   }
+.s_ad h3 a{
+    color: #0000CC;
+    text-decoration:underline;
+   } 
+.s_ad h3 a:hover{
+	color:#FF0000;
+    text-decoration:underline;
+	}
+.s_ad div.surl a ,.s_ad div.surl a :hover{
+    color: #008000;
+    }	  	
+		
+.listImg {
+  width: 332px;
+  position: relative;
+}
+.listImg .wrapper {
+  width: 250px; /* .infiniteCarousel width - (.wrapper margin-left + .wrapper margin-right) */
+  overflow: auto;
+  min-height: 10em;
+  margin: 0 40px;
+  position: absolute;
+  top: 0;
+}
+
+.listImg ul a img {
+  border: 1px solid #e1e2e3;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.listImg .wrapper ul {
+  width: 9999px;
+  list-style-image:none;
+  list-style-position:outside;
+  list-style-type:none;
+  margin:0;
+  padding:0;
+  position: absolute;
+  top: 0;
+  height:60px;
+  overflow:hidden;
+}
+
+.listImg ul li {
+  display:block;
+  float:left;
+  padding: 6px;
+  height: 50px;
+  width:50px;
+}
+
+.listImg ul li a img {
+  display:block;
+}
+
+.listImg .arrow {
+  display: block;
+  height: 36px;
+  width: 37px;
+  background: url(/templets/default/images/arrow.png) no-repeat 0 0;
+  text-indent: -999px;
+  position: absolute;
+  top: 15px;
+  cursor: pointer;
+}
+
+.listImg .forward {
+  background-position: 0 0;
+  right: 0;
+}
+
+.listImg .back {
+  background-position: 0 -72px;
+  left: 0;
+}
+
+.listImg .forward:hover {
+  background-position: 0 -36px;
+}
+
+.listImg .back:hover {
+  background-position: 0 -108px;
+}
+
+	 

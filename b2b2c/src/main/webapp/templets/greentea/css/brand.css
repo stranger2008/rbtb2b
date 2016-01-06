@@ -1,0 +1,99 @@
+.wmain{
+	width:960px;
+	margin:0 auto;
+	}
+.cont{
+	width:651px;
+	float:left;
+	}
+.cont_main,.side_main{
+	padding-top:10px;
+	}	
+.title_1{
+	font-size:14px;
+	background:url(../images/brand_title.gif) repeat-x;
+	width:649px;
+	height:30px;
+	line-height:30px;
+	border:1px solid #d9e4f3;
+	}
+.title_cont{
+	float:left;
+	padding-left:10px;
+	}
+.more{
+	float:right;
+	font-size:12px;
+	padding-right:10px;
+	}
+.more a{
+	text-decoration:none;
+	font-weight:100;
+	}
+.more a:hover{
+	text-decoration:underline;
+	color:#07519a;
+	font-weight:100;
+}
+.tj_main{
+	width:649px;
+	border:1px solid #d9e4f3;
+	border-top:0;
+	height:341px;
+	}
+.tj_main li,.ot_main li{
+	float:left;
+	text-align:center;
+	padding-top:10px;
+	padding-left:15px;
+	}	
+	
+.ot_main{
+	width:649px;
+	border:1px solid #d9e4f3;
+	border-top:0;
+	height:236px;
+	}	
+	
+.sidebar{
+	float:right;
+	width:296px;
+	}	
+.title_2{
+	font-size:14px;
+	background:url(../images/brand_title.gif) repeat-x;
+	width:294px;
+	height:30px;
+	line-height:30px;
+	border:1px solid #d9e4f3;
+	}
+.fl_main,.cx_main{
+	width:294px;
+	line-height:25px;
+	padding:10px 0;
+	border:1px solid #d9e4f3;
+	border-top:0;
+	}	
+.fl_main a{
+	display:inline-block;
+	width:115px;
+	padding-left:20px;
+	}	
+.cx_main a{
+	display:inline-block;
+	width:50px;
+	padding-left:20px;
+	}	
+	
+.hot_main{
+	width:294px;
+	height:508px;
+	border:1px solid #d9e4f3;
+	border-top:0;
+	}
+.hot_main li,.hot_main li{
+	float:left;
+	text-align:center;
+	padding-top:10px;
+	padding-left:11px;
+	}						

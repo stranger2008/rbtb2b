@@ -1,0 +1,1 @@
+<#include "/WEB-INF/template/bmall/default/coretop.ftl">

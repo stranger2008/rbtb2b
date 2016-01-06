@@ -1,0 +1,477 @@
+.nav1 a{
+	color:#0b70a8;}
+	
+.nav1 a:hover{
+	color:#0b70a8;
+	}
+
+.position{
+	height:33px;
+	background:#f6f5f5;
+	width:960px;
+	margin:10px auto 0;
+	line-height:33px;
+	font-size:14px;
+	}
+.position p{
+	padding-left:20px;
+	}
+	
+.left_main{
+	width:684px;
+	padding-top:5px;
+	}
+/*按行业浏览*/
+.industry_main{
+	width:680px;
+	border:1px solid #e5e5e5;
+	border-top:2px solid  #a0ddff;
+	padding-bottom:10px;
+	overflow:hidden;
+	}	
+
+.dis_more{
+   overflow:hidden;
+}
+
+.display_more{
+	margin-top:-20px;
+	margin-left:26px;		
+}
+.display_more a{
+	color:#990000;
+	font-size:12px;
+	font-size:600;
+	}
+.industry_title{
+	font-size:14px;
+	color:#07519a;
+	padding-top:10px;
+	padding-left:30px;
+	}		
+.title_tb{
+	padding-top:10px;
+	padding-right:5px;
+	}
+/*详细产品浏览*/
+.flll_title{
+	width:680px;
+	height:33px;
+	background:url(../images/flll_bg.gif) repeat-x;
+	margin-top:10px;
+	font-size:14px;
+	border:1px solid #e5e5e5;
+	border-bottom:none;
+	}
+.flll_title ul{
+	height:30px;
+	line-height:30px;
+    margin-top:2px;
+	padding-left:30px;
+	}	
+.flll_title li{
+	float:left;
+	text-align:center;
+	width:90PX;
+	height:30px;
+	}
+.flll_title_h{
+	font-weight:bold;
+	color:#07519a;
+	font-size:14px;
+	background:url(../images/flll_title1.gif) repeat-x;
+	border:1px solid #e5e5e5;
+	border-bottom:none;
+}
+.flll_title a{
+	padding-left:7px;}
+	
+.flll_title1{
+	font-weight:bold;
+	color:#07519a;
+	font-size:14px;
+	}
+	
+.flll_main{
+	width:680px;
+	height:auto;
+	border:1px solid #e5e5e5;
+	border-top:0;
+	padding-top:20px;
+	}	
+	
+.flll_main_top{
+	width:660px;
+	height:32px;
+	border-bottom:1px dotted #e5e5e5;
+	margin-left:10px;
+	}
+.flll_main_top_jg{
+	margin-left:5px;
+	}
+
+.flll_main_top_jg1{
+	margin-left:145px;
+	}
+.flll_main_mid{
+
+}	
+
+.flll_main_mid_div{
+	padding:1px;
+	margin-left:15px;
+	width:100px;
+	height:91px;
+	float:left;
+	}
+	
+.flll_main_mid_jg{
+	margin-left:5px;
+	margin-top:40px;
+	}
+	
+.flll_main_mid_textmian{
+	width:410px;
+	height:128px;
+
+	}
+	
+.flll_main_mid_textmian1{
+	width:360px;
+	height:60px;
+	line-height:22px;
+	padding-left:15px;
+	}
+	
+.flll_main_mid_textmian2{
+	width:230px;
+	height:52px;
+	line-height:22px;
+	padding-left:15px;
+	padding-top:8px;
+	}
+	
+.flll_main_mid_textmian3{
+	width:120px;
+	height:52px;
+	padding-top:8px;
+	line-height:22px;
+
+	}
+	
+.flll_main_mid_text{
+	color:#07519a;}
+
+.flll_main_mid_qq{
+	float:left;
+	margin-top:25px;
+}
+
+.flll_main_mid_right{
+	width:73px;
+	height:87px;
+	line-height:22px;
+	padding-right:10px;
+	padding-top:20px;
+	}
+	
+.flll_main_mid_right_img{
+	margin-top:20px;
+	}
+	
+.flll_main_mid_right_text{
+	color:#ce0925;
+	font-weight:bold;
+	font-size:14px;
+	}
+	
+.price{
+    width:45px;
+}
+
+
+/*分页*/	
+.page_main{
+	width:660px;
+	height:56px;
+	border-bottom:1px dotted #e5e5e5;
+	margin-left:10px;
+	margin-top:-20px;
+	text-align:center;
+	}
+
+.page_main_r{
+	width:450px;
+	height:40px;
+	margin-left:80px;
+	_margin-left:30px;
+	}
+	
+.page_next{
+	width:59px;
+	height:19px;
+	border:1px solid #abb2bd;
+	background:url(../images/page_next1.gif) no-repeat;
+	margin-right:8px;
+	display:inline-block;
+	line-height:19px;
+	text-align:center;
+	}
+.page_next1{
+	width:59px;
+	height:19px;
+	border:1px solid #abb2bd;
+	background:url(../images/page_next.gif) no-repeat;
+	margin-right:8px;
+	display:inline-block;
+	line-height:19px;
+	text-align:center;
+	}	
+	
+.page_n1{
+	width:18px;
+	height:18px;
+	border:1px solid #abb2bd;
+	background:url(../images/number_bg.gif) repeat-x;
+	display:inline-block;
+	margin-right:8px;
+	line-height:18px;
+	text-align:center;
+	}
+	
+.page_n2{
+	width:28px;
+	height:18px;
+	border:1px solid #abb2bd;
+	background:url(../images/number_bg.gif) repeat-x;
+	display:inline-block;
+	margin-right:8px;
+	line-height:19px;
+	text-align:center;
+	}
+	
+.page_main_r a:hover{
+	border:1px solid #F60;
+	display:inline-block;
+
+	}
+	
+.page_main_input{
+	width:50px;
+	height:15px;
+	border:1px solid #abc7ff;
+	margin:auto 10px;
+	}
+	
+.right_bottom{
+	width:640px;
+	padding-top:15px;
+	padding-left:10px;
+	height:60px;
+	margin-top:-20px;
+	}
+	
+.right_bottom img{
+	padding-left:5px;}
+
+
+/*右边部分主题*/	
+.right_main{
+	width:268px;
+	padding-top:5px;
+	}	
+/*按地区浏览*/
+.area_title{
+	width:268px;
+	height:27px;
+	border:1px solid #e5e5e5;
+	background:url(../images/area_title_bg.gif) repeat-x;
+	}
+.title_text{
+	font-size:12px;
+	font-weight:bold;
+	color:#333333;
+	line-height:27px;
+	padding-left:10px;
+	float:left;
+	}
+		
+.area_main{
+	width:268px;
+	height:246px;
+	border:1px solid #e5e5e5;
+	border-top:0;
+	margin-bottom:10px;
+	}
+
+.area_main ul{
+	line-height:26px;
+	padding-left:25px;
+	padding-top:8px;
+	}
+	
+/*搜索排行*/
+.ph_main{
+	width:268px;
+	height:auto;
+	border:1px solid #e5e5e5;
+	border-top:0;
+	}
+	
+.ph_main li{
+	padding-left:12px;
+	line-height:28px;
+	}
+.n1{
+	text-align:center;
+	color:#FFF;
+	display:inline-block;
+	width:14px;
+	line-height:28px;
+	background:url(../images/pic_ph_bg01.gif) no-repeat;
+	background-position:left 7px;
+	}
+	
+.n2{
+	text-align:center;
+	color:#000;
+	display:inline-block;
+	width:14px;
+	line-height:28px;
+	background:url(../images/pic_ph_bg01.gif) no-repeat;
+	background-position:left -20px;
+	}
+	
+.ph_main a{
+    padding-left:8px;
+	}
+
+.ad{
+	margin-top:10px;}
+	
+.text_ad{
+	padding-top:20px;
+	padding-left:5px;
+	line-height:22px;
+	}
+	
+.ad_text{
+	color:#bf0303;
+	}
+
+
+
+
+
+	
+.industry_main div {
+	line-height:30px;
+	padding-left:30px;
+	padding-top:10px;
+	}
+.industry_main a{
+	display:inline-block;
+	}
+.area_main{
+	width:258px;
+	border:1px solid #e5e5e5;
+	border-top:0;
+	margin-bottom:10px;
+	padding:10px 0 10px 10px;
+	}
+
+.area_main a{
+	display:inline-block;
+	width:60px;
+	line-height:22px;
+	}
+
+.searchattr{
+	display:inline-block;
+    width:120px;
+    margin:3px 0px 0px 10px;
+    padding-top:6px;
+    font-size:13px;
+    color:#005AA0;
+}
+
+.blue{
+   background-color:#4598D2;
+   color:#FDFDFA;
+}
+	
+.flll_main_mid{
+	width:660px;
+	height:133px;
+	border-bottom:1px dotted #e5e5e5;
+	margin-left:10px;
+	margin-bottom:20px;
+	margin-top:-20px;
+	}	
+.flll_main_mid td{
+	vertical-align:middle;
+	}
+	
+.td_ul{
+    height:100px;
+    vertical-align:middle;
+    padding-top:20px;
+}
+.td_ul li{
+ padding-bottom:5px;
+}
+.mod_td1{  
+  width:20px;   
+}
+.mod_td2{
+  width:111px;
+  height:130px;
+}
+.mod_td3{
+  padding-top:10px;
+  height:20px;	
+}
+.mod_td4{
+  vertical-align:middle;
+  height:36px;
+}
+.mod_td5{
+  width:80px;
+  text-align:center;
+}
+.mod_td6{
+   height:5px;
+}
+
+.td_span{
+  display:in_line;
+  minwidth:80px;
+  _width:80px;
+  width:auto;
+  height:20px;
+  float:right;
+  padding-left:20px;
+  padding-right:3px;
+  background:url(../images/credit.gif) no-repeat;
+}
+
+.td_span_1{
+	font-size:12px;
+	color:#333333;
+	}
+
+.td_span_2{
+	font-weight:600;
+	color:#CE0925;
+	font-size:14px;
+	}
+
+.area_name{
+  color:#333333;
+  float:left;
+}
+/*
+ ISConsole Copyright 2011 ruibaotong COMPANY, Co.ltd . 
+ All rights reserved.
+ FileName: index.css
+ */

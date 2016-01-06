@@ -1,0 +1,612 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/index.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/js.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/images.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /}
+<script type="text/javascript" src="/include/js/images.js"></script> 
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/index.js"></script> 
+<script type="text/javascript" src="/include/js/ScrollPic.js"></script> 
+<title>{tag:sysbase name="cfg_webtitle"/}</title>
+<meta name="keywords" content="{tag:sysbase name="cfg_keywords"/}" />
+<meta name="description" content="{tag:sysbase name="cfg_description"/}" />
+</head>
+<body>
+{tag:include file="top.html" /}
+<div class="w960">
+  <div class="compr f_left">
+  <!-- 取资讯资讯信息 栏目信息 -->  
+  {tag:channellist ch_id="17"}  
+     <h2 class="compr_title"><span class="title_main">行业资讯</span>
+     <span class="more"><a href="[field:ch_name_url/]" target="_blank">更多+</a></span></h2>
+  {/tag:channellist}
+    
+   <div class="compr_main"> 
+      <div class="compr_main_pic">
+      	
+      	{tag:newslist row="1"}
+           <a href='[field:news_detail_url/]' target="_blank">
+           <img src="[field:img_path/]" width="73" height="71" class="f_left"/></a>
+        {/tag:newslist}
+
+        <ul class="compr_pic_ul f_left">
+            <!-- 取出资讯信息 row：取出前三行-->
+            {tag:newslist row="3"}
+               <li><a href='[field:news_detail_url/]' target="_blank">[field:title?len(12)/]</a></li>
+          	{/tag:newslist}
+        </ul>
+      </div>
+      <ul class="compr_ul">
+          <!-- 取出资讯信息 row：取出六条数据，start:从第3条开始取数据-->
+         {tag:newslist row="6" start="3"}
+          <li><a href="[field:news_detail_url/]" target="_blank">[field:title?len(17)/]</a></li>
+         {/tag:newslist}
+      </ul>
+   </div>
+</div>
+  <!--综合信息结束-->
+ <div class="banner_purch f_left">
+ 
+     <div class="banner">
+		    <div id="slides">
+			      <div class="slides_container" >
+			       {tag:advlist row="5" pos_id="21"}
+			          <a href="[field:link_url/]" target="_blank">
+		               <img src="[field:img_path/]" alt="[field:adv_name/]" width="440px" height="160px" />
+		              </a>
+			       {/tag:advlist}
+			      </div>
+		    </div>
+     </div>
+     
+     <div class="infor">
+        <div class="infor_t">
+           <ul class="infor_c f_left">
+              <li id="hotsup" class="infor_h"><a href="###;">热点供应</a></li>
+              <li id="hotbuy"><a href="###;">热点求购</a></li>
+           </ul>
+           <ul class="infor_l f_right">
+              <li><a href="/member_Supply_cate.action">新增供应</a></li>
+              <li><a href="/member_Buy_cate.action">新增采购</a></li>
+           </ul>
+        </div>
+        <!-- 热点供应 -->
+        <div class="infor_main" id="taghotdiv">
+           <ul class="infor_ul">
+              <!-- 取出热点供应 row：取出3条数据，-->
+              {tag:supplylist row="3"  }
+              <li><a href="[field:supply_detail_url/]" target="_blank">[field:title?len(9)/]</a></li>
+              {/tag:supplylist}
+           </ul>
+           <ul class="infor_ul">
+               <!-- 取出热点供应 row：取出3条数据，start:从第3条开始取数据-->
+              {tag:supplylist row="3" start="3" }
+              <li><a href="[field:supply_detail_url/]" target="_blank">[field:title?len(9)/]</a></li>
+              {/tag:supplylist}
+           </ul>
+           <ul>
+               <!-- 取出热点供应 row：取出6条数据，start:从第3条开始取数据-->
+              {tag:supplylist row="3" start="6" }
+              <li><a href="[field:supply_detail_url/]" target="_blank">[field:title?len(9)/]</a></li>
+              {/tag:supplylist}
+           </ul>
+        </div>
+        <!-- 热点求购 -->
+        <div class="infor_main" id="tagbuydiv" >
+           <ul class="infor_ul">          
+               <!-- 取出热点求购 row：取出3条数据，orderby:按点击量排序-->
+              {tag:buylist row="3"  orderby="clicknum"}
+              <li><a href="[field:buy_detail_url/]" target="_blank">[field:title?len(9)/]</a></li>
+              {/tag:buylist}
+           </ul>
+           <ul class="infor_ul">
+              <!-- 取出热点求购 row：取出3条数据，start：从第三条开始取数据，orderby:按点击量排序-->
+              {tag:buylist row="3" start="3" orderby="clicknum"}
+              <li><a href="[field:buy_detail_url/]" target="_blank">[field:title?len(9)/]</a></li>
+              {/tag:buylist}
+           </ul>
+           <ul>
+              <!-- 取出热点求购 row：取出6条数据，start：从第三条开始取数据，orderby:按点击量排序-->
+              {tag:buylist row="3" start="6" orderby="clicknum"}
+              <li><a href="[field:buy_detail_url/]" target="_blank">[field:title?len(9)/]</a></li>
+              {/tag:buylist}
+           </ul>
+        </div>
+     </div>
+  </div>
+  
+  <div class="sj f_right">
+      <ul class="dl">
+         <li><a href="/login.html">会员登录</a></li>
+         <li><a href="/register.html">免费注册</a></li>
+         <li><a href="/member_Supply_cate.action">发布供应</a></li>
+      </ul>
+      <div class="fw">
+         <ul class="gy">
+            <li class="fw_title">供应商服务</li>
+            <li><a href="/member_Supply_list.action">管理供应信息</a></li>
+            <li><a href="/member_Membertemplate_list.action">开通企业商铺</a></li>
+            <li><a href="/member_Memberinbox_list.action">查看商机询价</a></li>
+         </ul>
+         <ul>
+            <li class="fw_title">采购商服务</li>
+            <li><a href="/member_Buy_cate.action">发布采购信息</a></li>
+            <li><a href="/member_Subscribe_add.action">订阅最新供应</a></li>
+            <li><a href="/member_Buy_list.action">采购信息管理</a></li>
+         </ul>
+      </div>
+      <div class="clear"></div>
+      {tag:advlist row="1" pos_id="18"}
+        <a href="[field:link_url/]" target="_blank">
+		   <img src="[field:img_path/]" alt="[field:adv_name/]" class="fw_pic"/>
+		</a>
+      {/tag:advlist}
+  </div>
+</div>
+<div class="clear"></div>
+<!--综合信息——登录结束-->
+   
+   <div class="w960">
+    
+    <div class="cp">
+       <div class="cp_title" id="seachword">
+          <p>
+          	<!-- 
+          	<a href="#">a</a><a href="#" class="cp_hover">b</a><a href="#">c</a><a href="#">d</a><a href="#">e</a><a href="#">f</a><a href="#">g</a><a href="#">h</a><a href="#">i</a><a href="#">j</a><a href="#">k</a><a href="#">l</a><a href="#">m</a><a href="#">n</a><a href="#">o</a><a href="#">p</a><a href="#">q</a><a href="#">r</a><a href="#">s</a><a href="#">t</a><a href="#">u</a><a href="#">v</a><a href="#">w</a><a href="#">x</a><a href="#">y</a><a href="#">z</a>
+          	 -->
+          	 <script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/common.js"></script> 
+          	<script type="text/javascript">
+        		var assarr = 'abcdefghijklmnopqrstuvwxyz';
+        		var wordarr = assarr.split('');
+        		for(var i=0;i<wordarr.length;i++){
+        			document.write('<a href="#" onmouseover=showWordDiv("'+ wordarr[i] +'","seachword","searchDiv",this) id="'+ wordarr[i] +'" onmouseout=closeWordDiv("searchDiv",this)>'+wordarr[i]+'</a>');
+        		}
+        	</script>
+          </p>
+       </div>
+       <div class="cp_py"  id="searchDiv" onmouseover="this.style.display = 'block';"  onmouseout="this.style.display = 'none';"></div>
+       
+        <div class="cp_cont" id="supply_main">
+        
+        
+        	{tag:catlist row="10" cat_level="1" module_type="supply"}
+	           <div class="cp_main">
+	              <h2><span class="[field:word_index/]"><a href="[field:supply_cat_url/]" target="_blank">[field:cat_name?len(10)/]</a></span></h2>
+	              <P>
+	              	{tag:twocatlist row="18" up_cat_id="[field:cat_id/]"}
+             			<span class="[field:two_word_index/]"><a href="[field:supply_twocat_url/]"  target="_blank">[field:two_cat_name?len(4)/]</a></span>
+              		{/tag:twocatlist}
+	              	<a href="[field:supply_cat_url/]" target="_blank" class="cp_more">更多>></a>
+	              </P>
+	           </div>
+           {/tag:catlist}
+           
+        </div>
+       
+    
+    </div>
+    
+   
+   
+      <!--产品分类结束-->
+   <div class="company_talents f_right">
+       <div class="company">
+          <div class="talents_t">
+           <ul class="infor_c f_left">
+              <li class="infor_h" id="vipmem"><a href="###;"><b>VIP企业</b></a></li>
+              <li id="newmem"><a href="###;"><b>最新企业</b></a></li>
+           </ul>
+           
+            {tag:channellist ch_id="18"}
+	          <p class="f_right more_1"><a href="[field:ch_name_url/]" target="_blank">更多+</a></p>
+      		{/tag:channellist}
+           
+           
+        </div>
+          <ul class="company_main" id="vipmemdiv">
+          
+          	<!-- level_code 4:企业VIP -->
+          	{tag:memberlist row="9" mem_type="0" level_code="4"}
+          	<li><a href="[field:company_detail_url/]" target="_blank" >[field:cust_name?len(12)/]</a>[field:cust_area?len(3)/]</li>
+          	{/tag:memberlist}
+
+          </ul>
+          
+          <ul class="company_main" id="newmemdiv">
+          
+          	{tag:memberlist row="9" mem_type="0"}
+          	<li><a href="[field:company_detail_url/]" target="_blank" >[field:cust_name?len(12)/]</a>[field:cust_area?len(3)/]</li>
+          	{/tag:memberlist}
+
+          </ul>
+          
+       </div>
+       <!--最新注册企业结束-->
+       <div class="talents">
+         <div class="talents_t" >
+           <ul class="infor_c f_left">
+              <li class="infor_h" id="rempro"><a href="###;"><b>推荐产品</b></a></li>
+              <li id="newpro"><a href="###;"><b>最新产品</b></a></li>
+           </ul>
+           {tag:channellist ch_id="26"}
+	          <p class="f_right more_1"><a href="[field:ch_name_url/]" target="_blank">更多+</a></p>
+      		{/tag:channellist}
+        </div>
+         <ul class="talents_main" id="remprodiv">         
+         	{tag:productlist row="6" is_recom="1" imgwidth="100" imgheight="60"}         	
+            <li>            
+               <div class="divMiddle" style="width:110px;height:70px;line-height:70px;">
+	               <a href="[field:product_detail_url/]" target="_blank" class="AMiddle" style="width:110px;">
+		               <img src="[field:img_path/]" [field:imgsize/] class="ImgMiddle2"/>
+		           </a>
+		       </div> 
+	            <p style="margin-top:3px;"><a href="[field:product_detail_url/]" target="_blank">[field:title?len(8)/]</a></p>
+	         </li>			
+			{/tag:productlist}
+         </ul>
+         
+         
+         
+         <ul class="talents_main" id="newprodiv">
+            {tag:productlist row="6" imgwidth="100" imgheight="60"}
+            <li>
+            <div class="divMiddle" style="width:110px;height:70px;line-height:70px;">
+	            <a href="[field:product_detail_url/]" target="_blank" class="AMiddle" style="width:110px;">
+	               <img src="[field:img_path/]"  [field:imgsize/] class="ImgMiddle2" />
+	            </a>            
+	       </div> 
+	             <p style="margin-top:3px;"><a href="[field:product_detail_url/]" target="_blank">[field:title?len(8)/]</a></p>
+            </li>
+			{/tag:productlist}
+         </ul>
+         
+       </div>
+   </div>
+</div>
+<div class="clear"></div>
+<!--产品_招聘信息结束-->
+
+<div class="w960">
+{tag:advlist row="1" pos_id="26"}
+  <a href="[field:link_url/]" target="_blank">
+	<img src="[field:img_path/]" alt="[field:adv_name/]" />
+  </a>
+{/tag:advlist}
+</div>
+<div class="w960">
+   <div class="know f_left">
+       {tag:channellist ch_id="23"}  
+	      <h2 class="title_2"><span class="title_main_2">行业问答</span><span class="more_2">
+	      <a href="[field:ch_name_url/]"  target="_blank">更多+</a></span></h2>
+       {/tag:channellist}
+      <div class="clear"></div>
+      <ul>
+         <!-- 取出行情知道 row：取出11条数据，is_recom：是否推荐-->
+        {tag:asklist row="11"  is_recom="1" }
+          <li><a href="[field:know_detail_url/]" target="_blank" >[field:title?len(16)/]</a></li>
+        {/tag:asklist}      
+      </ul>
+   </div>
+   <!--行情知道结束-->
+   <div class="exhi f_left">
+        {tag:channellist ch_id="20"}  
+      <h2 class="titel_3"><span class="title_main_3">展会信息</span>
+      <span class="more_1 f_right"><a href="[field:ch_name_url/]"  target="_blank">更多+</a></span></h2>
+        {/tag:channellist}
+      <div class="exhi_main">
+           <div class="exhi_pic">
+             {tag:advlist row="1" pos_id="28"}
+             <a  href="[field:link_url/]"  target="_blank">
+    		<img src="[field:img_path/]" width="202px" height="79px"  alt="[field:adv_name/]" />
+  			</a>
+             {/tag:advlist}
+             {tag:advlist row="1" pos_id="29"}
+              <a href="[field:link_url/]" target="_blank">
+    		 <img src="[field:img_path/]" width="202px" height="79px" alt="[field:adv_name/]" />
+  			 </a>
+             {/tag:advlist}
+           </div>
+           <ul>
+            <!-- 取出展会信息 row：取出7条数据，is_recom：是否推荐-->
+            {tag:showinfolist row="7"  is_recom="1" }
+             <li><span class="exhi_span">[[field:category?len(4)/]]</span>
+             <span class="exhi_a">
+                <a href="[field:showinfo_detail_url/]" target="_blank">[field:title?len(20)/]</a></span>[field:in_date?len(10)/]</li>
+            {/tag:showinfolist}      
+           </ul>
+      </div>
+   </div>
+   <!--展会信息结束-->
+   <div class="information f_right">
+      {tag:channellist ch_id="17"}  
+      <h2 class="title_2"><span class="title_main_2">企业新闻</span>
+      <span class="more_2"><a href="/membernews/list.html"  target="_blank">更多+</a></span></h2>
+      {/tag:channellist}
+      <div class="clear"></div>
+      <div class="information_main">         
+         <ul style="padding-top:0px;">
+          <!-- 取出行情资讯信息 row：取出6条数据，start:从第几个开始取数据-->
+          {tag:membernewslist row="11"}
+            <li><a href="/showroom/[field:user_name/]/news/detail_[field:cert_id/].html" target="_blank">[field:title?len(17)/]</a></li>
+          {/tag:membernewslist}
+         </ul>
+      </div>
+   </div>
+</div>
+<div class="clear"></div>
+<!--行情知道——行情资讯结束-->
+
+<div class="w960">
+{tag:advlist row="1" pos_id="27"}
+  <a href="[field:link_url/]" target="_blank">
+    <img src="[field:img_path/]" alt="[field:adv_name/]" />
+  </a>
+{/tag:advlist}
+</div>
+
+<div class="w960">
+
+<div class="project f_left">
+ {tag:channellist ch_id="29"}  
+  <h2 class="title_3"><span class="title_main_2">最新专题</span>
+  <span class="more_2"><a href="[field:ch_name_url/]"  target="_blank">更多+</a></span></h2>
+  {/tag:channellist}
+  <div class="project_main">
+     <div class="project_main_d">        
+        <!-- 取出最新专题 row：取出1条数据，is_recom：是否推荐-->
+        {tag:subjectlist row="1"  is_recom="1" imgwidth="170" imgheight="102"}       
+        <div class="f_left" style="width:180px;height:112px;line-height:112px;">      
+	       <div class="divMiddle" style="width:180px;height:112px;line-height:112px;">        
+		         <a class="AMiddle"  href="[field:subject_detail_url/]" target="_blank" style="width:180px;">
+		            <img src="[field:img_path/]" [field:imgsize/]  class="ImgMiddle2"/>
+		         </a>	         
+		   </div>           
+	   </div>
+        {/tag:subjectlist}   
+        <ul class="f_left">
+            <!-- 取出最新专题 row：取出5条数据，start:从第几条开始取数据,is_recom：是否推荐-->
+           {tag:subjectlist row="5" start="1" is_recom="1" }
+             <li><a  href="[field:subject_detail_url/]" target="_blank">[field:title?len(16)/]</a></li>
+           {/tag:subjectlist} 
+        </ul>        
+     </div>
+     <div class="clear"></div>
+     
+     <div class="project_main_d">      
+       <!-- 取出最新专题 row：取出1条数据，start:从第几条开始取数据,is_recom：是否推荐-->  
+        {tag:subjectlist row="1" start="6" is_recom="1"  imgwidth="170" imgheight="102"}
+         <div class="f_left" style="width:180px;height:112px;line-height:112px;">  
+	         <div class="divMiddle" style="width:180px;height:112px;line-height:112px;">        
+		          <a class="AMiddle" href="[field:subject_detail_url/]" target="_blank"  style="width:180px;">
+		            <img  src="[field:img_path/]"  [field:imgsize/]  class="ImgMiddle2"/>
+		          </a>
+		     </div>
+		</div>
+        {/tag:subjectlist}   
+        <ul class="f_left">
+            <!-- 取出最新专题 row：取出5条数据，start:从第几条开始取数据,is_recom：是否推荐-->
+           {tag:subjectlist row="5" start="7" is_recom="1" }
+             <li><a href="[field:subject_detail_url/]" target="_blank">[field:title?len(16)/] </a></li>
+           {/tag:subjectlist} 
+        </ul>
+     </div>
+     <div class="clear"></div>
+  </div>
+</div>
+<!--最新专题结束-->
+<div class="project f_right">
+ {tag:channellist ch_id="19"}  
+  <h2 class="title_3"><span class="title_main_2">推荐视频</span>
+  <span class="more_2"><a href="[field:ch_name_url/]"  target="_blank">更多+</a></span></h2>
+   {/tag:channellist}
+  <div class="project_main">
+     <div class="video">
+         <!-- 取出推荐视频 row：取出3条数据，orderby:以什么条件进行排序，is_recom：是否推荐-->
+     	 {tag:videolist row="3" is_recom="1" orderby="in_date" imgwidth="106" imgheight="80"}    
+     	 <div style="width:130px;height:120px;float:left;margin-left:22px;text-align:center;display:inline;"> 	 
+           <div class="divMiddle" style="width:116px;height:90px;line-height:90px;">
+	         <a href="[field:video_detail_url/]" target="_blank" class="AMiddle"  style="width:120px;">	         
+		         <img src="[field:img_path/]" [field:imgsize/] class="ImgMiddle2" />		         
+		     </a>		     
+	       </div>	
+	       <p style="margin-top:6px;"><a href="[field:video_detail_url/]" target="_blank">[field:title?len(9)/]</a></p>       	               	 
+	     </div>    	              
+         {/tag:videolist}
+         <br class="clear"/>
+      </div>
+      
+      <div class="clear"></div>
+      
+      <div class="video">
+         <!-- 取出推荐视频 row：取出5条数据，start:从第几条开始取数据,orderby:以什么条件进行排序，is_recom：是否推荐-->
+         {tag:videolist row="3" start="3" is_recom="1" orderby="in_date"  imgwidth="106" imgheight="80"}
+     	 <div style="width:130px;height:120px;margin-left:22px;float:left;text-align:center;display:inline;"> 	 
+           <div class="divMiddle" style="width:116px;height:90px;line-height:90px;">
+	         <a href="[field:video_detail_url/]" target="_blank" class="AMiddle"  style="width:120px;">	         
+		         <img src="[field:img_path/]" [field:imgsize/] class="ImgMiddle2" />		         
+		     </a>		     
+	       </div>	
+	       <p style="margin-top:6px;"><a href="[field:video_detail_url/]" target="_blank" >[field:title?len(9)/]</a></p>       	               	 
+	     </div>  
+         {/tag:videolist}
+         <br class="clear"/>
+      </div> 
+        
+  </div>
+</div>
+<!--推荐视频结束-->
+</div>
+<div class="clear"></div>
+
+<!--最新专题——推荐视频-->
+
+<div class="w960">
+{tag:advlist row="1" pos_id="111"}
+  <a href="[field:link_url/]" target="_blank">
+    <img src="[field:img_path/]" alt="[field:adv_name/]" />
+  </a>
+{/tag:advlist}
+</div>
+
+<div class="w960">
+  <div class="atlas f_left">
+    {tag:channellist ch_id="22"}   
+    <h2 class="title_4"><span class="title_main_3">图库信息</span>
+    <span class="more_1 f_right"><a href="[field:ch_name_url/]"  target="_blank">更多+</a></span></h2> 
+    {/tag:channellist}
+<div class=case_cont>
+	<div class=main_l id=LeftArr></div>
+	<div class=cont id=ISL_Cont_1><!-- 图片列表 begin -->
+	      <!-- 取出图库信息 row：取出10条数据，is_recom：是否推荐-->
+	    {tag:gallerylist row="10" is_recom="1"  imgwidth="120" imgheight="100"}
+	    <div class="box" style="width:130px;height:146px;">
+	      <a href="[field:gallery_detail_url/]" target="_blank">
+	      
+          <div  style="width:130px;height:110px;line-height:110px; border:1px solid #e1e2e3;">
+	          <img src="[field:img_path/]" [field:imgsize/]/>             
+          </div>
+          </a> 
+          <p><a href="[field:gallery_detail_url/]" target="_blank">[field:title?len(8)/]</a></p>
+        </div>
+        {/tag:gallerylist}
+    </div>
+   <div class= main_r id=RightArr></div>
+</div>
+<div class="clear"></div>
+<script language="javascript" type="text/javascript">
+		<!--//--><![CDATA[//><!--
+		var scrollPic_02 = new ScrollPic();
+		scrollPic_02.scrollContId   = "ISL_Cont_1"; //内容容器ID
+		scrollPic_02.arrLeftId      = "LeftArr";//左箭头ID
+		scrollPic_02.arrRightId     = "RightArr"; //右箭头ID
+
+		scrollPic_02.frameWidth     = 625;//显示框宽度
+		scrollPic_02.pageWidth      = 138; //翻页宽度
+
+		scrollPic_02.speed          = 15; //移动速度(单位毫秒，越小越快)
+		scrollPic_02.space          = 15; //每次移动像素(单位px，越大越快)
+		scrollPic_02.autoPlay       = false; //自动播放
+		scrollPic_02.autoPlayTime   = 3; //自动播放间隔时间(秒)
+
+		scrollPic_02.initialize(); //初始化
+							
+		//--><!]]>
+</script>
+  </div>
+  
+  <div class="download f_right">
+      {tag:channellist ch_id="25"}   
+    <h2 class="title_2"><span class="title_main_2">下载专区</span>
+    <span class="more_2"><a href="[field:ch_name_url/]"  target="_blank">更多+</a></span></h2>
+        {/tag:channellist}
+    <div class="clear"></div>
+    <ul class="download_cont">
+        <!-- 取出下载专区 row：取出7条数据，start:从第几条开始取数据,orderby:以什么条件进行排序，is_recom：是否推荐-->
+        {tag:downloadlist row="7"  is_recom="1" }
+          <li><a href="[field:download_detail_url/]" target="_blank">[field:title?len(20)/] </a></li>
+        {/tag:downloadlist}
+    </ul>
+  </div>
+</div>
+<div class="clear"></div>
+<!--图库——下载专区结束-->
+
+
+
+<div class="w960">
+    <div class="new_recruit f_left">
+         <div class="title_4">
+            <ul class="infor_c f_left">
+              <li class="infor_h" id="newjob"><a href="javascript:void(0);"><b>最新招聘</b></a></li>
+              <li id="newresume"><a href="javascript:void(0);"><b>最新求职</b></a></li>
+           </ul>
+           
+           {tag:channellist ch_id="27"}
+	          <p class="f_right more_1"><a href="[field:ch_name_url/]" target="_blank">更多+</a></p>
+      		{/tag:channellist}
+           
+         </div>
+          <div id="rec_main1">
+          
+          	 <!-- 取出招聘信息 row：取出6条数据-->
+           {tag:joblist row="6"}
+            <ul>
+               <li><a href="[field:job_detail_url/]" target="_blank">[field:title?len(15)/]</a></li>
+               <li>[field:get_company_name?len(15)/]</li>
+               <li class="rli">[field:salary/]</li>
+               <li class="rli2">[field:cust_area?len(3)/]</li>
+             </ul>
+            {/tag:joblist}
+          
+             <br class="clear"/>
+             
+          </div>
+          <div id="rec_main2">
+             <ul>
+             
+             {tag:resumelist row="6"}
+            <ul>
+               <li><a href="[field:resume_detail_url/]" target="_blank">[field:real_name?len(15)/]([field:sex/])</a></li>
+               <li>[field:resume_name?len(15)/]</li>
+               <li class="rli">[field:salary/]</li>
+               <li class="rli2">[field:cust_area?len(3)/]</li>
+             </ul>
+            {/tag:resumelist}
+             
+             </ul>  
+             <br class="clear"/>
+          </div>
+    </div>
+    <form action="/portal/vote!update.action" method="post" name="searchForm">
+    <div class="download f_right">
+    <h2 class="title_2"><span class="title_main_2">投票调查</span><span class="more_2"><a href="/vote/list.html">更多+</a></span></h2>
+    <div class="clear"></div>
+    <div class="tc">
+    	{tag:votelist row="1"}
+        <p><b>[field:vote_title/]</b></p>
+        <ul class="tc_main">
+          {tag:voteoptionlist vote_id='[field:vote_id/]' }
+           <li>           
+        	<input type="[field:is_multi/]" name="chkbtvalue" id="[field:option_id/]" value="[field:option_id/]" />     	
+        	[field:option_name/]
+          </li>   
+         {/tag:voteoptionlist}
+         <li class="tc_button">
+         	<input type="hidden" id="ismultis" name="vote_is_multi"  value="[field:is_multi/]" />
+    		<input type="hidden" id="voteids" name="vote_id"  value="[field:vote_id/]" />
+         	<input type="button" onclick="addvotes();"  value="投 票"/>
+         	<input type="button" onclick="showvoteresut('[field:vote_id/]');"  value="结 果"/>
+         </li>
+        </ul>
+        {/tag:votelist}
+    </div>
+     
+  </div>
+  </form>
+
+</div>
+<div class="clear"></div>
+
+
+
+
+
+
+<div class="w960 link">
+  <div class="link_title f_left"></div>
+  <div class="link_cont f_left">
+     <!-- 取出友情链接 row：取出30条数据-->
+     {tag:linklist row="30"}
+     	<a href="[field:url/]" target="_blank">[field:link_name?len(6)/]</a>
+     {/tag:linklist}
+  </div>
+</div>
+<div class="clear"></div>
+<!--链接结束-->
+{tag:include file="bottom.html" /}
+</body>
+</html>

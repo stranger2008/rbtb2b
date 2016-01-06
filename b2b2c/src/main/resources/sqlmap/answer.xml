@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="answer">
+
+	<typeAlias alias="answer" type="com.rbt.model.Answer" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="answer">
+		<![CDATA[ 
+    SELECT t1.answer_id,t1.ask_id,t1.cust_id,t1.answer_desc,t1.ip,t1.refer_data,t1.isselect,t1.info_state,t1.in_date,t1.user_id, t2.title AS ask_title
+     FROM answer AS t1 LEFT JOIN ask AS t2 ON t1.ask_id=t2.ask_id WHERE t1.answer_id=$answer_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="answer">
+		UPDATE answer SET ask_id=#ask_id#,answer_desc=#answer_desc#,ip=#ip#,refer_data=#refer_data#,isselect=#isselect#,info_state=#info_state# WHERE answer_id=$answer_id$
+	</update>
+
+    <update id="auditAnswer" parameterClass="java.util.HashMap">
+		UPDATE answer SET isselect=#isselect#,info_state=#info_state# WHERE answer_id=$answer_id$
+	</update>
+	 
+	<insert id="insert" parameterClass="answer">
+		INSERT INTO answer (answer_id,ask_id,cust_id,answer_desc,ip,refer_data,isselect,info_state,in_date,user_id) VALUES (#answer_id#,#ask_id#,#cust_id#,#answer_desc#,#ip#,#refer_data#,#isselect#,#info_state#,now(),#user_id#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM answer WHERE answer_id in ($answer_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM answer AS t1 left join ask AS t2 on t1.ask_id=t2.ask_id
+		<dynamic prepend="WHERE">
+		    <isNotNull prepend="and" property="cust_id">
+				t1.cust_id=#cust_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="ask_id">
+				t1.ask_id=#ask_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="title">
+				INSTR(t2.title,#title#) >0
+			</isNotNull>
+			<isNotNull prepend="and" property="answer_desc">
+				INSTR(t1.answer_desc,#answer_desc#) >0
+			</isNotNull>
+			<isNotNull prepend="and" property="ip">
+				INSTR(t1.ip,#ip#) >0
+			</isNotNull>
+			<isNotNull prepend="and" property="isselect">
+			    t1.isselect=#isselect#
+			</isNotNull>
+			<isNotNull prepend="and" property="info_state">
+				t1.info_state=#info_state#
+			</isNotNull>
+			<isNotNull prepend="and" property="in_date">
+				DATE(t1.in_date)>=#in_date#
+			</isNotNull>
+			<isNotNull prepend="and" property="end_date">
+				#end_date#>=DATE(t1.in_date)
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT t1.answer_id,t1.ask_id,t1.cust_id,t1.answer_desc,t1.ip,t1.refer_data,t1.isselect,t1.info_state,t1.in_date,t1.user_id,t2.title,t2.answer_state,
+		(select user_name from memberuser where memberuser.user_id=t1.user_id) as answer_name
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY t1.answer_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

@@ -1,0 +1,26 @@
+
+/*类表页*/
+.listltitle{
+	width:160px;
+	height:29px;
+	padding-left:10px;
+	font-size:12px;
+	font-weight:bold;
+	line-height:29px;
+	background:url(../images/leftulh.gif) repeat-x;
+}
+listcont {
+	width:168px;
+	border:#c9c8c8 solid 1px;
+}
+.listcont ul{
+	
+}
+.listcont li{
+	height:29px;
+	background:url(../images/ul2li.gif) no-repeat bottom;
+	line-height:29px;
+}
+.listcont .listnuli{
+	border:none;
+}

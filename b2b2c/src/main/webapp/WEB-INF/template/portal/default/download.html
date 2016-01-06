@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/download.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/common.js"></script> 
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/js.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /}
+<script type="text/javascript" src="/include/js/lb.js"></script>
+<title>{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:chinfo name="meta_keyword"/}" />
+<meta name="description" content="{tag:chinfo name="meta_desc"/}" />
+<script type="text/javascript">
+$(document).ready(function(){
+/*排行特效样式*/
+ addnumberstyle(".ranking_main_down",".ico_top",7,"rak_addico_top3","rak_addico_topend");
+ addnumberstyle(".ranking_main",".ico_top",15,"rak_addico_top3","rak_addico_topend");
+});
+</script>
+<script>
+	/*
+		val:当前数字
+		num:tab页总数
+		btnName:选项卡id名称前缀（去掉数字的名称）
+		divName:显示隐藏的下部div名称前缀
+		btncss1:选项卡当前的样式名称
+		btncss2:选项卡其他的样式名称
+	*/
+	function showdiv(val,num,btnName,divName,btncss1,btncss2){
+		for(var i=1;i<=num;i++){
+			if(val==i){
+				document.getElementById(divName+i).style.display = 'block';
+				document.getElementById(btnName+i).className = btncss1;
+			}else{
+				document.getElementById(divName+i).style.display = 'none';
+				document.getElementById(btnName+i).className = btncss2;
+			}
+		}
+	}
+</script>
+</head>
+<body>
+{tag:include file="top.html" /}
+
+
+<!--导航结束-->
+<div class="w960">
+
+ <div class="ban_l">
+    <div class="banner"><div id="myFocus" class="mF_liuzg">
+	        <div class="loading"><span>正在载入图片……</span></div><!--载入画面-->
+	        <ul class="pic"><!--内容列表-->
+	          {tag:advlist row="3" pos_id="49"}
+	         <li><a href="[field:link_url/]" target="_blank">
+	         <img src="[field:img_path/]" alt="[field:adv_name/]" />
+	         </a>
+	         </li>
+	         {/tag:advlist}
+	        </ul>
+	      </div>
+	 </div>
+	 <div class="tj">
+      <h2 class="tjd"><span class="title_c">推荐下载</span><br class="clear"/> </h2>
+      <ul>
+            {tag:downloadlist  row="2" is_recom="1" } 
+          <li><a href="[field:download_detail_url/]" target="_blank"> <img src="[field:img_path/]" width="60px" height="50px"  class="f_left"/></a>
+          <P><b><a href="[field:download_detail_url/]" target="_blank">[field:title?len(10)/]</a></b><br />[field:down_desc?len(10)?format(ch)/]</P></li>
+           <br class="clear"/>
+           {/tag:downloadlist} 
+          
+      </ul>
+    </div>
+ </div>
+
+
+  
+ <div class="new_d">
+   <ul class="new_d_t">
+       <li  class="new_d_h" id="hover1" onmouseover="showdiv(1,2,'hover','newd_cont','new_d_h','');"><a href="#">最新下载</a></li>
+       <li  id="hover2" onmouseover="showdiv(2,2,'hover','newd_cont','new_d_h','');"><a href="#">热点下载</a></li>  
+   </ul>
+   <ul class="new_cont" id="newd_cont1">
+    {tag:downloadlist row="12" }    
+       <li><a href="/download/cat-[field:cate_attr/].html" target="_blank" class="new_lb">[field:cat_lastname?len(4)/]</a>
+       <a style="background:url(/include/images/downloadimages/[field:file_type/].gif) no-repeat left center;padding-left:20px;" href="[field:download_detail_url/]" target="_blank"  class="new_info">[field:title?len(20)/]
+       </a>[field:in_date?len(10)/]</li>
+     {/tag:downloadlist}  
+      
+   </ul>
+   <ul class="new_cont" id="newd_cont2" style="display:none">
+     {tag:downloadlist row="12" down_num="0"}    
+       <li><a href="/download/cat-[field:cate_attr/].html" class="new_lb">[field:cat_lastname?len(4)/]</a>
+       <a style="background:url(/include/images/downloadimages/[field:file_type/].gif) no-repeat left center;padding-left:20px;" href="[field:download_detail_url/]" target="_blank" class="new_info">[field:title?len(20)/]
+       </a>[field:in_date?len(10)/]</li>
+     {/tag:downloadlist}   
+   </ul>
+ </div> 
+ 
+ <div class="f_right">
+   <h2 class="d_fl"><span class="title_c">下载分类</span><br class="clear"/> </h2>
+   <div class="d_fl_cont">
+     {tag:catlist row="28" cat_level="1" module_type="download" }
+      <a href="[field:download_cat_url/]" target="_blank">[field:cat_name/]</a>
+    {/tag:catlist}
+   </div>
+ </div>
+
+</div>
+
+<div class="clear"></div>
+<!--热门下载结束-->
+
+<div class="w960">
+  {tag:advlist row="1" pos_id="50"}
+         <a href="[field:link_url/]" target="_blank">
+		     <img src="[field:img_path/]" width="960px" height="107px" alt="[field:adv_name/]" />
+		 </a>
+  {/tag:advlist}
+</div>
+
+<div class="wcont">
+ {tag:catlist row="9" cat_level="1" module_type="download" }
+  <div class="wcont_m">
+     <h2><span class="title_c">[field:cat_name/]</span><span class="more"><a href="[field:download_cat_url/]" target="_blank">更多+</a></span><br class="clear"/> </h2>
+     <div class="wcont_m_cont">
+         <div class="wcont_t">
+         {tag:downloadlist row="1" cat_attr="[field:cat_id/]"}
+        <a href="[field:download_detail_url/]" target="_blank"> <img src="[field:downloadlistimg_path/]" width="100px" height="80px" /></a><p>
+         <a href="[field:download_detail_url/]" target="_blank"><b>[field:title?len(13)/]</b></a><br />
+         [field:down_desc?len(28)?format(ch)/]</p>
+          {/tag:downloadlist}
+         </div>     
+         <br  class="clear"/>
+         <ul>
+          {tag:downloadlist row="6" cat_attr="[field:cat_id/]" start="1"}
+            <li style="background:url(/include/images/downloadimages/[field:file_type/].gif) no-repeat left center;padding-left:20px;""><a href="[field:download_detail_url/]" target="_blank">[field:title?len(17)/]</a>[field:in_date?len(10)/]</li>
+             {/tag:downloadlist}
+            
+         </ul>
+     </div>
+  </div>
+  {/tag:catlist}
+  
+  <div class="clear"></div>
+</div>
+
+<div class="w960">
+  {tag:advlist row="1" pos_id="110"}
+         <a href="[field:link_url/]" target="_blank">
+		     <img src="[field:img_path/]" width="960px" height="107px" alt="[field:adv_name/]" />
+		 </a>
+  {/tag:advlist}
+</div>
+
+
+{tag:include file="bottom.html" /}
+</body>
+</html>

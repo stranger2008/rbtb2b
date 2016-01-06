@@ -1,0 +1,14 @@
+<!--主要是用于资讯页面图片切换的CSS-->	
+*{border:0;margin:0;border:0;list-style:none;}
+#focus_change{width:300px;height:240px;position:relative;overflow:hidden;font-family:Verdana, Arial, Helvetica, sans-serif;background:#fff;}
+#loading{position:absolute;z-index:9999;width:300px;height:240px;background:#fff url(/jscss/demoimg/loading.gif) center -40px no-repeat;color:#666;font-size:12px;text-align:center;padding-top:90px;}
+#ts_bg{position:absolute;bottom:0;z-index:1;width:300px;height:30px;background:#000;filter:alpha(opacity=40);opacity:0.4;}
+#pics li{position:absolute;top:0px;left:0px;}
+#pics li img{filter:alpha(opacity=0);opacity:0;width:300px;height:240px;}/*图片大小与框架保持一致*/
+#ts li{position:absolute;z-index:2;left:0;bottom:-32px;height:25px;line-height:20px;font-size:12px;font-weight:bold;padding-left:16px;}
+#ts li a{color:#fff; text-decoration:none;}/*标题链接样式*/
+#btn,#btn_bg{position:absolute;z-index:3;bottom:8px;right:8px;color:#fff;font-size:12px;}
+#btn li,#btn_bg li{float:left;width:22px;height:18px;line-height:18px;overflow:hidden;text-align:center;margin-right:1px;}
+#btn_bg li{background:#fff;filter:alpha(opacity=50);opacity:0.5;}
+#btn li.current {background:#F60;}	
+	

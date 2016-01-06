@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="shopconfig">
+
+	<typeAlias alias="shopconfig" type="com.rbt.model.Shopconfig" />
+
+	<select id="getByPk"  parameterClass="java.lang.String"
+		resultClass="shopconfig">
+    SELECT shop_id,cust_id,shop_name,shop_logo,shop_site,shop_intro,busi_range,busi_mode,
+    contant_man,email,qq,msn,alliwang,mobile,phone,area_attr,address,info_state,is_colse,
+    user_id,in_date,banner_image,adv_image  FROM shopconfig  WHERE shop_id=$shop_id$
+	</select>
+	
+	<select id="getByCustIdPk"  parameterClass="java.lang.String"
+		resultClass="shopconfig">
+    SELECT shop_id,cust_id,shop_name,shop_logo,shop_site,shop_intro,busi_range,busi_mode,
+    contant_man,email,qq,msn,alliwang,mobile,phone,area_attr,address,info_state,is_colse,
+    user_id,in_date,banner_image,adv_image   FROM shopconfig WHERE  cust_id=$cust_id$
+
+	</select>
+	
+	<update id="update" parameterClass="shopconfig">
+
+		UPDATE shopconfig SET shop_id=#shop_id#,cust_id=#cust_id#,shop_name=#shop_name#,shop_logo=#shop_logo#,shop_site=#shop_site#,
+		shop_intro=#shop_intro#,busi_range=#busi_range#,busi_mode=#busi_mode#,contant_man=#contant_man#,email=#email#,qq=#qq#,msn=#msn#,
+		alliwang=#alliwang#,mobile=#mobile#,phone=#phone#,area_attr=#area_attr#,address=#address#,info_state=#info_state#,
+		is_colse=#is_colse#,user_id=#user_id#,in_date=#in_date#,banner_image=#banner_image#,adv_image=#adv_image# WHERE shop_id=$shop_id$
+
+	</update>
+
+	<insert id="insert" parameterClass="shopconfig">
+		INSERT INTO shopconfig (shop_id,cust_id,shop_name,shop_logo,shop_site,shop_intro,busi_range,busi_mode,contant_man,email,qq,msn,alliwang,mobile,phone,area_attr,address,info_state,is_colse,user_id,in_date,banner_image,adv_image) VALUES (#shop_id#,#cust_id#,#shop_name#,#shop_logo#,#shop_site#,#shop_intro#,#busi_range#,#busi_mode#,#contant_man#,#email#,#qq#,#msn#,#alliwang#,#mobile#,#phone#,#area_attr#,#address#,#info_state#,#is_colse#,#user_id#,now(),#banner_image#,#adv_image#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM shopconfig WHERE shop_id in ($shop_id$)
+	</delete>
+	
+	<delete id="delShopconfig"  parameterClass="java.lang.String">
+		DELETE FROM shopconfig WHERE cust_id  in ($cust_id$) 
+	</delete>
+	
+	<sql id="getCommon">
+		FROM shopconfig left join member on shopconfig.cust_id=member.cust_id  LEFT JOIN memberuser ON shopconfig.cust_id=memberuser.cust_id
+		<dynamic prepend="WHERE">
+		      memberuser.user_type='1'   and 
+			 <isNotNull prepend="and" property="cust_id"> 
+		        shopconfig.cust_id=#cust_id#
+		     </isNotNull>
+			 <isNotNull prepend="and" property="shop_name"> 
+			   instr(shopconfig.shop_name,#shop_name#)>0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="contant_man"> 
+			   instr(shopconfig.contant_man,#contant_man#)>0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="area_attr"> 
+			   instr(shopconfig.area_attr,#area_attr#)>0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="info_state"> 
+			   instr(shopconfig.info_state,#info_state#)>0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="infostate"> 
+			   shopconfig.info_state in ($infostate$)
+			 </isNotNull>
+			  <isNotNull prepend="and" property="is_colse"> 
+			   instr(shopconfig.is_colse,#is_colse#)>0
+			 </isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT shop_id,shopconfig.cust_id,shop_name,shop_logo,shop_site,shop_intro,busi_range,
+		busi_mode,shopconfig.contant_man,shopconfig.email,shopconfig.qq,shopconfig.msn,alliwang,shopconfig.mobile,shopconfig.phone,
+		shopconfig.area_attr,shopconfig.address,shopconfig.info_state,is_colse,shopconfig.user_id,
+		shopconfig.in_date,member.cust_name
+		,shopconfig.banner_image,shopconfig.adv_image,memberuser.user_name
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY shop_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

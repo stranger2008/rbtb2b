@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="member">
+
+	<typeAlias alias="member" type="com.rbt.model.Member" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="member">
+		<![CDATA[ 
+    SELECT cust_id,cust_name,logo_path,mem_type,is_active,info_state,reason,cust_rage,cust_supply,cust_stock,cust_type,client_status,recommend,cust_key,main_product,cust_desc,cat_attr,area_attr,address,phone,fax,post_code,email,website,contact_name,contact_depart,contact_job,contact_sex,contact_cellphone,contact_msn,contact_qq,in_date,reg_money_type,reg_money,reg_date,reg_no,corporate,staff_num,brand_name,year_sum,isoem,reg_no_path FROM member WHERE cust_id=$cust_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="member">
+		UPDATE member SET cust_name=#cust_name#,logo_path=#logo_path#,mem_type=#mem_type#,info_state=#info_state#,is_active=#is_active#,reason=#reason#,cust_rage=#cust_rage#,cust_supply=#cust_supply#,cust_stock=#cust_stock#,cust_type=#cust_type#,client_status=#client_status#,
+		recommend=#recommend#,cust_key=#cust_key#,main_product=#main_product#,cust_desc=#cust_desc#,cat_attr=#cat_attr#,area_attr=#area_attr#,address=#address#,phone=#phone#,fax=#fax#,post_code=#post_code#,email=#email#,website=#website#,contact_name=#contact_name#,
+		contact_depart=#contact_depart#,contact_job=#contact_job#,contact_sex=#contact_sex#,contact_cellphone=#contact_cellphone#,contact_msn=#contact_msn#,contact_qq=#contact_qq#,in_date=#in_date#,reg_money_type=#reg_money_type#,reg_money=#reg_money#,reg_date=#reg_date#,
+		reg_no=#reg_no#,corporate=#corporate#,staff_num=#staff_num#,brand_name=#brand_name#,year_sum=#year_sum#,isoem=#isoem#,reg_no_path=#reg_no_path# WHERE cust_id=$cust_id$
+	</update>
+	
+	<update id="updateMemberState" parameterClass="java.util.HashMap">
+		UPDATE member SET info_state=#info_state#,reason=#reason# WHERE cust_id=$cust_id$
+	</update>
+	
+	<update id="updateContactInfo" parameterClass="member">
+		UPDATE member SET email=#email#,contact_name=#contact_name#,cust_name=#cust_name#,logo_path=#logo_path#,area_attr=#area_attr#,address=#address#,contact_depart=#contact_depart#,contact_job=#contact_job#,contact_sex=#contact_sex#,phone=#phone#,contact_cellphone=#contact_cellphone#,contact_msn=#contact_msn#,contact_qq=#contact_qq#,post_code=#post_code# WHERE cust_id=$cust_id$
+	</update>
+
+    <!--批量修改-->
+	<update id="updateisrecom" parameterClass="java.util.HashMap">
+		UPDATE member SET recommend=#recommend# WHERE cust_id=$cust_id$
+	</update>
+
+	<insert id="insert" parameterClass="member">
+		INSERT INTO member 
+		(cust_name,logo_path,mem_type,info_state,is_active,reason,cust_rage,cust_supply,cust_stock,cust_type,client_status,recommend,cust_key,
+		main_product,cust_desc,cat_attr,area_attr,address,phone,fax,post_code,email,website,contact_name,contact_depart,contact_job,
+		contact_sex,contact_cellphone,contact_msn,contact_qq,in_date,reg_money_type,reg_money,reg_date,reg_no,corporate,staff_num,
+		brand_name,year_sum,isoem,reg_no_path) 
+		VALUES 
+		(#cust_name#,#logo_path#,#mem_type#,#info_state#,#is_active#,#reason#,#cust_rage#,#cust_supply#,#cust_stock#,#cust_type#,#client_status#,#recommend#,#cust_key#,
+		#main_product#,#cust_desc#,#cat_attr#,#area_attr#,#address#,#phone#,#fax#,#post_code#,#email#,#website#,#contact_name#,#contact_depart#,#contact_job#,
+		#contact_sex#,#contact_cellphone#,#contact_msn#,#contact_qq#,now(),#reg_money_type#,#reg_money#,#reg_date#,#reg_no#,#corporate#,#staff_num#,
+		#brand_name#,#year_sum#,#isoem#,#reg_no_path#)
+		 <selectKey resultClass="java.lang.String" keyProperty="cust_id">
+            <!-- 此处不区分大小写 -->
+            SELECT @@IDENTITY AS ID
+        </selectKey>  
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM member WHERE cust_id in ($cust_id$) AND cust_id != '0'
+	</delete>
+
+	<sql id="getCommon">
+		FROM member AS t1 LEFT JOIN levelinfo AS t2 ON t1.cust_id=t2.cust_id left join memberlevel AS t3 ON t2.level_code=t3.level_id 
+		left join membercredit c on t1.cust_id=c.cust_id
+		<dynamic prepend="WHERE"> 
+			 <isNotNull prepend="and" property="cust_name"> 
+     		    INSTR(t1.cust_name,#cust_name#) > 0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="cust_id"> 
+			     t1.cust_id=#cust_id#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="infostate"> 
+			     t1.info_state in ($infostate$)
+			 </isNotNull>
+			 <isNotNull prepend="and" property="mem_type"> 
+			     t1.mem_type=#mem_type#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="level_id"> 
+			     t3.level_id=#level_id#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="area_attr"> 
+			     INSTR(t1.area_attr,#area_attr#) >0
+			 </isNotNull>
+			 <isNotNull prepend="and" property="cat_attr"> 
+			     INSTR(t1.cat_attr,#cat_attr#) >0
+			 </isNotNull>
+			 <isNotNull prepend="and" property="email"> 
+			    INSTR(t1.email,#email#) > 0
+			 </isNotNull>
+			 <isNotNull prepend="and" property="in_date"> 
+			     DATE(t1.in_date)>=#in_date#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="end_date"> 
+			    #end_date#>=DATE(t1.in_date)
+			 </isNotNull>
+			 <isNotNull prepend="and" property="cust_type"> 
+			     INSTR(t1.cust_type,#cust_type#) > 0
+			 </isNotNull>
+			 <isNotNull prepend="and" property="cust_rage"> 
+			     INSTR(t1.cust_rage,#cust_rage#) > 0
+			 </isNotNull>
+			 <isNotNull prepend="and" property="recommend"> 
+			     INSTR(recommend,#recommend#) > 0
+			 </isNotNull>
+			 <isNotNull prepend="and" property="info_state"> 
+			     t1.info_state=#info_state#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="recommend"> 
+			     t1.recommend=#recommend#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="company_name"> 
+     		        t1.cust_name=#company_name#
+			 </isNotNull>
+		     <isNotNull prepend="and" property="today">
+	            DAY(t1.in_date)=DAY(NOW()) AND MONTH(t1.in_date)=MONTH(NOW()) AND YEAR(t1.in_date)=YEAR(NOW())
+	         </isNotNull>	
+	           <isNotNull prepend="and" property="starttime"> 
+			     DATE(t1.in_date)>=#starttime#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="endtime"> 
+			     #endtime#>=DATE(t1.in_date)
+			 </isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT t1.cust_id,t1.cust_name,t1.logo_path,t1.mem_type,t1.is_active,c.c_num,t1.info_state,t1.reason,t1.cust_rage,t1.cust_supply,t1.cust_stock,t1.client_status,t1.recommend,t1.cust_key,t1.main_product,t1.cust_desc,t1.cat_attr,
+		t1.area_attr,t1.address,t1.phone,t1.fax,t1.post_code,t1.email,t1.website,t1.contact_name,t1.contact_depart,t1.contact_job,t1.contact_sex,t1.contact_cellphone,
+		t1.contact_msn,t1.contact_qq,t1.in_date,t1.reg_money_type,t1.reg_money,t1.reg_date,t1.reg_no,t1.corporate,t1.staff_num,t1.reg_no_path,t1.brand_name,t1.year_sum,t1.isoem,
+		(select para_key from commpara where para_code='cust_type' and para_value=t1.cust_type) as cust_type,t3.level_name,IF(TO_DAYS(NOW()) > TO_DAYS(t2.end_date),0,1) AS exprie
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY t1.cust_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+	
+	<select id="getIndexList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+          select * from member
+	</select>
+     
+    <sql id="getWebCommon">
+		FROM member left join memberuser on member.cust_id=memberuser.cust_id
+		   left join levelinfo l on l.cust_id=member.cust_id
+		       left join memberlevel on memberlevel.level_id=l.level_code and memberuser.user_type="1"
+	 	              left join memberinter on memberinter.cust_id=member.cust_id	
+	 	                   left join membercredit c on member.cust_id=c.cust_id
+		<dynamic prepend="WHERE">
+    		 <isNotNull prepend="and" property="area_attr"> 
+			     INSTR(area_attr,#area_attr#) >0
+			 </isNotNull>
+			 <isNotNull prepend="and" property="cat_attr"> 
+			     INSTR(cat_attr,$cat_attr$) >0
+			 </isNotNull>
+			 <isNotNull prepend="and" property="info_state"> 
+			     info_state=#info_state#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="mem_type"> 
+			      mem_type=#mem_type#
+			 </isNotNull>	
+			 <isNotNull prepend="and" property="recommend"> 
+			      recommend=$recommend$
+			 </isNotNull>			 
+			 <isNotNull prepend="and" property="cust_name"> 
+     		    INSTR(cust_name,#cust_name#) > 0
+			 </isNotNull>	 
+			 <isNotNull prepend="and" property="level_code">
+			    l.level_code =#level_code#
+		     </isNotNull>
+		     <isNotNull prepend="and" property="client_status">
+		       INSTR(member.client_status,#client_status#)
+		     </isNotNull>
+		     <isNotNull prepend="and" property="date_in_date">
+			      member.in_date <![CDATA[<=]]> (SELECT SUBDATE(NOW(),INTERVAL $date_in_date$ YEAR))
+		     </isNotNull>
+		     <isNotNull prepend="and" property="date_out_date">
+			      member.in_date > (SELECT SUBDATE(NOW(),INTERVAL 1 YEAR))
+		     </isNotNull>
+		</dynamic>
+		
+	</sql>
+
+ 	<select id="getWebMemberList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT logo_path,main_product,memberuser.user_name,member.address,cust_desc,address,cust_name,cat_attr,contact_cellphone,
+		area_attr,contact_qq,contact_msn,member.email,member.in_date,member.cust_id,level_name,l.level_code,c_num,member.client_status as status_id,cust_key
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+		<isNotNull  property="in_date"> 
+			 ORDER BY level_code DESC,fund_num DESC,member.in_date DESC 
+		</isNotNull>
+		<isNotNull  property="reg_date"> 
+			 ORDER BY member.in_date $reg_date$
+		</isNotNull>
+		<isNotNull  property="c_num"> 
+			 ORDER BY c_num $c_num$
+		</isNotNull>
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+
+	<select id="getWebMemberCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+	</select>
+    <select id="getWebMemberHome" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT 	cust_rage,cust_supply,cust_stock,module_attr
+		FROM member m 
+			left join levelinfo l on l.cust_id=m.cust_id
+		       left join memberlevel on memberlevel.level_id=l.level_code 
+		       		WHERE m.cust_id=#cust_id#
+	</select>
+	
+	<select id="getWebMemberModCount" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+		<isNotNull  property="table_name"> 
+			$table_name$
+		</isNotNull>
+		FROM member m WHERE m.cust_id=#cust_id#
+	</select>
+</sqlMap>
+

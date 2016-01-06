@@ -1,0 +1,49 @@
+.position{
+	height:33px;
+	background:#f6f5f5;
+	width:960px;
+	margin:10px auto 0;
+	line-height:33px;
+	font-size:14px;
+	}
+.position p{
+	padding-left:20px;
+	}
+
+
+
+.password_title{
+	background:url(../images/zh_user.gif) no-repeat;
+	height:60px;
+	text-indent:-9000px;
+	}
+.sent_sucd_cont{
+	width:604px;
+	margin:0 auto;
+	padding:20px 0;
+	}
+.sent_sucd_t{
+	width:604px;
+	height:11px;
+	background:url(../images/pass_cg_t.gif) no-repeat;
+	overflow:hidden;
+	}
+.sent_sucd_d{
+	width:604px;
+	height:11px;
+	background:url(../images/pass_cg_d.gif) no-repeat;
+	overflow:hidden;
+	}
+.sent_sucd_c{
+	width:604px;
+	height:230px;
+	background:url(../images/pass_cg_c.gif) repeat-y;
+	}	
+.cg{
+	height:64px;
+	line-height:64px;
+	background:url(../images/accept.gif) no-repeat 50px center;
+	padding-left:150px;
+	font-family:"微软雅黑";
+	font-size:30px;
+	}			

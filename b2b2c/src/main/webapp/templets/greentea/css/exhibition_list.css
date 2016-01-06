@@ -1,0 +1,281 @@
+
+.position{
+	height:33px;
+	background:#f6f5f5;
+	width:960px;
+	margin:10px auto 0;
+	line-height:33px;
+	font-size:14px;
+	}
+.position p{
+	padding-left:20px;
+	}
+.col{
+	color:#0F870E;
+	}
+/*当前位置结束*/	
+
+
+/*左边主题部分*/
+.left_main{
+	width:682px;
+	}
+.industry_main{
+	width:678px;
+	border:1px solid #e5e5e5;
+	border-top:2px solid  #a0ec9f;
+	padding-bottom:10px;
+	}
+.dis_more{
+   overflow:hidden;
+}
+
+.display_more{
+	margin-top:-20px;
+	margin-left:26px;		
+}
+.display_more a{
+	color:#990000;
+	font-size:12px;
+	font-size:600;
+	}
+	
+.industry_title{
+	font-size:14px;
+	color:#0F870E;
+	line-height:22px;
+	height:22px;
+	padding-left:30px;
+	padding-top:10px;
+	padding-left:30px;
+	}	
+	
+.title_tb{
+	padding-top:10px;
+	padding-right:5px;
+	}
+
+.industry_main div {
+	line-height:30px;
+	padding-left:30px;
+	padding-top:10px;
+	}
+.industry_main div a{
+	display:inline-block;
+	width:210px;
+	}
+/*按行业浏览结束*/
+.exhibit_main{
+	width:678px;
+	height: auto;
+	border:1px solid #e5e5e5;
+	border-top:2px solid #a0ec9f;
+	}
+.exhibit_main_cont{
+	width:640px;
+	height:122px;
+	margin:0 auto;
+	padding-top:12px;
+	background:url(../images/dashed_1.gif) repeat-x bottom;
+	}
+.exhibit_pcont{z
+	padding-left:19px;
+	line-height:26px;
+	}
+.exhibit_title1{
+	font-weight:bold;
+	color:#0F870E;
+	font-size:14px;
+	}
+.exhibit_ing{
+	width:141px;
+	height:18px;
+	padding-top:45px;
+	}
+.exhibit_ing p{
+	line-height:18px;
+	height:18px;
+	}
+.ex_now{
+	float:right;
+	width:51px;
+	height:17px;
+	line-height:17px;
+	background:url(../images/lee_ing_09.gif) no-repeat;
+	padding-left:12px;
+	}
+	
+/*分页*/	
+.page_main{
+	width:660px;
+	height:56px;
+	margin-left:10px;
+	padding-top:20px;
+	}
+
+.page_main_r{
+	width:450px;
+	height:40px;
+	margin-left:80px;
+	_margin-left:30px;
+	}
+	
+.page_next{
+	width:59px;
+	height:19px;
+	border:1px solid #abb2bd;
+	background:url(../images/page_next1.gif) no-repeat;
+	margin-right:8px;
+	display:inline-block;
+	line-height:19px;
+	text-align:center;
+	}
+.page_next1{
+	width:54px;
+	height:19px;
+	border:1px solid #EB7219;
+	background:url(../images/page_next.gif) no-repeat;
+	margin-right:8px;
+	display:inline-block;
+	line-height:19px;
+	padding-left:5px;
+	}	
+	
+.page_n1{
+	width:18px;
+	height:18px;
+	border:1px solid #abb2bd;
+	background:url(../images/number_bg.gif) repeat-x;
+	display:inline-block;
+	margin-right:8px;
+	line-height:18px;
+	text-align:center;
+	}
+.page_n1_col{
+	width:18px;
+	height:18px;
+	border:1px solid #EB7219;
+	background:url(../images/number_bg.gif) repeat-x;
+	display:inline-block;
+	margin-right:8px;
+	line-height:18px;
+	text-align:center;
+	}
+	
+.page_n2{
+	width:28px;
+	height:18px;
+	border:1px solid #abb2bd;
+	background:url(../images/number_bg.gif) repeat-x;
+	display:inline-block;
+	margin-right:8px;
+	line-height:19px;
+	text-align:center;
+	}
+	
+.page_main_r a:hover{
+	border:1px solid #F60;
+	display:inline-block;
+
+	}
+.page_main_input{
+	width:50px;
+	height:15px;
+	border:1px solid #abc7ff;
+	margin:auto 10px;
+	}
+	
+.right_bottom{
+	width:640px;
+	padding-top:15px;
+	padding-left:20px;
+	height:60px;
+	}
+	
+.right_bottom img{
+	padding-left:5px;}
+
+/*右边部分主题*/	
+.right_main{width:268px;}
+/*按地区浏览*/
+.area_title{
+	width:268px;
+	height:26px;
+	border:1px solid #e5e5e5;
+	background:url(../images/area_title_bg.gif) repeat-x;
+	}
+.title_text{
+	font-size:12px;
+	font-weight:bold;
+	color:#333333;
+	line-height:26px;
+	padding-left:10px;
+	float:left;
+	}
+.area_main{
+	width:258px;
+	border:1px solid #e5e5e5;
+	border-top:0;
+	margin-bottom:10px;
+	padding:10px 0 10px 10px;
+	}
+.area_main a{
+	display:inline-block;
+	width:51px;
+	line-height:22px;
+	}
+/*按地区浏览结束*/
+.ph_main{
+	width:268px;
+	height:auto;
+	border:1px solid #e5e5e5;
+	border-top:0;
+	}
+	
+.ph_main li{
+	padding-left:12px;
+	line-height:28px;
+	}
+.n1{
+	text-align:center;
+	color:#FFF;
+	display:inline-block;
+	width:14px;
+	line-height:28px;
+	background:url(../images/pic_ph_bg01.gif) no-repeat;
+	background-position:left 7px;
+	}
+	
+.n2{
+	text-align:center;
+	color:#000;
+	display:inline-block;
+	width:14px;
+	line-height:28px;
+	background:url(../images/pic_ph_bg01.gif) no-repeat;
+	background-position:left -20px;
+	}
+	
+.ph_main a{
+    padding-left:8px;
+	}
+/*搜索排行结束*/
+.ad{
+	margin-top:10px;}
+	
+.text_ad{
+	padding-top:20px;
+	padding-left:5px;
+	line-height:22px;
+	}
+	
+.ad_text{
+	color:#bf0303;
+	}
+
+	
+/*
+ ISConsole Copyright 2011 ruibaotong COMPANY, Co.ltd . 
+ All rights reserved.
+ FileName: index.css
+ */

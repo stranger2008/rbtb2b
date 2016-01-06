@@ -1,0 +1,152 @@
+.position{
+	height:33px;
+	background:#f6f5f5;
+	width:960px;
+	margin:10px auto 0;
+	line-height:33px;
+	font-size:14px;
+	}
+.position p{
+	padding-left:20px;
+	}
+/*帮助中心的样式开始*/
+.contL{
+	width:234px;
+	float:left;
+	}
+.Sidebar{
+	margin-bottom:10px;
+	}	
+.Sidebar h2{
+	font-size:14px;
+	padding-left:15px;
+	color:#2953a6;
+	height:33px;
+	width:217px;
+	background:#f7f7f7;
+	line-height:33px;
+	border:1px solid #e1e1e1;
+	}	
+.Sidebar ul{
+	border:1px solid #e1e1e1;
+	border-top:0;
+	width:232px;
+	padding:10px 0;
+	}
+.Sidebar .sideFl{
+	padding-left:20px;
+	width:212px;
+	}	
+.sideFl li{
+	color:#c6c6c6;
+	height:25px;
+	padding-left:40px;
+	line-height:25px;
+	}	
+.sideFl .zk{
+	font-weight:bold;
+	background:url(../images/1_03.gif) no-repeat left center;
+	padding-left:20px;
+	}
+.sideFl a,.contP a{
+	font-size:12px;
+	color:#2953a6;
+	}
+.sideFl a:hover,.contP a:hover{
+	font-size:12px;
+	text-decoration:underline;
+	color:#2953a6;
+	}
+.sideFl .sq{
+	font-weight:bold;
+	background:url(../images/2_07.gif) no-repeat left center;
+	padding-left:20px;
+	}
+.hotC li{
+	width:201px;
+	line-height:25px;
+	margin:0 auto;
+	padding:7px 0 7px 0;
+	}
+.hotC li P{
+	padding-top:7px;
+	}	
+.hotC li span{
+	font-size:14px;
+	color:#9e0000;
+	padding-top:10px;
+	}	
+	
+.contR{
+	width:710px;
+	line-height:25px; 
+    float:right;
+	border:1px solid #e5e5e5;
+	border-top:2px solid #a0ddff;
+	padding-bottom:10px;
+	color:#333333;
+	}
+	
+.about_main{
+	float:right;
+	width:710px;
+	border:1px solid #e5e5e5;
+	border-top:2px solid #a0ddff;
+	padding-bottom:10px;
+	color:#333333;
+	}	
+.left_title{
+	width:680px;
+	min-width:65px;
+	height:auto;
+	border-bottom:1px solid #e2e2e2;
+	margin:0 auto;
+	text-align:center;
+	line-height:65px;
+	font-size:18px;
+	font-family: "微软雅黑";
+	font-weight:500;
+	}
+.date{
+	width:680px;
+	height:30px;
+	border-bottom:1px solid #e2e2e2;
+	margin:0 auto;
+	text-align:center;
+	line-height:30px;
+	}
+.date_text{
+	padding-left:20px;
+	}	
+.about_main_c{
+	padding-top:10px;
+	width:680px;
+	margin:0 auto;
+	line-height:22px;
+	}	
+.about_main_c p{
+	text-indent:24px;
+	padding-top:10px;
+	}	
+/*帮助中心样式的结束*/	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

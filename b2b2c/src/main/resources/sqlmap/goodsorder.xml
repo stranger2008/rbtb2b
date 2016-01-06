@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="goodsorder">
+
+	<typeAlias alias="goodsorder" type="com.rbt.model.Goodsorder" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="goodsorder">
+		<![CDATA[ 
+    SELECT order_id,buy_cust_id,sale_cust_id,consignee,area_attr,address,zip_code,telephone,mobile,goods_amount,ship_free,tax_invoice,discount,discount_money,dis_explain,insured,tatal_amount,inter_money,buy_mode,pay_id,send_mode,order_state,pay_state,send_state,order_time,pay_time,send_time,mem_remark,invoice_type,invoice_top,company_name,ident_number,regis_address,regis_tel,open_bank,bank_account,invoice_content,give_inter FROM goodsorder WHERE order_id=$order_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="goodsorder">
+		UPDATE goodsorder SET order_id=#order_id#,buy_cust_id=#buy_cust_id#,sale_cust_id=#sale_cust_id#,consignee=#consignee#,
+		area_attr=#area_attr#,address=#address#,zip_code=#zip_code#,telephone=#telephone#,mobile=#mobile#,
+		goods_amount=#goods_amount#,ship_free=#ship_free#,tax_invoice=#tax_invoice#,discount=#discount#,
+		discount_money=#discount_money#,dis_explain=#dis_explain#,insured=#insured#,tatal_amount=#tatal_amount#,
+		inter_money=#inter_money#,buy_mode=#buy_mode#,pay_id=#pay_id#,send_mode=#send_mode#,order_state=#order_state#,
+		pay_state=#pay_state#,send_state=#send_state#,order_time=#order_time#,pay_time=#pay_time#,send_time=#send_time#,
+		mem_remark=#mem_remark#,invoice_type=#invoice_type#,invoice_top=#invoice_top#,company_name=#company_name#,
+		ident_number=#ident_number#,regis_address=#regis_address#,regis_tel=#regis_tel#,open_bank=#open_bank#,
+		bank_account=#bank_account#,invoice_content=#invoice_content#,give_inter=#give_inter# WHERE order_id=$order_id$
+	</update>
+	
+	<update id="updateState" parameterClass="java.util.HashMap">
+		UPDATE goodsorder SET
+		<isNotNull property="order_state">
+		order_state=#order_state#
+		</isNotNull>
+		<isNotNull property="pay_state_pos">
+		,
+		</isNotNull>
+		<isNotNull property="pay_state">
+		pay_state=#pay_state#
+		</isNotNull>
+		<isNotNull property="pay_time">
+			,pay_time=now()
+		</isNotNull>
+		<isNotNull property="send_state_pos">
+		,
+		</isNotNull>
+		<isNotNull property="send_state">
+		send_state=#send_state#
+		</isNotNull>
+		<isNotNull property="send_time">
+			,send_time=now()
+		</isNotNull>
+		WHERE order_id=$order_id$
+	</update>
+	
+	
+
+	<insert id="insert" parameterClass="goodsorder">
+		INSERT INTO goodsorder 
+		(order_id,buy_cust_id,sale_cust_id,consignee,area_attr,
+		address,zip_code,telephone,mobile,goods_amount,
+		ship_free,tax_invoice,discount,discount_money,dis_explain,
+		insured,tatal_amount,inter_money,buy_mode,pay_id,
+		send_mode,order_state,pay_state,send_state,order_time,
+		pay_time,send_time,mem_remark,invoice_type,invoice_top,
+		company_name,ident_number,regis_address,regis_tel,open_bank,
+		bank_account,invoice_content,give_inter)
+		 VALUES (
+		 #order_id#,#buy_cust_id#,#sale_cust_id#,#consignee#,#area_attr#,
+		 #address#,#zip_code#,#telephone#,#mobile#,#goods_amount#,
+		 #ship_free#,#tax_invoice#,#discount#,#discount_money#,#dis_explain#,
+		 #insured#,#tatal_amount#,#inter_money#,#buy_mode#,#pay_id#,
+		 #send_mode#,#order_state#,#pay_state#,#send_state#,now(),
+		 #pay_time#,#send_time#,#mem_remark#,#invoice_type#,#invoice_top#,
+		 #company_name#,#ident_number#,#regis_address#,#regis_tel#,#open_bank#,
+		 #bank_account#,#invoice_content#,#give_inter#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM goodsorder WHERE order_id in ($order_id$)
+	</delete>
+    
+	<sql id="getCommon">
+		FROM goodsorder AS t1 
+			LEFT JOIN commpara c1 on order_state=c1.para_value AND  c1.para_code='order_state' 
+				 LEFT JOIN commpara c2 on pay_state=c2.para_value  AND  c2.para_code='pay_state'
+					 LEFT JOIN commpara c3 on send_state=c3.para_value  AND  c3.para_code='send_state'
+					 	LEFT JOIN member m1 on buy_cust_id=m1.cust_id 
+					 		LEFT JOIN member m2 on sale_cust_id=m2.cust_id 
+					 			LEFT JOIN orderdetail od ON od.order_id=t1.order_id
+									LEFT JOIN goods g5 ON g5.goods_id=od.goods_id
+		<dynamic prepend="WHERE">
+		    <isNotNull prepend="and" property="buy_cust_id">
+				t1.buy_cust_id=#buy_cust_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="area_attr"> 
+			        INSTR(m1.area_attr,#area_attr#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="order_id">
+				t1.order_id=#order_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="sale_cust_id">
+				t1.sale_cust_id=#sale_cust_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="oid">
+				order_id=#oid#
+			</isNotNull>
+			<isNotNull prepend="or" property="my_order">
+				order_id=#my_order#
+			</isNotNull>
+			<isNotNull prepend="or" property="my_order">
+				instr(goods_name,#my_order#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="consignee">
+		    	instr(consignee,#consignee#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="order_time">
+		    	instr(order_time,#order_time#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="goods_amount">
+		    	instr(goods_amount,#goods_amount#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="order_state">
+		    	instr(order_state,#order_state#)>0
+			</isNotNull> 
+			<isNotNull prepend="and" property="pay_state_r"> 
+				    t1.pay_state =#pay_state_r#
+			</isNotNull>
+			<isNotNull prepend="and" property="today">
+		          DAY(order_time)=DAY(NOW()) AND MONTH(order_time)=MONTH(NOW()) AND YEAR(order_time)=YEAR(NOW())
+		    </isNotNull>
+		     <isNotNull prepend="and" property="order_state_r"> 
+				  t1.order_state=#order_state_r#
+			</isNotNull>
+		    <isNotNull prepend="and" property="pay_state"> 
+				  t1.pay_state=#pay_state#
+			</isNotNull>
+			 <isNotNull prepend="and" property="send_state"> 
+				    t1.send_state=#send_state#
+			</isNotNull>
+			<isNotNull prepend="and" property="order_state_w"> 
+				  t1.order_state!=#order_state_w#
+			</isNotNull>
+			<isNotNull prepend="and" property="ortime"> 
+					t1.order_time>SUBDATE(NOW(),INTERVAL 30 DAY) 
+			</isNotNull>
+			<isNotNull prepend="and" property="goods_name"> 
+					instr(goods_name,#goods_name#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="time_order"> 
+					t1.order_time>SUBDATE(NOW(),INTERVAL 30 DAY) 
+			</isNotNull>
+			<isNotNull prepend="and" property="time_order_t"> 
+					SUBDATE(NOW(),INTERVAL 30 DAY)>t1.order_time
+			</isNotNull>
+			<isNotNull prepend="and" property="cust_name"> 
+					instr(m1.cust_name,#cust_name#)>0
+			</isNotNull>	
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT DISTINCT t1.order_id,buy_cust_id,m1.cust_name as buy_cust_name,m2.cust_name as sale_cust_name,sale_cust_id,consignee,
+		ship_free,tatal_amount,inter_money,buy_mode,pay_id,send_mode,order_state,pay_state,send_state,
+		order_time,pay_time,send_time,c1.para_key as order_para,c2.para_key as pay_para,c3.para_key as send_para,t1.give_inter
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY order_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+	
+	<sql id="getCommonBuyOut">
+		 FROM goodsorder AS gs1 LEFT JOIN member AS m1 ON gs1.sale_cust_id=m1.cust_id 
+		<dynamic prepend="WHERE">
+		    <isNotNull prepend="and" property="cust_id">
+				m1.cust_id=#cust_id#
+			</isNotNull>
+			 <isNotNull prepend="and" property="order_state">
+				gs1.order_state=#order_state#
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getListBuyOut" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT  DISTINCT(gs1.sale_cust_id),gs1.sale_cust_id,m1.cust_name,m1.cust_id ,m1.logo_path,m1.main_product
+		<isParameterPresent>
+			<include refid="getCommonBuyOut" />
+		</isParameterPresent>
+		ORDER BY gs1.sale_cust_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+
+	<select id="getCountBuyOut" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommonBuyOut" />
+		</isParameterPresent>
+	</select>
+	
+
+</sqlMap>
+

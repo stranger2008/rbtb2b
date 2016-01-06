@@ -1,0 +1,72 @@
+.listImg {
+  width: 310px;
+  position: relative;
+}
+.listImg .wrapper {
+  width: 250px; /* .infiniteCarousel width - (.wrapper margin-left + .wrapper margin-right) */
+  overflow: auto;
+  min-height: 10em;
+  margin: 0 40px;
+  position: absolute;
+  top: 0;
+}
+
+.listImg ul a img {
+  border: 1px solid #e1e2e3;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.listImg .wrapper ul {
+  width: 9999px;
+  list-style-image:none;
+  list-style-position:outside;
+  list-style-type:none;
+  margin:0;
+  padding:0;
+  position: absolute;
+  top: 0;
+  height:60px;
+  overflow:hidden;
+}
+
+.listImg ul li {
+  display:block;
+  float:left;
+  padding: 6px;
+  height: 50px;
+  width:50px;
+}
+
+.listImg ul li a img {
+  display:block;
+}
+
+.listImg .arrow {
+  display: block;
+  height: 36px;
+  width: 37px;
+  background: url(/templets/bmall/images/arrow.png) no-repeat 0 0;
+  text-indent: -999px;
+  position: absolute;
+  top: 15px;
+  cursor: pointer;
+}
+
+.listImg .forward {
+  background-position: 0 0;
+  right: 0;
+}
+
+.listImg .back {
+  background-position: 0 -72px;
+  left: 0;
+}
+
+.listImg .forward:hover {
+  background-position: 0 -36px;
+}
+
+.listImg .back:hover {
+  background-position: 0 -108px;
+}

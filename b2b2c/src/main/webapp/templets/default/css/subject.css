@@ -1,0 +1,225 @@
+@charset "utf-8";
+/* CSS Document */
+.main_l{
+	width:653px;
+	height:auto;
+	}
+.weeklyrecom{
+	width:653px;
+	height:227px;
+	}
+.weeklyrecom_nav {
+	width:651px;
+	height:29px;
+	line-height:28px;
+	border:1px solid #D9E4F3;
+}
+.wrecnav_m{
+	margin:1px;
+	margin-top:0;
+	width:649px;
+	height:28px;
+	background: url(../images/lee_hsnav_m.gif) repeat-x;
+	}
+.title_cont{
+	float:left;
+	font-family:"宋体";
+	font-size:14px;
+	padding-left:10px;
+	}
+.more{
+	float:right;
+	font-size:12px;
+	padding-right:10px;
+	}
+.more a{
+	text-decoration:none;
+	font-weight:100;
+	}
+.more a:hover{
+	text-decoration:underline;
+	color:#07519a;
+	font-weight:100;
+}
+.weeklyrecom_cont{
+	width:651px;
+	height:195px;
+	border:1px solid #D9E4F3;
+	border-top:none;
+	}
+.weeklyrecom_pic{
+	width:277px;
+	height:171px;
+	padding:12px 0 0 24px;
+	}
+.weeklyrecom_cont ul{
+	font-size:14px;
+	padding:12px 0 0 50px;
+	line-height:28px;
+}
+.weeklyrecom_cont .empha{
+	font-weight:bold;
+	background:url(../images/lee_invertri.gif) no-repeat 10px center;
+	}
+.weeklyrecom_cont ul li{
+	background:url(../images/lee_trigon.gif) no-repeat 10px center;
+	padding-left:25px;
+	}
+	/*一周推荐结束*/
+.subject{
+	width:653px;
+	height:264px;
+	margin-top:10px;
+	}
+.latest_subjedt,.stock_subjedt,.money_subjedt{
+	width:326px;
+	height:264px;
+	}
+.latest_subjedt_nav,.stock_subjedt_nav,.money_subjedt_nav,.birth_subjedt_nav{
+	width:319px;
+	height:29px;
+	line-height:28px;
+	border:1px solid #D9E4F3;
+}
+.lsubnav_m,.stosubnav_m{
+	margin:1px;
+	margin-top:0;
+	width:317px;
+	height:28px;
+	background: url(../images/lee_hsnav_m.gif) repeat-x;
+	}
+.latest_subjedt_cont,.money_subjedt_cont,.birth_subjedt_cont{
+	width:319px;
+	height:232px;
+	border:1px solid #D9E4F3;
+	border-top:none;
+	}
+.latest_subjedt_cont img,.money_subjedt_cont img,.birth_subjedt_cont img{
+	padding:10px 0 0 15px;
+	}
+.ls_news{
+	width:160px;
+	padding:10px 0 0 20px;
+	line-height:20px;
+	}
+.ls_news_main{
+	font-weight:bold;
+	color:#336699;
+	}
+.latest_subjedt_cont ul,.money_subjedt_cont ul,.birth_subjedt_cont ul{
+	line-height:26px;
+	padding-top:10px;
+	}
+.latest_subjedt_cont ul li,.stock_subjedt_cont ul li,.money_subjedt_cont ul li,.birth_subjedt_cont ul li{
+	background:url(../images/li.gif) no-repeat 10px center;
+	padding-left:20px;
+	}
+	/*最新专题结束*/
+.stock_subjedt_cont{
+	padding:6px 0 0 8px;
+	width:311px;
+	height:226px;
+	border:1px solid #D9E4F3;
+	border-top:none;
+	}
+.stock_bg{
+	width:297PX;
+	height:86PX;
+	background:#F5F5F5;
+	border:1px solid #EEEEEE;
+	}
+.stock_subjedt_cont img{
+	padding:9px 0 0 10px;
+	}	
+.stock_subjedt_cont ul{
+	line-height:26px;
+	}
+	/*证劵专题结束*/
+.main_r{
+	width:296px;
+	height:auto;
+	}
+.browse{
+	width:296px;
+	height:174px;
+	}
+.browse_nav{
+	width:294px;
+	height:29px;
+	line-height:28px;
+	border:1px solid #D9E4F3;
+	}
+.bronav_m{
+	margin:1px;
+	margin-top:0;
+	width:292px;
+	height:28px;
+	background: url(../images/lee_hsnav_m.gif) repeat-x;
+	}
+.browse_cont{
+	width:294px;
+	height:142px;
+	border:1px solid #D9E4F3;
+	border-top:none;
+	line-height:28px;
+	font-size:14px;
+	}
+.browse_cont p{
+	padding:10px 0 0 25px;
+	}
+.browse_cont a{
+	display:inline-block;
+	width:100px;
+	padding:0 10px;
+	}
+	/*分类浏览结束*/
+.ranking{
+	margin-top:10px;
+	width:296px;
+	height:316px;
+	}
+.ranking_cont{
+	width:294px;
+	height:284px;
+	border:1px solid #D9E4F3;
+	border-top:none;
+	}
+.ranking_cont ul,.other_subjedt_cont ul{
+	line-height:27px;
+	padding-top:8px;
+	}
+/*点击排行榜结束*/
+.birth_subjedt{
+	width:321px;
+	height:264px;
+	margin-left:11px;
+	}
+/*产经专题结束*/
+.other_subjedt{
+	width:296px;
+	height:264px;
+	}
+.other_subjedt_nav{
+	width:294px;
+	height:29px;
+	line-height:28px;
+	border:1px solid #D9E4F3;
+}
+.othersubnav_m{
+	margin:1px;
+	margin-top:0;
+	width:292px;
+	height:28px;
+	background: url(../images/lee_hsnav_m.gif) repeat-x;
+	}
+.other_subjedt_cont{
+	width:294px;
+	height:232px;
+	border:1px solid #D9E4F3;
+	border-top:none;
+}
+.other_subjedt_cont ul li{
+	background:url(../images/li.gif) no-repeat 10px center;
+	padding-left:20px;
+	}
+/*其他专题结束*/

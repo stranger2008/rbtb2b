@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="goods">
+
+	<typeAlias alias="goods" type="com.rbt.model.Goods" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="goods">
+		<![CDATA[ 
+	    	SELECT goods_id,cust_id,is_virtual,infoattr_id,cat_attr,size_attr,goods_name,goods_no,goods_wd,brand_id,goods_desc,img_path,goods_video,goods_detail,self_cat,up_date,down_date,market_price,sale_price,cost_price,mem_price,total_stock,now_stock,warn_stock,saled_num,give_inter,interbuy,weight,unit,is_ship,is_volume,seo_titel,seo_keyword,seo_desc,relate_goods,give,label,busi_remark,is_del,info_state,in_date,user_id,no_reason,ship_price,volume FROM goods WHERE goods_id=$goods_id$
+	    ]]>
+	</select>
+	
+	<update id="update" parameterClass="goods">
+		UPDATE goods SET goods_id=#goods_id#,cust_id=#cust_id#,is_virtual=#is_virtual#,infoattr_id=#infoattr_id#,cat_attr=#cat_attr#,size_attr=#size_attr#,goods_name=#goods_name#,goods_no=#goods_no#,goods_wd=#goods_wd#,brand_id=#brand_id#,goods_desc=#goods_desc#,img_path=#img_path#,goods_video=#goods_video#,goods_detail=#goods_detail#,self_cat=#self_cat#,up_date=#up_date#,down_date=#down_date#,market_price=#market_price#,sale_price=#sale_price#,cost_price=#cost_price#,mem_price=#mem_price#,total_stock=#total_stock#,now_stock=#now_stock#,warn_stock=#warn_stock#,saled_num=#saled_num#,give_inter=#give_inter#,interbuy=#interbuy#,weight=#weight#,unit=#unit#,is_ship=#is_ship#,is_volume=#is_volume#,seo_titel=#seo_titel#,seo_keyword=#seo_keyword#,seo_desc=#seo_desc#,relate_goods=#relate_goods#,give=#give#,label=#label#,busi_remark=#busi_remark#,is_del=#is_del#,info_state=#info_state#,user_id=#user_id#,no_reason=#no_reason#,ship_price=#ship_price#,volume=#volume# WHERE goods_id=$goods_id$
+	</update>
+	
+	<update id="updateshelves" parameterClass="java.util.HashMap">
+		UPDATE goods SET up_date=#up_date#,down_date=#down_date# WHERE goods_id=$goods_id$
+	</update>
+	
+	<update id="updatedownshelves" parameterClass="java.util.HashMap">
+		UPDATE goods SET down_date=now() WHERE goods_id=$goods_id$
+	</update>
+	
+
+	<insert id="insert" parameterClass="goods">
+		INSERT INTO goods (goods_id,cust_id,is_virtual,infoattr_id,cat_attr,size_attr,goods_name,goods_no,goods_wd,brand_id,goods_desc,img_path,goods_video,goods_detail,self_cat,up_date,down_date,market_price,sale_price,cost_price,mem_price,total_stock,now_stock,warn_stock,saled_num,give_inter,interbuy,weight,unit,is_ship,is_volume,seo_titel,seo_keyword,seo_desc,relate_goods,give,label,busi_remark,is_del,info_state,in_date,user_id,no_reason,ship_price,volume) VALUES (#goods_id#,#cust_id#,#is_virtual#,#infoattr_id#,#cat_attr#,#size_attr#,#goods_name#,#goods_no#,#goods_wd#,#brand_id#,#goods_desc#,#img_path#,#goods_video#,#goods_detail#,#self_cat#,#up_date#,#down_date#,#market_price#,#sale_price#,#cost_price#,#mem_price#,#total_stock#,#now_stock#,#warn_stock#,#saled_num#,#give_inter#,#interbuy#,#weight#,#unit#,#is_ship#,#is_volume#,#seo_titel#,#seo_keyword#,#seo_desc#,#relate_goods#,#give#,#label#,#busi_remark#,#is_del#,#info_state#,now(),#user_id#,#no_reason#,#ship_price#,#volume#)
+	</insert>
+
+	<insert id="insertGetPk" parameterClass="goods">
+		INSERT INTO goods (goods_id,cust_id,is_virtual,infoattr_id,cat_attr,size_attr,goods_name,goods_no,goods_wd,brand_id,goods_desc,img_path,goods_video,goods_detail,self_cat,up_date,down_date,market_price,sale_price,cost_price,mem_price,total_stock,now_stock,warn_stock,saled_num,give_inter,interbuy,weight,unit,is_ship,is_volume,seo_titel,seo_keyword,seo_desc,relate_goods,give,label,busi_remark,is_del,info_state,in_date,user_id,no_reason,ship_price,volume) VALUES (#goods_id#,#cust_id#,#is_virtual#,#infoattr_id#,#cat_attr#,#size_attr#,#goods_name#,#goods_no#,#goods_wd#,#brand_id#,#goods_desc#,#img_path#,#goods_video#,#goods_detail#,#self_cat#,#up_date#,#down_date#,#market_price#,#sale_price#,#cost_price#,#mem_price#,#total_stock#,#now_stock#,#warn_stock#,#saled_num#,#give_inter#,#interbuy#,#weight#,#unit#,#is_ship#,#is_volume#,#seo_titel#,#seo_keyword#,#seo_desc#,#relate_goods#,#give#,#label#,#busi_remark#,#is_del#,#info_state#,now(),#user_id#,#no_reason#,#ship_price#,#volume#)
+		 <selectKey resultClass="java.lang.String" keyProperty="goods_id">
+            <!-- 此处不区分大小写 -->
+            SELECT @@IDENTITY AS ID
+        </selectKey>  
+	</insert>
+
+
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM goods WHERE goods_id in ($goods_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM goods g left join member m on g.cust_id=m.cust_id 
+			left join goodsbrand gb on g.brand_id=gb.brand_id
+			 	left join commpara c on c.para_key=g.label
+		<dynamic prepend="WHERE">
+				 <isNotNull prepend="and" property="cust_id"> 
+			        g.cust_id=#cust_id#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="area_attr"> 
+			        INSTR(m.area_attr,#area_attr#)>0
+			     </isNotNull>
+			     <isNotNull prepend="and" property="brand_id"> 
+			        g.brand_id=#brand_id#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="label"> 
+			        g.label=#label#
+			     </isNotNull>
+				 <isNotNull prepend="and" property="cat_attr"> 
+				    INSTR(g.cat_attr,#cat_attr#) >0
+				 </isNotNull>
+				  <isNotNull prepend="and" property="self_cat"> 
+				    INSTR(g.self_cat,#self_cat#) >0
+				 </isNotNull>
+				  <isNotNull prepend="and" property="cust_name_s"> 
+				    INSTR(m.cust_name,#cust_name_s#) >0 
+				 </isNotNull>
+				 <isNotNull prepend="and" property="goodsno_s"> 
+				    INSTR(g.goods_no,#goodsno_s#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="name_s"> 
+				    INSTR(g.goods_name,#name_s#) >0
+				 </isNotNull>
+				  <isNotNull prepend="and" property="goods_name"> 
+				    (INSTR(g.goods_name,#goods_name#) >0 or INSTR(g.seo_keyword,#goods_name#)>0)
+				 </isNotNull>
+				 <isNotNull prepend="and" property="brand_s"> 
+				    INSTR(gb.brand_name,#brand_s#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="ship_s"> 
+				    INSTR(g.is_ship,#ship_s#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="state_s"> 
+				    INSTR(g.info_state,#state_s#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="is_del"> 
+				    g.is_del =#is_del#
+				 </isNotNull>
+				 <isNotNull prepend="and" property="info_state"> 
+				    g.info_state =#info_state#
+				 </isNotNull>
+				 <isNotNull prepend="and" property="size_attr"> 
+				    INSTR(g.size_attr,#size_attr#)>0
+				 </isNotNull>
+				 <isNotNull prepend="" property="attrString"> 
+				    $attrString$
+				 </isNotNull>
+		    	<isNotNull prepend="and" property="up_date">
+					DATE(up_date)>DATE(NOW())
+				</isNotNull>
+				<isNotNull prepend="and" property="warn_stock">
+					g.warn_stock >g.now_stock
+				</isNotNull>
+				<isNotNull prepend="and" property="label"> 
+				    g.label =#label#
+				</isNotNull>
+				<isNotNull prepend="and" property="state_in"> 
+				    g.info_state in($state_in$)
+				</isNotNull>
+				<isNotNull prepend="and" property="dsale_price"> 
+				    g.sale_price >= #dsale_price#
+				</isNotNull>
+				<isNotNull prepend="and" property="usale_price"> 
+				    #usale_price# >= g.sale_price     
+				</isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[ 
+			SELECT g.goods_id,g.cust_id,g.is_virtual,m.cust_name,g.cat_attr,g.infoattr_id,g.size_attr,g.volume,g.goods_name,g.goods_no,g.goods_wd,g.brand_id,g.goods_desc,g.img_path,
+			g.goods_video,g.goods_detail,g.self_cat,g.up_date,g.down_date,g.market_price,g.sale_price,g.cost_price,g.mem_price,g.ship_price,
+			g.total_stock,g.now_stock,g.warn_stock,g.saled_num,g.give_inter,g.interbuy,g.weight,g.unit,g.is_ship,g.is_volume,g.seo_titel,
+			g.seo_keyword,g.seo_desc,g.relate_goods,g.give,g.label,g.busi_remark,g.is_del,g.info_state,g.in_date,g.user_id,gb.brand_name,g.no_reason,
+			IF(TO_DAYS(down_date) > TO_DAYS(NOW()) && TO_DAYS(up_date) < TO_DAYS(NOW()),1,0) AS state_in, 
+			IF(TO_DAYS(up_date) > TO_DAYS(NOW()),1,0) AS state_before, 
+			IF(TO_DAYS(down_date) < TO_DAYS(NOW()),1,0) AS state_after
+		]]>
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY 
+		<isNotNull property="order_saled_num">
+		g.saled_num DESC,
+		</isNotNull>
+		<isNotNull property="in_date">
+		g.in_date DESC,
+		</isNotNull>
+		<isNotNull property="saled_num">
+		g.saled_num DESC,
+		</isNotNull>
+		<isNotNull property="salesup">
+		g.sale_price,
+		</isNotNull>
+		<isNotNull property="salesdown">
+		g.sale_price DESC,
+		</isNotNull>
+		g.goods_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+	
+	
+	<select id="getrelateList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">		
+			<isNotNull property="ids"> 
+			  SELECT g.goods_id,g.goods_name from goods g  where g.goods_id in ($ids$) ORDER BY g.goods_id DESC
+			</isNotNull>
+		
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

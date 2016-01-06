@@ -1,0 +1,296 @@
+/*
+ ISConsole Copyright 2011 ruibaotong COMPANY, Co.ltd . 
+ All rights reserved.
+ FileName: public.css
+ */
+body {
+    margin:0;
+    padding: 0px;
+    font-size: 12px;
+	font-family:tahoma,arial,����;
+	background:#FFF;
+	color:#333;
+}
+
+ul ,li{
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
+
+div, ul, p, h2 ,h3,h4{
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+img {
+    border:0;
+}
+a{ 
+ text-decoration:none;
+ color:#333333;
+ }
+a:hover{
+	text-decoration:none;
+	color:#d00202;
+	}
+.w980{
+	width:980px;
+	margin:0 auto;
+	margin-top:10px;
+	}		
+.f_left{
+	float:left;
+	}
+.f_right{
+	float:right;
+	}	
+.clear {
+    clear: both;
+}
+
+
+/* * * * * * * * * * * * * * * * * ͷ����ʼ * * * * * * * * * * * * * * * * * */
+
+
+.user_top{
+	width:100%;
+	height:33px;
+	background:url(../images/user_bg.gif) repeat-x;
+	}
+.user{
+	width:980px;
+	margin:0 auto;
+	height:33px;
+	line-height:33px;
+	}
+.welcome span{
+	color:#d00202;
+	}		
+.welcome span a,.welcome span{
+	color:#d00202;
+	}
+.welcome span a:hover{
+	color:#d00202;
+	text-decoration:underline;
+	}
+.help span{
+	padding:0 20px;
+	border-right:1px solid #cccccc;
+	background:url(../images/help_a.gif) no-repeat 75px center;
+	}
+.help .order{
+	background:none;
+	padding:0 15px;
+	}
+.help .help_sp{
+	background:url(../images/help_a.gif) no-repeat 87px center;
+	}	
+.help_car{
+	background:url(../images/car.gif) no-repeat;
+	padding-left:25px;
+	}
+.help_car:hover{
+	background:url(../images/car.gif) no-repeat;
+	background-position:0 -30px;
+	padding-left:25px;
+	}	
+/*����ʼ*/	
+.search{
+	width:462px;
+	padding-left:33px;
+	padding-top:4px;
+	}
+.se_dp li{
+	float:left;
+	width:49px;
+	height:22px;
+	line-height:22px;
+	text-align:center;
+	cursor:pointer;
+	}
+.se_dp .se_dp_h{
+	font-weight:bold;
+	color:#FFF;
+	background:url(../images/button.gif) no-repeat;
+	}
+.sea_main{
+	border:3px solid #bd0202;
+	width:456px; 
+	height:28px;
+	}		
+.sea_text{
+	width:366px;
+	height:26px;
+	line-height:26px;
+	float:left;
+	border:0;
+	font-size:14px;
+	padding-left:5px;
+	*padding-left:4px;
+	font-weight:bold;
+	}
+.sea_button{
+	width:85px;
+	height:28px;
+	float:left;
+	background:url(../images/button.gif) no-repeat;
+	background-position:0 -27px;
+	border:0;
+	cursor:pointer;
+	}						
+/*�������*/
+
+/*������ʼ*/
+.nav{
+	width:100%;
+	margin-top:10px;
+	height:47px;
+	background:url(../images/nav_25.gif) repeat-x;
+	}
+.nav a,.nav a:hover{
+	color:#FFF;
+	font-weight:bold;
+	}		
+.nav_main{
+	width:980px;
+	margin:0 auto;
+	font-size:14px;
+	line-height:40px;
+	}	
+.nav_main_cont{
+	float:left;
+	width:796px;
+	}
+.nav_main_cont li{
+	float:left;
+	width:87px;
+	height:40px;
+	padding-top:7px;
+	text-align:center;
+	}
+.nav_main_cont .nav_h{
+	background:url(../images/nav_h.gif) no-repeat;
+	}
+.nav_tg{
+	width:124px;
+	float:left;
+	height:47px;
+	padding-left:60px;
+	background:url(../images/tg_bg_28.gif) no-repeat center;
+	}
+.nav_tg li{
+	width:60px;
+	height:40px;
+	padding-top:7px;
+	text-align:center;
+	float:left;
+	}
+.nav_tg .nav_h{
+	background:url(../images/nav_hs.gif) no-repeat;
+	}			
+/*��������*/	
+
+/* * * * * * * * * * * * * * * * * ͷ������ * * * * * * * * * * * * * * * * * */	
+
+/*δ�ҵ���Ϣ��ʽ��ʼ*/
+
+.noinfor{
+	width:100%;
+	background:#FFF;
+	line-height:25px;
+	padding:7px 0 0 10px;
+	margin:0px auto 10px;
+	text-align:center
+}
+
+/*δ�ҵ���Ϣ��ʽ����*/
+
+.bottom{
+	width:100%;
+	margin-top:15px;
+	padding-bottom:20px;
+	background:url(../images/bottom.gif) repeat-x;
+	}
+.bottom_help{
+	width:225px;
+	float:left;
+	padding:20px 0 0 20px;
+	}
+.bottom_help .bottom_t{
+	font-size:18px;
+	height:32px;
+	font-family:"΢���ź�";
+	padding-left:40px;
+	}
+.bottom_help li{
+	line-height:25px;
+	padding-left:40px;
+	}	
+.way{
+	height:32px;
+	background:url(../images/bottom_help.gif) no-repeat;
+	}
+.security{
+	height:32px;
+	background:url(../images/bottom_help.gif) no-repeat;
+	background-position:0 -32px;
+	}
+.after_sales{
+	height:32px;
+	background:url(../images/bottom_help.gif) no-repeat;
+	background-position:0 -64px;
+	}
+.about{
+	height:32px;
+	background:url(../images/bottom_help.gif) no-repeat;
+	background-position:0 -96px;
+	}
+.copyright{
+	border-top:1px solid #d5d5d5;
+	text-align:center;
+	line-height:30px;
+	padding-top:10px;
+	}
+.copyright_about a{
+	color:#3366cc;
+	padding:0 10px;
+	border-right:1px solid #d4d4d4;
+	}
+.copyright_about a:hover{
+	color:#3366cc;
+	text-decoration:underline;
+	}					
+	
+/* ͼƬ������ʽ��ʼ */
+.divMiddle{
+	 display:table-cell !important;	
+	 display:block;	
+	 position:static !important;	
+	 position:relative;	
+	 overflow:hidden;	
+	 border:1px solid #e1e2e3;	
+	 vertical-align:middle;	
+	 text-align:center;
+	}	
+.AMiddle{
+    display:table-cell !important;
+    display:block;
+	margin:0;
+	position:static !important;
+	position:absolute;
+	top:50%;
+	left:50%;	
+	margin-left:auto;
+	margin-right:auto;
+}
+.ImgMiddle{
+	position:static !important;
+    position:relative;
+    top:auto !important;
+    top:-50%;
+    left:auto !important;
+    left:-50%;  
+	}
+/* ͼƬ������ʽ���� */			

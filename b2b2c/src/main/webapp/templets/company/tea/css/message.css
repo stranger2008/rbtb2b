@@ -1,0 +1,96 @@
+.lmagtback{
+	width:235px;
+	height:34px;
+	background:url(../images/othertitle_03.gif) no-repeat;
+	background-position:0 -200px;
+	float:left;
+}
+.message{
+	width:680px;
+	padding-left:10px;
+}
+.magtitle{
+	width:670px;
+	height:32px;
+	line-height:32px;
+	background:#e9e9e9;
+	font-size:12px;
+	padding-left:10px;
+	margin-top:10px;
+}
+.newmag{
+	width:680px;
+	height:125px;
+	padding-top:10px;
+	background:url(../images/mapline_03.gif) repeat-x bottom;
+}
+.lhandpic{
+	width:76px;
+	line-height:24px;
+	text-align:center;
+	color:#0c77e2;
+	padding-left:10px;
+	padding-right:10px;
+	float:left;
+}
+.rnewmag{
+	width:570px;
+	height:90px;
+	float:left;
+}
+.newmagcont{
+	width:570px;
+	height:75px;
+	font-size:14px;
+}
+.newmagcont .newtp{
+	width:570px;
+	height:24px;
+	line-height:24px;
+	margin-bottom:5px;
+	border-bottom:#dddddd solid 1px;
+}
+.newmagtime{
+	color:#999999;
+	float:right;
+}
+
+
+.magcont{
+	width:680px;
+}
+.magttext{
+	width:350px;
+	height:20px;
+	line-height:20px;
+	border:#dddddd solid 1px;
+}
+.tarea{
+	width:500px;
+	border:#dddddd solid 1px;
+	height:60px;
+}
+.checking{
+	width:70px;
+	height:20px;
+	line-height:20px;
+	border:#dddddd solid 1px;
+	display:inline-block;
+}
+.magcont p{
+	padding-top:10px;
+}
+.magcont a{
+	padding-left:10px;
+}
+.magcont .magp{
+	padding-left:60px;
+} 
+.xzts{
+	width:120px;
+}
+.xzspan{
+	width:50px;
+	text-align:right;
+	display:inline-block;
+}

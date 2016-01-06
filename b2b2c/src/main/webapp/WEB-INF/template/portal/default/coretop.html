@@ -1,0 +1,78 @@
+<div class="user_top">
+  <div class="user">
+     <p class="welcome f_left">
+     	您好，欢迎来到{tag:sysbase name="cfg_webname"/}
+     	<script src="/include/islogin.jsp"></script>
+     </p>
+     <div class="help f_right">
+         	 <a href="/memberindex.action">会员中心</a>
+         	 <!-- 搜索排行榜 -->
+         	 {tag:channellist ch_id="34"}<a href="[field:ch_name_url/]" target="_blank">[field:ch_name/]</a>{/tag:channellist}
+             {tag:navlist row="10" nav_post="1"}
+             <a href="[field:link_url/]" target="[field:isopen/]">[field:nav_name/]</a>
+             {/tag:navlist}
+            <a href="###;" onclick="setMyHome();">设为首页</a>
+            <a href="###;" onClick="addFavorite();">加入收藏</a>
+     </div>
+     <div class="clear"></div>
+  </div>
+</div>
+<!--头部user结束-->
+<div class="logo_top w960">
+   <a href="{tag:sysbase name='cfg_index'/}"><img src="{tag:sysbase name='cfg_logourl'/}"  class="logo f_left"/></a>
+<!--头部logo-->
+ 	{tag:advlist row="1" pos_id="129"}
+			<a href="[field:link_url/]" target="_blank">
+		       <img src="[field:img_path/]" width="778" height="75"/>
+		    </a>
+	{/tag:advlist}
+<!--头部广告-->
+</div>
+<div class="clear"></div>
+<div class="nav w960">
+
+  <div class="nav_l f_left"></div>
+  <ul id="navlist" class="nav_c f_left">
+	  {tag:navlist row="15" nav_post="2" plat_type="b2b" }
+	      <li id="[field:nav_code/]"><a href="[field:link_url/]" target="[field:isopen/]">[field:nav_name/]</a></li>
+	  {/tag:navlist}
+   </ul>
+   <div class="nav_r f_left"></div>
+</div>
+
+<!--导航结束-->    
+ <div class="search_s">
+         <ul class="search_s_m">         
+              <li class="select_li">           
+				    <select id="modselect" class="selcss">
+						 {tag:sysmodulelist}
+				              <option value="[field:module_type/]">[field:module_name/]</option>
+				         {/tag:sysmodulelist}
+					</select>
+                   <input type="hidden" id="modvalue"/>
+              </li>            
+              <li class="text">
+              <input id="searchText" type="text" class="index_text" value="请输入搜索内容"/>
+              <input type="hidden" id="searchTextVal" value="${searchText?if_exists}">
+              </li>  
+                 <input type="hidden" id="wd" name="wd"/>             
+                 <li class="submit"><input id="searchButton" type="button" value=" " class="button" /></li>
+          </ul>         
+    
+	   
+       <input id="modtype" type="hidden">
+	   <div id="hotsearch"> 	   
+	   	{tag:modulelist row="14"}	   	
+	   		<div id="[field:module_code/]" style="display:none;">
+	   			<P class="hot_search"><b>热门搜索：</b>
+		  	 	{tag:keywordlist row="6" limit="6" module_type="[field:module_code/]"}
+			     	<a href="###;">[field:key_name?len(6)/]</a>
+			 	{/tag:keywordlist} 
+		  		</P>
+		  	</div>	
+	   	{/tag:modulelist}	   
+      </div>
+ </div>
+<div class="clear"></div>
+<!--search结束-->
+

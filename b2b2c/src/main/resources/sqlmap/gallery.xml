@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="gallery">
+
+	<typeAlias alias="gallery" type="com.rbt.model.Gallery" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="gallery">
+		<![CDATA[ 
+    SELECT gal_id,cust_id,title,img_path,cat_attr,gal_desc,infoattr_id,is_recom,info_state,no_reason,in_date,clicknum,fare,user_id FROM gallery WHERE gal_id=$gal_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="gallery">
+		UPDATE gallery SET
+		title=#title#,img_path=#img_path#,cat_attr=#cat_attr#,infoattr_id=#infoattr_id#,gal_desc=#gal_desc#,is_recom=#is_recom#,info_state=#info_state#
+		WHERE gal_id=$gal_id$
+	</update>
+
+	<update id="updateaudit" parameterClass="gallery">
+		UPDATE gallery SET
+		info_state=#info_state#,no_reason=#no_reason#,user_id=#user_id#
+		WHERE gal_id=$gal_id$
+	</update>
+
+	<!-- 批量更新是否推荐 -->
+	<update id="updateisrecom" parameterClass="java.util.HashMap">
+		UPDATE gallery SET is_recom=#is_recom# WHERE gal_id=$gal_id$
+	</update>
+
+	<insert id="insert" parameterClass="gallery">
+		INSERT INTO gallery
+		(gal_id,cust_id,title,img_path,cat_attr,gal_desc,is_recom,info_state,no_reason,in_date,clicknum,fare,user_id,infoattr_id)
+		VALUES
+		(#gal_id#,#cust_id#,#title#,#img_path#,#cat_attr#,#gal_desc#,#is_recom#,#info_state#,#no_reason#,now(),#clicknum#,#fare#,#user_id#,#infoattr_id#)
+	</insert>
+
+	<insert id="insertGetPk" parameterClass="gallery">
+        INSERT INTO gallery
+		(gal_id,cust_id,title,img_path,cat_attr,gal_desc,is_recom,info_state,no_reason,in_date,clicknum,fare,user_id,infoattr_id)
+		VALUES
+		(#gal_id#,#cust_id#,#title#,#img_path#,#cat_attr#,#gal_desc#,#is_recom#,#info_state#,#no_reason#,now(),#clicknum#,#fare#,#user_id#,#infoattr_id#)
+		<selectKey resultClass="java.lang.String" keyProperty="gal_id">
+            <!-- 此处不区分大小写 -->
+            SELECT @@IDENTITY AS ID
+        </selectKey>  
+	</insert>
+
+
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM gallery WHERE gal_id in ($gal_id$)
+	</delete>
+
+	<sql id="getgallery">
+		FROM gallery
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="cust_id">
+				cust_id=#cust_id#
+			</isNotNull>
+		</dynamic>
+	</sql>
+	<select id="getgalleryList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT gal_id,title
+		<isParameterPresent>
+			<include refid="getgallery" />
+		</isParameterPresent>
+		ORDER BY gal_id ASC
+	</select>
+   
+	<sql id="getCommon">
+		FROM gallery left join member on member.cust_id=gallery.cust_id
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="cust_id">
+				gallery.cust_id=$cust_id$
+			</isNotNull>
+			<isNotNull prepend="and" property="cust_name">
+				cust_name=#cust_name#
+			</isNotNull>
+			<isNotNull prepend="and" property="title">
+				INSTR(title,#title#) >0
+			</isNotNull>
+			<isNotNull prepend="and" property="user_id">
+				user_id=#user_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="is_recom">
+				is_recom=#is_recom#
+			</isNotNull>
+			<isNotNull prepend="and" property="info_state">
+				gallery.info_state=#info_state#
+			</isNotNull>
+			 <isNotNull prepend="and" property="info_state_in">
+				gallery.info_state in($info_state_in$)
+			</isNotNull>
+			<isNotNull prepend="and" property="starttime">
+				DATE(gallery.in_date)>=#starttime#
+			</isNotNull>
+			<isNotNull prepend="and" property="cat_attr"> 
+				INSTR(gallery.cat_attr,#cat_attr#) >0
+			</isNotNull>
+			<isNotNull prepend="and" property="endtime">
+				#endtime#>=DATE(gallery.in_date)
+			</isNotNull>
+			<isNotNull prepend="and" property="today">
+		         DAY(gallery.in_date)=DAY(NOW()) AND MONTH(gallery.in_date)=MONTH(NOW()) AND YEAR(gallery.in_date)=YEAR(NOW())
+		    </isNotNull>
+		</dynamic>
+	</sql>
+
+
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT
+		gal_id,member.cust_id,cust_name,title,img_path,gallery.cat_attr,gal_desc,is_recom,gallery.info_state,no_reason,gallery.in_date,clicknum,fare,user_id
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY in_date DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+    <select id="getIndexList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+          select * from gallery  where gal_id not in (select info_id FROM index_history where table_name='gallery')	
+	</select>
+	
+	<sql id="getWebCommon">
+		FROM gallery left join member on gallery.cust_id=member.cust_id
+		   <isNotNull property="levelinfo"> 
+				 left join levelinfo on gallery.cust_id=levelinfo.cust_id
+		  </isNotNull>
+          <dynamic prepend="WHERE">
+          		<isNotNull prepend="and" property="title">
+				     INSTR(gallery.title,#title#) >0
+			     </isNotNull>  
+				 <isNotNull prepend="and" property="cat_attr"> 
+				    INSTR(gallery.cat_attr,#cat_attr#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="info_state">
+				   gallery.info_state =#info_state#
+			     </isNotNull>
+				 <isNotNull prepend="and" property="is_recom"> 
+				    gallery.is_recom=#is_recom#
+				 </isNotNull>
+		  </dynamic>
+		   
+
+	</sql>
+	
+	
+	<select id="getWebGalleryList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+          select gal_id,title,gal_desc,member.cust_name,gallery.in_date,gallery.cat_attr,fare,img_path
+          <isParameterPresent>
+			<include refid="getWebCommon" />
+		  </isParameterPresent>
+		  
+		  <isNotNull property="clicknum">
+				 order by  gallery.$clicknum$ desc
+		  </isNotNull>
+		  
+		  <isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		  </isNotNull>
+	</select>
+	
+	<select id="getWebGalleryCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+        SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+	</select>
+</sqlMap>
+

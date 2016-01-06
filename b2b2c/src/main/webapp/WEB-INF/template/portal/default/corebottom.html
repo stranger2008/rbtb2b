@@ -1,0 +1,26 @@
+<div class="map">
+  <P>
+  	  {tag:navlist row="10" nav_post="3" plat_type="b2b"}
+	        <a href="[field:link_url/]" target="[field:isopen/]">[field:nav_name/]</a>
+	  {/tag:navlist}
+  </P>
+  <!-- 去除最后一条竖线 -->
+  <style type="text/css">
+	  .map .last_map{
+		border:0;
+	  }	
+   </style>
+  <script type="text/javascript">
+     $(document).ready(function(){
+       $(".map p a:last").addClass("last_map");        
+     });
+  </script>
+</div>
+<div class="bottom w960">
+  <P>电话：{tag:sysbase name="cfg_phone"/}  传真：{tag:sysbase name="cfg_fax"/}</P>
+  <P>{tag:sysbase name="cfg_powerby"/} 备案号{tag:sysbase name="cfg_beian"/}</P>
+  <div class="bottom_pic">
+    <img src="/templets/{tag:sysbase name='cfg_templatestyle'/}/images/bottom1.gif" /> <img src="/templets/{tag:sysbase name='cfg_templatestyle'/}/images/bottom2.gif" /> <img src="/templets/{tag:sysbase name='cfg_templatestyle'/}/images/bottom3.gif" />
+    <br/>Powered by <a href="http://www.ruibaotong.net" target="_blank">瑞宝通B2B系统</a>
+  </div>
+</div>

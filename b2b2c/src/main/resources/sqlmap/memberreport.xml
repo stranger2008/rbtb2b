@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="memberreport">
+
+	<typeAlias alias="memberreport" type="com.rbt.model.Memberreport" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="memberreport">
+		<![CDATA[ 
+    SELECT report_id,cust_id,link_url,report_type,re_desc,img_path,info_state,user_id,in_date,doresult FROM memberreport WHERE report_id=$report_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="memberreport">
+		UPDATE memberreport SET report_id=#report_id#,cust_id=#cust_id#,link_url=#link_url#,report_type=#report_type#,re_desc=#re_desc#,img_path=#img_path#,info_state=#info_state#,user_id=#user_id#,in_date=#in_date#,doresult=#doresult# WHERE report_id=$report_id$
+	</update>
+
+	<insert id="insert" parameterClass="memberreport">
+		INSERT INTO memberreport (report_id,cust_id,link_url,report_type,re_desc,img_path,info_state,user_id,in_date,doresult) VALUES (#report_id#,#cust_id#,#link_url#,#report_type#,#re_desc#,#img_path#,#info_state#,#user_id#,now(),#doresult#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM memberreport WHERE report_id in ($report_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM memberreport inner join member on memberreport.cust_id=member.cust_id
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="info_state">
+			memberreport.info_state=#info_state#
+		</isNotNull>
+		<isNotNull prepend="and" property="starttime"> 
+		    DATE(memberreport.in_date)>=#starttime#
+		</isNotNull>
+		<isNotNull prepend="and" property="endtime"> 
+			#endtime#>=DATE(memberreport.in_date)
+		</isNotNull>
+		<isNotNull prepend="and" property="report_type"> 
+			report_type=#report_type#
+		</isNotNull>
+		<isNotNull prepend="and" property="user_name"> 
+			cust_name=#user_name#
+		</isNotNull>
+		<isNotNull prepend="and" property="cust_id"> 
+			memberreport.cust_id=#cust_id#
+		</isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT report_id,cust_name,memberreport.cust_id,link_url,report_type,re_desc,memberreport.img_path,memberreport.info_state,memberreport.user_id,memberreport.in_date,doresult
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY report_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+        
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

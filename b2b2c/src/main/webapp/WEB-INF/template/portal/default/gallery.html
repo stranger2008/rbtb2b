@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/picture.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /}
+<title>{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:chinfo name="meta_keyword"/}" />
+<meta name="description" content="{tag:chinfo name="meta_desc"/}" />
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/picture.js"></script>
+<script type="text/javascript" src="/include/js/jquery.lazyload.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("img").lazyload(); 
+})
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+/*排行特效样式*/
+ addnumberstyle(".picph_main",".ico_top",10,"rak_addico_top3","rak_addico_topend");
+});
+</script>
+</head>
+<body>
+<!-- 公共顶部 -->
+{tag:include file="top.html" /}
+<!--导航结束-->
+<div class="w960">
+   <div class="video_ad1">
+     {tag:advlist row="1" pos_id="109"}
+         <a href="[field:link_url/]" target="_blank">
+		    <img src="[field:img_path/]" alt="[field:adv_name/]" />
+		 </a>
+      {/tag:advlist}
+   </div>
+</div>
+<ul class="video_nav">
+   <!-- 取分类信息，取图库下一级分类 -->
+   {tag:catlist row="10" cat_level="1" module_type="gallery"}
+   <li><a href="[field:gallery_cat_url/]" target="_blank">[field:cat_name/]</a></li>
+   {/tag:catlist}
+   <!-- 取分类信息，取图库下一级分类 -->
+   {tag:catlist row="1" start="10" cat_level="1" module_type="gallery"}
+   <li class="last_nav"><a href="[field:gallery_cat_url/]" target="_blank">[field:cat_name/]</a></li>
+   {/tag:catlist}
+   
+</ul>
+<div class="w960">
+ <div class="picnews f_left"> 
+    <div id="main" class="container">
+	  <div class="main_image">
+	   <a target="_blank"><img /></a>
+	    <div class="desc" style="display: block;">
+			<div class="block" style="display: block; height:50px;"></div>
+		</div>
+	  </div>
+
+	   <div class="image_thumb">
+		 <ul>
+		   {tag:gallerylist row="4" is_recom="1"}
+			<li class="">
+				<a href="[field:gallery_detail_url/]" target="_blank">
+				<img src="[field:img_path/]" alt="[field:title?len(30)/]"/></a>
+				<div class="block">
+					<div style="word-break:break-all;width:120px;height:50px;"><a href="[field:gallery_detail_url/]" target="_blank">[field:title?len(30)/]</a></div>
+				</div>
+			</li>
+		   {/tag:gallerylist}
+		</ul>
+	  </div>
+   </div>
+</div>
+<!--图片新闻结束-->
+    <div class="hotpic f_right">
+       <h2 class="title_text"><span class="f_left">热点图片</span></h2>
+       <div class="clear"></div>
+       <div class="hotpic_main">
+          <div class="hotpic_main_1">
+             <!-- 图库信息提取 -->
+             {tag:gallerylist row="2" clicknum="1"  imgwidth="93" imgheight="80"}
+	             <div style="float:left;margin-left:15px;text-align:center;">
+		             <div class="divMiddle" style="width:103px;height:90px;line-height:90px;">
+		               <a href="[field:gallery_detail_url/]" target="_blank" class="AMiddle" style="width:103px;">
+		                 <img src="[field:img_path/]" [field:gallerylistimgsize/] class="ImgMiddle" />
+		               </a>
+		             </div>
+		             <a><P style="margin-top:5px;">[field:title?len(6)/]</P></a>
+	             </div>
+             {/tag:gallerylist}
+          </div>
+          
+          <div class="hotpic_main_1">
+              <!-- 图库信息提取 -->
+             {tag:gallerylist row="2" start="2" clicknum="1"  imgwidth="93" imgheight="80"}
+              <div style="float:left;margin-left:15px;text-align:center;">
+		             <div class="divMiddle" style="width:103px;height:90px;line-height:90px;">
+		               <a href="[field:gallery_detail_url/]" target="_blank" class="AMiddle" style="width:103px;">
+		               <img src="[field:img_path/]" [field:gallerylistimgsize/] class="ImgMiddle" /></a>
+		             </div>
+		             <a><P style="margin-top:5px;">[field:title?len(6)/]</P></a>
+	             </div>
+             {/tag:gallerylist}
+          </div>
+       </div>
+    </div>
+</div>
+<div class="clear"></div>
+<!--热点图片结束-->
+<div class="w960">
+  <div class="jctj f_left">
+    <div class="jctj1"> 
+        <h2 class="title_text1"><span class="f_left">精彩推荐</span></h2>
+      <div class="jctj_main">
+         <!-- 图库信息提取 -->
+         {tag:gallerylist start="4" row="6" is_recom="1" imgwidth="190" imgheight="102"}
+         <div style="width:216px;height:145px;text-algin:center;float:left;margin-top:8px;">
+	         <div class="divMiddle" style="width:200px;height:112px;line-height:112px;">
+		         <a href="[field:gallery_detail_url/]" target="_blank"  class="AMiddle" style="width:200px;">
+		         <img src="[field:img_path/]"  [field:gallerylistimgsize/] class="ImgMiddle" />
+		         </a>
+	         </div>
+	         <a href="[field:gallery_detail_url/]" target="_blank" ><P style="margin-top:2px;">[field:title?len(10)/]</P></a>
+         </div>
+         {/tag:gallerylist}
+      </div>
+     </div>
+  </div>
+   <div class="picph f_right">
+      <h2 class="title_text"><span class="f_left">图片排行</span></h2>
+      <div class="clear"></div>
+      <ul class="picph_main">
+         <!-- 图库信息提取  -->
+         {tag:gallerylist row="10" clicknum="1"}
+          <li><span class="ico_top">1</span><a href="[field:gallery_detail_url/]" target="_blank">[field:title?len(18)/]</a></li>
+         {/tag:gallerylist}
+      </ul>
+   </div>  
+</div>
+<div class="clear"></div>
+<div class="w960">
+   <div class="video_ad1">
+      {tag:advlist row="1" pos_id="48"}
+         <a href="[field:link_url/]" target="_blank">
+		    <img src="[field:img_path/]" alt="[field:adv_name/]" />
+		 </a>
+      {/tag:advlist}
+   </div>
+</div>
+<div class="clear"></div>
+<!-- 取分类信息，取图库下一级分类 -->
+{tag:catlist row="10" cat_level="1" module_type="gallery"}
+<div class="clear"></div>
+<div class="w960">
+  <div class="sports f_left">
+    <div class="sports1 f_left"> 
+      <h2 class="title_text2"><span class="f_left">[field:cat_name/]</span><span class="more_1"><a href="[field:gallery_cat_url/]" target="_blank">更多+</a></span></h2>
+      <div class="sports_main">
+         <!-- 图库信息提取  car_attr：分类ID-->
+         {tag:gallerylist row="1" is_recom="1" cat_attr="[field:cat_id/]"  imgwidth="290" imgheight="210"}
+         <div class="sports_main_left f_left">
+              <div class="divMiddle" style="width:300px;height:220px;line-height:220px;">
+		         <a href="[field:gallery_detail_url/]" target="_blank"  class="AMiddle" style="width:300px;">
+		            <img src="[field:gallerylistimg_path/]"  [field:gallerylistimgsize/] class="ImgMiddle" />
+		         </a>
+		       </div>
+	       <P style="margin-top:12px;"><a href="[field:gallery_detail_url/]" target="_blank">[field:title?len(10)/]</a></P>
+         </div>
+         {/tag:gallerylist} 
+         <div class="same_right">
+            <!-- 图库信息提取  car_attr：分类ID-->
+            {tag:gallerylist row="8" start="1" is_recom="1" cat_attr="[field:cat_id/]"  imgwidth="130" imgheight="101"} 
+            <div style="text-align:center;float:left;margin-left:12px;margin-top:5px;">
+	            <div  class="divMiddle" style="width:140px;height:111px;line-height:111px;">
+		            <a href="[field:gallery_detail_url/]" target="_blank"  class="AMiddle" style="width:140px;">
+		            <img src="[field:gallerylistimg_path/]"  [field:gallerylistimgsize/] class="ImgMiddle" />
+		            </a>
+	            </div>
+	            <P style="margin-top:5px;"><a href="[field:gallery_detail_url/]" target="_blank">[field:title?len(10)/]</a></P>
+	         </div>
+            {/tag:gallerylist} 
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+{/tag:catlist}
+<div class="clear"></div>
+
+ <!-- 公共底部 -->
+{tag:include file="bottom.html" /}
+</body>
+</html>

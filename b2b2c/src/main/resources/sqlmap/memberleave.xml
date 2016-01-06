@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="memberleave">
+
+	<typeAlias alias="memberleave" type="com.rbt.model.Memberleave" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="memberleave">
+		<![CDATA[ 
+    SELECT leave_id,send_cust_id,send_user_name,title,content,in_date,get_cust_id,source,is_del FROM memberleave WHERE leave_id=$leave_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="memberleave">
+		UPDATE memberleave SET is_del=#is_del# WHERE leave_id=$leave_id$
+	</update>
+	
+	<!-- 批量更新是否有效 -->
+	<update id="updateisdel" parameterClass="java.util.HashMap">
+		UPDATE memberleave SET is_del=#is_del# WHERE leave_id=$leave_id$
+	</update>
+
+	<insert id="insert" parameterClass="memberleave">
+		INSERT INTO memberleave (leave_id,send_cust_id,send_user_name,title,content,in_date,get_cust_id,source,is_del) VALUES (#leave_id#,#send_cust_id#,#send_user_name#,#title#,#content#,now(),#get_cust_id#,#source#,#is_del#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM memberleave WHERE leave_id in ($leave_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM memberleave left join member on memberleave.send_cust_id=member.cust_id
+		<dynamic prepend="WHERE">
+			 <isNotNull prepend="and" property="is_del"> 
+			     is_del=#is_del#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="cust_name"> 
+			     instr(cust_name,#cust_name#)>0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="send_user_name"> 
+			     instr(send_user_name,#send_user_name#)>0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="get_cust_id"> 
+			     instr(get_cust_id,#get_cust_id#)>0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="starttime"> 
+			     DATE(memberleave.in_date)>=#starttime#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="endtime"> 
+			     #endtime#>=DATE(memberleave.in_date)
+			 </isNotNull>
+			 <isNotNull prepend="and" property="today">
+		        DAY(memberleave.in_date)=DAY(NOW()) AND MONTH(memberleave.in_date)=MONTH(NOW()) AND YEAR(memberleave.in_date)=YEAR(NOW())
+		    </isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT leave_id,send_cust_id,cust_name,send_user_name,title,content,memberleave.in_date,get_cust_id,source,is_del
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY leave_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

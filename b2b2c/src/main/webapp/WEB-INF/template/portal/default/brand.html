@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/brand.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /} 
+<title>{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:chinfo name="meta_keyword"/}" />
+<meta name="description" content="{tag:chinfo name="meta_desc"/}" />
+</head>
+
+<body>
+<!-- 公共顶部 -->
+{tag:include file="top.html" /}
+<div class="clear"></div>
+<!--导航结束-->
+
+<div class="wmain">
+    <div class="cont">
+     <div class="cont_main">
+       <h2 class="title_1"><span class="title_cont">推荐品牌</span><span class="more">
+       <a href="/member_Brand_cate.action" target="_blank">发布品牌信息</a></span></h2>
+       <div class="clear"></div>
+       <ul class="tj_main">
+           <!-- 取推荐品牌信息集合 -->
+           {tag:brandlist row="12" is_recom="1" imgwidth="129" imgheight="65"}
+             <li>
+             <div  class="divMiddle" style="width:139px;height:75px;line-height:75px;">
+	             <a href="[field:brand_detail_url/]" target="_blank"  class="AMiddle" style="width:139px;">
+	             <img src="[field:img_path/]" [field:brandlistimgsize/] class="ImgMiddle" /></a>
+             </div>
+             <p style="margin-top:10px;"><a href="[field:brand_detail_url/]" target="_blank">[field:title?len(12)/]</a></p>             
+             </li>
+           {/tag:brandlist}
+       </ul>
+       <div class="clear"></div>
+     </div> 
+    
+     {tag:catlist row="2" cat_level="1" module_type="brand"} 
+      <div class="cont_main">
+       <h2 class="title_1"><span class="title_cont">[field:cat_name/]</span><span class="more"><a href="[field:brand_cat_url/]" target="_blank">更多+</a></span></h2>
+       <div class="clear"></div>
+       <ul class="ot_main">
+          <!-- 取分类品牌信息集合 -->
+          {tag:brandlist row="8" cat_attr="[field:cat_id/]" imgwidth="129" imgheight="65"}
+             <li>
+              <div  class="divMiddle" style="width:139px;height:75px;line-height:75px;">
+	             <a href="[field:brand_detail_url/]" target="_blank"  class="AMiddle" style="width:139px;">
+	             <img src="[field:brandlistimg_path/]"  [field:brandlistimgsize/] class="ImgMiddle" /></a>
+              </div>             
+              <p style="margin-top:10px;"><a href="[field:brand_detail_url/]" target="_blank">[field:title?len(12)/]</a></p>             
+             </li>
+          {/tag:brandlist} 
+       </ul>
+       <div class="clear"></div>
+      </div> 
+      {/tag:catlist}
+    </div>
+    
+    <div class="sidebar">
+       <div class="side_main">
+             <h2 class="title_2"><span class="title_cont">分类浏览</span></h2>
+             <div class="fl_main">
+               <!-- 取品牌一级分类 -->
+               {tag:catlist module_type="brand" row="8" cat_level="1"}
+                  <a href="[field:brand_cat_url/]" target="_blank">[field:cat_name/]</a>             
+               {/tag:catlist}
+             </div>
+       </div>
+       
+       <div class="side_main">
+             <h2 class="title_2"><span class="title_cont">按地区查询</span></h2>
+             <div class="cx_main">
+                  <!-- 取一级地区 -->
+                 {tag:arealist row="100" up_area_id="{tag:sysbase name="cfg_topareaid"/}"}
+                  <a href="[field:brand_area_url/]" target="_blank">[field:area_name/]</a>
+                 {/tag:arealist}
+             </div>
+       </div>
+       
+       <div class="side_main">
+             <h2 class="title_2"><span class="title_cont">热门品牌</span></h2>
+             <ul class="hot_main">
+                  <!-- 取热门推荐品牌信息集合 -->
+                  {tag:brandlist row="8" click_num="1"  imgwidth="116" imgheight="73"}
+                   <li>
+                     <div class="divMiddle" style="width:126px;height:83px;line-height:83px;">
+	                   <a href="[field:brand_detail_url/]" target="_blank"  class="AMiddle" style="width:126px;">
+	                   <img src="[field:img_path/]"  [field:brandlistimgsize/] class="ImgMiddle"/></a>
+                     </div> 
+                   <p style="margin-top:10px;"><a href="[field:brand_detail_url/]" target="_blank">[field:title?len(10)/]</a></p>
+                   </li>
+                  {/tag:brandlist} 
+             </ul>
+            <div class="clear"></div>
+       </div>
+    </div>
+
+</div>
+
+<div class="clear"></div>
+ <!-- 公共底部 -->
+{tag:include file="bottom.html" /}
+</body>
+</html>

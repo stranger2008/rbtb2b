@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/exhibition.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/js.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /}
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/pictureshows.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/include/js/lb.js"></script>
+<title>{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:chinfo name="meta_keyword"/}" />
+<meta name="description" content="{tag:chinfo name="meta_desc"/}" />
+</head>
+
+<body>
+  {tag:include file="top.html" /}
+
+<div class="w960">
+<!-- 广告位 -->
+{tag:advlist row="1" pos_id="99"}
+<a href="[field:link_url/]" title="[field:title/]"><img src="[field:img_path/]"/></a>
+{/tag:advlist}
+</div>
+
+
+<div class="w960">
+  
+   <div class="l_w710 f_left"> 
+     <div class="banner f_left">
+             <!-- 绑定放灯片图片 -->
+		      <div id="myFocus" class="mF_liuzg">
+		        <div class="loading"><span>正在载入图片……</span></div><!--载入画面-->
+		        <ul class="pic"><!--内容列表-->
+		          {tag:advlist row="3" pos_id="42"}
+		         <li><a href="[field:link_url/]" target="_blank">
+		         <img src="[field:img_path/]" alt="[field:adv_name/]" />
+		         </a>
+		         </li>
+		         {/tag:advlist}
+		        </ul>
+		    </div> 
+     </div>
+      <div class="hot f_right">
+       {tag:showinfolist row="3"}
+          <ul class="exhi_info">
+           <li class="hot_l"><a href='[field:showinfo_detail_url/]' target="_blank">[field:title?len(23)/]</a></li>
+           <li>[field:start_date?len(10)/] 至 [field:end_date?len(10)/]</li>
+           <li>主办：[field:host_unit?len(22)/] </li>
+         </ul>
+         {/tag:showinfolist}
+  </div>
+  {tag:catlist cat_level="1" module_type="showinfo"}
+  <div class="clear"></div>
+  <div class="dom_exhibition">
+       <h2 class="title_2"><span class="title_main">[field:cat_name/]</span><span class="more_2"><a href="[field:showinfo_cat_url/]" target="_blank">更多+</a></span></h2>
+       <div class="dom_main">
+           <ul>
+           {tag:showinfolist cat_attr="[field:cat_id/]" info_state="1" row="10"}
+            <li><a href='[field:showinfo_detail_url/]' target="_blank">[field:title?len(35)/]</a><span>[[field:get_area_attr?len(3)/]]</span>
+            <span>[field:start_date?len(10)/] 至 [field:end_date?len(10)/]</span></li>
+           {/tag:showinfolist} 
+            </ul>
+           <div class="clear"></div>
+       </div>
+       
+  </div>
+  {/tag:catlist} 
+  </div>
+  <div class="r_240 f_right">
+  
+  
+       <div class="recome_trade">
+           <h2 class="title_1"><span class="title_main">推荐展会</span></h2>    
+      </div>
+      <div class="recom_main">
+         <div class="recom_first">
+             {tag:showinfolist row="1" is_recom="1"}
+              <img src="[field:img_path/]" class="f_left recom_img" width="70px" height="80px"/>
+              <p><b> <a href='[field:showinfo_detail_url/]' target="_blank" class="recent_title">[field:title?len(11)/]</a></b></p>
+              <p>[field:start_date?len(10)/]~[field:end_date?len(10)/]</p>
+              <p>[field:host_unit?len(22)/]</p>
+              {/tag:showinfolist} 
+        </div>
+           <ul>
+               {tag:showinfolist start="1" row="8" is_recom="1"}
+               <li><a href='[field:showinfo_detail_url/]' target="_blank" class="recent_title">[field:title?len(15)/]</a></li>
+               {/tag:showinfolist} 
+           </ul>
+      </div>
+      
+      
+      <div class="area">
+          <h2 class="title_1"><span class="title_main">按地区浏览</span></h2> 
+          <div class="area_main">
+          <p> 
+          	  {tag:arealist row="100" up_area_id="{tag:sysbase name="cfg_topareaid"/}"}
+			          	<a href="[field:showinfo_area_url/]" target="_blank">[field:area_name?len(4)/]</a>
+			  {/tag:arealist}
+			  
+			  </p>
+          </div>
+      </div>
+      
+      <div class="r_class">
+        <h2 class="title_1"><span class="title_main">分类浏览</span></h2>
+        <div class="cls_main">
+         {tag:catlist row="5" cat_level="1" module_type="showinfo"}
+           <ul>
+             <li class="lli"><a href="[field:showinfo_cat_url/]" target="_blank">[field:cat_name/]</a></li>
+             <!-- 绑定展会分类的二级分类 -->
+             <li>
+	         {tag:twocatlist row="4" up_cat_id="[field:cat_id/]"}
+              <a href="[field:showinfo_twocat_url/]" target="_blank">[field:two_cat_name?len(4)/]</a>
+             {/tag:twocatlist}
+             </li>
+           </ul>
+         {/tag:catlist} 
+        </div>
+      </div>
+      
+      <div class="hot_exhibition">
+        <h2 class="title_1"><span class="title_main">热门展览</span></h2>
+        <div class="hot_main">
+           <ul>
+             {tag:showinfolist row="8" clicknum="0"}
+             <li><a href='[field:showinfo_detail_url/]' target="_blank">[field:title?len(15)/]</a></li>
+             {/tag:showinfolist}
+           </ul>
+        </div>
+      </div>
+  </div>
+  
+</div>
+<div class="clear"></div>
+
+{tag:include file="bottom.html" /}
+</body>
+</html>

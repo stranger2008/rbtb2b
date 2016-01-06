@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="job">
+	<typeAlias alias="job" type="com.rbt.model.Job" />
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="job">
+		<![CDATA[ 
+    SELECT job_id,cust_id,title,cat_attr,org_name,job_num,salary,area_attr,job_type,sex,
+    marry,enducation,birth,workexper,job_desc,contact_name,phone,email,cellphone,address,qq,msn,infoattr_id,
+    skype,end_date,is_recom,info_state,no_reason,clicknum,fare,in_date,user_id,is_where,is_trust FROM job WHERE job_id=$job_id$
+    ]]>
+	</select>
+    <update id="updateclicknum" parameterClass="java.lang.String">
+     UPDATE job SET clicknum=(clicknum+1) WHERE job_id=#job_id#
+    </update>
+     <update id="updaterecommend" parameterClass="java.util.HashMap">
+     UPDATE job SET is_recom=#is_recom# WHERE job_id=#job_id#
+    </update>
+	<update id="update" parameterClass="job">
+		UPDATE job SET
+		job_id=#job_id#,cust_id=#cust_id#,title=#title#,cat_attr=#cat_attr#,
+		org_name=#org_name#,job_num=#job_num#,salary=#salary#,area_attr=#area_attr#,job_type=#job_type#,
+		sex=#sex#,marry=#marry#,enducation=#enducation#,birth=#birth#,workexper=#workexper#,job_desc=#job_desc#,
+		contact_name=#contact_name#,phone=#phone#,email=#email#,cellphone=#cellphone#,address=#address#,qq=#qq#,
+		msn=#msn#,skype=#skype#,end_date=#end_date#,is_recom=#is_recom#,info_state=#info_state#,no_reason=#no_reason#,
+		clicknum=#clicknum#,fare=#fare#,user_id=#user_id#,infoattr_id=#infoattr_id#,is_where=#is_where#,is_trust=#is_trust#
+		WHERE job_id=$job_id$
+	</update>
+
+	<insert id="insert" parameterClass="job">
+		INSERT INTO job
+		(job_id,cust_id,title,cat_attr,org_name,job_num,salary,
+		area_attr,job_type,sex,marry,enducation,birth,workexper,job_desc,contact_name,
+		phone,email,cellphone,address,qq,msn,skype,end_date,is_recom,info_state,no_reason,
+		clicknum,fare,in_date,user_id,infoattr_id,is_where,is_trust) VALUES
+		(#job_id#,#cust_id#,#title#,#cat_attr#,#org_name#,
+		#job_num#,#salary#,#area_attr#,#job_type#,#sex#,#marry#,#enducation#,#birth#,#workexper#,#job_desc#,
+		#contact_name#,#phone#,#email#,#cellphone#,#address#,#qq#,#msn#,#skype#,#end_date#,#is_recom#,
+		#info_state#,#no_reason#,#clicknum#,#fare#,now(),#user_id#,#infoattr_id#,#is_where#,#is_trust#)
+	</insert>
+	
+   <insert id="insertGetPk" parameterClass="job">
+ 		INSERT INTO job
+		(job_id,cust_id,title,cat_attr,org_name,job_num,salary,
+		area_attr,job_type,sex,marry,enducation,birth,workexper,job_desc,contact_name,
+		phone,email,cellphone,address,qq,msn,skype,end_date,is_recom,info_state,no_reason,
+		clicknum,fare,in_date,user_id,infoattr_id,is_where,is_trust) VALUES
+		(#job_id#,#cust_id#,#title#,#cat_attr#,#org_name#,
+		#job_num#,#salary#,#area_attr#,#job_type#,#sex#,#marry#,#enducation#,#birth#,#workexper#,#job_desc#,
+		#contact_name#,#phone#,#email#,#cellphone#,#address#,#qq#,#msn#,#skype#,#end_date#,#is_recom#,
+		#info_state#,#no_reason#,#clicknum#,#fare#,now(),#user_id#,#infoattr_id#,#is_where#,#is_trust#)
+	    <selectKey resultClass="java.lang.String" keyProperty="job_id">
+            <!-- 此处不区分大小写 -->
+            SELECT @@IDENTITY AS ID
+        </selectKey>  
+	</insert>
+	
+	
+	
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM job WHERE job_id in ($job_id$)
+	</delete>
+	<update id="updatestate" parameterClass="java.util.HashMap">
+		UPDATE job SET info_state=#info_state# ,no_reason=#no_reason#
+		WHERE job_id=#job_id#
+	</update>
+	<sql id="getCommon">
+		FROM job left join sysuser on job.user_id=sysuser.user_id
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="cust_id">
+				cust_id=#cust_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="title">
+				instr(title,#title#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="cat_attr">
+		    	instr(job.cat_attr,#cat_attr#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="area_attr">
+		    	instr(area_attr,#area_attr#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="area_filter"> 
+				 INSTR(area_attr,#area_filter#) >0
+			 </isNotNull>	
+			<isNotNull prepend="and" property="org_name">
+				instr(org_name,#org_name#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="job_num">
+				job_num=#job_num#
+			</isNotNull>
+			<isNotNull prepend="and" property="end_date">
+				instr(end_date,#end_date#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="is_recom">
+				is_recom=#is_recom#
+			</isNotNull>
+			<isNotNull prepend="and" property="info_state">
+				info_state=#info_state#
+			</isNotNull>
+			<isNotNull prepend="and" property="job_state_in">
+				 info_state in($job_state_in$)
+			</isNotNull>
+			<isNotNull prepend="and" property="in_date">
+				DATE(in_date)>=#in_date#
+			</isNotNull>
+			<isNotNull prepend="and" property="enddate">
+				#enddate#>=DATE(in_date)
+			</isNotNull>
+			<isNotNull prepend="and" property="user_name">
+				user_name=#user_name#
+			</isNotNull>
+			<isNotNull prepend="and" property="today">
+		      DAY(in_date)=DAY(NOW()) AND MONTH(in_date)=MONTH(NOW()) AND YEAR(in_date)=YEAR(NOW())
+		    </isNotNull>	
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT
+		job_id,cust_id,(SELECT cust_name FROM member WHERE cust_id=job.cust_id)as cust_name ,title,job.cat_attr,org_name,job_num,salary,area_attr,job_type,
+		sex,marry,enducation,birth,workexper,job_desc,contact_name,phone,job.email,cellphone,
+		address,qq,msn,skype,end_date,is_recom,info_state,no_reason,clicknum,fare,in_date,job.infoattr_id,
+		sysuser.user_name as user_name
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY in_date desc
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+
+	<sql id="getMemberCommon">
+		FROM job left join memberuser on job.user_id=memberuser.user_id
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="cust_id">
+				job.cust_id=#cust_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="title">
+				instr(title,#title#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="cat_attr">
+				job.cat_attr=#cat_attr#
+			</isNotNull>			
+			<isNotNull prepend="and" property="area_attr">
+				instr(area_attr,#area_attr#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="org_name">
+				instr(job.org_name,#org_name#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="job_num">
+				job_num=#job_num#
+			</isNotNull>
+			<isNotNull prepend="and" property="end_date">
+				instr(end_date,#end_date#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="is_recom">
+				is_recom=#is_recom#
+			</isNotNull>
+			<isNotNull prepend="and" property="job_state">
+				info_state=#job_state#
+			</isNotNull>
+			<isNotNull prepend="and" property="in_date">
+				instr(in_date,#in_date#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="user_name">
+				user_name=#user_name#
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getMemberList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT
+		job_id,job.cust_id,title,job.cat_attr,job.org_name,job_num,salary,area_attr,job_type,
+		job.sex,marry,enducation,birth,workexper,job_desc,contact_name,job.phone,job.email,job.cellphone,
+		address,job.qq,job.msn,job.skype,end_date,is_recom,info_state,no_reason,clicknum,fare,in_date,
+		memberuser.user_name as user_name,job.infoattr_id
+		<isParameterPresent>
+			 <include refid="getMemberCommon" />
+		</isParameterPresent>
+		ORDER BY job_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			 $start$,$limit$
+		</isNotNull>
+
+	</select>
+	<select id="getMemberCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getMemberCommon" />
+		</isParameterPresent>
+	</select>
+
+   <sql id="getWebCommon">
+		FROM job  left join member on job.cust_id=member.cust_id
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="cust_id">
+				cust_id=#cust_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="levelinfo">
+				levelinfo.level_code=#levelinfo#
+			</isNotNull>
+			<isNotNull prepend="and" property="title">
+				instr(title,#title#)>0
+			</isNotNull>
+			<isNotNull prepend="or" property="keyword">
+				instr(org_name,#keyword#)>0
+			</isNotNull>
+			<isNotNull prepend="or" property="keyword">
+				instr(member.cust_name,#keyword#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="cat_attr">
+			     instr(job.cat_attr,#cat_attr#)>0
+			</isNotNull>	
+			<isNotNull prepend="and" property="area_attr">
+			    instr(job.area_attr,#area_attr#)>0
+			</isNotNull>			
+			<isNotNull prepend="and" property="is_recom">
+				is_recom=#is_recom#
+			</isNotNull>
+			<isNotNull prepend="and" property="info_state">
+				job.info_state=#info_state#
+			</isNotNull>
+			<isNotNull prepend="and" property="job_type">
+				instr(job_type,#job_type#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="sex">
+				instr(sex,#sex#)>0
+			</isNotNull>	
+			<isNotNull prepend="and" property="salar">
+				job.salary=$salar$
+			</isNotNull>
+			<isNotNull prepend="and" property="workexper">
+				job.workexper=$workexper$
+			</isNotNull>
+			<isNotNull prepend="and" property="marry">
+				instr(marry,#marry#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="enducation">
+				instr(enducation,#enducation#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="sup_time">
+				job.in_date>SUBDATE(NOW(),INTERVAL $sup_time$ DAY)
+			</isNotNull>	
+			<isNotNull prepend="and" property="starttime">
+				DATE(job.in_date)>=#starttime#
+			</isNotNull>
+			<isNotNull prepend="and" property="endtime">
+				#endtime#>=DATE(job.in_date)
+			</isNotNull>	
+			<isNotNull prepend="and" property="is_trust">
+				is_trust = #is_trust#
+			</isNotNull>	
+			<isNotNull prepend="and" property="is_where">
+				is_where = #is_where#
+			</isNotNull>	
+		</dynamic>
+		
+	</sql>
+     
+     <select id="getWebJobList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT title,job.area_attr,job.in_date,job.infoattr_id,job_id,cust_name,org_name,is_recom,job.salary
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+		
+		<isNotNull  property="clicknum">
+			order by clicknum desc
+		</isNotNull>	
+		<isNotNull  property="in_date">
+			order by job.in_date desc
+		</isNotNull>	
+		
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+	<select id="getWebJobCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+	</select>
+</sqlMap>
+

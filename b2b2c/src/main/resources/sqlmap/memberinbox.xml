@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="memberinbox">
+
+	<typeAlias alias="memberinbox" type="com.rbt.model.Memberinbox" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="memberinbox">
+		<![CDATA[ 
+    SELECT info_id,cust_id,mess_type,title,content,send_cust_id,is_read,in_date FROM memberinbox WHERE info_id=$info_id$
+    ]]>
+	</select>
+	<update id="update" parameterClass="memberinbox">
+		UPDATE memberinbox SET info_id=#info_id#,cust_id=#cust_id#,mess_type=#mess_type#,title=#title#,content=#content#,send_cust_id=#send_cust_id#,is_read=#is_read#,in_date=now() WHERE info_id=$info_id$
+	</update>
+
+	<insert id="insert" parameterClass="memberinbox">
+		INSERT INTO memberinbox (info_id,cust_id,mess_type,title,content,send_cust_id,is_read,in_date) VALUES (#info_id#,#cust_id#,#mess_type#,#title#,#content#,#send_cust_id#,#is_read#,now())
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM memberinbox WHERE info_id in ($info_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM memberinbox left join member on member.cust_id=memberinbox.send_cust_id
+		<dynamic prepend="WHERE">
+			 	 <isNotNull prepend="and" property="cust_id"> 
+			        memberinbox.cust_id=#cust_id#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="title"> 
+       			    INSTR(title,#title#) >0
+			     </isNotNull>
+			     <isNotNull prepend="and" property="mess_type"> 
+			        mess_type=#mess_type#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="send_cust_id"> 
+			        send_cust_id=#send_cust_id#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="is_read"> 
+			        is_read=#is_read#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="box_info_id"> 
+			        info_id=#box_info_id#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="search_starttime"> 
+				    memberinbox.in_date BETWEEN #search_starttime#
+				 </isNotNull>
+				 <isNotNull prepend="and" property="search_endtime"> 
+				   #search_endtime#
+				 </isNotNull>
+				 <isNotNull prepend="and" property="re_cust_id"> 
+			        (memberinbox.cust_id=#re_cust_id#
+			     </isNotNull>
+			     <isNotNull prepend="or" property="re_send_cust_id"> 
+			        send_cust_id=#re_send_cust_id#)
+			     </isNotNull>
+			     <isNotNull prepend="and" property="cust_name"> 
+			        cust_name=#cust_name#
+			     </isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT info_id,memberinbox.cust_id,mess_type,memberinbox.title,content,send_cust_id,is_read,memberinbox.in_date,cust_name,logo_path
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY info_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+    <update id="updateIsdelete" parameterClass="java.util.HashMap">
+		UPDATE memberinbox SET is_del=#is_del#
+		WHERE info_id=#info_id#
+	</update>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

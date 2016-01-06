@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="gallerypic">
+
+	<typeAlias alias="gallerypic" type="com.rbt.model.Gallerypic" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="gallerypic">
+		<![CDATA[ 
+    SELECT pic_id,cust_id,gal_id,img_path,pic_desc,in_date,user_id FROM gallerypic WHERE pic_id=#pic_id#
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="gallerypic">
+		UPDATE gallerypic SET pic_id=#pic_id#,cust_id=#cust_id#,gal_id=#gal_id#,img_path=#img_path#,pic_desc=#pic_desc#,user_id=#user_id# WHERE pic_id=$pic_id$
+	</update>
+
+	<insert id="insert" parameterClass="gallerypic">
+		INSERT INTO gallerypic (pic_id,cust_id,gal_id,img_path,pic_desc,in_date,user_id) VALUES (#pic_id#,#cust_id#,#gal_id#,#img_path#,#pic_desc#,now(),#user_id#)
+	</insert>
+
+	<insert id="insertGetPk" parameterClass="gallerypic">
+	INSERT INTO gallerypic (pic_id,cust_id,gal_id,img_path,pic_desc,in_date,user_id) VALUES (#pic_id#,#cust_id#,#gal_id#,#img_path#,#pic_desc#,now(),#user_id#)
+		   <selectKey resultClass="java.lang.String" keyProperty="pic_id">
+		     <!-- 此处不区分大小写 -->
+		     SELECT @@IDENTITY AS ID
+	       </selectKey>  
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM gallerypic WHERE pic_id in ($pic_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM gallerypic 
+		<dynamic prepend="WHERE">
+			  <isNotNull prepend="and" property="gal_id"> 
+			     gal_id=#gal_id#
+			 </isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT pic_id,cust_id,gal_id,img_path,pic_desc,in_date,user_id
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY pic_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/ranking.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /}
+<title>{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:chinfo name="meta_keyword"/}" />
+<meta name="description" content="{tag:chinfo name="meta_desc"/}" />
+<script type="text/javascript">
+	function searchWd(module_name,keyword){
+		keyword=encodeURIComponent(encodeURIComponent(keyword));
+		location.href="/portal/"+module_name+"!list.action?wd="+keyword;
+	}
+</script>
+
+
+</head>
+
+<body>
+
+{tag:include file="top.html" /}
+
+
+<!--导航结束-->
+<div class="ranking_cont">
+
+	{tag:modulelist row="13"}
+
+   <div class="ranking">
+       <h2 class="ranking_title">[field:module_name/]搜索排行</h2>
+       <ul class="ranking_main">
+       	  
+       	  {tag:keywordlist row="10" module_type="[field:module_code/]"}
+       	  	<li><span class="n1">[field:keywordlistnum/]</span><a href="###;" onclick="searchWd('[field:module_code/]','[field:key_name/]');">[field:key_name/]</a>[field:key_num/]次</li>
+       	  {/tag:keywordlist}
+       	  
+          
+          
+       </ul>
+   </div>
+   
+   {/tag:modulelist}
+
+
+ <div class="clear"></div> 
+</div>
+
+{tag:include file="bottom.html" /}
+
+</body>
+</html>
+

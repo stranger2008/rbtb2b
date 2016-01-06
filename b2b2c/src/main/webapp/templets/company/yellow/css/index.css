@@ -1,0 +1,492 @@
+.cont{
+	width:960px;
+	margin:0 auto;
+	padding-top:10px;
+}
+.com_pic{
+	width:960px;
+	margin:0 auto;
+	padding-top:10px;
+}
+
+.l_body{
+	width:204px;
+}
+.r_body{
+	width:746px;
+}
+/*先给个无限的高度，具体每个给具体高度*/
+
+/*推荐产品*/
+.right_main{
+	width:746px;
+}
+.padding_10{
+	/*	padding-top:10px;*/
+	}
+.Recommend_c{
+	width:744px;
+	border:#bfbfbf solid 1px;
+	border-top:0;
+	line-height:22px;
+	background:#FFF;
+}
+.pic{
+	width:744px;
+	}
+.pic li{
+	text-align:center;
+	padding:15px 0 0 22px;
+	float:left;
+	}
+	
+.gsjj{
+	width:744px;
+	height:195px;
+	border:#bfbfbf solid 1px;
+	border-top:0;
+	line-height:22px;
+	background:#FFF;
+	}	
+.jf_pic{
+	padding:10px;
+	}	
+.jj_p{
+	text-indent:24px;
+	padding:15px 0 0 15px;
+	}	
+.jj_p a{
+	color:#C00;
+	}	
+	
+.supply{
+	height:360px;
+	width:744px;
+	border:#bfbfbf solid 1px;
+	border-top:0;
+	line-height:22px;
+	background:#FFF;
+	}	
+	
+	
+.Photo{
+	width:744px;
+	height:180px;
+	border:#bfbfbf solid 1px;
+	border-top:0;
+	line-height:22px;
+	background:#FFF;
+	}
+	
+/* * * * * * * * * * * * * * 首页结束 * * * * * * * * * * * * * * */
+
+
+
+/* * * * * * * * * * * * * * 公司简介开始 * * * * * * * * * * * * * * */
+.other_main{
+	width:744px;
+	border:#bfbfbf solid 1px;
+	border-top:0;
+	line-height:22px;
+	background:#FFF;
+	padding:10px 0;
+	}
+.other_main p{
+	padding-left:20px;
+	padding-right:20px;
+	}
+.files{
+	padding-left:20px;
+	line-height:30px;
+	}
+.files span{
+	display:inline-block;
+	width:710px;
+	}	
+.files a,.files b{
+	padding-right:15px;
+	}	
+.red{
+	color:#C00;
+	font-weight:bold;
+	display:inline-block;
+	padding:0 10px;
+	}	
+
+
+.comp_porod_sm p{
+	text-indent:24px;
+	line-height:22px;
+	padding:15px 20px 0  20px;
+	}	
+	
+	
+.pl_bfb{
+	width:720px;
+	height:115px;
+	border-bottom:1px solid #e5e5e5;
+	margin:0 auto;
+	line-height:30px;
+	}	
+	
+.pl_g{
+	padding:10px 0 0 20px;
+	font-weight:bold;
+	width:75px;
+	}	
+.pl_1{
+	height:30px;
+	background:url(../images/pl_1.gif) no-repeat right center;
+	}
+.pl_2{
+	background:url(../images/pl_2.gif) no-repeat right center;
+	height:30px;
+	}
+.pl_3{
+	background:url(../images/pl_3.gif) no-repeat right center;
+	height:30px;
+	}		
+.lp_100,.l_100{
+	padding:10px 0 0 20px;
+	}	
+.ll_100{
+	padding:15px 0 0 20px;
+	}		
+.lp_100 li{
+	height:30px;
+	width:285px;
+	text-indent:-900px;
+	background:url(../images/lp_100_1.jpg) no-repeat center;
+	}	
+.ll_100_1{
+	width:76px;
+	height:26px;
+	line-height:26px;
+	text-align:center;
+	background:url(../images/ll_100.gif) no-repeat center;
+	background-position:0 1px;
+	}
+.ll_100_2{
+	width:76px;
+	height:26px;
+	line-height:26px;
+	text-align:center;
+	background:url(../images/ll_100.gif) no-repeat center;
+	background-position:0 -32px;
+	}
+.ll_100_3{
+	width:76px;
+	height:26px;
+	line-height:26px;
+	text-align:center;
+	background:url(../images/ll_100.gif) no-repeat center;
+	background-position:0 -65px;
+	}		
+
+.pl_df{
+	padding-top:15px;
+	}
+.pl_df li{
+	float:left;
+	height:30px;
+	width:90px;
+	padding-left:20px;
+	line-height:30px;
+	}	
+	
+.sry{
+	width:635px;
+	margin:10px 0 0 20px;
+	}	
+.yzm{
+	padding:10px 0 0 20px;
+	}	
+
+
+.fb{
+	padding:20px 0 0 20px;
+	}
+.fb_pl{
+	width:100px;
+	height:32px;
+	border:none;
+	color:#FFF;
+	font-weight:bold;
+	cursor:pointer;
+	background:url(/templets/default/images/fb.gif) no-repeat;
+	margin-right:20px;
+	}	
+	
+.fb span{
+	padding-left:20px;
+	}	
+.fb .red{
+	padding:0;
+	}				
+/* * * * * * * * * * * * * * 公司简介结束 * * * * * * * * * * * * * * */
+.fl a{
+	display:inline-block;
+	width:120px;
+	padding-left:25px;
+	line-height:30px;
+	}
+
+
+/* * * * * * * * * * * * * * 供应列表结束 * * * * * * * * * * * * * * */
+.r_title .px{
+	font-size:12px;
+	font-weight:100;
+	height:26px;
+	padding:5px 10px 0 0;
+	}
+.r_title .px a{
+	width:108px;
+	height:26px;
+	line-height:26px;
+	display:inline-block;
+	text-align:center;
+	}	
+.gy_ml{
+	width:720px;
+	margin:0 auto;
+	border-bottom:1px dashed #ccc;
+	color:#555;
+	height:120px;
+	padding-top:10px;
+	}	
+
+.gy_ml_js{
+	width:450PX;
+	float:left;
+	line-height:25px;
+	padding-left:20PX;
+	}
+.gy_ml_js span{
+	color:#333;
+	}
+.gy_data{
+	float:left;
+	padding:50px 0 0 50px;
+	color:#C00
+	}	
+/*目录方式排序结束*/	
+.ccpx li{
+	text-align:center;
+	float:left;
+	width:156px;
+	margin-left:20px;
+	padding-top:15px;
+	height:160px;
+	}
+
+.page{
+	width:700px;
+	margin:0 auto;
+	text-align:center;
+	height:36px;
+	padding-top:30px;
+	}	
+
+
+/* * * * * * * * * * * * * * 供应详细页面开始 * * * * * * * * * * * * * * */
+.prod{
+	width:580px;
+	padding-left:30px;
+	}	
+
+.porod_pic{
+	width:287px;
+	}	
+.porod_b_pic{
+	padding-top:20px;
+	width:287px;
+	}	
+
+.porod_s_pic{
+	width:287px;
+	margin-top:16px;
+	}	
+
+.porod_s_c {
+	padding-left:16px;
+	}	
+.cp_fu{
+	padding:0 0 0 30px;
+	line-height:35px;
+	width:260px;
+	}	
+.cp_l{
+	display:inline-block;
+	width:72px;
+	}	
+.cp_fu_t{
+	color:#07519a;
+	font-weight:bold;
+	}
+.red{
+	color:#C00;
+	font-weight:bold;
+    }
+
+
+
+.cpjs_p{
+	text-indent:24px;
+	padding:10px 20px;
+	}
+.xjd{
+	line-height:30px;
+	padding-left:30px;
+	}
+.xjd span{
+	color:#C00;
+	padding-left:10px;
+	}			
+.xjd label{
+	display:inline-block;
+	width:90px;
+	}	
+.xjd_zt{
+	width:250px;
+	}	
+.xjd_xym{
+	width:55px;
+	}	
+	
+.xjd_li{
+	padding-left:90px;
+	padding-top:10px;
+	}	
+/* * * * * * * * * * * * * * 供应详细页结束 * * * * * * * * * * * * * * */	
+
+
+/* * * * * * * * * * * * * * 新闻列表页开始 * * * * * * * * * * * * * * */	
+.news_list{
+	padding:10px 0 0 10px
+	}
+.news_list li{
+	line-height:30px;
+	background:url(../images/li.jpg) no-repeat 10px center;
+	padding-left:20px;
+	}	
+
+.news_list a{
+	display:inline-block;
+	width:620px;}
+/* * * * * * * * * * * * * * 新闻列表页结束* * * * * * * * * * * * * * */	
+
+/* * * * * * * * * * * * * * 新闻详细开始* * * * * * * * * * * * * * */	
+.news_title{
+	color:#FF6600;
+	width:700px;
+	margin:0 auto;
+	text-align:center;
+	border-bottom:1px dashed #ccc;
+	height:40px;
+	line-height:40px;
+	font-family:"微软雅黑";
+	}
+.news_m{
+	width:700px;
+	margin:0 auto;
+	text-align:center;
+	height:25px;
+	line-height:25px;
+	border-bottom:1px dashed #ccc;
+	}	
+.news_m span{
+	padding-right:30px;
+	}
+.news_cont{
+	width:700px;
+	margin:0 auto;
+	}
+.news_cont p{
+	text-indent:24px;
+	padding-top:10px;
+	line-height:22px;
+	}		
+
+/* * * * * * * * * * * * * * 新闻详细结束* * * * * * * * * * * * * * */	
+
+
+
+.video{
+	width:690px;
+	margin:10px auto 0;
+	}
+	
+	
+.photo_1{
+	width:720px;
+	margin:0 auto;
+	background:#000000;
+	}	
+.photo_left{
+	width:620px;
+	
+	}	
+.photo_l_t{
+	height:70px;
+	padding-top:10px;
+	background:#666666;
+	}	
+.ph_name{
+	font-size:16px;
+	color:#ff6600;
+	padding-left:10px;
+	line-height:40px;
+	}	
+.ph_page{
+	float:right;
+	padding-right:10px;
+	}	
+.ph_page span{
+	color:#FFF;
+	}	
+.photo_l_t p{
+	color:#FFF;
+	padding-left:10px;
+	}	
+.photo_l_t span{
+	padding-right:15px;
+	}	
+.photo_l_t a{
+	color:#FFF;
+	}
+.photo_l_t a:hover{
+	color:#FFF;
+	text-decoration:underline;
+	}		
+	
+.photo_l_d{
+	width:620px;
+	background:#333;
+	}	
+.photo_xx{
+	padding-top:10px;
+	width:603px;
+	margin:0 auto;
+	text-align:center;
+	}	
+.photo_jj{
+	padding:10px 0 10px 10px ;
+	color:#FFF;
+	}	
+	
+.photo_r{
+	float:left;
+	width:100px;
+	text-align:center;
+	padding-top:25px;
+	}	
+.photo_r li{
+	text-align:center;
+	width:64px;
+	padding-top:15px;
+	margin:0 auto;
+	}	
+
+.photo_r .photo_next img{
+	border:0;
+	}	

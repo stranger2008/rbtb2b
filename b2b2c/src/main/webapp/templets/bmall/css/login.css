@@ -1,0 +1,187 @@
+body {
+    margin:0;
+    padding:0px;
+    font-size:12px;
+    font-family:"宋体";
+	background:#FFF;
+	color:#333;
+  }
+
+ul ,li{
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+    }
+
+div, ul, p, h2 ,h3{
+    margin: 0;
+    padding: 0;
+    border: none;
+   }
+
+img {
+    border:0;
+   }
+a{ 
+ text-decoration:none;
+ color:#333333;
+ }
+a:hover{
+	text-decoration:none;
+	color:#d00202;
+	}
+.w980{
+	width:980px;
+	margin:0 auto;
+	margin-top:10px;
+	}		
+.f_left{
+	float:left;
+	}
+.f_right{
+	float:right;
+	}	
+.clear {
+    clear: both;
+    }
+
+
+.top{
+	width:980px;
+	margin:0 auto;
+	height:84px;
+	line-height:84px;
+	}
+
+.cont{
+	margin: 0 auto;
+    width: 980px;
+	padding:30px 0;
+	border-top:1px solid #abacac;
+	border-bottom:1px solid #abacac;
+	margin-top:20px;
+	
+	}
+.form {
+    display: inline;
+    float: left;
+    width: 330px;
+	height:280px;
+	background:#fafafa;
+    border: 1px solid #CACACA;
+    }
+.form_hd {
+    font-size: 14px;
+    font-weight: bold;
+	padding:20px 0 10px 30px;
+	color:#000;
+    }
+.field {
+	padding-top:10px;
+	}	
+.field label {
+    padding-right: 10px;
+    width: 72px;
+    display: inline-block;
+    padding-right: 5px;
+    text-align: right;
+   }
+.loginN{
+	border: 1px solid #C8C8C8;
+    height: 18px;
+    line-height: 18px;
+    margin-right: 3px;
+    padding: 3px;
+    vertical-align: middle;
+    width: 190px;
+	}
+.loginY{
+	border: 1px solid #C8C8C8;
+    height: 18px;
+    line-height: 18px;
+    margin-right: 3px;
+    padding: 3px;
+    vertical-align: middle;
+    width:90px;
+	} 	 			
+.field img{
+	vertical-align: middle;
+	}
+	
+.safe {
+    padding-left: 86px;
+    padding-top: 10px;
+    height:30px;
+   }
+.safe input {
+    margin-right: 6px;
+	vertical-align: middle;
+    } 
+.safe labe {
+	color: #AAAAAA;
+    vertical-align: middle;		
+	}
+.submit {
+    margin-top: 0;
+	line-height:29px;
+    padding: 4px 0 0 86px;
+   }	
+.J_Submit{
+	width:96px;
+	height:29px;
+	line-height:29px;
+	color:#FFF;
+	background:url(../images/dl_07.gif) no-repeat;
+	border:0;
+	font-size:12px;
+	cursor: pointer;
+	}
+.forget_pw {
+    color: #808080;
+    }
+.forget_pw {
+    color: #808080;
+    }	
+.tishi{
+	text-align:center;
+	padding-top:5px;
+	line-height:25px;
+	}
+.tishi span{
+	color:#b70000;
+	}
+.tishi a{
+	background:#c30505;
+	padding:3px;
+	color:#FFF;
+	margin-left:5px;
+	}
+.tishi a:hover{
+	padding:3px;
+	color:#FFF;
+	text-decoration:underline;
+	}				
+.pic{
+	display: inline;
+    float: right;
+    width: 508px;
+	}
+.bottom{
+	text-align:center;
+	}
+
+.bottom p {
+    margin:10px 0 20px 0px;
+    }
+.bottom p img {
+	margin-right: 20px;
+     }
+     
+.errorDiv{
+	margin-left:85px;
+	color:#c00020;
+}
+
+
+
+     

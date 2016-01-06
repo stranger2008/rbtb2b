@@ -1,0 +1,82 @@
+.position{
+	height:33px;
+	background:#f6f5f5;
+	width:960px;
+	margin:10px auto 0;
+	line-height:33px;
+	font-size:14px;
+	}
+.position p{
+	padding-left:20px;
+	}
+
+
+
+
+
+.about_us{
+	width:152px;
+	float:left;
+	border:1px solid #eaf0f6;
+	}
+.about_us li{
+	width:102px;
+	height:33px;
+	line-height:33px;
+	padding-left:50px;
+	font-weight:bold;
+	color:#333;
+	background:url(../images/About_us_li.gif) no-repeat left center;
+	}
+.about_us .about_hover{
+	width:102px;
+	height:33px;
+	line-height:33px;
+	padding-left:50px;
+	background:url(../images/About_us_hover.gif) no-repeat left center;
+	}
+
+
+
+.about_main{
+	float:right;
+	width:794px;
+	border:1px solid #e5e5e5;
+	border-top:2px solid #a0ddff;
+	padding-bottom:10px;
+	color:#333333;
+	}	
+.left_title{
+	width:740px;
+	min-width:65px;
+	_width:65px;
+	height:auto;
+	border-bottom:1px solid #e2e2e2;
+	margin:0 auto;
+	text-align:center;
+	line-height:65px;
+	font-size:18px;
+	font-family: "微软雅黑";
+	font-weight:500;
+	}
+.date{
+	width:740px;
+	height:30px;
+	border-bottom:1px solid #e2e2e2;
+	margin:0 auto;
+	text-align:center;
+	line-height:30px;
+	}
+.date_text{
+	padding-left:20px;
+	}	
+.about_main_c{
+	padding-top:10px;
+	width:740px;
+	margin:0 auto;
+	line-height:22px;
+	}	
+.about_main_c p{
+	text-indent:24px;
+	padding-top:10px;
+	}	

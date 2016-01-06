@@ -1,0 +1,54 @@
+/**地区查询结束**/
+.cont_area{
+	line-height:25px;
+	font-size:14px;
+	padding:10px 10px 0 10px;
+	}
+.letter{
+	font:12px/150% arial,simsun;
+	float:left;
+	color:#6694e3; font-weight:bold;width:31px;padding-bottom:11px;
+	}
+.area1{
+	font:12px/150% arial,simsun;color:#252525;
+}
+.area1 a{
+	padding-right:18px;
+	color:#0000cc;
+	}
+.area1 a:hover{
+	padding-right:18px;
+	color:#FF0508;
+	text-decoration:underline;
+	}
+.cont_main_1{
+	width:958px;
+	padding-top:10px;
+	margin:0 auto;
+}
+.cont_main{
+	width:958px;
+	border:1px solid #DDDDDD;
+	border-top:0;
+	margin:0 auto;
+}
+.dq{
+	height:31px;
+	background:url(../images/dq_bg.gif) repeat-x bottom;
+	}
+.dq ul li{
+	float:left;
+	width:140px;
+	height:31px;
+	line-height:31px;
+	background:url(../images/tab_bg2.jpg) no-repeat;
+	text-align:center;
+	font-size:14px;
+	color:#FFF;
+	font-weight:bold;
+	cursor:pointer;
+	}
+.dq ul .dq_hover{
+	background:url(../images/tab_bg.jpg) no-repeat;
+	color:#333;
+  }

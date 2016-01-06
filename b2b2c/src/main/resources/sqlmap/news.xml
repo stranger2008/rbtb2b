@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="news">
+	<typeAlias alias="news" type="com.rbt.model.News" />
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="news">
+		<![CDATA[ 
+		SELECT 	news_id, cust_id, title, news_attr, out_link, tag, litpic, source, sourcelink, 
+		author, cat_attr,area_attr, content, comment, sort_no, title_color, fare, keyword, description, 
+		vote_id, info_state, no_reason, is_delete, clicknum, in_date, user_id ,TO_DAYS(sort_no) - TO_DAYS(in_date) AS sort_data_number,infoattr_id,news_type
+		FROM news WHERE news_id=#value#
+    ]]>
+	</select>
+	<select id="getcountnum" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" >
+	 select count(*) as ct  from $tablename$ where $titlecol$=#strtitle#
+	</select>
+   <update id="updateclicknum" parameterClass="java.lang.String">
+     UPDATE news SET clicknum=(clicknum+1) WHERE news_id=#news_id#
+    </update>
+	<update id="update" parameterClass="news">
+		UPDATE news SET cust_id=#cust_id#,title=#title#,
+		news_attr=#news_attr#,out_link=#out_link# ,
+		tag=#tag#,litpic=#litpic#,infoattr_id=#infoattr_id#,
+		source=#source#,sourcelink=#sourcelink#,
+		author=#author#,cat_attr=#cat_attr#,area_attr=#area_attr#,
+		content=#content#,comment=#comment#, sort_no=DATE_ADD(now(),
+		INTERVAL #sort_data_number# DAY),title_color=#title_color#,
+		fare=#fare#,keyword=#keyword#,
+		description=#description#,vote_id=#vote_id#,
+		info_state=#info_state#,no_reason=#no_reason#,
+		clicknum=#clicknum#,user_id=#user_id# ,news_type=#news_type# WHERE
+		news_id=$news_id$
+	</update>
+   
+	<insert id="insert" parameterClass="news">
+		INSERT INTO news (cust_id, title, news_attr, out_link, tag,
+		litpic, source, sourcelink, author, cat_attr,area_attr, content, comment,
+		sort_no, title_color, fare, keyword, description, vote_id,
+		info_state, no_reason, is_delete, clicknum, in_date, user_id ,infoattr_id,news_type)
+		VALUES (#cust_id#, #title#, #news_attr#, #out_link#, #tag#,
+		#litpic#, #source#, #sourcelink#, #author#, #cat_attr#,#area_attr#,
+		#content#, #comment#, DATE_ADD(now(), INTERVAL
+		#sort_data_number# DAY), #title_color#, #fare#, #keyword#,
+		#description#, #vote_id#, #info_state#, #no_reason#,
+		#is_delete#, #clicknum#, now(), #user_id#,#infoattr_id#,#news_type#)
+	</insert>
+	
+	
+	<insert id="insertGetPk" parameterClass="news">
+ 		INSERT INTO news (cust_id, title, news_attr, out_link, tag,
+		litpic, source, sourcelink, author, cat_attr,area_attr, content, comment,
+		sort_no, title_color, fare, keyword, description, vote_id,
+		info_state, no_reason, is_delete, clicknum, in_date, user_id ,infoattr_id,news_type)
+		VALUES (#cust_id#, #title#, #news_attr#, #out_link#, #tag#,
+		#litpic#, #source#, #sourcelink#, #author#, #cat_attr#,#area_attr#,
+		#content#, #comment#, DATE_ADD(now(), INTERVAL
+		#sort_data_number# DAY), #title_color#, #fare#, #keyword#,
+		#description#, #vote_id#, #info_state#, #no_reason#,
+		#is_delete#, #clicknum#, now(), #user_id#,#infoattr_id#,#news_type#)
+		<selectKey resultClass="java.lang.String" keyProperty="news_id">
+            <!-- 此处不区分大小写 -->
+            SELECT @@IDENTITY AS ID
+        </selectKey>  
+	</insert>
+
+	
+	
+	
+	<delete id="delete" parameterClass="java.lang.String">
+		delete from news where news_id in ($value$)
+	</delete>
+	<delete id="deleteInRecycle" parameterClass="java.lang.String">
+		UPDATE news SET is_delete='1' WHERE news_id in($value$)
+	</delete>
+	<update id="updatestate" parameterClass="java.util.HashMap">
+		UPDATE news SET info_state=#info_state# ,no_reason=#no_reason#
+		WHERE news_id=#news_id#
+	</update>
+	<sql id="getCommon">
+		from news
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="title">
+				instr(title,#title#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="newsids">
+				news_id in($newsids$)
+			</isNotNull>
+			
+			<isNotNull prepend="and" property="strtitle">
+				title=strtitle
+			</isNotNull>
+			<isNotNull prepend="and" property="news_attr">
+				instr(news_attr,#news_attr#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="source">
+				instr(source,#source#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="author">
+				instr(author,#author#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="cat_attr">
+			  instr(cat_attr,#cat_attr#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="area_attr"> 
+				INSTR(area_attr,#area_attr#) >0
+			</isNotNull>
+			<isNotNull prepend="and" property="area_filter"> 
+				 INSTR(area_attr,#area_filter#) >0
+			 </isNotNull>	
+			<isNotNull prepend="and" property="in_date">
+				DATE(in_date)>=#in_date#
+			</isNotNull>
+			<isNotNull prepend="and" property="enddate">
+				#enddate#>=DATE(in_date)
+			</isNotNull>
+			<isNotNull prepend="and" property="info_state">
+				info_state=#info_state#
+			</isNotNull>
+			<isNotNull prepend="and" property="state_code_in">
+				info_state in($state_code_in$)
+			</isNotNull>
+			<isNotNull prepend="and" property="cust_id">
+				cust_id=#cust_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="comment">
+				comment=#comment#
+			</isNotNull>
+			<isNotNull prepend="and" property="fare">
+				fare=#fare#
+			</isNotNull>
+			<isNotNull prepend="and" property="clicknum">
+				clicknum=#clicknum#
+			</isNotNull>
+			<isNotNull prepend="and" property="is_delete">
+				is_delete=#is_delete#
+			</isNotNull>
+			<isNotNull prepend="and" property="cust_id">
+				cust_id=#cust_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="litpic">
+				litpic IS NOT NULL AND litpic!=''
+			</isNotNull>
+			<isNotNull prepend="and" property="today">
+		         DAY(news.in_date)=DAY(NOW()) AND MONTH(news.in_date)=MONTH(NOW()) AND YEAR(news.in_date)=YEAR(NOW())
+		    </isNotNull>
+		    <isNotNull prepend="and" property="news_type">
+				news_type=#news_type#
+			</isNotNull>	
+		</dynamic>
+	</sql>
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT news_id, cust_id,(SELECT cust_name FROM member WHERE cust_id=news.cust_id)as cust_name , title, news_attr, out_link, tag,
+		litpic, source, sourcelink, author, cat_attr,area_attr, content, comment,
+		title_color, fare, keyword, description, vote_id, info_state,
+		no_reason, is_delete, clicknum, in_date, TO_DAYS(sort_no) -
+		TO_DAYS(NOW()) AS daynum ,(SELECT user_name FROM sysuser WHERE
+		user_id=news.user_id) AS user_name,infoattr_id,DATE_FORMAT(in_date,'%Y-%c-%d %h:%i:%s') AS in_date_data
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		order by in_date desc
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+	<select id="getMemberList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT news_id, cust_id, title, news_attr, out_link, tag,
+		litpic, source, sourcelink, author, cat_attr, content, comment,
+		title_color, fare, keyword, description, vote_id, info_state,
+		no_reason, is_delete, clicknum, in_date, TO_DAYS(sort_no) -
+		TO_DAYS(NOW()) AS daynum ,(SELECT user_name FROM memberuser
+		WHERE user_id=news.user_id) AS user_name,infoattr_id
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		order by daynum desc ,in_date desc
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		select count(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>	
+	
+	<sql id="getWebCommon">
+		from news
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="info_state">
+				info_state=#info_state#
+			</isNotNull>
+			<isNotNull prepend="and" property="news_attr">
+				instr(news_attr,#news_attr#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="cat_attr">
+				instr(cat_attr,#cat_attr#)>0
+	        </isNotNull>	
+	        <isNotNull prepend="and" property="area_attr">
+				instr(area_attr,#area_attr#)>0
+	        </isNotNull>		
+	    	<isNotNull prepend="and" property="title">
+				instr(title,#title#)>0
+			</isNotNull>
+		</dynamic>
+		
+	</sql>
+	
+	<select id="getWebNewsCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		select count(*) ct
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+	</select>	
+	
+	<select id="getWebNewsList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT news_id,title,out_link,in_date,description,source,litpic,content,infoattr_id
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+		<isNotNull property="clicknum">
+			order by clicknum DESC
+		</isNotNull>
+		<isNotNull property="in_date">
+			order by in_date DESC
+		</isNotNull>
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+	<select id="getNewsalumniList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT source FROM news
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="cat_attr">
+				INSTR(cat_attr,#cat_attr#) 
+			</isNotNull>
+			<isNotNull prepend="and" property="keyword">
+				keyword=#keyword# 
+			</isNotNull>
+		</dynamic>
+		 GROUP BY source ORDER BY source DESC
+	</select>
+	
+	<select id="getalumnicharList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT keyword FROM news
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="cat_attr">
+				INSTR(cat_attr,#cat_attr#) 
+			</isNotNull>
+		</dynamic>
+		GROUP BY keyword
+	</select>
+</sqlMap>

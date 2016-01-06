@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/position_detailed.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /}
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/job_detail.js"></script>
+<title>{tag:field name="title" /}-{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:field name="resume_name" /}" />
+<meta name="description" content="{tag:field name="content" len="30" /}" />
+</head>
+
+<body>
+{tag:include file="top.html" /}
+<div class="clear"></div>
+<!--导航结束-->
+<div class="position">
+  <P>当前位置:{tag:field name="page_position"/}正文</P></div>
+<div class="w960">
+   <div class="left_main f_left">
+      <h2 class="left_title">{tag:field name="title"/}</h2>
+      <div class="date">
+          <input type="hidden" id="cpname" value="{tag:field name='title'/}" />
+          <input type="hidden" id="infoids" value="{tag:field name='info_id'/}" />
+           <input type="hidden" id="custid" value="{tag:field name='cust_id'/}" />
+          <input type="hidden" id="cpnamewebtitle" value="{tag:sysbase name='cfg_webtitle'/}" />
+         <p><span class="date_title">{tag:field name="get_cust_company_name"/}</span><br/>
+         </p>
+      </div>
+      <div class="exhibition_info">
+         <table width="900" border="0" cellspacing="1" cellpadding="" bgcolor="#cccccc">
+           <tr>
+             <td width="90" height="31" bgcolor="#ededed" class="exhibition_info_text1">职位类别</td>
+             <td width="217" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="get_cats_attr"/}</td>
+             <td width="90" height="31" bgcolor="#ededed" class="exhibition_info_text1">招聘部门</td>
+             <td width="218" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="org_name"/}</td>
+           </tr>
+           <tr>
+             <td width="90" height="31" bgcolor="#ededed" class="exhibition_info_text1">招聘人数</td>
+             <td width="217" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="job_num"/}</td>
+             <td width="90" height="31" bgcolor="#ededed" class="exhibition_info_text1"> 待遇水平</td>
+             <td width="218" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="salary"/}</td>
+           </tr>
+           <tr>
+             <td width="90" height="31" bgcolor="#ededed" class="exhibition_info_text1">工作地区</td>
+             <td width="217" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="get_all_area_attr"/}</td>
+             <td width="90" height="31" bgcolor="#ededed" class="exhibition_info_text1">工作性质</td>
+             <td width="218" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="job_type"/}</td>
+           </tr>
+           <tr>
+             <td width="90" height="31" bgcolor="#ededed" class="exhibition_info_text1">性别要求</td>
+             <td width="217" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="sex"/}</td>
+             <td width="90" height="31" bgcolor="#ededed" class="exhibition_info_text1">婚姻要求</td>
+             <td width="218" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="marry"/}</td>
+           </tr>
+           <tr>
+             <td width="90" height="31" bgcolor="#ededed" class="exhibition_info_text1">学历要求</td>
+             <td width="217" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="enducation"/}</td>
+             <td width="90" height="31" bgcolor="#ededed" class="exhibition_info_text1">年龄要求</td>
+             <td width="218" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="birth"/}</td>
+           </tr>
+           <tr>
+             <td width="90" height="31" bgcolor="#ededed" class="exhibition_info_text1">工作经验</td>
+             <td width="217" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="workexper"/}年</td>
+             <td width="90" height="31" bgcolor="#ededed" class="exhibition_info_text1">过期时间</td>
+             <td width="218" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="end_date" len="10"/}</td>
+           </tr>
+        </table>
+        
+      </div>
+      <div class="title_banner"><h2 class="title_text">职位描述/要求</h2></div>
+      <div class="clear"></div>
+      <div class="main_info1">
+         <p class="main_info1_text">
+         <br />
+          {tag:field name="job_desc"/}
+      </div>
+      <div class="title_banner"><h2 class="title_text">联系方式</h2></div>
+      <div class="clear"></div>
+      <div class="main_info1">
+         <p class="main_info1_text">
+         公司名称：{tag:field name="get_cust_company_name"/}<br />
+         公司地址：{tag:field name="address"/}<br />
+         传真：{tag:field name="fax"/}<br />
+         公司主页：{tag:field name="website"/}<br />                    
+         联系人: {tag:field name="contact_name"/}<br />
+         联系电话:{tag:field name="phone"/}<br />
+         电子邮件:{tag:field name="email"/}<br />
+         联系手机:{tag:field name="cellphone"/}<br />
+         联系地址:{tag:field name="address"/}<br />
+        QQ:{tag:field name="qq"/}<br />
+        MSN:{tag:field name="msn"/}<br />
+        SKYPE:{tag:field name="skype"/}<br />
+      </div>
+      <div class="main_bottom">  
+         <span id="divresumeids" style="display: none;" class="f_left">
+          <span style="color: blue;font-weight: bold;">选择简历：</span>
+         <select id="resumeids" >
+            <option value="-1">--请选择简历--</option>
+         </select>
+         </span>
+         <a href="###;" onclick="addjobinbox();">
+         <img class="f_left" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/images/sqzw_03.gif" /></a>
+         
+          <a href="###;"  onclick="document.collectJobForm.submit();">
+         <img  src="/templets/{tag:sysbase name='cfg_templatestyle'/}/images/sczw_03.gif" /></a>
+          
+         <a href="javascript:window.print();">
+         <img  src="/templets/{tag:sysbase name='cfg_templatestyle'/}/images/dyzp.gif" /></a>
+          <a onclick="window.external.addFavorite(this.href, this.title);return false;"
+           rel="sidebar" title="{tag:field name='title' /}-{tag:chinfo name='ch_title'/}-{tag:sysbase name='cfg_webtitle'/}" 
+          href="">
+         <img  src="/templets/{tag:sysbase name='cfg_templatestyle'/}/images/jrscj.gif" />
+         </a>   
+          <!-- 收藏公司的提交表单 -->
+				     <form action="/member_Collect_add.action" name="collectJobForm" method="post">
+    					<input type="hidden" name="collect.title" id="title" value="{tag:field name='cust_name'/}" />	
+    					<input type="hidden" name="collect.link_url" id="link_url1"  />
+    					<input type="hidden" name="loc" value="" />
+   					 </form>
+    				<script>
+    					document.collectJobForm.loc.value = document.location.href;
+    					document.getElementById("link_url1").value = document.location.href;
+    				</script>
+      </div>
+               
+  </div>
+<!-- 用于详细页高亮 -->
+<input type="hidden" value="2" id="searchtype"/> 
+<div class="clear"></div>
+{tag:include file="bottom.html" /}
+</body>
+</html>

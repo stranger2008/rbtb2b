@@ -1,0 +1,94 @@
+/*
+ ISConsole Copyright 2011 ruibaotong COMPANY, Co.ltd . 
+ All rights reserved.
+ FileName: order_succeed.css
+ */
+ 
+.order_cont{
+	width:958px;
+	padding-bottom:20px;
+	border:#e5eeff solid 1px;
+	margin-top:10px;
+	background:#fafdff;
+}
+.suc_order{
+	text-align:center;
+	font-size:26px;
+	font-weight:bold;
+	color:#0066cc;
+	padding-top:20px;
+}
+.tab_style{
+	font-weight:normal;
+	margin-left:50px;
+	margin-top:10px;
+	margin-bottom:25px;
+}
+.td_style{
+	width:220;
+	height:20px;
+	background-color:#cddeed;
+	line-height:22px;
+	text-align:center;
+	border:#cddeed solid 1px;
+	border-right:#FFF solid 1px;
+}
+.td_style1{
+	width:220px;
+	height:21px;
+	line-height:21px;
+	text-align:center;
+	border:#cddeed solid 1px;
+	border-top:none;
+}
+.td_style3{
+	width:220px;
+	height:21px;
+	line-height:21px;
+	text-align:center;
+	border:#cddeed solid 1px;
+	border-left:none;
+	border-top:none;
+}
+.td_style4{
+	width:320px;
+	height:21px;
+	background-color:#cddeed;
+	line-height:21px;
+	text-align:center;
+	border:#cddeed solid 1px;
+	border-right:#cddeed solid 1px;
+}
+.td_style5{
+	width:320px;
+	height:21px;
+	line-height:21px;
+	text-align:center;
+	border:#cddeed solid 1px;
+	border-left:none;
+	border-top:none;
+}
+.td_font{
+	color:#ff7300;
+	font-weight:bold;
+}
+.zf_p{
+	padding-left:100px;
+	color:#898989;
+	padding-bottom:20px;
+}
+.line{
+	width:850px;
+	border-bottom:#cddeed solid 1px;
+	margin-left:50px;
+	margin-bottom:20px;
+}
+.xq_p{
+	text-align:center;
+	color:#545454;
+}
+.xq_p a{
+	padding-left:15px;
+	font-weight:bold;
+	color:#535353;
+}

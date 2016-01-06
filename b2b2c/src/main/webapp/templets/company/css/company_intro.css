@@ -1,0 +1,63 @@
+.position{
+	height:33px;
+	background:#f6f5f5;
+	width:960px;
+	margin:10px auto 0;
+	line-height:33px;
+	font-size:14px;
+	}
+.position p{
+	padding-left:20px;
+	}
+
+.company_intro_t{
+	width:938px;
+	height:33px;
+	background:url(/templets/company/images/flll_bg.gif) repeat-x;
+	font-size:14px;
+	border:1px solid #e5e5e5;
+	border-bottom:none;
+	line-height:33px;
+	padding-left:20px;
+	}
+.company_intro_main{
+	width:958px;
+	border:1px solid #e5e5e5;
+	border-top:0;
+	padding:10px 0;
+	color:#333;
+	}	
+.company_name{
+	font-size:14px;
+	text-align:center;
+	}	
+.company_abuout{
+	padding:10px 20px 0 20px;
+	line-height:22px;
+	text-indent:24px;
+	}
+.company_intro_main p{
+	padding:10px 20px 0 20px;
+	line-height:22px;
+	}		
+.pa_top{
+	margin-top:10px;
+	}	
+	
+	
+.contact_infor{
+	width:343px;
+	height:265px;
+	margin:0 auto;
+	background:url(/templets/company/images/contact_infor_bg.gif) no-repeat;
+	}
+.contact_name{
+	font-size:14px;
+	color:#0068dc;
+	padding:20px 20px 0 0;
+	text-align:center;
+	}	
+.contact_infor ul{
+	line-height:25px;
+	padding:20px 0 0 20px;
+	}	

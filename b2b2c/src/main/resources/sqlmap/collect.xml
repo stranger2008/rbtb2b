@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="collect">
+
+	<typeAlias alias="collect" type="com.rbt.model.Collect" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="collect">
+		<![CDATA[ 
+    SELECT coll_id,cust_id,title,link_url,cat_id,remark,in_date FROM collect WHERE coll_id=$coll_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="collect">
+		UPDATE collect SET title=#title#,cat_id=#cat_id#,remark=#remark#,link_url=#link_url#,in_date=now() WHERE coll_id=$coll_id$
+	</update>
+
+	<insert id="insert" parameterClass="collect">
+		INSERT INTO collect (coll_id,cust_id,title,link_url,cat_id,remark,in_date,plat_type) VALUES (#coll_id#,#cust_id#,#title#,#link_url#,#cat_id#,#remark#,now(),#plat_type#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM collect WHERE coll_id in ($coll_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM collect left join member on collect.cust_id=member.cust_id
+		 LEFT JOIN membercat c ON collect.cat_id = c.cat_id
+		<dynamic prepend="WHERE">
+		     <isNotNull prepend="and" property="cust_id"> 
+			        collect.cust_id=#cust_id#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="starttime"> 
+			    TO_DAYS(collect.in_date) > TO_DAYS(#starttime#)
+			 </isNotNull>
+			 <isNotNull prepend="and" property="endtime"> 
+			     TO_DAYS(#endtime#) > TO_DAYS(collect.in_date)
+			 </isNotNull>
+			 <isNotNull prepend="and" property="cat_id"> 
+			     collect.cat_id=#cat_id#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="title"> 
+			    INSTR(collect.title,#title#) >0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="cust_name"> 
+			    INSTR(cust_name,#cust_name#) >0
+			 </isNotNull>
+			 <isNotNull prepend="and" property="plat_type"> 
+			     plat_type=#plat_type#
+			 </isNotNull>
+			 
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT coll_id,member.cust_id,cust_name,title,link_url,collect.cat_id,remark,collect.in_date,c.cat_name
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY coll_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

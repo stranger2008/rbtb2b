@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /} 
+<title>{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:chinfo name="meta_keyword"/}" />
+<meta name="description" content="{tag:chinfo name="meta_desc"/}" />
+<style type="text/css">
+.position{
+	height:33px;
+	background:#f6f5f5;
+	width:960px;
+	margin:10px auto 0;
+	line-height:33px;
+	font-size:14px;
+	}
+.position p{
+	padding-left:20px;
+}
+.t_shop{
+	width:948px;
+	height:27px;
+	background:url(/templets/{tag:sysbase name='cfg_templatestyle'/}/images/t_shop.gif) repeat-x;
+	border:#7ed2ff solid 1px;
+	font-size:14px;
+	font-weight:bold;
+	color:#0d88cc;
+	padding-left:10px;
+	line-height:27px;
+}
+.shop_cont{
+	border:#7ed2ff solid 1px;
+	border-top:none;
+	padding-bottom:10px;
+	margin-bottom:5px;
+}
+.shop_cont a{
+	width:137px;
+	display:inline-block;
+	margin-top:10px;
+	margin-left:20px;
+	line-height:22px;
+	color:#003278;
+}
+</style>
+
+</head>
+
+<body>
+<!-- 公共顶部 -->
+{tag:include file="top.html" /}
+<div class="clear"></div>
+<!--导航结束-->
+
+<div class="w960">
+    {tag:modulelist }
+	   <h2 class="t_shop"><a href="[field:ch_module_url/]" target="_blank">[field:module_name/]</a></h2>
+	   <div class="shop_cont">
+	    {tag:catlist  cat_level="1"  module_type="[field:module_code/]" } 
+	    <a href="/[field:module_code/]/cat-[field:cat_id/].html" target="_blank">[field:cat_name?len(11)/]</a>      
+	    {/tag:catlist}
+	</div>
+    {/tag:modulelist}
+</div>
+
+<div class="clear"></div>
+ <!-- 公共底部 -->
+{tag:include file="bottom.html" /}
+</body>
+</html>

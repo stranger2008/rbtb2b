@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="membersendbox">
+
+	<typeAlias alias="membersendbox" type="com.rbt.model.Membersendbox" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="membersendbox">
+		<![CDATA[ 
+    SELECT info_id,cust_id,mess_type,title,content,get_cust_id,in_date FROM membersendbox WHERE info_id=$info_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="membersendbox">
+		UPDATE membersendbox SET info_id=#info_id#,cust_id=#cust_id#,mess_type=#mess_type#,title=#title#,content=#content#,get_cust_id=#get_cust_id#,in_date=#in_date# WHERE info_id=$info_id$
+	</update>
+
+	<insert id="insert" parameterClass="membersendbox">
+		INSERT INTO membersendbox (info_id,cust_id,mess_type,title,content,get_cust_id,in_date) VALUES (#info_id#,#cust_id#,#mess_type#,#title#,#content#,#get_cust_id#,now())
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM membersendbox WHERE info_id in ($info_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM membersendbox left join member on member.cust_id=membersendbox.get_cust_id
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="cust_id"> 
+			        membersendbox.cust_id=#cust_id#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="title"> 
+       			    INSTR(title,#title#) >0
+			     </isNotNull>
+			     <isNotNull prepend="and" property="mess_type"> 
+			        mess_type=#mess_type#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="get_cust_id"> 
+			        get_cust_id=#get_cust_id#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="box_info_id"> 
+			        info_id=#box_info_id#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="search_starttime"> 
+				    membersendbox.in_date BETWEEN #search_starttime#
+				 </isNotNull>
+				 <isNotNull prepend="and" property="search_endtime"> 
+				   #search_endtime#
+				 </isNotNull>
+				 <isNotNull prepend="and" property="cust_name"> 
+			        cust_name=#cust_name#
+			     </isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT info_id,membersendbox.cust_id,mess_type,membersendbox.title,content,get_cust_id,cust_name,membersendbox.in_date
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY info_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

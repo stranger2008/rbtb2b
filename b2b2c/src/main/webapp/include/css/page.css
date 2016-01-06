@@ -1,0 +1,43 @@
+.contentTable{
+	width:100%;
+}
+.pageBar{
+	text-align:center;
+	padding-bottom:13px;
+}
+
+.current{
+	color:#FFF;
+	background-color:#2266BB;
+}
+
+.prev,.pnext,.pageBar a{
+ 	border:1px solid #AAAAEE;
+ 	padding:3px 8px 3px 8px;
+ 	margin-right:7px;
+ 	cursor:pointer;
+}
+
+.pageBar a:hover{
+ 	color:#FFF;
+	background-color:#2266BB;
+}
+
+.pcount{
+	border:1px solid #AAAAEE;
+	padding:3px 8px 3px 8px;
+	margin-right:50px;
+}
+
+.nulldata{
+	text-align:center;
+	font-size:15px;
+	color:#666666;
+	font-weight: bold;
+	background:#FFFFFF;
+	padding:8px;
+}
+
+.cover{
+	background:black;
+}

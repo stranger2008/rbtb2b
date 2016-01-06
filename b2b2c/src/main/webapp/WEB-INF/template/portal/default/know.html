@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/know.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/js.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/common.js"></script>
+{tag:include file="jsinclude.html" /}
+<script type="text/javascript">
+$(document).ready(function(){
+      //判断问题推荐问题是否有积分
+      $("#recom_ack li").each(function(){
+         var ask_value=$(this).children("span").html();
+         if(ask_value==0){
+             $(this).children("span").remove();
+         }
+      });
+  /*排行特效样式*/
+   addnumberstyle(".ranking_main",".ico_top",10,"rak_name","rak_name_addico");
+   constyle("idcontdjj","span");
+   constyle("idcontxjj","span");
+   constyle("idconttj","span");
+});
+//控制不显示为0的分数的样式
+function constyle(constyel,spanstyle)
+{
+   $("#"+constyel+" "+spanstyle+"").each(function(){
+	   var textstr=$(this).html();
+	   if(textstr==0)
+	   {
+	     $(this).css("display","none");
+	   }
+	});
+}
+//搜索框搜索问题
+function serarchop(searchType,id)
+{
+ var sid="#"+id
+ var wd='';//获取搜索的关键字
+ var searchtext=$(sid).val();
+ if(searchtext!="")
+ {
+ wd=encodeURIComponent(encodeURIComponent($(sid).val()));
+ location.href="/portal/"+searchType+"!list.action?wd="+wd;  
+ }
+ else
+ {
+  alert("请输入搜索内容！");
+ }
+} 
+//点击热门搜索的链接效果
+function serarchkeyname(searchType,title)
+{
+ var wd='';//获取搜索的关键字
+ wd=encodeURIComponent(encodeURIComponent(title));
+ location.href="/portal/"+searchType+"!list.action?wd="+wd;  
+} 
+//点击提问的时候保留标题
+function changgetext()
+{
+ $("#ask_titles").val($("#searchanswertext").val());
+}
+</script>
+<title>{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:chinfo name="meta_keyword"/}" />
+<meta name="description" content="{tag:chinfo name="meta_desc"/}" />
+</head>
+
+<body>
+ <!-- 公共顶部 -->
+{tag:include file="top.html" /}
+<div class="clear"></div>
+<div class="cont w960">
+    <div class="cont_l f_left">
+       <div class="k_nav">
+         <h2 class="k_nav_t" id="xxxxx">问题分类</h2>
+         <div class="k_nav_c">
+             <!-- 显示关于一级知道分类的数据 row:显示的行数 cat_level:要显示知道分类的等级 -->
+             {tag:catlist row="8" cat_level="1" module_type="know"}
+             <ul >
+                 <li class="k_nav_name"><a href="[field:know_cat_url/]" target="_blank">[field:cat_name?len(8)/]</a></li>
+                 <li class="k_nav_main" style="margin-left:16px;">
+                 <!-- 显示关于一级知道分类的数据 up_cat_id:上一级分类的ID -->
+                 {tag:twocatlist row="8" up_cat_id="[field:cat_id/]"}
+                 	<a href="[field:know_twocat_url/]" style="display:inline-block;" target="_blank">[field:two_cat_name?len(4)/]</a>
+                 {/tag:twocatlist}
+                 </li>
+             </ul>
+             {/tag:catlist}
+         </div>
+         <div class="k_nav_d"></div>
+       </div>
+       <div class="cont_img">
+         {tag:advlist row="1" pos_id="44"}
+            <a href="[field:link_url/]" target="_blank">
+		         <img src="[field:img_path/]" alt="[field:adv_name/]" width="220"/>
+		    </a>
+         {/tag:advlist}
+       
+       </div>
+    </div>
+  <!--左侧分类结束-->  
+    
+  <div class="cont_c f_left">
+      <div class="k_search">
+         <div class="k_search_l f_left"></div>
+         <div class="k_search_c f_left">
+              <div>
+                <input type="text" id="searchanswertext" onblur="changgetext();"   class="k_text f_left"/>
+                 <input type="button" value="搜索问题" onclick="serarchop('know','searchanswertext');" class="k_da f_left"/>
+                <input type="button" value="我要提问" onclick="document.myAskForm.submit();" class="k_tw f_left"/>
+                <form action="/member_Ask_cate.action" name="myAskForm" method="post">
+    				<input type="hidden" name="loc" value="" />
+    				<input type="hidden" name="ask.title" id="ask_titles"  />
+   			    </form>
+    		   <script>
+    			 document.myAskForm.loc.value ="/member_Ask_cate.action";
+    		   </script>
+              </div>
+              <p class="hot_search1"><span>热门搜索：</span>
+                 <!-- 热门搜索列表 row:显示几行，module_type:显示类型 -->
+                 {tag:keywordlist row="6" module_type="know"}
+                     <a href="###;" onclick="serarchkeyname('know','[field:key_name/]');" >[field:key_name/]</a>
+                 {/tag:keywordlist}
+              </p>
+         </div>
+         <div class="k_search_r f_left"></div>
+      </div>
+       <!--搜索结束-->
+       <div class="question">
+          <h2 class="k_cont_c_t">待解决问题</h2>
+          <div class="k_cont_c_c">
+             <ul class="k_cont_ul" >
+            <!-- 问题列表 row:显示几行，answer_state:等0表示未解决,等1表示已解决 -->
+             {tag:asklist row="10" answer_state="0"}                
+              <li><span class="f_left" id="idcontdjj" ><span class="cont_c_jl"  >[field:integral/]</span><a href="[field:know_detail_url/]" target="_blank">[field:title?len(30)/]</a></span><span class="hd">[field:answercount/]回答</span></li>
+             {/tag:asklist}
+             </ul>
+          </div>
+          <div class="k_cont_c_d"></div>
+       </div>
+       <div class="cont_img">
+         {tag:advlist row="1" pos_id="45"}
+            <a href="[field:link_url/]" target="_blank">
+		          <img src="[field:img_path/]" alt="[field:adv_name/]" width="521"/>
+		    </a>
+         {/tag:advlist}
+       </div>
+       <div class="question">
+          <h2 class="k_cont_c_t">新解决问题</h2>
+          <div class="k_cont_c_c1">
+             <ul class="k_cont_ul">
+             <!-- 问题列表 row:显示几行，answer_state:等0表示未解决,等1表示已解决 -->
+             {tag:asklist row="10" answer_state="1"}                
+               <li><span class="f_left" id="idcontxjj"><span class="cont_c_jl" >[field:integral/]</span><a href="[field:know_detail_url/]" target="_blank">[field:title?len(31)/]</a></span><span class="hd">[field:answercount/]回答</span></li>
+             {/tag:asklist}
+             </ul>
+          </div>
+          <div class="k_cont_c_d"></div>
+       </div>
+       
+       <div class="question">
+          <h2 class="k_cont_c_t">高分悬赏问题</h2>
+          <div class="k_cont_c_c2">
+             <ul class="k_cont_ul">
+            <!-- 问题列表 row:显示几行，answer_state:等0表示未解决,等1表示已解决 ,integral:表示大于哪个积分值-->             
+           {tag:asklist row="5" answer_state="0" inter="20"}     
+                <li><span class="f_left"><span class="cont_c_jl">[field:integral/]</span><a href="[field:know_detail_url/]" target="_blank">[field:title?len(31)/] </a></span><span class="hd">[field:answercount/]回答</span></li>
+           {/tag:asklist}
+           </ul>
+          </div>
+          <div class="k_cont_c_d"></div>
+       </div>
+  </div>
+  <!--中间部分结束-->  
+  
+  <div class="cont_r f_right">
+     <div class="all">
+        <div class="all_l f_left"></div>
+        <div class="all_c f_left">
+            <ul>
+               {tag:countasklist row="1"}
+                <li>全部的问题：<span><a href="/portal/know!list.action?ans_state=8" target="_blank">[field:countall/]</a></span>条</li>
+                <li>已解决问题：<span><a href="/portal/know!list.action?ans_state=1" target="_blank">[field:countjj/]</a></span>条</li>
+                <li>未解决问题：<span><a href="/portal/know!list.action?ans_state=0" target="_blank">[field:countwjj/]</a></span>条</li>
+               {/tag:countasklist}
+            </ul>
+        </div>
+        <div class="all_r f_left"></div>
+     </div>
+     <div class="clear"></div>
+     
+    <div class="recom">
+      <h2 class="recom_title">推荐问题</h2>
+       <ul class="recom_main" id="recom_ack">
+          <!-- 推荐问题列表 row:显示的行数,is_recom:1表示推荐 -->
+          {tag:asklist row="10"  is_recom="1"}  
+          <div id="idconttj">
+          <span class="cont_c_jl">[field:integral/]</span>&nbsp;<a href="[field:know_detail_url/]" target="_blank">[field:title?len(12)/]</a></div>
+          {/tag:asklist}
+       </ul>
+     </div>
+     <div class="cont_img">
+        {tag:advlist row="1" pos_id="46"}
+            <a href="[field:link_url/]" target="_blank">
+		        <img src="[field:img_path/]" alt="[field:adv_name/]" />
+		    </a>
+         {/tag:advlist}
+     </div> 
+     <div class="recom">
+      <h2 class="recom_title">积分排行</h2>
+       <ul class="ranking_main" >
+       <!-- 会员积分排序列表 row:显示的行数 -->
+       {tag:memberinterlist row="10"}  
+           <li><span class="f_left"><span class="ico_top"></span>
+           <a href="[field:company_detail_url/]" target="_blank">
+           [field:cust_name?len(7)/]
+           </a>
+           </span><span class="number">[field:fund_num/]</span></li>
+       {/tag:memberinterlist}
+       </ul>  
+     </div>
+  </div>
+</div>
+<div class="clear"></div>
+ <!-- 公共底部 -->
+{tag:include file="bottom.html" /}
+</body>
+</html>

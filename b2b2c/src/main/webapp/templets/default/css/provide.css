@@ -1,0 +1,259 @@
+@charset "utf-8";
+/* CSS Document */
+.cont_main{
+	widht:719px;
+	float:left;
+}
+
+.bar_main{
+	width:230px;
+	float:right;
+}
+
+.banner{
+	width:719px;
+	margin-bottom:10px;
+	}
+.zx_cp{
+	height:238px;
+	overflow:hidden;
+	margin-bottom:10px;
+	}
+.zx_cp ul{
+	height:201px;
+	width:228px;
+	border:1px solid #D9E4F3;
+	border-top:0;
+	line-height:22px;
+	padding-top:5px;
+	color:#b4b3b3;
+	}
+.zx_cp ul li{
+	background:url(../images/li.gif) no-repeat 10px center;
+	padding-left:20px;
+	}
+.zx_cp ul a{
+	display:inline-block;
+	width:190px;
+	}
+
+
+
+
+
+
+
+
+.sidebar_title{
+	width:228px;
+	height:29px;
+	line-height:29px;
+	border:1px solid #D9E4F3;
+	background: url(../images/lee_hsnav_m.gif) repeat-x;
+}
+
+.title_cont{
+	float:left;
+	font-family:"宋体";
+	font-size:14px;
+	padding-left:10px;
+	}
+.more{
+	float:right;
+	font-size:12px;
+	padding-right:10px;
+	}
+.more a{
+	text-decoration:none;
+	font-weight:100;
+	}
+.more a:hover{
+	text-decoration:underline;
+	color:#07519a;
+	font-weight:100;
+}
+/*最新产品结束*/
+/* * * * * * * * * * * * * * * * 供应分类开始 * * * * * * * * * * * * * * * */
+.supply{
+	width:719px;
+	height:auto;
+	}
+.supply_nav{
+	width:719px;
+	height:32px;
+	
+	background:url(../images/fl_nav.gif) repeat-x;
+	}
+.supply_nav .gyfl{
+	color:#FFF;
+	font-size:14px;
+	width:108px;
+	font-weight:bold;
+	display:inline-block;
+	line-height:32px;
+	text-align:center;
+	position:static;
+	}
+.supply_nav .fbgy{
+	width:57px;
+	height:19px;
+	margin:5px 10px 0 0;
+	line-height:19px;
+	padding-left:28px;
+	display:inline-block;
+	background:url(../images/fbgy_bg.gif) repeat-x;
+	}		
+.letter_scramble{
+	width:717px;
+	height:28px;
+	line-height:28px;
+	border:1px solid #D3D3D3;
+	border-top:0;
+	background:url(../images/lee_letterbg.gif) repeat-x;
+	}
+.letter_scramble p{
+	font-size:14px;
+	font-weight: bold;
+	padding-left:20px;
+	}
+.letter_scramble a{
+	font-size:16px;
+	display:inline-block;
+	font-family:Arial, Helvetica, sans-serif;
+	width:20px;
+	}
+
+
+
+.supply_main{
+	width:717px;
+	border:1px solid #D3D3D3;
+	border-top:0;
+	padding-bottom:10px;
+	}
+.supply_fl{
+	width:328px;
+	float:left;
+	height:100px;
+	margin-left:20px;
+	display:inline;
+	line-height:20px;
+	border-bottom:1px dashed #D3D3D3;
+	padding-bottom:5px;
+	}
+.supply_fl_t{
+	font-size:14px;
+	padding-top:12px;
+	padding-bottom:5px;
+	}	
+.supply_fl_t a{
+	color:#07519a;
+	}
+.supply_fl_t a:hover{
+	color:#C00;
+	text-decoration:underline;
+	}				
+.supply_deta a{
+	padding-right:10px;
+	}
+.supply_more{
+	color:#C00;
+	}
+/* * * * * * * * * * * * * * * * 供应分类结束 * * * * * * * * * * * * * * * */
+.area_for_main{
+	width:228px;
+	border:1px solid #D9E4F3;
+	border-top:0;
+	line-height:22px;
+	padding:5px 0;
+	}
+
+.area_for_main a{
+	width:40px;
+	display:inline-block;
+	padding-left:14px;
+	}
+
+/*按地区搜索结束*/
+.advert_buysell{
+	width:230px;
+	padding:11px 0 10px 0;
+	}
+	
+	
+.main_right{
+	width:230px;
+	}	
+.recom{
+	width:230px;
+	height:450px;
+	overflow:hidden;
+	}
+.recom_main{
+	width:228px;
+	height:418px;
+	border:1px solid #D9E4F3;
+	border-top:none;
+	}
+.recom_main li{
+	float:left;
+	width:95px;
+	height:120px;
+	padding-top:13px;
+	padding-left:10px;
+	text-align:center;
+	}
+.recom_main img{
+	witdth:85px;
+	height:90px;
+	padding-top:2px;
+}	
+/*推荐安品结束*/
+.hot_cp_main{
+	width:228px;
+	border:1px solid #D9E4F3;
+	border-top:none;
+	line-height:27px;
+	padding-top:5px;
+	height:272px;
+	overflow:hidden;
+	}
+.hot_cp_main li,.hot_cp_main a{
+	padding-left:10px;
+	}	
+.n1{
+	text-align:center;
+	color:#FFF;
+	display:inline-block;
+	width:14px;
+	line-height:27px;
+	background:url(../images/gy_hot_li.gif) no-repeat;
+	background-position:left 7px;
+	}
+.n2{
+	text-align:center;
+	color:#000;
+	display:inline-block;
+	width:14px;
+	line-height:27px;
+	background:url(../images/gy_hot_li.gif) no-repeat;
+	background-position:left -20px;
+	}	
+/*热门产品结束*/
+
+/*字母索引样式*/
+.divceng{
+		height:auto;
+		border:2px solid #617E92;
+		background:#E2E9EF;
+		width:695px;
+		padding:10px;
+}
+.supply_nav .gyfl1{
+	font-size:14px;
+	width:108px;
+	font-weight:bold;
+	display:inline-block;
+	line-height:32px;
+	text-align:center;
+	}

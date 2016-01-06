@@ -1,0 +1,38 @@
+/*
+ * ISConsole Copyright 2011 ruibaotong COMPANY, Co.ltd . 
+ * All rights reserved.
+ * Package:com.rbt.model
+ * FileName: {CLASSNAME}.java 
+ */
+package com.rbt.model;
+
+import java.io.Serializable;
+/**
+ * @function 功能 {FUNNAME}实体
+ * @author 创建人 {AUTHOR}
+ * @date 创建日期 {DATE}
+ */
+public class {CLASSNAME} implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	{fieldlist}
+	private String [field_name];
+	public String get[fieldname]() {
+		return [field_name];
+	}
+	public void set[fieldname](String [field_name]) {
+		this.[field_name] = [field_name];
+	}
+	{/fieldlist}
+	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("{CLASSNAME}[");{fieldlist}
+		builder.append(", [field_name]=");
+		builder.append(this.[field_name]);{/fieldlist}
+		builder.append("]");
+		return builder.toString();
+	}
+
+}

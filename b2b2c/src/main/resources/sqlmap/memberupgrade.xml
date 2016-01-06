@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="memberupgrade">
+
+	<typeAlias alias="memberupgrade" type="com.rbt.model.Memberupgrade" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="memberupgrade">
+		<![CDATA[ 
+    SELECT grade_id,cust_id,now_level,apply_level,in_date,user_name,audit_state,reason,audit_date,audit_user FROM memberupgrade WHERE grade_id=$grade_id$
+    ]]>
+	</select>
+    
+    <select id="getByName" parameterClass="java.util.HashMap"
+		resultClass="memberupgrade">
+		<![CDATA[ 
+    SELECT grade_id,cust_id,now_level,apply_level,user_name FROM memberupgrade WHERE cust_id=$cust_id$ AND user_name=#user_name#
+    ]]>
+	</select>
+     
+	<update id="update" parameterClass="memberupgrade">
+		UPDATE memberupgrade SET
+		grade_id=#grade_id#,cust_id=#cust_id#,now_level=#now_level#,apply_level=#apply_level#,in_date=now(),user_name=#user_name#,audit_state=#audit_state#,reason=#reason#,audit_date=now(),audit_user=#audit_user#
+		WHERE grade_id=$grade_id$
+	</update>
+
+    <update id="auditMemberupgrade" parameterClass="java.util.HashMap">
+		UPDATE memberupgrade SET audit_state=#audit_state#,reason=#reason#,audit_date=now(),audit_user=#audit_user#
+		WHERE grade_id=$grade_id$
+	</update>
+    
+	<insert id="insert" parameterClass="memberupgrade">
+		INSERT INTO memberupgrade
+		(grade_id,cust_id,now_level,apply_level,in_date,user_name,audit_state,reason,audit_date,audit_user)
+		VALUES
+		(#grade_id#,#cust_id#,#now_level#,#apply_level#,now(),#user_name#,#audit_state#,#reason#,#audit_date#,#audit_user#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM memberupgrade WHERE grade_id in ($grade_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM memberupgrade g LEFT JOIN member m ON g.cust_id = m.cust_id
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="cust_id">
+				g.cust_id=#cust_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="now_level">
+				g.now_level=#now_level#
+			</isNotNull>
+			<isNotNull prepend="and" property="apply_level">
+				g.apply_level=#apply_level#
+			</isNotNull>
+			<isNotNull prepend="and" property="in_date">
+				DATE(g.in_date)>=#in_date#
+			</isNotNull>
+			<isNotNull prepend="and" property="out_date">
+				#out_date#>=DATE(g.in_date)
+			</isNotNull>
+			<isNotNull prepend="and" property="user_name">
+				g.user_name=#user_name#
+			</isNotNull>
+			<isNotNull prepend="and" property="audit_state">
+				g.audit_state=#audit_state#
+			</isNotNull>
+			<isNotNull prepend="and" property="audit_date">
+				DATE(g.audit_date)>=#audit_date#
+			</isNotNull>
+			<isNotNull prepend="and" property="audit_date_end">
+				#audit_date_end#>=DATE(g.audit_date)
+			</isNotNull>
+			<isNotNull prepend="and" property="date">
+				#date#>=DATE(g.in_date)
+			</isNotNull>
+			<isNotNull prepend="and" property="audit_user">
+				g.audit_user=#audit_user#
+			</isNotNull>
+			<isNotNull prepend="and" property="today">
+		        DAY(g.in_date)=DAY(NOW()) AND MONTH(g.in_date)=MONTH(NOW()) AND YEAR(g.in_date)=YEAR(NOW())
+		    </isNotNull>	
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT g.grade_id,g.cust_id,g.now_level,g.apply_level,g.in_date,g.user_name,g.audit_state,g.reason,
+		g.audit_date,g.audit_user,m.cust_name
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY g.in_date DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

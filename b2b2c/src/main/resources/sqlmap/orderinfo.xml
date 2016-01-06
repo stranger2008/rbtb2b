@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="orderinfo">
+
+	<typeAlias alias="orderinfo" type="com.rbt.model.Orderinfo" />
+	<select id="getByPk" parameterClass="java.lang.String" resultClass="orderinfo">
+	<![CDATA[ 
+    SELECT order_id,seller_id,supply_id,cust_name,area_attr,address,post_code,phone,cell_phone,price,goods_num,carriage_fee,goods_fee,total_fee,order_state,remark,cust_id,user_id,in_date,invoice_type,invoice_top,company_name,ident_number,regis_address,regis_tel,open_bank,bank_account,invoice_content, smode_id FROM orderinfo WHERE order_id=$order_id$
+    ]]>
+	</select>
+	<!-- 查找确认支付订单 -->
+	<select id="getpayPk" parameterClass="java.lang.String" resultClass="java.util.HashMap">
+	<![CDATA[ 
+    SELECT order_id,seller_id,o.supply_id,title,o.cust_name,o.area_attr,address,post_code,phone,cell_phone,o.price,goods_num,carriage_fee,goods_fee,total_fee,order_state,remark,o.cust_id,o.user_id,s.in_date FROM orderinfo o left join supply s on o.supply_id=s.supply_id WHERE order_id in ($order_id$)
+    ]]>
+	</select>
+	
+	<!-- 查找过期订单 -->
+	<select id="getEndDatePk" parameterClass="java.lang.String" resultClass="java.util.HashMap">
+	<![CDATA[ 
+    SELECT order_id FROM orderinfo WHERE TO_DAYS(NOW())-TO_DAYS(in_date)>$endtime$
+    ]]>
+	</select>
+
+    <!--批量更新 -->
+	<update id="updatecarriage" parameterClass="java.util.HashMap">
+    	UPDATE orderinfo SET carriage_fee=#carriage_fee#,total_fee=#total_fee# WHERE order_id=$order_id$
+	</update>
+	
+	<update id="update" parameterClass="orderinfo">
+		UPDATE orderinfo SET order_id=#order_id#,cust_name=#cust_name#,area_attr=#area_attr#,address=#address#,post_code=#post_code#,phone=#phone#,cell_phone=#cell_phone#,goods_num=#goods_num#,carriage_fee=#carriage_fee#,goods_fee=#goods_fee#,total_fee=#total_fee#,remark=#remark#,order_state=#order_state# WHERE order_id=$order_id$
+	</update>
+	
+	<!-- 更新订单 付款状态 -->
+	<update id="updateorder_state" parameterClass="java.util.HashMap">
+		UPDATE orderinfo SET order_state=#order_state# WHERE order_id in($order_id$)
+	</update>
+
+	<insert id="insert" parameterClass="orderinfo">
+		INSERT INTO orderinfo (order_id,seller_id,supply_id,cust_name,area_attr,address,post_code,phone,cell_phone,price,goods_num,carriage_fee,goods_fee,total_fee,order_state,remark,cust_id,user_id,in_date,invoice_type,invoice_top,company_name,ident_number,regis_address,regis_tel,open_bank,bank_account,invoice_content,smode_id)
+		VALUES (#order_id#,#seller_id#,#supply_id#,#cust_name#,#area_attr#,#address#,#post_code#,#phone#,#cell_phone#,#price#,#goods_num#,#carriage_fee#,#goods_fee#,#total_fee#,#order_state#,#remark#,#cust_id#,#user_id#,now(),#invoice_type#,#invoice_top#,#company_name#,#ident_number#,#regis_address#,#regis_tel#,#open_bank#,#bank_account#,#invoice_content#,#smode_id#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM orderinfo WHERE order_id in ($order_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM (SELECT order_id,seller_id,title,img_path,o.supply_id,cust_name,o.area_attr,address,post_code,phone,cell_phone,o.price ord_price,goods_num,carriage_fee,goods_fee,total_fee,order_state,remark,send_day,o.cust_id as cust,o.in_date as ord_date,unit,s.in_date as sin_date,
+		(select cust_name from member where cust_id=o.seller_id) seller_cust_name,
+		(select cust_name from member where cust_id=o.cust_id) buyer_cust_name,
+		(select user_name FROM memberuser where user_id=o.user_id) buyer_user_name FROM orderinfo o left join supply s on o.supply_id=s.supply_id) as oinfo
+		<dynamic prepend="WHERE">
+		    <isNotNull prepend="and" property="order_id"> 
+			     order_id=#order_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="title"> 
+			     instr(title,#title#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="cust_id"> 
+			     cust=#cust_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="seller_id"> 
+			     seller_id=#seller_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="seller"> 
+			     seller_cust_name=#seller#
+			</isNotNull>
+			<isNotNull prepend="and" property="consignee"> 
+			     cust_name=#consignee#
+			</isNotNull>
+			<isNotNull prepend="and" property="order_state"> 
+			     order_state=#order_state#
+			</isNotNull>
+			<isNotNull prepend="and" property="area_attr"> 
+			     INSTR(area_attr,#area_attr#) >0
+		    </isNotNull>	
+			<isNotNull prepend="and" property="starttime"> 
+			     DATE(ord_date)>=#starttime#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="endtime"> 
+			     #endtime#>=DATE(ord_date)
+			 </isNotNull>
+			 <isNotNull prepend="and" property="buyname"> 
+			     buyer_cust_name=#buyname#
+			</isNotNull>
+			<isNotNull prepend="or" property="buyname"> 
+			     buyer_user_name=#buyname#
+			</isNotNull>
+		</dynamic>
+	</sql>
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT *
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY order_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct 
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+</sqlMap>
+

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="vote">
+
+	<typeAlias alias="vote" type="com.rbt.model.Vote" />
+	
+	<select id="getByPk" parameterClass="java.lang.String" resultClass="vote">
+	<![CDATA[ 
+        SELECT vote_id,vote_title,start_date,end_date,is_multi,vote_count,user_id,in_date
+        FROM vote WHERE vote_id=$VALUE$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="vote">
+    	UPDATE vote SET vote_title=#vote_title#,start_date=#start_date#,end_date=#end_date#,is_multi=#is_multi#,vote_count=#vote_count#,user_id=#user_id#,in_date=now() WHERE vote_id=$vote_id$
+	</update>
+
+    <!-- 批量更新单选多选 -->
+    <update id="updateis_multiState" parameterClass="java.util.HashMap">
+    	UPDATE vote SET is_multi=#is_multi# WHERE vote_id=$vote_id$
+	</update>
+	 <!-- 更新投票次数 -->
+    <update id="update_votecount" parameterClass="java.lang.String">
+    	UPDATE vote SET vote_count=(vote_count+1) WHERE vote_id=#vote_id#
+	</update>
+
+	<insert id="insert" parameterClass="vote">
+		INSERT INTO vote (vote_title,start_date,end_date,is_multi,vote_count,user_id,in_date) 
+		VALUES (#vote_title#,#start_date#,#end_date#,#is_multi#,#vote_count#,#user_id#,now())
+	</insert>
+	
+	<delete id="delete" parameterClass="java.lang.String">
+		delete from vote where vote_id in ($value$)
+	</delete>
+	
+	<sql id="getCommon">
+	   FROM vote 
+     	<dynamic prepend="WHERE">
+			 <isNotNull prepend="and" property="vote_title"> 
+			     instr(vote_title,#vote_title#)>0
+			 </isNotNull>
+			 <isNotNull prepend="and" property="is_multi"> 
+			     is_multi=#is_multi#
+			 </isNotNull>
+		</dynamic>
+ 	</sql>
+	
+	<select id="getList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		<!-- if语句用来判断日期是否在其中，是的话则为真1，否则为假0 -->	
+		<![CDATA[ 
+         SELECT vote_id,vote_title,start_date,end_date,is_multi,vote_count,user_id,in_date,
+         IF(TO_DAYS(end_date) > TO_DAYS(NOW()) && TO_DAYS(start_date) < TO_DAYS(NOW()),1,0) AS state_in, 
+		 IF(TO_DAYS(start_date) > TO_DAYS(NOW()),1,0) AS state_before, 
+		 IF(TO_DAYS(end_date) < TO_DAYS(NOW()),1,0) AS state_after
+        ]]>
+	    <isParameterPresent>
+          <include refid="getCommon"/>
+        </isParameterPresent>
+          order by in_date DESC
+	 	<isNotNull prepend="LIMIT" property="start">
+		  $start$,$limit$
+		</isNotNull>
+	</select>
+	
+	<select id="getCount" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+	     select count(*) ct
+	    <isParameterPresent>
+          <include refid="getCommon"/>
+        </isParameterPresent>
+	</select>  
+ 	
+</sqlMap>

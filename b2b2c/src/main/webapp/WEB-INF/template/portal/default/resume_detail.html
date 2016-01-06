@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/talents_detailed.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /}
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/talents_detail.js"></script>
+<title>{tag:field name="resume_name" /}-{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:field name="resume_name" /}" />
+<meta name="description" content="{tag:field name="content" len="30" /}" />
+<script type="text/javascript">
+$(document).ready(function(){
+   $.ajax({  	 
+            type: "post",    	     
+            url: "/portal/memberuser!checkUserIfLogin.action",       
+            datatype:"json",
+            async:false,
+            success: function(data){
+               //若为1说明用户未登录
+               if(data=="11111")
+               {
+                 $("#table_lianxi").css("display","none");//联系方式显示
+                 $("#table_login").css("display","");//提示用户登录显示
+                 $("#table_quanxian").css("display","none");//提示不是企业用户，无法查看联系方式
+               } //用户会员为：企业会员
+               else if (data=="0")
+               {
+                 $("#table_lianxi").css("display","");//联系方式显示
+                 $("#table_login").css("display","none");//提示用户登录显示
+                 $("#table_quanxian").css("display","none");//提示不是企业用户，无法查看联系方式
+               }//用户会员为：个人会员
+               else if (data=="1")
+               {
+                 $("#table_lianxi").css("display","none");//联系方式显示
+                 $("#table_login").css("display","none");//提示用户登录显示
+                 $("#table_quanxian").css("display","");//提示不是企业用户，无法查看联系方式
+               }
+   	        } 
+       });	
+});
+</script>
+</head>
+<body>
+{tag:include file="top.html" /}
+<div class="clear"></div>
+<!--导航结束-->
+<div class="position">
+  <P>当前位置: {tag:field name="page_position"/}正文</P></div>
+<div class="w960">
+   <div class="left_main f_left">
+   <input type="hidden" id="infoids" value="{tag:field name='info_id'/}" />
+      <h2 class="left_title">{tag:field name="resume_name"/}</h2>
+      <div class="date">
+         <p><span class="date_text">更新时间：{tag:field name="in_date" len="10"/}</span><span class="date_text">浏览次数：
+         <span id="clicks"> <script src="/include/clicknum.jsp?t=resume&n=resume_id&v={tag:field name='info_id'/}"></script></span></span></p>
+      </div>
+     <div class="title_banner"><h2 class="title_text">基本信息</h2></div>
+     <div class="clear"></div>
+      <div class="main_info">
+         <table width="900" border="0" cellspacing="1" cellpadding="" bgcolor="#F6F5F5">
+           <tr>
+             <td width="100" height="31" bgcolor="#FFFFFF" class="main_info_title">姓名</td>
+             <td width="180" bgcolor="#FFFFFF" class="main_info_text">{tag:field name="real_name" /}</td>
+             <td width="110" bgcolor="#FFFFFF" class="main_info_title">出生日期</td>
+             <td width="170" bgcolor="#FFFFFF" class="main_info_text" colspan="2" >{tag:field name="birth" len="10"/}</td>
+             <td width="223" bgcolor="#FFFFFF" class="main_info_text" rowspan="4" align="center">
+             <img src="{tag:field name='img_path'/}" width="126px" height="124px"/>
+             </td>
+           </tr>
+           <tr>
+             <td width="100" height="31" bgcolor="#FFFFFF" class="main_info_title">性别</td>
+             <td width="180" bgcolor="#FFFFFF" class="main_info_text">{tag:field name="sex" /}</td>
+             <td width="110" bgcolor="#FFFFFF" class="main_info_title">婚姻状况</td>
+             <td width="170" bgcolor="#FFFFFF" class="main_info_text" colspan="2">{tag:field name="marry" /}</td>
+           </tr>
+           
+            <tr>
+             <td width="100" height="31" bgcolor="#FFFFFF" class="main_info_title">毕业学校</td>
+             <td width="180" bgcolor="#FFFFFF" class="main_info_text">{tag:field name="college" /}</td>
+             <td width="110" bgcolor="#FFFFFF" class="main_info_title">所学专业</td>
+             <td width="170" bgcolor="#FFFFFF" class="main_info_text" colspan="2">{tag:field name="spec" /}</td>
+
+           </tr>
+           
+           
+           <tr>
+             <td width="100" height="31" bgcolor="#FFFFFF" class="main_info_title">外语语种</td>
+             <td width="180" bgcolor="#FFFFFF" class="main_info_text">{tag:field name="language" /}</td>
+             <td width="110" bgcolor="#FFFFFF" class="main_info_title">学历</td>
+             <td width="170" bgcolor="#FFFFFF" class="main_info_text" colspan="2">{tag:field name="education" /}</td>
+           </tr>
+           <tr>
+             <td width="100" height="31" bgcolor="#FFFFFF" class="main_info_title">体重</td>
+             <td width="180" bgcolor="#FFFFFF" class="main_info_text">{tag:field name="weight" /}</td>
+             <td width="110" bgcolor="#FFFFFF" class="main_info_title">身高</td>
+             <td width="170" bgcolor="#FFFFFF" class="main_info_text">{tag:field name="height" /}</td>
+             <td width="110" bgcolor="#FFFFFF" class="main_info_title">期望月薪</td>
+             <td bgcolor="#FFFFFF" class="main_info_text">{tag:field name="get_salary" /}</td>
+           </tr>
+            <tr>
+             <td width="100" height="31" bgcolor="#FFFFFF" class="main_info_title">工作经验</td>
+             <td width="180" bgcolor="#FFFFFF" class="main_info_text">{tag:field name="work_exper" /}年</td>
+             <td width="110" bgcolor="#FFFFFF" class="main_info_title">现居住地</td>
+             <td width="170" bgcolor="#FFFFFF" class="main_info_text" colspan="3">{tag:field name="get_all_area_attr" /}</td>
+           </tr>
+        </table>
+      </div>
+      
+      <div class="clear"></div>
+      <div class="title_banner"><h2 class="title_text">联系方式</h2></div>
+      <div class="clear"></div>
+      <div class="main_info1">
+        <script src="/include/jsp/contactinfo.jsp?resume_id={tag:field name='info_id'/}"></script>
+      </div>
+           
+      <div class="clear"></div>
+      <div class="title_banner"><h2 class="title_text">专业技能</h2></div>
+      <div class="clear"></div>
+      <div class="main_info1">
+         {tag:field name="technical" /}
+      </div>
+      <div class="title_banner"><h2 class="title_text">自我评价</h2></div>
+      <div class="clear"></div>
+      <div class="main_info1">
+         {tag:field name="self_desc" /}
+      </div>
+      <div class="title_banner"><h2 class="title_text"></h2></div>
+      <div class="clear"></div>
+      <div class="main_info1">
+      </div>
+      <div class="main_bottom">
+         <ul>
+         <li><a class="button_link" href="#" onclick="addjobresume();" >加入人才库</a></li>
+         <li><a class="button_link" href="javascript:window.print();">打印简历</a></li>
+         <li><a class="button_link" href="###;" onclick="document.collectResumeForm.submit();"> 收藏简历</a></li>
+         <li><a class="button_link" href="javascript:window.close();" >关闭窗口</a></li>
+           <!-- 收藏公司的提交表单 -->
+				     <form action="/member_Collect_add.action" name="collectResumeForm" method="post">
+    					<input type="hidden" name="collect.title" id="title" value="{tag:field name='cust_name'/}" />	
+    					<input type="hidden" name="collect.link_url" id="link_url1"  />
+    					<input type="hidden" name="loc" value="" />
+   					 </form>
+    				<script>
+    					document.collectResumeForm.loc.value = document.location.href;
+    					document.getElementById("link_url1").value = document.location.href;
+    				</script>
+    	</ul>
+      </div>
+      
+  </div>
+</div>
+
+
+<div class="clear"></div>
+
+
+{tag:include file="bottom.html" /}
+</body>
+</html>

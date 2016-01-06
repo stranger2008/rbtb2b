@@ -1,0 +1,20 @@
+.lautback{
+	width:235px;
+	height:34px;
+	background:url(../images/othertitle_03.gif) no-repeat;
+	background-position:0 -40px;
+	float:left;
+}
+.aucont{
+	width:680px;
+	padding-left:10px;
+	padding-top:10px;
+	line-height:25px;
+	height:25px;
+	font-size:14px;
+}
+.aucont p{
+	text-indent:2em;
+	line-height:22px;
+	padding-top:15px;
+}

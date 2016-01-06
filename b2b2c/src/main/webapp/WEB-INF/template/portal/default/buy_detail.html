@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/buy_detail.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/js.css" rel="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/galleryview.css" />
+{tag:include file="jsinclude.html" /}
+<title>{tag:field name="title" len="25"/}-{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:field name="title" /}" />
+<meta name="description" content="{tag:field name="content" len="30" /}" />
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/addcomments_detail.js"></script>
+</head>
+
+<body>
+{tag:include file="top.html" /}
+<div class="clear"></div>
+<div class="position"><P>当前位置:{tag:field name="page_position"/}正文 </P></div>
+
+<div class="prod_intro">
+   <div class="prod f_left">
+      <p class="porod_title">{tag:field name="title"/}</p>
+  <div class="porod_pic f_left">
+   <input type="hidden" value='{tag:field name="img_path"/}' id="imgpath" />
+   <!-- 绑定商品图片开始 -->
+   <div id="photos" class="galleryview" >
+   </div>
+   <!-- 绑定商品图片结束 -->  
+   </div>
+      
+      <ul class="cp_fu f_left">
+          <li><span class="cp_l">规格要求：</span>{tag:field name="standard"/}</li>
+         <li><span class="cp_l">包装要求：</span>{tag:field name="pack"/}</li>
+         <li><span class="cp_l">价格要求：</span>{tag:field name="price"/}</li>
+         <li><span class="cp_l">需求数量：</span>{tag:field name="buy_num"/}</li>
+         <li><span class="cp_l">过期时间：</span>{tag:field name="end_date" len="19"/}</li>
+         <li><span class="cp_l">最后更新：</span>{tag:field name="in_date" len="19"/}</li>
+         <li><span class="cp_l">浏览次数：</span>
+         	<span id="clicks"><script src="/include/clicknum.jsp?t=buy&n=buy_id&v={tag:field name='info_id'/}"></script></span>       
+         </li>
+         <li style="text-align: center;padding-top: 10px;">
+           <a href="###;" onclick="document.sendInquiryForm.submit();"><img src="/templets/{tag:sysbase name='cfg_templatestyle'/}/images/quote.gif" /></a>
+           
+            <!-- 发送询价请求 -->
+			<form action="/member_Memberinbox_add.action" method="post" name="sendInquiryForm">
+			<input type="hidden" name="send_name" value="{tag:field name='cust_name'/}"/>
+			<input type="hidden" name="memberinbox.mess_type" value="2"/>
+             <input type="hidden" name="loc" value="" />
+			</form>
+			<script>
+			 document.sendInquiryForm.loc.value = document.location.href;
+			 </script>
+             <!-- 发送询价请求 --> 
+         </li>
+      </ul> 
+   </div>
+    <script src="/include/jsp/companyinfo.jsp?model=buy&cust_id={tag:field name='cust_id'/}"></script>
+   <div class="clear"></div>   
+</div>
+
+<div class="clear"></div>
+<div class="w960">
+  <div class="comp_porod_title">
+    <p class="sm">详细说明</p>    
+    <form action="/member_Collect_add.action" name="collectForm" method="post">
+    	<a href="###;" onclick="document.collectForm.submit()">
+    		<img src="/templets/{tag:sysbase name='cfg_templatestyle'/}/images/sj.gif" class="sm_sj"/>
+    	</a>
+    	<input type="hidden" name="collect.title" id="title" value="{tag:field name="title" /}" />	
+    	<input type="hidden" name="collect.link_url" id="link_url"  />
+    	<input type="hidden" name="loc" value="" />
+    </form>
+    <script>
+    	document.collectForm.loc.value = document.location.href;
+    	document.getElementById("link_url").value = document.location.href;
+    </script>
+    
+  </div>
+  <div class="comp_porod_sm">
+     <P>{tag:field name="content" /}</P>
+     
+  </div>
+</div>
+
+
+ <div class="w960" >
+ 
+<!-- 评论信息标签的开始位置 -->
+  <form action="/portal/membercomment!addcomments.action" name="commentForm" method="post" validate="true">
+  <input type="hidden" name="infoids" id="infoids" value="{tag:field name="info_id"/}" />
+  <input type="hidden" name="commtitle" id="comment_title" value="{tag:field name="title"/}" />
+  <input type="hidden" name="infotype" id="info_type" value="buy" />
+  <input type="hidden" id="idwidth" value="650" />
+  {tag:include file="commentinfo.html" /}
+  </form>
+ <!-- 评论信息标签的结束位置 -->
+  </div>
+
+{tag:include file="bottom.html" /}
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/supply.js"></script>
+<script type="text/javascript" src="/include/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="/include/js/jquery.galleryview-1.1.js"></script>
+<script type="text/javascript" src="/include/js/jquery.timers-1.1.2.js"></script>
+</body>
+</html>

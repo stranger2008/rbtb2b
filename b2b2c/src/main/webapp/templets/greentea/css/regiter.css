@@ -1,0 +1,220 @@
+/*
+ ISConsole Copyright 2011 ruibaotong COMPANY, Co.ltd . 
+ All rights reserved.
+ FileName: regiter.css
+ */
+ @import url("public.css");
+ /*hxz 20110905*/
+ 
+.cont{
+	width:960px;
+}
+.title{
+	width:958px;
+	height:29px;
+	border:#cccccc solid 1px;
+	background:url(../images/hxz_title.gif) repeat-x;
+}
+.t_font{
+	font-size:12px;
+	line-height:29px;
+	font-weight:100;
+	padding-left:10px;
+}
+.content{
+	width:958px;
+	border:#cccccc solid 1px;
+	border-top:0;
+}
+.bar{
+	width:890px;
+	height:66px;
+	background:#fbfbfb;
+}
+.m_bar{
+	padding-top:20px;
+	padding-left:35px;
+	font-size:12px;
+	color:#666666;
+}
+.bar_font{
+	font-weight:bold;
+	font-size:14px;
+	padding-top:10px;
+}
+.bar{
+	line-height:24px;
+}
+.bar a{
+	color:#1e70a0;
+}
+.bar p{
+	padding-left:20px;
+}
+.star{
+	color:#fc1c36;
+	width:10px;
+	display:inline-block;
+}
+/*账户信息*/
+.account{
+	width:740px;
+	height:24px;
+	border-bottom:#cccccc solid 1px;
+}
+.fonts{
+	color:#ff771d;
+	font-size:14px;
+	padding-left:10px;
+}
+.erofonts{
+	color:#f32630;
+	font-size:12px;
+}
+.error{
+	width:250px;
+	color:red;
+	background:#FFE1E1 url(/include/images/errorIcon.gif) no-repeat 10px center;
+	height:30px;
+	display:inline-block;
+	line-height:30px;
+    color:#CB4445;
+	padding:0 10px 0 30px;
+	font-size:12px;
+}
+.errorform{
+	width:250px;
+	height:30px;
+	background:#F7F7F7 url(/include/images/errorIconform.gif) no-repeat 10px center;
+	display:inline-block;
+	line-height:30px;
+	color:#535353;
+	padding:0 10px 0 30px;
+	font-size:12px;
+}
+.rightform{
+	width:13px;
+	height:13px;
+	background:url(/include/images/ok.gif) no-repeat 10px center;
+	display:inline-block;
+	line-height:30px;
+	padding:0 10px 0 30px;
+}
+.yesfonts{
+	color:#5a8f00;
+}
+.move{
+	padding-top:30px;
+	padding-left:100px;
+}
+.register{
+	padding-top:20px;
+    text-align:center;
+    padding-bottom:10px;
+}
+.ac_cont{
+	width:740px;
+	height:140px;
+}
+.contact_cont{
+	width:740px;
+}
+.ac_cont p{
+	padding-top:12px;
+	padding-left:80px;
+}
+ 
+.leftLable{
+	width:75px;
+	display:inline-block;
+	text-align:right;
+} 
+
+.ac_cont .star{
+   color:red;
+}
+ .contact_cont p{
+	padding-top:12px;
+	padding-left:80px;
+}
+.a_text{
+	height:18px;
+	width:205px;
+	line-height:18px;
+}
+.select_text{
+    height:20px;
+	width:100px;
+	line-height:20px;
+}
+.sma_text{
+	height:18px;
+	width:100px;
+	line-height:18px;
+}
+.dot{
+	background:url(../images/hxz_dot.gif) no-repeat top  right;
+}
+/*公司信息*/
+.com_info{
+	width:740px;
+}
+.com_info p{
+	padding-top:12px;
+	padding-left:80px;
+}
+.rands{padding-left:100px;}
+.com_text{
+	height:18px;
+	width:60px;
+	line-height:18px;
+}
+.comname_text{
+	height:18px;
+	width:230px;
+	line-height:18px;
+}
+/*协议*/
+.agreement{
+	width:735px;
+	height:120px;
+	border:#9dbfda solid 1px;
+	overflow:auto;
+	line-height:22px;
+}
+.agr_fonts{
+	font-size:14px;
+	font-weight:bold;
+	text-align:center;
+}
+.agreement p{
+	text-indent:2em; 
+}
+
+.move_top{
+	*padding-top:20px !important;
+	_padding-top:0px;
+}
+#divlist{
+  margin-left:-15px;
+}
+#arealist{
+  margin-left:-15px;
+}
+.registertd1{
+  width:150px;
+  text-align:right;
+  line-height:28px;
+}
+.registertd2{
+  width:10px;
+  text-align:center;  
+}
+.registertd3{
+  width:270px;
+}
+.regonclick{
+	padding-top:20px;
+    text-align:center;
+    padding-bottom:10px;
+}

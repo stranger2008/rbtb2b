@@ -1,0 +1,232 @@
+body {
+    margin:0;
+    padding:0px;
+    font-size:12px;
+    font-family:"宋体";
+	background:#FFF;
+	color:#333;
+  }
+
+ul ,li{
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+    }
+
+div, ul, p, h2 ,h3{
+    margin: 0;
+    padding: 0;
+    border: none;
+   }
+
+img {
+    border:0;
+   }
+a{ 
+ text-decoration:none;
+ color:#333333;
+ }
+a:hover{
+	text-decoration:none;
+	color:#d00202;
+	}
+.w980{
+	width:980px;
+	margin:0 auto;
+	margin-top:10px;
+	}		
+.f_left{
+	float:left;
+	}
+.f_right{
+	float:right;
+	}	
+.clear {
+    clear: both;
+    }
+
+
+.top{
+	width:980px;
+	margin:0 auto;
+	height:84px;
+	line-height:84px;
+	}
+	
+	
+.regist {
+    border: 1px solid #C3C3C3;
+    width: 978px;
+	margin:10px auto 0;
+   }
+
+.registertd1{
+	text-align:right;
+	padding-top:15px;   
+	vertical-align:middle;
+
+   }
+.registertd2{
+	text-align:left;
+   }
+ 
+.star{
+	color: #c00020;
+}
+
+.errordiv{
+	text-align:left;
+	color: #c00020;
+	padding-top:15px;   
+	vertical-align:middle;
+}
+
+.regist h2 {
+    background: url(../images/jianbian.jpg) repeat-x scroll left top transparent;;
+    border-bottom: 1px solid #C3C3C3;
+    font-size: 14px;
+    height: 27px;
+    line-height: 27px;
+    padding-left: 10px;
+   } 
+   
+.grayback {
+    height: 44px;
+    line-height: 44px;
+    padding: 5px 0 5px 24px;
+    width: 530px;
+	background-color: #FAFAFA;
+    border-color: #F2F2F2;
+    border-style: solid;
+    border-width: 1px 2px 2px 1px;
+	margin-left:30px;
+    }
+.gray {
+    height: 44px;
+    line-height: 44px;
+    padding: 5px 0 5px 24px;
+    width: 530px;
+	margin-left:30px;
+    } 	   
+.infor {
+    padding-top: 20px;
+    width: 682px;
+    margin-left:50px;
+	float:left;
+    } 
+	  	
+.infor label {
+    text-align: right;
+    width: 100px;
+	float:left;
+	vertical-align:middle;
+  }	
+.infor input {
+    border: 1px solid #A5AFC3;
+    height: 19px;
+	float:left;
+    line-height: 19px;
+    margin-right: 5px;
+    margin-top: 12px;
+    width: 197px;
+  }	
+	
+.tips2{
+    background: url(../images/shurubg0316.jpg) no-repeat scroll 5px 50% #FFF6F7;
+    border: 1px solid #CC9998;
+    color: #A10000;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    margin-top: 12px;
+    padding-left: 3px;
+    text-indent: 25px;
+    width: 202px;
+   }
+.tips1{
+    border: 1px solid #36689b;
+    color: #434343;
+    float: left;
+    line-height: 20px;
+    margin-top: 12px;
+    padding-left: 3px;
+    width: 202px;
+   } 
+.gray img{
+	float:left;
+	vertical-align:middle;
+	margin-top:10px;
+	}    	
+.bt {
+    color: #656565;
+    float: left;
+    padding-left: 120px;
+    padding-top: 10px;
+    margin-left:80px;
+    }
+.bt p {
+    padding-bottom: 10px;
+   }
+.bt a {
+    color: #A20000;
+   }
+.bt a:hover{
+    color: #A20000;
+	text-decoration:underline;
+   } 
+.bt input{
+	border:0;
+	height:29px;
+	color:#FFF;
+	font-size:12px;
+	width:131px;
+	cursor: pointer;
+	background:url(../images/rem.gif) no-repeat;
+	line-height:29px;
+	}    		
+.content_right {
+    background-color: #F9F9F9;
+    border-left: 1px solid #C3C3C3;
+    float: right;
+    height: 420px;
+    width: 211px;
+  }	
+.content_right p {
+    padding-top: 130px;
+    text-align: center;
+    }	
+.content_right p a {
+    background: url(../images/bt2_bg.jpg) no-repeat scroll center center transparent;
+    display: inline-block;
+    height: 19px;
+    line-height: 19px;
+    margin-left: 2px;
+    text-align: center;
+    width: 61px;
+   }	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+.bottom{
+	text-align:center;
+	}
+
+.bottom p {
+    margin:10px 0 20px 0px;
+    }
+.bottom p img {
+	margin-right: 20px;
+     }	

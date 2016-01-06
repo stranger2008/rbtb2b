@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="resume">
+
+	<typeAlias alias="resume" type="com.rbt.model.Resume" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="resume">
+		<![CDATA[ 
+    SELECT resume_id,cust_id,resume_name,cat_attr,real_name,img_path,sex,marry,area_attr,
+    birth,height,weight,education,college,spec,salary,job_type,work_exper,self_desc,technical,
+    language,cellphone,email,phone,address,qq,msn,skype,is_recom,info_state,no_reason,clicknum,infoattr_id,
+    fare,in_date,user_id,is_trust FROM resume WHERE resume_id=$resume_id$
+    ]]>
+	</select>
+   <update id="updateclicknum" parameterClass="java.lang.String">
+     UPDATE resume SET clicknum=(clicknum+1) WHERE resume_id=#resume_id#
+    </update>
+     <update id="updaterecommend" parameterClass="java.util.HashMap">
+     UPDATE resume SET is_recom=#is_recom# WHERE resume_id=#resume_id#
+    </update>
+	<update id="update" parameterClass="resume">
+		UPDATE resume SET resume_id=#resume_id#,cust_id=#cust_id#,resume_name=#resume_name#,
+		cat_attr=#cat_attr#,real_name=#real_name#,img_path=#img_path#,sex=#sex#,marry=#marry#,
+		area_attr=#area_attr#,birth=#birth#,height=#height#,weight=#weight#,education=#education#,
+		college=#college#,spec=#spec#,salary=#salary#,job_type=#job_type#,work_exper=#work_exper#,
+		self_desc=#self_desc#,technical=#technical#,language=#language#,cellphone=#cellphone#,email=#email#,
+		phone=#phone#,address=#address#,qq=#qq#,msn=#msn#,skype=#skype#,is_recom=#is_recom#,
+		info_state=#info_state#,no_reason=#no_reason#,clicknum=#clicknum#,fare=#fare#,infoattr_id=#infoattr_id#,
+		user_id=#user_id#,is_trust=#is_trust# WHERE resume_id=$resume_id$
+	</update>
+
+	<insert id="insert" parameterClass="resume">
+		INSERT INTO resume (resume_id,cust_id,resume_name,cat_attr,real_name,
+		img_path,sex,marry,area_attr,birth,height,weight,education,college,spec,
+		salary,job_type,work_exper,self_desc,technical,language,cellphone,email,
+		phone,address,qq,msn,skype,is_recom,info_state,no_reason,clicknum,fare,
+		in_date,user_id,infoattr_id,is_trust ) VALUES (#resume_id#,#cust_id#,#resume_name#,#cat_attr#,
+		#real_name#,#img_path#,#sex#,#marry#,#area_attr#,#birth#,#height#,#weight#,
+		#education#,#college#,#spec#,#salary#,#job_type#,#work_exper#,#self_desc#,
+		#technical#,#language#,#cellphone#,#email#,#phone#,#address#,#qq#,#msn#,
+		#skype#,#is_recom#,#info_state#,#no_reason#,#clicknum#,#fare#,now(),#user_id#,#infoattr_id#,#is_trust#)
+	</insert>
+
+	<insert id="insertGetPk" parameterClass="resume">
+INSERT INTO resume (resume_id,cust_id,resume_name,cat_attr,real_name,
+		img_path,sex,marry,area_attr,birth,height,weight,education,college,spec,
+		salary,job_type,work_exper,self_desc,technical,language,cellphone,email,
+		phone,address,qq,msn,skype,is_recom,info_state,no_reason,clicknum,fare,
+		in_date,user_id ,infoattr_id,is_trust) VALUES (#resume_id#,#cust_id#,#resume_name#,#cat_attr#,
+		#real_name#,#img_path#,#sex#,#marry#,#area_attr#,#birth#,#height#,#weight#,
+		#education#,#college#,#spec#,#salary#,#job_type#,#work_exper#,#self_desc#,
+		#technical#,#language#,#cellphone#,#email#,#phone#,#address#,#qq#,#msn#,
+		#skype#,#is_recom#,#info_state#,#no_reason#,#clicknum#,#fare#,now(),#user_id#,#infoattr_id#,#is_trust#)
+		 <selectKey resultClass="java.lang.String" keyProperty="resume_id">
+            <!-- 此处不区分大小写 -->
+            SELECT @@IDENTITY AS ID
+        </selectKey>  
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM resume WHERE resume_id in ($resume_id$)
+	</delete>
+    <update id="updatestate" parameterClass="java.util.HashMap">
+     UPDATE resume SET info_state=#info_state# ,no_reason=#no_reason# WHERE resume_id=#resume_id#
+    </update>
+	<sql id="getCommon">
+		FROM resume left join sysuser on resume.user_id=sysuser.user_id
+		<dynamic prepend="WHERE">
+			 <isNotNull prepend="and" property="cust_id"> 
+			     cust_id=#cust_id#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="resume_name"> 
+			   instr(resume_name,#resume_name#)>0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="cat_attr"> 
+			  instr(resume.cat_attr,#cat_attr#)>0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="real_name"> 
+			    instr(resume.real_name,#real_name#)>0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="sex"> 
+			     sex=#sex#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="education"> 
+			     education=#education#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="is_recom"> 
+			     is_recom=#is_recom#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="info_state"> 
+			     info_state=#info_state#
+    		 </isNotNull>
+			  <isNotNull prepend="and" property="resume_state_in"> 
+			     info_state in($resume_state_in$)
+			 </isNotNull>
+			  <isNotNull prepend="and" property="in_date"> 
+			  DATE(in_date)>=#in_date#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="end_date"> 
+			   #enddate#>=DATE(in_date)
+			 </isNotNull>
+			  <isNotNull prepend="and" property="user_name"> 
+			     user_name=#user_name#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="marry"> 
+			    instr(marry,#marry#)>0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="area_attr"> 
+			    instr(area_attr,#area_attr#)>0
+			 </isNotNull>
+			 <isNotNull prepend="and" property="area_filter"> 
+				 INSTR(area_attr,#area_filter#) >0
+			 </isNotNull>	
+			  <isNotNull prepend="and" property="college"> 
+			    instr(college,#college#)>0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="spec"> 
+			    instr(spec,#spec#)>0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="job_type"> 
+			    instr(job_type,#job_type#)>0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="work_exper"> 
+			    instr(work_exper,#work_exper#)>0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="technical"> 
+			    instr(technical,#technical#)>0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="user_id"> 
+			    resume.user_id=#user_id#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="today">
+		            DAY(in_date)=DAY(NOW()) AND MONTH(in_date)=MONTH(NOW()) AND YEAR(in_date)=YEAR(NOW())
+		     </isNotNull>	
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT resume_id,cust_id,(SELECT cust_name FROM member WHERE cust_id=resume.cust_id)as cust_name ,resume_name,resume.cat_attr,resume.real_name as real_name,
+		img_path,sex,marry,area_attr,birth,height,weight,education,
+		college,spec,salary,job_type,work_exper,self_desc,technical,
+		language,resume.cellphone,resume.email,resume.phone,address,resume.qq,resume.msn,resume.skype,is_recom,
+		info_state,no_reason,clicknum,fare,in_date,sysuser.user_name as user_name,resume.infoattr_id
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY in_date desc
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon"/>
+		</isParameterPresent>
+	</select>
+
+   	<sql id="getWebCommon">
+		FROM resume 
+		<dynamic prepend="WHERE">
+			  <isNotNull prepend="and" property="is_recom"> 
+			     is_recom=#is_recom#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="info_state"> 
+			     resume.info_state=#info_state#
+			 </isNotNull> 
+			 <isNotNull prepend="and" property="cust_id">
+				cust_id=#cust_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="resume_name"> 
+			   instr(resume_name,#resume_name#)>0
+			</isNotNull>		
+			<isNotNull prepend="and" property="area_attr">
+			    instr(resume.area_attr,#area_attr#)>0
+			</isNotNull>			
+			<isNotNull prepend="and" property="job_type">
+				instr(job_type,#job_type#)>0
+			</isNotNull>			
+			<isNotNull prepend="and" property="img_path">
+				img_path!=""
+			</isNotNull>
+			<isNotNull prepend="and" property="sex">
+				instr(sex,#sex#)>0
+			</isNotNull>	
+			<isNotNull prepend="and" property="salar">
+				resume.salary=$salar$
+			</isNotNull>
+			<isNotNull prepend="and" property="marry">
+				instr(marry,#marry#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="education">
+				instr(education,#education#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="sup_time">
+				resume.in_date>SUBDATE(NOW(),INTERVAL $sup_time$ DAY)
+			</isNotNull>	
+			<isNotNull prepend="and" property="experience">
+				work_exper>=#experience#
+			</isNotNull>	
+		   <isNotNull prepend="and" property="cat_attr">
+				instr(resume.cat_attr,#cat_attr#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="starttime">
+				DATE(resume.in_date)>=#starttime#
+			</isNotNull>
+			<isNotNull prepend="and" property="endtime">
+				#endtime#>=DATE(resume.in_date)
+			</isNotNull>	
+			<isNotNull prepend="and" property="is_trust">
+				is_trust = #is_trust#
+			</isNotNull>
+		</dynamic>
+							
+	</sql>
+	
+	<select id="getWebResumeList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT resume_id,real_name,salary,area_attr,in_date,technical,resume_name,sex,education,work_exper
+		,spec,is_recom,img_path,infoattr_id
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+		
+		<isNotNull property="in_date"> 
+			 ORDER BY resume.in_date desc
+		</isNotNull> 
+		<isNotNull property="clicknum"> 
+			 ORDER BY clicknum desc
+		</isNotNull>
+		
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getWebResumeCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+	</select>
+</sqlMap>

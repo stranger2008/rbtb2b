@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/video.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /}
+<script type="text/javascript" src="/include/js/lb.js"></script>
+<script type="text/javascript" src="/include/js/jquery.lazyload.js"></script>
+<title>{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:chinfo name="meta_keyword"/}" />
+<meta name="description" content="{tag:chinfo name="meta_desc"/}" />
+ <script type="text/javascript">
+$(document).ready(function(){
+     /*热门排行特效样式*/
+	 $(".hot_video_main .ico_top:lt(2)").addClass("white");
+	 $(".hot_video_main .li_span:last").css("border-bottom","none");
+     var value_array = [2,3,4,5,6,7,8,9,10]; 
+	 $(".hot_video_main .ico_top").each(function(i){  
+		 $(this).text(value_array[i]);
+     });     
+     /*所属类型信息排行*/
+     $(".hot_video_main .ul_ico_top").each(function(i){  
+         $(this).find(".li_ico_top:lt(2)").addClass("white");
+         $(this).find(".li_ico_top").each(function(j){
+		       $(this).text(value_array[j]);
+		 });
+     });
+     $("img").lazyload(); 
+});
+</script>
+</head>
+
+<body>
+ <!-- 公共顶部-->
+{tag:include file="top.html" /}
+<!--导航结束-->
+<div class="w960">
+   <div class="video_ad1">
+      {tag:advlist row="1" pos_id="102"}
+		<a href="[field:link_url/]" target="_blank">
+		    <img src="[field:img_path/]" alt="[field:adv_name/]" />
+		</a>
+	  {/tag:advlist}
+   </div>
+</div>
+<ul class="video_nav">
+   <!-- 取分类信息，取视频下一级分类 -->
+   {tag:catlist row="10" cat_level="1" module_type="video"}
+   <li><a href="[field:video_cat_url/]" target="_blank">[field:cat_name/]</a></li>
+   {/tag:catlist}
+   {tag:catlist row="1" start="10" cat_level="1" module_type="video"}
+   <li class="last_nav"><a href="[field:video_cat_url/]" target="_blank">[field:cat_name/]</a></li>
+   {/tag:catlist}
+</ul>
+<div class="w960">
+   <div class="video_big f_left">
+      <!-- 绑定放灯片图片 -->
+      <div id="myFocus" class="mF_liuzg">
+        <div class="loading"><span>正在载入图片……</span></div>
+        <ul class="pic">
+         {tag:advlist row="3" pos_id="104"}
+         	<li><a href="[field:link_url/]" target="_blank"><img src="[field:img_path/]" alt="[field:adv_name?len(15)/]"/></a></li>
+         {/tag:advlist}
+        </ul>
+      </div>
+   </div>
+   <div class="videonews f_left">
+         <ul>
+         <!-- 取视频信息 -->
+         {tag:videolist row="1"  orderby="in_date"}
+         <li class="videonews_bt"><a href="[field:video_detail_url/]" target="_blank">[field:title?len(18)/]</a></li>
+         {/tag:videolist}
+         <li>
+         {tag:videolist row="2" start="1"  orderby="in_date"}
+         <a href="[field:video_detail_url/]" target="_blank">[[field:title?len(13)/]]</a>&nbsp;
+         {/tag:videolist}
+         </li>
+         <li>
+         {tag:videolist row="2" start="3"  orderby="in_date"}
+         <a href="[field:video_detail_url/]" target="_blank">[[field:title?len(13)/]]</a>&nbsp;
+         {/tag:videolist}
+         </li>
+         
+         {tag:videolist row="1" start="5"  orderby="in_date"}
+         <li class="videonews_bt"><a href="[field:video_detail_url/]" target="_blank">[field:title?len(18)/]</a></li>
+         {/tag:videolist}
+         <li>
+         {tag:videolist row="2" start="6"  orderby="in_date"}
+         <a href="[field:video_detail_url/]" target="_blank">[[field:title?len(13)/]]</a>&nbsp;
+         {/tag:videolist}
+         </li>
+         <li>
+         {tag:videolist row="2" start="8"  orderby="in_date"}
+         <a href="[field:video_detail_url/]" target="_blank">[[field:title?len(13)/]]</a>&nbsp;
+         {/tag:videolist}
+         </li>         
+         {tag:videolist row="1" start="10"  orderby="in_date"}
+         <li class="videonews_bt"><a href="[field:video_detail_url/]" target="_blank">[field:title?len(18)/]</a></li>
+         {/tag:videolist}
+         <li>
+         {tag:videolist row="2" start="11"  orderby="in_date"}
+         
+         <a href="[field:video_detail_url/]" target="_blank">[[field:title?len(13)/]]</a>&nbsp;
+         {/tag:videolist}
+         </li>
+         <li>
+         {tag:videolist row="2" start="13"  orderby="in_date"}
+         <a href="[field:video_detail_url/]" target="_blank">[[field:title?len(13)/]]</a>&nbsp;
+         {/tag:videolist}
+         </li>
+      </ul>
+   </div>
+   <!--最新视频新闻结束-->
+   <div class="tj_video f_right">
+      <div class="video_right_title"><h2 class="title_text">推荐视频</h2></div>
+      <div class="tj_video_main">
+         <!-- 取视频信息 is_recom：是否推荐 1表示推荐 -->
+         {tag:videolist row="3" is_recom="1" imgwidth="100" imgheight="59"}
+	         <div class="video_main_div">
+	            <div class="clear"></div>
+	             <div style="width:100px;height:69px;line-height:69px;float:left;">
+		             <div class="divMiddle" style="width:100px;height:64px;line-height:69px;">
+			             <a href="[field:video_detail_url/]" target="_blank"  class="AMiddle"  style="width:100px;">
+			               <img src="[field:img_path/]" class="ImgMiddle" [field:imgsize/] />
+			             </a>
+		             </div>
+		         </div>
+	             <p class="r_left tj_video_name">
+	             	<a href="[field:video_detail_url/]" target="_blank">[field:title?len(16)/]</a>
+	             	<br/>
+	             	<a href="[field:video_detail_url/]" target="_blank" style="color:#FF8000;font-weight:normal;">[详细]</a>
+	             </p>
+	         </div>
+         {/tag:videolist}  
+      </div>
+   </div>
+   <!--推荐视频结束-->
+</div>
+<div class="clear"></div>
+<div class="w960">
+   <div class="today_attention f_left">
+      <div class="today_attention_title"><h2 class="title_text">最新视频</h2><span class="more_1"><a href="/member_Video_cate.action" target="_blank">上传视频</a></span></div>
+     <div class="today_attention_main">
+         <div class="today_attention_video" >       
+            <!-- 取视频信息，is_recom：是否推荐 1表示推荐，orderby：是否排序 in_date按时间排序 -->
+            {tag:videolist row="3" is_recom="1" orderby="in_date"  imgwidth="212" imgheight="100"}
+            <div style="width:212px;height:120px;float:left;text-align:center;margin-left:16px;">
+	            <div class="divMiddle" style="width:212px;height:110px;line-height:110px;">
+	            <a href="[field:video_detail_url/]" target="_blank"  class="AMiddle"  style="width:212px;">
+	            <img src="[field:img_path/]"  [field:imgsize/] class="ImgMiddle" />
+	            </a>
+	            </div>
+	            <P style="margin-top:3px;"><a href="[field:video_detail_url/]" target="_blank"><span class="today_attention_video_title">
+	            [field:title?len(16)/]</span></a></P>
+            </div>
+            {/tag:videolist}
+         </div>  
+        <ul class="f_left">
+            <!-- 取视频信息，is_recom：是否推荐 1表示推荐，orderby：是否排序 in_date按时间排序 -->
+            {tag:videolist row="7" start="3" is_recom="1" orderby="in_date"}
+            <li><a class="today_attention_video_title" href="[field:video_cat_url/]" target="_blank">[[field:cat_lastname/]]</a>
+            <a href="[field:video_detail_url/]" target="_blank">[field:title?len(18)/]</a>
+            </li>
+            {/tag:videolist}
+        </ul>
+        <ul class="f_right">
+          	{tag:videolist row="7" start="10" is_recom="1" orderby="in_date"}
+            <li><a class="today_attention_video_title" href="[field:video_cat_url/]" target="_blank">[[field:cat_lastname/]]</a><a href="[field:video_detail_url/]" target="_blank">[field:title?len(18)/]</a></li>
+            {/tag:videolist}
+        </ul>
+      </div>
+      
+   </div>
+   <!--最新视频结束-->
+      <div class="tj_video f_right">
+      <div class="video_right_title"><h2 class="title_text">热门排行</h2></div>
+      <div class="hot_video_main">
+         <!-- 取视频信息，orderby：是否排序 clicknum按点击量排序 -->
+         {tag:videolist row="1" orderby="clicknum" imgwidth="62" imgheight="52"}
+         <div>
+             <span class="first_span">1</span>
+             <div style="width:62px;height:62px;float:left;margin-left:3px;">
+                <div class="divMiddle" style="width:52px;height:52px;line-height:52px;">
+	               <a href="[field:video_detail_url/]" target="_blank" class="AMiddle" style="width:62px;">
+	               <img src="[field:img_path/]" class="ImgMiddle" [field:imgsize/]/>
+	               </a>
+                </div>
+             </div>
+             <P class="f_right hot_video_name"><a href="[field:video_detail_url/]" target="_blank">[field:title?len(11)/]</a>
+             <br />日增:[field:clicknum/]</P>
+         </div>
+         {/tag:videolist}
+         <ul>
+         <!-- 取视频信息，orderby：是否排序 clicknum按点击量排序 -->
+         {tag:videolist row="9" start="1" orderby="clicknum"}
+         <li class="li_span"><span class="ico_top"></span><a href="[field:video_detail_url/]" target="_blank">[field:title?len(11)/]</a>      [field:clicknum/]</li>
+         {/tag:videolist}
+         </ul>
+      </div>
+   </div>
+   <!--热门排行结束-->
+</div>
+{tag:catlist row="10" cat_level="1" module_type="video"}
+<div class="clear"></div>
+<div class="w960">
+ <div class="tv f_left"> 
+  <div class="tv_title"><h2 class="title_text1">[field:cat_name/]</h2>
+  <span class="more_1"><a href="[field:video_cat_url/]" target="_blank">更多>></a></span></div>
+  <div class="tv_main">
+     <div class="tv_main_left f_left">
+        <!-- 取视频信息，is_recom：是否推荐 1表示推荐，cat_attr：所属分类-->
+        {tag:videolist row="1" is_recom="1" cat_attr="[field:cat_id/]"  imgwidth="290" imgheight="190"}
+        <div class="divMiddle" style="width:300px;height:200px;line-height:200px;">
+	        <a href="[field:video_detail_url/]" target="_blank"  class="AMiddle"  style="width:300px;">
+	          <img src="[field:videolistimg_path/]" [field:videolistimgsize/] class="ImgMiddle" />		
+	        </a>
+        </div>
+        <P class="tv_main_left_bt"><a href="[field:video_detail_url/]" target="_blank">[field:title/]</a></P>        
+         <P>[field:video_desc?len(45)?format(ch)/]<a href="[field:video_detail_url/]" target="_blank">
+         <span class="tv_main_left_de">[详细]</span></a></P>
+        {/tag:videolist}
+     </div> 
+     
+     <div class="tv_mid f_left">
+      <!-- 取视频信息，is_recom：是否推荐 1表示推荐，cat_attr：所属分类 -->
+        {tag:videolist row="2" start="1" is_recom="1" cat_attr="[field:cat_id/]" imgwidth="106" imgheight="90"}
+        <div style="width:174px;height:170px;">
+	         <div class="divMiddle" style="width:173px;height:107px;line-height:100px;">
+		        <a href="[field:video_detail_url/]" target="_blank"   class="AMiddle"  style="width:173px;">
+		        <img src="[field:videolistimg_path/]"  [field:videolistimgsize/] class="ImgMiddle" /></a>		        
+	         </div>
+	         <P><a href="[field:video_detail_url/]" target="_blank">[field:title?len(10)/]</a><br />
+		        [field:video_desc?len(15)?format(ch)/]</P>
+	    </div>
+        {/tag:videolist}
+    </div>
+     
+     <div class="tv_mid f_left">
+        {tag:videolist row="2" start="3" is_recom="1" cat_attr="[field:cat_id/]" imgwidth="106" imgheight="90"}
+        <div style="width:174px;height:170px;">
+	         <div class="divMiddle" style="width:173px;height:107px;line-height:100px;">
+		        <a href="[field:video_detail_url/]" target="_blank"   class="AMiddle"  style="width:173px;">
+		        <img src="[field:videolistimg_path/]"  [field:videolistimgsize/] class="ImgMiddle" /></a>		        
+	         </div>
+	         <P><a href="[field:video_detail_url/]" target="_blank">[field:title?len(10)/]</a><br />
+		        [field:video_desc?len(15)?format(ch)/]</P>
+	    </div>
+        {/tag:videolist}
+     </div>
+  </div>
+ </div>
+  <div class="tj_video f_right">
+      <div class="video_right_title"><h2 class="title_text">[field:cat_name/]排行</h2><span class="more_1"><a href="[field:video_cat_url/]" target="_blank">更多+</a></span></div>
+      <div class="hot_video_main">
+         <div>
+           <!-- 取视频信息，is_recom：是否推荐 1表示推荐，orderby：是否排序 clicknum按点击量排序 cate_attr:所属类型 -->
+           {tag:videolist row="1" is_recom="1" orderby="clicknum" cat_attr="[field:cat_id/]"  imgwidth="52" imgheight="52"}
+             <span class="first_span">1</span>
+             <div style="width:62px;height:62px;float:left;margin-left:3px;">
+                <div class="divMiddle" style="width:62px;height:62px;line-height:62px;">
+	               <a href="[field:video_detail_url/]" target="_blank" class="AMiddle" style="width:62px;">
+	               <img src="[field:videolistimg_path/]" class="ImgMiddle" [field:videolistimgsize/]/>
+	               </a>
+                </div>
+             </div>
+             <P class="f_right hot_video_name">
+             	<a href="[field:video_detail_url/]" target="_blank">[field:title?len(15)/]</a>
+             	<br/>日增:[field:clicknum/]
+             </P>
+           {/tag:videolist}  
+         </div>
+         <ul class="ul_ico_top">
+          <!-- 取视频信息，is_recom：是否推荐 1表示推荐，orderby：是否排序 clicknum按点击量排序 cate_attr:所属类型 -->
+         {tag:videolist row="9" start="1" is_recom="1" orderby="clicknum" cat_attr="[field:cat_id/]"}
+         <li><span class="li_ico_top">2</span><a href="[field:video_detail_url/]" target="_blank">[field:title?len(11)/]</a>     [field:clicknum/]</li>
+          {/tag:videolist} 
+         </ul>
+      </div>
+  </div>
+  <!--电视剧排行结束-->
+</div>
+{/tag:catlist}
+<div class="clear"></div>
+ <!-- 公共底部 -->
+{tag:include file="bottom.html" /}
+
+</body>
+</html>

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="classified">
+
+	<typeAlias alias="classified" type="com.rbt.model.Classified" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="classified">
+		<![CDATA[ 
+    SELECT info_id,cust_id,title,cat_attr,area_attr,img_path,infoattr_id,info_desc,phone,contact,qqmsn,address,is_recom,info_state,no_reason,in_date,clicknum,fare,user_id FROM classified WHERE info_id=$info_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="classified">
+		UPDATE classified SET info_id=#info_id#,cust_id=#cust_id#,title=#title#,cat_attr=#cat_attr#,area_attr=#area_attr#,img_path=#img_path#,infoattr_id=#infoattr_id#,info_desc=#info_desc#,phone=#phone#,contact=#contact#,qqmsn=#qqmsn#,address=#address#,is_recom=#is_recom#,info_state=#info_state#,no_reason=#no_reason#,clicknum=#clicknum#,fare=#fare#,user_id=#user_id# WHERE info_id=$info_id$
+	</update>
+	<!-- 审核 -->
+	<update id="updateaudit" parameterClass="classified">
+		UPDATE classified SET info_state=#info_state#,no_reason=#no_reason# WHERE info_id=$info_id$
+	</update>
+	<!-- 批量修改推荐 -->
+	<update id="updateisrecom" parameterClass="java.util.HashMap">
+		UPDATE classified SET is_recom=#is_recom# WHERE info_id=$info_id$
+	</update>
+
+    <update id="updateclicknum" parameterClass="java.lang.String">
+       UPDATE classified SET clicknum=(clicknum+1) WHERE info_id=$info_id$
+    </update>
+    
+	<insert id="insert" parameterClass="classified">
+		INSERT INTO classified (info_id,cust_id,title,cat_attr,area_attr,img_path,infoattr_id,info_desc,phone,contact,qqmsn,address,is_recom,info_state,no_reason,in_date,clicknum,fare,user_id) VALUES (#info_id#,#cust_id#,#title#,#cat_attr#,#area_attr#,#img_path#,#infoattr_id#,#info_desc#,#phone#,#contact#,#qqmsn#,#address#,#is_recom#,#info_state#,#no_reason#,now(),#clicknum#,#fare#,#user_id#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM classified WHERE info_id in ($info_id$)
+	</delete>
+	
+	<insert id="insertGetPk" parameterClass="classified">
+		INSERT INTO classified (info_id,cust_id,title,cat_attr,area_attr,img_path,infoattr_id,info_desc,phone,contact,qqmsn,address,is_recom,info_state,no_reason,in_date,clicknum,fare,user_id) VALUES (#info_id#,#cust_id#,#title#,#cat_attr#,#area_attr#,#img_path#,#infoattr_id#,#info_desc#,#phone#,#contact#,#qqmsn#,#address#,#is_recom#,#info_state#,#no_reason#,now(),#clicknum#,#fare#,#user_id#)
+		 <selectKey resultClass="java.lang.String" keyProperty="info_id">
+            <!-- 此处不区分大小写 -->
+            SELECT @@IDENTITY AS ID
+        </selectKey>  
+	</insert>
+
+	<sql id="getCommon">
+		FROM classified left join member on classified.cust_id=member.cust_id
+		<dynamic prepend="WHERE">
+			 <isNotNull prepend="and" property="info_state_in">
+			 classified.info_state in ($info_state_in$)
+		     </isNotNull>
+		      <isNotNull prepend="and" property="title"> 
+				INSTR(title,#title#) >0
+			 </isNotNull>
+			 <isNotNull prepend="and" property="cust_name"> 
+				INSTR(cust_name,#cust_name#) >0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="cust_id"> 
+				classified.cust_id=#cust_id#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="is_recom"> 
+			     is_recom=#is_recom#
+			 </isNotNull>  
+			  <isNotNull prepend="and" property="info_state"> 
+			     classified.info_state=#info_state#
+			 </isNotNull> 
+			 <isNotNull prepend="and" property="cat_attr"> 
+				 INSTR(classified.cat_attr,#cat_attr#) >0
+			 </isNotNull>	
+			 <isNotNull prepend="and" property="area_attr"> 
+				 INSTR(classified.area_attr,#area_attr#) >0
+			 </isNotNull>			
+			<isNotNull prepend="and" property="area_filter"> 
+				 INSTR(classified.area_attr,#area_filter#) >0
+			 </isNotNull>	
+			  <isNotNull prepend="and" property="starttime"> 
+			    TO_DAYS(classified.in_date) > TO_DAYS(#starttime#)
+			 </isNotNull>
+			 <isNotNull prepend="and" property="endtime"> 
+			     TO_DAYS(#endtime#) > TO_DAYS(classified.in_date)
+			 </isNotNull>	
+			 <isNotNull prepend="and" property="today">
+		            DAY(classified.in_date)=DAY(NOW()) AND MONTH(classified.in_date)=MONTH(NOW()) AND YEAR(classified.in_date)=YEAR(NOW())
+		         </isNotNull>	 
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT info_id,classified.cust_id,cust_name,title,classified.cat_attr,classified.infoattr_id,classified.area_attr,img_path,info_desc,classified.phone,contact,qqmsn,classified.address,is_recom,classified.info_state,no_reason,classified.in_date,clicknum,fare,classified.user_id
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY info_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+	
+	<sql id="getWebCommon">
+		FROM classified left join member m on classified.cust_id=m.cust_id 
+		LEFT JOIN infoattr i on i.infoattr_id=classified.infoattr_id 
+		<dynamic prepend="WHERE">
+		      <isNotNull prepend="and" property="info_state"> 
+			   classified.info_state=#info_state#
+			 </isNotNull>
+		     <isNotNull prepend="and" property="cat_attr"> 
+			    INSTR(classified.cat_attr,#cat_attr#) >0 
+			 </isNotNull>
+			 <isNotNull prepend="and" property="area_attr"> 
+			     INSTR(classified.area_attr,#area_attr#) >0
+			 </isNotNull>
+			 <isNotNull prepend="and" property="mem_type"> 
+			     mem_type=#mem_type#
+			 </isNotNull>
+			  <!-- 单字段多条件查询语句,加1=1语句才能正确运行 -->
+			<isNotNull  prepend=""  property="attrString"> 
+			  $attrString$
+			</isNotNull>	
+			<isNotNull prepend="and" property="title"> 
+			     INSTR(classified.title,#title#) >0
+			</isNotNull>
+			<isNotNull prepend="and" property="img_path"> 
+			     img_path!=#img_path#
+			</isNotNull>
+		</dynamic>
+	</sql>
+	
+	
+	<!-- 根据分类查找相关信息 -->
+	<select id="getclassifiedList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT info_id,title,RIGHT(classified.area_attr,10) AS area_attr,classified.img_path,classified.phone,qqmsn,classified.address,classified.info_desc,is_recom,classified.in_date,'area' as area_id,mem_type,
+		(CASE WHEN (UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(classified.in_date) BETWEEN 3600 AND 86400) THEN CONCAT(CONVERT(((UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(classified.in_date)) DIV 3600) , CHAR),'小时前') 
+        WHEN (UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(classified.in_date) BETWEEN 60 AND 3600)  THEN   CONCAT(CONVERT(((UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(classified.in_date)) DIV 60) , CHAR),'分钟前') ELSE CONVERT(classified.in_date,CHAR) END) AS in_dates 
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+		order by is_recom DESC,classified.in_date DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+	
+	
+	<!-- 根据相关信息查找分类 -->
+	<select id="getsearchclassList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT "cat_name" as cat_name,RIGHT(cat_attr,10) AS cat_attr,COUNT(*) AS num FROM classified 
+		<dynamic prepend="WHERE">
+		     <isNotNull prepend="and" property="title"> 
+			   INSTR(title,#title#) >0 and info_state = '1'
+			 </isNotNull>
+			 <isNotNull prepend="and" property="area_attr"> 
+			     INSTR(area_attr,#area_attr#) >0
+			 </isNotNull>
+		</dynamic>
+		group by cat_attr
+	</select>
+	
+	
+	
+
+    	<sql id="getWebClassCommon">
+		FROM classified as t1 left join member as t2 on t1.cust_id=t2.cust_id
+          <dynamic prepend="WHERE">
+				<isNotNull prepend="and" property="title"> 
+				    INSTR(t1.title,#title#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="cat_attr"> 
+				    INSTR(t1.cat_attr,#cat_attr#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="area_attr"> 
+				    INSTR(t1.area_attr,#area_attr#) >0
+				 </isNotNull>			 
+				 <isNotNull prepend="and" property="info_state">
+				   t1.info_state =$info_state$
+			     </isNotNull>
+			     <isNotNull prepend="and" property="start_date"> 
+			       DATE(t1.in_date)>=#start_date#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="end_date"> 
+			       #end_date#>=DATE(t1.in_date)
+			     </isNotNull>
+			     <isNotNull prepend="and" property="mem_type"> 
+				    t2.mem_type=#mem_type# 
+				 </isNotNull>	
+				  <isNotNull prepend="and" property="mem_typeno"> 
+				    t2.mem_type!=#mem_typeno#
+				 </isNotNull>		
+				  <isNotNull prepend="and" property="is_recom"> 
+				    t1.is_recom=#is_recom#
+				 </isNotNull>       
+		  </dynamic>
+	</sql>
+	
+	
+	<select id="getWebClassifiedList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+          select t1.info_id,t1.title,t1.fare,t1.img_path,t1.cat_attr,t1.area_attr,t1.in_date,t2.mem_type
+          <isParameterPresent>
+			<include refid="getWebClassCommon" />
+		  </isParameterPresent>
+		  ORDER BY t1.in_date DESC
+		  <isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		  </isNotNull>
+	</select>
+	
+	<select id="getWebClassifiedCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+        SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getWebClassCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

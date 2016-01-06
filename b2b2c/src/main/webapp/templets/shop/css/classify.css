@@ -1,0 +1,161 @@
+.bar{
+	float:left;
+	width:230px;
+	}
+.barD{
+	width:230px;
+	border:1px solid #dfdfdf;
+	margin-bottom:15px;
+	}	
+.barD h2{
+	font-size:14px;
+	border:1px solid #fff;
+	height:29px;
+	line-height:29px;
+	background:url(../images/barDH2_07.jpg) repeat-x;
+	padding-left:15px;
+	}
+/*商家信息开始*/	
+.shopPpromise li {
+    float: left;
+    height: 55px;
+    line-height: 80px;
+    margin-right: 6px;
+    margin-top: 2px;
+    overflow: hidden;
+    text-align: center;
+    width:59px;
+   }
+.shopPpromise{   
+    height:55px;
+	margin:10px 0 0 25px;
+    background:url(../images/bz.png) no-repeat;
+   }
+.shopIntro{
+    padding-top: 4px;
+	} 
+.shopIntro,.extend,.other {
+    border-top: 1px dotted #CCCCCC;
+	margin:5px 6px;
+	padding-top:5px;
+}	
+.shopRate h4 {
+    padding: 2px 0 3px 10px;
+	font-size:12px;
+   }
+.shopRate .compare {
+    margin-left: 3px;
+   }
+.shopRate .compare {
+    color: #808080;
+    font-weight: normal;
+    margin-left: 15px;
+   }  
+.shopRate ul li {
+	height:22px;
+	padding-left:15px;
+   }
+.shopRate b,.shopRate b {
+    background:#A1001A;
+    border-radius: 2px 2px 2px 2px;
+    color: #FFFFFF;
+    display: inline-block;
+    font-weight: normal;
+    height: 15px;
+    margin: 0 5px 0 13px;
+    padding: 1px 2px 1px 3px;
+    vertical-align: middle;
+   }  
+.shopRate em.count {
+    color: #2953A6;
+   }
+.shopRate em{
+    color: #A1001A;
+    font-size: 12px;
+    font-weight: 700;
+    } 
+.shopRate .lower em{
+    color: #217311;
+    font-size: 12px;
+    font-weight: 700;
+    }	
+.shopRate .lower b{
+    background:#217311;
+    border-color: #217311;
+   }
+   
+.extend li {
+    line-height:22px;
+    } 
+.extend label {
+    float: left;
+    font-family: '宋体';
+    margin-top: 1px;
+    }	
+.other a{
+	display: inline-block;
+    height: 30px;
+	width:84px;
+	margin:10px 0 0 10px;
+	
+	}	
+.other .enter {
+	background:url(../images/sc_19.jpg) no-repeat;
+    }
+.other .enterl {
+	background:url(../images/lx_19.jpg) no-repeat;
+    }	
+.search_cont{
+	background:#F8F8F8;
+	border-top:1px solid #E6E6E6;
+	text-align:center;
+	padding:10px 0;
+	}
+
+.search_cont_P1{
+	padding:10px 0 0 20px;
+	}
+.search_cont .search_b{
+	background:url(../images/shopSear.gif);
+	border:none;
+	width:82px;
+	height:25px;
+	margin:10px 0 0 50px; 
+	font: bold 12px ' ';
+	}
+.search_cont input{
+	border-top:1px solid #a7a6aa;
+	border-left:1px solid #a7a6aa;
+	border-right:1px solid #dcdcdc;
+	border-bottom:1px solid #dcdcdc;
+	margin-right:5px;
+	}
+	
+
+.contR{
+	width:730px;
+	float:right;
+}
+.clah2{
+	width:720px;
+	font-size:12px;
+	color:#990d1b;
+	height:30px;
+	line-height:30px;
+	padding-left:10px;
+	border-bottom:#dfdfdf solid 1px;
+}
+.clah2 a{
+	color:#990d1b;
+}
+.clacont{
+	width:705px;
+	padding-left:25px;
+	padding-top:5px;
+}
+.clacont a{
+	height:28px;
+	line-height:28px;
+	width:170px;
+	display:inline-block;
+}

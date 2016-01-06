@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="memberconfig">
+
+	<typeAlias alias="memberconfig" type="com.rbt.model.Memberconfig" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="memberconfig">
+		<![CDATA[ 
+    SELECT cust_id,temp_code,temp_loc,is_dis,loc_num,back_color,word_num,back_img,logo_img,header_img,site_notice,web_name,web_title,keywords,site_desc,reg_date,banner,qq,aliim,msn,skype FROM memberconfig WHERE cust_id=$cust_id$
+
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="memberconfig">
+		UPDATE memberconfig SET is_dis=#is_dis#,loc_num=$loc_num$,back_color=#back_color#,word_num=#word_num#,back_img=#back_img#,logo_img=#logo_img#,header_img=#header_img#,site_notice=#site_notice#,web_name=#web_name#,web_title=#web_title#,keywords=#keywords#,site_desc=#site_desc#,banner=#banner#,qq=#qq#,aliim=#aliim#,msn=#msn#,skype=#skype# WHERE cust_id=$cust_id$
+	</update>
+	
+	<update id="update_tempcode" parameterClass="memberconfig">
+		UPDATE memberconfig SET temp_code=#temp_code#,temp_loc=#temp_loc# WHERE cust_id=$cust_id$
+	</update>
+	
+	<update id="update_loc_num" parameterClass="java.lang.String">
+		UPDATE memberconfig SET loc_num=loc_num+1 WHERE cust_id=$cust_id$
+	</update>
+
+	<insert id="insert" parameterClass="memberconfig">
+		INSERT INTO memberconfig (cust_id,temp_code,is_dis,loc_num,back_color,word_num,back_img,logo_img,header_img,site_notice,web_name,web_title,keywords,site_desc,reg_date,banner,qq,aliim,msn,skype) VALUES (#cust_id#,#temp_code#,#is_dis#,$loc_num$,#back_color#,#word_num#,#back_img#,#logo_img#,#header_img#,#site_notice#,#web_name#,#web_title#,#keywords#,#site_desc#,#reg_date#,#banner#,#qq#,#aliim#,#msn#,#skype#)
+
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM memberconfig WHERE cust_id in ($cust_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM memberconfig 
+		<dynamic prepend="WHERE">
+			
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT cust_id,temp_code,is_dis,loc_num,back_color,word_num,back_img,back_img_repeat,back_img_position,logo_img,header_img,site_notice,web_name,web_title,keywords,site_desc,reg_date,banner
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY cust_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

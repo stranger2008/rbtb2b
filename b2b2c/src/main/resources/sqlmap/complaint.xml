@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="complaint">
+
+	<typeAlias alias="complaint" type="com.rbt.model.Complaint" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="complaint">
+		<![CDATA[ 
+    SELECT info_id,cust_id,comp_type,order_id,get_cust_id,get_cust_name,product_name,trade_fund,email,phone,content,file_path,comp_path,attach_path,appeal_desc,appeal_date,appeal_user_id,do_result,user_id,state_code,in_date FROM complaint WHERE info_id=$info_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="complaint">
+		UPDATE complaint SET info_id=#info_id#,cust_id=#cust_id#,comp_type=#comp_type#,order_id=#order_id#,get_cust_id=#get_cust_id#,get_cust_name=#get_cust_name#,product_name=#product_name#,trade_fund=#trade_fund#,email=#email#,phone=#phone#,content=#content#,file_path=#file_path#,comp_path=#comp_path#,attach_path=#attach_path#,appeal_desc=#appeal_desc#,appeal_date=#appeal_date#,appeal_user_id=#appeal_user_id#,do_result=#do_result#,user_id=#user_id#,state_code=#state_code#,in_date=#in_date# WHERE info_id=$info_id$
+	</update>
+
+	<insert id="insert" parameterClass="complaint">
+		INSERT INTO complaint (info_id,cust_id,comp_type,order_id,get_cust_id,get_cust_name,product_name,trade_fund,email,phone,content,file_path,comp_path,attach_path,appeal_desc,appeal_date,appeal_user_id,do_result,user_id,state_code,in_date) VALUES (#info_id#,#cust_id#,#comp_type#,#order_id#,#get_cust_id#,#get_cust_name#,#product_name#,#trade_fund#,#email#,#phone#,#content#,#file_path#,#comp_path#,#attach_path#,#appeal_desc#,#appeal_date#,#appeal_user_id#,#do_result#,#user_id#,#state_code#,now())
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM complaint WHERE info_id in ($info_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM complaint left join member on complaint.cust_id=member.cust_id
+		<dynamic prepend="WHERE">
+		   <isNotNull prepend="and" property="comp_type"> 
+			        comp_type=#comp_type#
+		   </isNotNull>
+		   <isNotNull prepend="and" property="state_code">
+			        state_code=#state_code#
+		   </isNotNull>
+		   <isNotNull prepend="and" property="starttime"> 
+		    DATE(complaint.in_date)>=#starttime#
+			</isNotNull>
+			<isNotNull prepend="and" property="endtime"> 
+				#endtime#>=DATE(complaint.in_date)
+			</isNotNull>
+			<isNotNull prepend="and" property="cust_id"> 
+				complaint.cust_id=#cust_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="get_cust_id"> 
+				get_cust_id=#get_cust_id#
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT info_id,cust_name,complaint.cust_id,comp_type,order_id,get_cust_id,get_cust_name,product_name,trade_fund,complaint.email,.complaint.phone,content,file_path,comp_path,attach_path,appeal_desc,appeal_date,appeal_user_id,do_result,complaint.user_id,state_code,complaint.in_date
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY info_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

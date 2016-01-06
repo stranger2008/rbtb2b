@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="resumeinbox">
+
+	<typeAlias alias="resumeinbox" type="com.rbt.model.Resumeinbox" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="resumeinbox">
+		<![CDATA[ 
+    SELECT inbox_id,get_cust_id,job_id,(SELECT title  FROM job WHERE job_id=resumeinbox.job_id) AS title ,
+    resume_id,(SELECT resume_name FROM resume WHERE resume_id=resumeinbox.resume_id)
+          AS resume_name,state,isinvite,apply_date,apply_cust_id ,(select user_name from memberuser where user_id=resumeinbox.apply_cust_id) as user_name
+          FROM resumeinbox WHERE inbox_id=$inbox_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="resumeinbox">
+		UPDATE resumeinbox SET inbox_id=#inbox_id#,get_cust_id=#get_cust_id#,
+		job_id=#job_id#,resume_id=#resume_id#,state=#state#,isinvite=#isinvite#,
+		apply_date=#apply_date#,apply_cust_id=#apply_cust_id# WHERE inbox_id=$inbox_id$
+	</update>
+    <update id="udpatestate" parameterClass="java.util.HashMap">
+     update resumeinbox set state=#state# where inbox_id=#inbox_id#
+    </update>
+	<insert id="insert" parameterClass="resumeinbox">
+		INSERT INTO resumeinbox (inbox_id,get_cust_id,job_id,
+		resume_id,state,isinvite,apply_date,apply_cust_id) 
+		VALUES (#inbox_id#,#get_cust_id#,#job_id#,#resume_id#,#state#,
+		#isinvite#,now(),#apply_cust_id#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM resumeinbox WHERE inbox_id in ($inbox_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM resumeinbox 
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="get_cust_id">
+				get_cust_id=#get_cust_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="title">
+				instr(title,#title#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="resume_name">
+				instr(resume_name,#resume_name#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="state">
+				state=#state#
+			</isNotNull>
+			<isNotNull prepend="and" property="isinvite">
+				isinvite=#isinvite#
+			</isNotNull>
+			<isNotNull prepend="and" property="apply_date">
+				DATE(apply_date)>=#apply_date#
+			</isNotNull>
+			<isNotNull prepend="and" property="enddate">
+				#enddate#>=DATE(apply_date)
+			</isNotNull>
+			<isNotNull prepend="and" property="apply_cust_id">
+				apply_cust_id=#apply_cust_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="job_id">
+				job_id=#job_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="resume_id">
+				resume_id=#resume_id#
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT inbox_id,get_cust_id,(SELECT cust_name FROM member WHERE cust_id=resumeinbox.get_cust_id)as cust_name,
+        job_id,(SELECT title  FROM job WHERE job_id=resumeinbox.job_id) AS title ,
+         resume_id,(SELECT resume_name FROM resume WHERE resume_id=resumeinbox.resume_id)
+          AS resume_name,state,isinvite,apply_date,apply_cust_id,(select user_name from memberuser where user_id=resumeinbox.apply_cust_id) as user_name
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY inbox_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

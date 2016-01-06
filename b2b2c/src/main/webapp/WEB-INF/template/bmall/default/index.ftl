@@ -1,0 +1,1 @@
+<#include "/WEB-INF/template/bmall/default/coreindex.ftl">

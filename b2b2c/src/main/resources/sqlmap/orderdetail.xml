@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="orderdetail">
+
+	<typeAlias alias="orderdetail" type="com.rbt.model.Orderdetail" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="orderdetail">
+		<![CDATA[ 
+    SELECT trade_id,order_id,goods_id,order_price,order_num,goods_attr,remark FROM orderdetail WHERE trade_id=$trade_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="orderdetail">
+		UPDATE orderdetail SET trade_id=#trade_id#,order_id=#order_id#,goods_id=#goods_id#,order_price=#order_price#,order_num=#order_num#,goods_attr=#goods_attr#,remark=#remark# WHERE trade_id=$trade_id$
+	</update>
+
+	<insert id="insert" parameterClass="orderdetail">
+		INSERT INTO orderdetail (trade_id,order_id,goods_id,order_price,order_num,goods_attr,remark) VALUES (#trade_id#,#order_id#,#goods_id#,#order_price#,#order_num#,#goods_attr#,#remark#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM orderdetail WHERE trade_id in ($trade_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM orderdetail o  
+   LEFT JOIN goods g ON g.goods_id=o.goods_id  
+	LEFT JOIN goodsorder gs ON gs.order_id=o.order_id 
+	     LEFT JOIN commpara c1 ON gs.order_state=c1.para_value AND  c1.para_code='order_state' 
+		  LEFT JOIN commpara c2 ON gs.pay_state=c2.para_value  AND  c2.para_code='pay_state'
+		       LEFT JOIN commpara c3 ON gs.send_state=c3.para_value  AND  c3.para_code='send_state'	
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="order_id">
+				o.order_id=#order_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="order_id_str">
+				instr(#order_id_str#,o.order_id)
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+ SELECT o.trade_id,o.order_id,o.goods_id,o.order_price,o.order_num,o.goods_attr,o.remark,g.goods_name,g.img_path,
+		c1.para_key AS order_para_key,c2.para_key AS pay_para_key,c3.para_key AS send_para_value  
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY trade_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+	
+	<sql id="getdedailCommon">
+		FROM orderdetail o 
+			left join goods g on g.goods_id=o.goods_id 
+				left join goodsorder go on o.order_id=go.order_id 
+					left join member mm on mm.cust_id=go.buy_cust_id
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="goods_id">
+				o.goods_id=#goods_id#
+			</isNotNull>
+		</dynamic>
+	</sql>
+	
+	<select id="getdetailList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT mm.cust_name as buy_cust_name,o.trade_id,o.order_id,o.goods_id,o.order_price,IFNULL(o.order_num,'0') as o_goods_num,o.goods_attr,o.remark,g.goods_name,DATE_FORMAT(order_time,'%Y-%c-%d %h:%i:%s') AS sale_time,
+		g.img_path			
+		<isParameterPresent>
+			<include refid="getdedailCommon" />
+		</isParameterPresent>
+		ORDER BY trade_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+	
+	<select id="getdetailCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getdedailCommon" />
+		</isParameterPresent>
+	</select>
+	
+
+	
+	
+
+	
+
+</sqlMap>
+

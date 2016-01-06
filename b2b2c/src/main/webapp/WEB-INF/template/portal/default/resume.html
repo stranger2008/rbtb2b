@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/talents.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/js.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /}
+<script src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/talents.js" type="text/javascript"></script>
+<title>{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:chinfo name="meta_keyword"/}" />
+<meta name="description" content="{tag:chinfo name="meta_desc"/}" />
+<script type="text/javascript" src="/include/js/getcatarea.js"></script> 
+<script type="text/javascript">
+ $(document).ready(function(){
+	     //所属分类的回选
+         cate_select({tag:sysbase name="cfg_topcatid"/},1,"job","1");           
+         //所属地区的回选
+         area_select({tag:sysbase name="cfg_topareaid"/});
+});
+</script>
+</head>
+
+<body>
+ <!-- 公共顶部 -->
+{tag:include file="top.html" /}
+<div class="clear"></div>
+
+<div class="w960">
+
+   <div class="l_w650 f_left">
+   
+      <div class="rz_search">
+         <ul class="sea_tistal">
+            <li id="but1" class="rz_but1" onmouseover="re_show(1,2,'but','search_main','rz_but1','rz_but2')">职位搜索</li>
+            <li id="but2" class="rz_but2" onmouseover="re_show(2,2,'but','search_main','rz_but1','rz_but2')">人才搜索</li>
+         </ul>
+         <!--职位搜索/人才搜索-->
+         <div id="pos_main">
+           <p class="pos_p">关 键 词 ：
+           <input type="text" id="keyword" class="pos_text"/>请直接输入职位名称等</p>
+           <p class="pos_p2">
+	           <table>
+	           	<tr>
+		           	<td>行业/职位：</td><td><span id="divlist"></span></td>
+		           	<td>地区：</td><td><div id="arealist"/></td>
+	           	</tr>           
+	           </table>
+           </p>
+           <div id="search_main1">
+            <p class="pos_p2">
+              <a href="###;" class="posp2_a" onclick="job_resume_search('area_attr','cat_attr','job');">
+               <img src="/templets/{tag:sysbase name='cfg_templatestyle'/}/images/hxz_zhiwei.gif"/>
+              </a>
+               <a href="/member_Job_cate.action" class="posp2_a2"><img src="/templets/{tag:sysbase name='cfg_templatestyle'/}/images/hxz_zhanpix_03.gif"/></a>
+            </p>
+           </div>
+           <div id="search_main2" style="display:none">
+            <p class="pos_p2">
+             <a href="#" class="posp2_a" onclick="job_resume_search('area_attr','cat_attr','resume');">
+               <img src="/templets/{tag:sysbase name='cfg_templatestyle'/}/images/resf_03.gif"/>
+             </a>
+               <a href="/member_Resume_cate.action" class="posp2_a2"><img src="/templets/{tag:sysbase name='cfg_templatestyle'/}/images/qiuzhi_03.gif"/></a>
+            </p>
+           </div>
+        </div>
+      </div>
+      
+      <div class="new_recruit">
+         <ul class="sea_tistal">
+            <li id="rbut1" class="rz_but1" onmouseover="re_show(1,2,'rbut','rec_main','rz_but1','rz_but2')">最新招聘</li>
+            <li id="rbut2" class="rz_but2 " onmouseover="re_show(2,2,'rbut','rec_main','rz_but1','rz_but2')">推荐招聘</li>
+        </ul>
+          <div id="rec_main1">
+          <!-- 取最新招聘集合信息 -->
+           {tag:joblist row="20"}
+             <ul>
+               <li><a href="[field:job_detail_url/]" target="_blank">[field:title?len(10)/]</a></li>
+               <li>[field:get_company_name/]</li>
+               <li class="rli">[field:salary/]</li>
+               <li class="rli2">[field:cust_area/]</li>
+             </ul>   
+            {/tag:joblist} 
+             <div class="clear"></div>
+             
+          </div>
+          <div id="rec_main2">
+           <!-- 取推荐招聘集合信息 -->
+           {tag:joblist row="20" is_recom="1"}
+             <ul>
+               <li><a href="[field:job_detail_url/]" target="_blank">[field:title?len(10)/]</a></li>
+               <li>[field:get_company_name/]</li>
+               <li class="rli">[field:salary/]</li>
+               <li class="rli2">[field:cust_area/]</li>
+             </ul>
+           {/tag:joblist}  
+             <div class="clear"></div>
+          </div>
+      </div>
+      
+      <div class="new_resume">
+         <ul class="sea_tistal">
+            <li id="rebut1" class="rz_but1" onmouseover="re_show(1,2,'rebut','res_main','rz_but1','rz_but2')">最新简历</li>
+            <li id="rebut2" class="rz_but2 " onmouseover="re_show(2,2,'rebut','res_main','rz_but1','rz_but2')">推荐简历</li>
+         </ul>
+         <div id="res_main1">
+            <!-- 取最新招聘集合信息 -->
+            {tag:resumelist row="20" }
+              <ul>
+               <li><a href="[field:resume_detail_url/]" target="_blank">[field:real_name/]([field:sex/])</a></li>
+               <li>[field:cat_lastname/]</li>
+               <li class="rli">[field:salary/]</li>
+               <li class="rli2">[field:cust_area/]</li>
+              </ul>
+            {/tag:resumelist} 
+            <div class="clear"></div>
+         </div>
+            <div id="res_main2">
+             {tag:resumelist row="20" is_recom="1"}
+               <ul>
+	               <li><a href="[field:resume_detail_url/]" target="_blank">[field:real_name/]([field:sex/])</a></li>
+	               <li>[field:cat_lastname/]</li>
+	               <li class="rli">[field:salary/]</li>
+	               <li class="rli2">[field:cust_area/]</li>
+               </ul>
+             {/tag:resumelist}
+             <div class="clear"></div>
+            </div>   
+      </div>
+        
+    </div>
+    
+    <div class="r_300 f_right">
+    
+       <div class="industry">
+         <h2 class="ind_title"><span class="indpad">按分类浏览</span></h2>
+         <div class="ind_main">
+            <div class="ind_top">
+               <ul>
+                  <li id="inbut1" class="indbut1" onmouseover="re_show(1,2,'inbut','in_mains','indbut1','indbut2')">招聘</li>
+                  <li id="inbut2" class="indbut2" onmouseover="re_show(2,2,'inbut','in_mains','indbut1','indbut2')">求职</li>
+               </ul>
+            </div>
+            <div id="in_mains1">
+              <!-- 取招聘一级分类 -->
+               {tag:catlist module_type="job" row="12" cat_level="1"}
+                  <a href="[field:job_cat_url/]" target="_blank">[field:cat_name/]</a>             
+               {/tag:catlist}
+            </div>
+            <div id="in_mains2">
+              <!-- 取求职一级分类 -->
+               {tag:catlist module_type="resume" row="12" cat_level="1"}
+                  <a href="[field:resume_cat_url/]" target="_blank">[field:cat_name/]</a>             
+               {/tag:catlist}
+            
+            </div>
+         </div>
+       </div>
+       <div class="area">
+         <h2 class="ind_title"><span class="indpad">按地区浏览</span></h2>
+         <div class="ind_main">
+            <div class="ind_top">
+               <ul>
+                  <li id="arebut1" class="indbut1" onmouseover="re_show(1,2,'arebut','are_mains','indbut1','indbut2')">招聘</li>
+                  <li id="arebut2" class="indbut2" onmouseover="re_show(2,2,'arebut','are_mains','indbut1','indbut2')">求职</li>
+               </ul>
+            </div>
+            <div id="are_mains1">
+             <!-- 取招聘一级地区 -->
+              {tag:arealist row="100" up_area_id="{tag:sysbase name="cfg_topareaid"/}"}
+                <a href="[field:job_area_url/]" target="_blank">[field:area_name/]</a>
+              {/tag:arealist}
+             </div>
+            <div id="are_mains2">
+            <!-- 取求职一级地区 -->
+             {tag:arealist row="100" up_area_id="{tag:sysbase name="cfg_topareaid"/}"}
+                <a href="[field:resume_area_url/]" target="_blank">[field:area_name/]</a>
+              {/tag:arealist}
+            </div>
+          </div>
+       </div>
+    </div>
+    
+</div>
+<input type="hidden" id="hidden_cat_value" name="hidden_cat_value" />
+<input type="hidden" id="hidden_area_value" name="hidden_area_value"/>
+<div class="clear"></div>
+
+{tag:include file="bottom.html" /}
+
+</body>
+</html>
+
+
+
+
+

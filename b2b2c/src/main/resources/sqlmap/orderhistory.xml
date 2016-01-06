@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="orderhistory">
+
+	<typeAlias alias="orderhistory" type="com.rbt.model.Orderhistory" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="orderhistory">
+		<![CDATA[ 
+    SELECT info_id,order_id,cust_id,user_id,action_name,in_date FROM orderhistory WHERE info_id=$info_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="orderhistory">
+		UPDATE orderhistory SET info_id=#info_id#,order_id=#order_id#,cust_id=#cust_id#,user_id=#user_id#,action_name=#action_name#,in_date=#in_date# WHERE info_id=$info_id$
+	</update>
+
+	<insert id="insert" parameterClass="orderhistory">
+		INSERT INTO orderhistory (info_id,order_id,cust_id,user_id,action_name,in_date) VALUES (#info_id#,#order_id#,#cust_id#,#user_id#,#action_name#,now())
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM orderhistory WHERE info_id in ($info_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM orderhistory inner join member on member.cust_id=orderhistory.cust_id
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="order_id"> 
+			     order_id=#order_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="cust_name"> 
+			     cust_name=#cust_name#
+			</isNotNull>
+			<isNotNull prepend="and" property="starttime"> 
+			     DATE(orderhistory.in_date)>=#starttime#
+			</isNotNull>
+			<isNotNull prepend="and" property="endtime"> 
+			     #endtime#>=DATE(orderhistory.in_date)
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT info_id,order_id,orderhistory.cust_id,cust_name,user_id,action_name,orderhistory.in_date
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY info_id ASC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

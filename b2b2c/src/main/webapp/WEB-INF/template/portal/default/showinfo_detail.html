@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /}
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/exhibition_detailed.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/addcomments_detail.js"></script>
+<title>{tag:field name="title" /}-{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:field name="title" /}" />
+<meta name="description" content="{tag:field name="content" len="30" /}" />
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/common.js"></script> 
+<script type="text/javascript">
+$(document).ready(function(){
+/*排行特效样式111*/
+ addnumberstyle(".ph_main",".ico_top",10,"rak_addico_top3","rak_addico_topend");
+});
+</script>
+</head>
+
+<body>
+{tag:include file="top.html" /}
+<div class="clear"></div>
+<!--导航结束-->
+<div class="position"><P>当前位置:{tag:field name="page_position"/}正文</P></div>
+<div class="w960">
+   <div class="left_main f_left">
+    <div class="left_main_xx">
+      <h2 class="left_title">{tag:field name="title"/}</h2>
+      <div class="date">
+         <p><span class="date_text">发布日期：{tag:field name="in_date" len="19"/}</span><span class="date_text">浏览次数：
+         <span id="clicks"><script src="/include/clicknum.jsp?t=showinfo&n=exh_id&v={tag:field name='info_id'/}"></script></span></span></p>
+      </div>
+      <div class="exhibition_info">
+         <table width="640" border="0" cellspacing="1" cellpadding="" bgcolor="#cccccc">
+           <tr>
+             <td width="102" height="31" bgcolor="#ededed" class="exhibition_info_text1">展会日期</td>
+             <td width="535" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="start_date" len="19"/} 至 {tag:field name="end_date" len="19"/}</td>
+           </tr>
+           <tr>
+             <td width="102" height="31" bgcolor="#ededed" class="exhibition_info_text1">展出城市</td>
+             <td width="535" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="get_area_attr"/}</td>
+           </tr>
+           <tr>
+             <td width="102" height="31" bgcolor="#ededed" class="exhibition_info_text1">展出地址</td>
+             <td width="535" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="address"/}</td>
+           </tr>
+           <tr>
+             <td width="102" height="31" bgcolor="#ededed" class="exhibition_info_text1">展馆名称</td>
+             <td width="535" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="hall_name"/}</td>
+           </tr>
+           <tr>
+             <td width="102" height="31" bgcolor="#ededed" class="exhibition_info_text1">主办单位</td>
+             <td width="535" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="host_unit"/}</td>
+           </tr>
+            <tr>
+             <td width="102" height="31" bgcolor="#ededed" class="exhibition_info_text1">承办单位</td>
+             <td width="535" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="sponsor"/}</td>
+           </tr>
+            <tr>
+             <td width="102" height="31" bgcolor="#ededed" class="exhibition_info_text1">展会备注</td>
+             <td width="535" bgcolor="#FFFFFF" class="exhibition_info_text2">{tag:field name="remark"/}</td>
+           </tr>
+        </table>
+        
+      </div>
+      <div class="exhi_mian">
+            <p>
+           {tag:field name="exh_desc"/}
+            </p>
+           <p><span style="font-weight: bold;">联系方式</span></p>
+           <p>联系人：{tag:field name="contact_man"/}&nbsp;&nbsp;&nbsp;&nbsp;
+                联系地址：{tag:field name="contact_addr"/}&nbsp;&nbsp;&nbsp;&nbsp;
+                联系传真：{tag:field name="fax"/} &nbsp;&nbsp;&nbsp;&nbsp;
+              MSN：{tag:field name="msn"/}&nbsp;&nbsp;&nbsp;&nbsp;
+           </p>
+           <p>电话：{tag:field name="phone"/}  &nbsp;&nbsp;&nbsp;&nbsp;
+                联系手机：{tag:field name="cellphone"/}&nbsp;&nbsp;&nbsp;&nbsp;
+              Email：{tag:field name="email"/} &nbsp;&nbsp;&nbsp;&nbsp;
+              QQ：{tag:field name="qq"/}&nbsp;&nbsp;&nbsp;&nbsp;
+            </p>
+        </div>
+     </div> 
+     
+     
+ <!-- 评论信息标签的开始位置 -->
+  <form action="/portal/membercomment!addcomments.action" name="commentForm" method="post" validate="true">
+  <input type="hidden" name="infoids" id="infoids" value="{tag:field name="info_id"/}" />
+  <input type="hidden" name="commtitle" id="comment_title" value="{tag:field name="title"/}" />
+  <input type="hidden" name="infotype" id="info_type" value="showinfo" />
+  <input type="hidden" id="idwidth" value="350" />
+  {tag:include file="commentinfo.html" /} 
+  </form>
+ <!-- 评论信息标签的结束位置 -->   
+  
+  
+   
+   </div>
+   <div class="right_main f_right">
+   <div class="area_title"><h2 class="title_text">按地区浏览</h2></div>
+   <div class="area_main"> 
+    {tag:arealist row="100" up_area_id="{tag:sysbase name="cfg_topareaid"/}"}
+          	<a href="[field:showinfo_area_url/]" target="_blank">[field:area_name?len(4)/]</a>
+  	{/tag:arealist}
+   </div>
+ 
+ 
+  <div class="area_title"><h2 class="title_text">热门排行</h2></div>
+      <ul class="ph_main"  >
+         {tag:showinfolist row="10" clicknum="0"}
+         <li><span class="ico_top"></span><a href='[field:showinfo_detail_url/]' >[field:title?len(18)/]</a></li>
+         {/tag:showinfolist}
+   </ul>
+   <div class="ad">
+      {tag:advlist row="1" pos_id="97"}
+        <a href="[field:link_url/]" target="_blank">
+		      <img src="[field:img_path/]" alt="[field:adv_name/]" width="268"/>
+		</a>
+      {/tag:advlist}
+   </div>
+   <div class="ad">
+      {tag:advlist row="1" pos_id="98"}
+        <a href="[field:link_url/]" target="_blank">
+		      <img src="[field:img_path/]" alt="[field:adv_name/]" width="268"/>
+		</a>
+      {/tag:advlist}
+   </div>
+</div>
+</div>
+
+
+<div class="clear"></div>
+
+{tag:include file="bottom.html" /}
+</body>
+</html>

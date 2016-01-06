@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/subject.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/common.js"></script> 
+{tag:include file="jsinclude.html"/}
+<title>{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:chinfo name="meta_keyword"/}" />
+<meta name="description" content="{tag:chinfo name="meta_desc"/}" />
+<script type="text/javascript">
+$(document).ready(function(){
+/*排行特效样式*/
+ addnumberstyle(".toprangingcount",".ico_top",10,"rak_addico_top3","rak_addico_topend");
+});
+</script>
+</head>
+
+<body>
+{tag:include file="top.html" /}
+<!--导航结束-->
+<div class="w960">
+	{tag:advlist row="1" pos_id="47"}
+         <a href="[field:link_url/]" target="_blank">
+		     <img src="[field:img_path/]" alt="[field:adv_name/]" />
+		  </a>
+    {/tag:advlist}
+</div>
+<div class="clear"></div>
+<div class="w960">
+	<div class="main_l f_left">
+         <div class="weeklyrecom">
+             <h2 class="weeklyrecom_nav"><div class="wrecnav_m"><span class="title_cont">最新专题</span></div></h2>
+             <div class="weeklyrecom_cont">
+                <div class="weeklyrecom_pic f_left">
+                {tag:subjectlist  row="1"}
+                <a href='[field:subject_detail_url/]' target="_blank">
+                <img src="[field:img_path/]" width="310px" height="175px" alt="[field:title?len(18)/]"/>
+                </a>
+                {/tag:subjectlist}
+                </div>
+                <ul class="f_left">
+                     {tag:subjectlist  row="6"}
+                    <li ><a href='[field:subject_detail_url/]' target="_blank">[field:title?len(18)/]</a></li>
+                    {/tag:subjectlist}
+                </ul>
+             </div>
+        </div>
+		<!--结束-->
+    	<div class="subject">
+    	    {tag:catlist row="2" cat_level="1" module_type="subject"}
+            <div class="latest_subjedt f_left">
+                 <h2 class="latest_subjedt_nav"><div class="lsubnav_m"><span class="title_cont">[field:cat_name/]</span><span class="more">
+                 <a href="[field:subject_cat_url/]" target="_blank">更多>></a></span></div></h2>
+                 <div class="latest_subjedt_cont">
+                    {tag:subjectlist  row="1" cat_attr="[field:cat_id/]" }
+                 	<a href='[field:subject_detail_url/]' target="_blank" >
+                 	<img src="[field:subjectlistimg_path/]" class="f_left"  width="100px" height="70px"/>
+                 	</a>
+                 	{/tag:subjectlist}
+                    <div class="ls_news f_left">
+                     {tag:subjectlist  row="1" cat_attr="[field:cat_id/]" }
+                        <p><a href='[field:subject_detail_url/]' target="_blank">
+                        <span class="ls_news_main">[field:title?len(12)/]</span>
+                        </a><br /><a href='[field:subject_detail_url/]' target="_blank">
+                        [field:sub_desc?len(24)?format(ch)/]…</a></p>
+                      {/tag:subjectlist}
+                    </div>
+                    <div class="clear"></div>
+                    <ul>
+                      {tag:subjectlist start="1"  row="5" cat_attr="[field:cat_id/]" }
+                        <li><a href='[field:subject_detail_url/]' target="_blank">[field:title?len(23)/]</a></li>
+                       {/tag:subjectlist}
+                    </ul>
+                 </div>
+            </div>
+            {/tag:catlist}
+        <!--最新专题结束-->
+          
+    	</div>
+	</div>
+    
+    <div class="main_r f_right">
+        <div class="browse">
+            <h2 class="browse_nav"><div class="bronav_m"><span class="title_cont">分类浏览</span></div></h2>
+            <div class="browse_cont">
+                <p>
+                    {tag:catlist row="8" cat_level="1" module_type="subject"}
+                    <a href="[field:subject_cat_url/]" target="_blank">[field:cat_name/]</a>
+                    {/tag:catlist}    
+                </p>
+            </div>
+        </div>
+        <!--分类浏览结束-->
+        <div class="ranking">
+        	 <h2 class="browse_nav"><div class="bronav_m"><span class="title_cont">专题排行</span></div></h2>	
+             <div class="ranking_cont">
+             	<ul class="toprangingcount">
+             	    {tag:subjectlist  row="10" clicknum="0"}
+                    <li style="padding-left: 5px;"><span  class="ico_top"></span><span style="padding-left: 5px;"><a href='[field:subject_detail_url/]' target="_blank" >[field:title?len(20)/]</a></span></li>
+                    {/tag:subjectlist}
+               </ul>
+             </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+
+<div class="w960">
+  
+    <!--理财专题结束-->	
+     {tag:catlist row="2" cat_level="1" start="2" module_type="subject"}
+            <div class="latest_subjedt f_left">
+                 <h2 class="latest_subjedt_nav"><div class="lsubnav_m"><span class="title_cont">[field:cat_name/]</span>
+                 <span class="more"><a href="[field:subject_cat_url/]" target="_blank">更多>></a></span></div></h2>
+                 <div class="latest_subjedt_cont">
+                    {tag:subjectlist  row="1" cat_attr="[field:cat_id/]" }
+                 	<a href='[field:subject_detail_url/]' target="_blank" >
+                 	<img src="[field:subjectlistimg_path/]" class="f_left"  width="100px" height="70px"/>
+                 	</a>
+                 	{/tag:subjectlist}
+                    <div class="ls_news f_left">
+                     {tag:subjectlist  row="1" cat_attr="[field:cat_id/]" }
+                        <p><a href='[field:subject_detail_url/]' target="_blank">
+                        <span class="ls_news_main">[field:title?len(13)/]</span>
+                        </a><br /><a href='[field:subject_detail_url/]' target="_blank">
+                        [field:sub_desc?len(24)?format(ch)/]</a></p>
+                      {/tag:subjectlist}
+                    </div>
+                    <div class="clear"></div>
+                    <ul>
+                      {tag:subjectlist  start="1" row="5" cat_attr="[field:cat_id/]" }
+                        <li><a href='[field:subject_detail_url/]' target="_blank">[field:title?len(24)/]</a></li>
+                       {/tag:subjectlist}
+                    </ul>
+                 </div>
+            </div>
+            {/tag:catlist}
+    <!--产经专题结束-->
+    
+    <div class="other_subjedt f_right">
+         <h2 class="other_subjedt_nav"><div class="othersubnav_m"><span class="title_cont">推荐专题</span>
+         <span class="more"><a href="/subject/list.html" target="_blank">更多>></a></span></div></h2>
+         <div class="other_subjedt_cont">
+            <ul>
+               {tag:subjectlist  row="8" is_recom="1" }
+                <li><a href='[field:subject_detail_url/]' target="_blank" >[field:title?len(22)/]</a></li>
+               {/tag:subjectlist}
+            </ul>
+         </div>
+    </div>
+    <!--其他专题结束-->
+</div>
+<div class="clear"></div>
+{tag:include file="bottom.html" /}
+</body>
+</html>
+
+      

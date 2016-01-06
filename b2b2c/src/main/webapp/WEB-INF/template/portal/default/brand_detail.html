@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{tag:field name="title" /}-{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<meta name="keywords" content="{tag:field name='title' /}" />
+<meta name="description" content="{tag:field name='content' len='30' /}" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/brand_detail.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /}
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/addcomments_detail.js"></script>
+</head>
+
+<body>
+<!-- 公共头部 -->
+{tag:include file="top.html" /}
+<div class="clear"></div>
+<!--导航结束-->
+<div class="position"><P>当前位置: {tag:field name="page_position"/}正文 </P></div>
+
+  <div class="w960">
+     <div class="main">
+         <div class="brank_jm">
+        	 <img src="{tag:field name='img_path'/}" width="139px" height="65px"/>
+             <ul>
+                 <li><b>品牌名称：</b>{tag:field name="title"/}</li>
+                 <li><b>官方主页：</b>{tag:field name="web_url"/}</li>
+                 <li><b>浏览次数：</b><span id="clicks"><script src="/include/clicknum.jsp?t=brand&n=brand_id&v={tag:field name='info_id'/}"></script></span> </li>
+                 <li><b>更新日期：</b>{tag:field name="in_date" len="19"/}</li>
+             </ul>
+         </div>         
+         <div class="brand_js">
+             <h2>品牌介绍</h2>
+             <div class="brand_main">
+              <p>{tag:field name="content"/}</p>
+             <P class="brank_link">
+             <a href="###;" onclick="document.collectBrandForm.submit();">[加入收藏]</a>
+             <a class="sharebar_button" href="###;">[告诉好友]</a>
+             <a href="javascript:window.print();">[打印本文]</a>
+             <a href="javascript:window.close();">[关闭窗口]</a>
+             </P>
+             <script type="text/javascript" src="http://s.sharebar.cn/js/sharebar_button.js" charset="utf-8"></script>
+              <!-- 收藏公司的提交表单 -->
+		     <form action="/member_Collect_add.action" name="collectBrandForm" method="post">
+  					<input type="hidden" name="collect.title" id="title" value="{tag:field name='title'/}" />	
+  					<input type="hidden" name="collect.link_url" id="link_url1"  value="{tag:field name='web_url'/}"/>
+  					<input type="hidden" name="loc" value="" />
+ 			 </form>
+  			   <script>
+  					document.collectBrandForm.loc.value = document.location.href;
+  					document.getElementById("link_url1").value = document.location.href;
+  			   </script>
+           </div>
+        </div>
+             
+  <!--评论信息开始 -->
+  <a name="mycomment" id="comment"></a><!-- 锚点链接 -->     
+  <div class="spjs">
+     <form action="/portal/membercomment!addcomments.action" name="commentForm" method="post" >
+     <input type="hidden" name="infoids" id="infoids" value="{tag:field name='info_id'/}" />
+     <input type="hidden" name="commtitle" id="comment_title" value="{tag:field name='title'/}" />
+     <input type="hidden" name="infotype" id="info_type" value="brand" />
+     <input type="hidden" id="idwidth" value="350" />
+     {tag:include file="commentinfo.html" /}
+     </form>
+     
+  </div>
+  <!--评论信息结束 -->
+  
+  </div>
+     
+     
+    <!-- 侧栏开始-->
+     <div class="sidebar">
+         <div>
+            <h2 class="comp_prof_t">公司基本资料</h2>
+         <div class="comp_prof_cont">
+              <h2 class="comp_prof_name">{tag:field name="cust_name"/}</h2>
+              <ul class="contact">
+                 <li><span>联系人：{tag:field name="contact_name"/}&nbsp;{tag:field name="contact_sex"/}&nbsp;{tag:field name="contact_job"/}</span></li>
+                 <li>
+                    <a href="###;" onclick="document.addMemberfriendFormds.submit();">[加为商友]</a> 
+                 	<a href="###;" onclick="document.sendLetterForm.submit();">[发送信件]</a> 
+                 	<a href="###;" onclick="document.collectCompanyForm.submit();">[收藏公司]</a>
+                 	<!-- 价为商友的表单 -->
+                 	<form action="/member_Memberfriend_showview.action" method="post" name="addMemberfriendFormds">
+                 		<input type="hidden" name="memberfriend.cust_name" value="{tag:field name='cust_name'/}"/>
+                 		<input type="hidden" name="loc" value="" />
+                 	</form>
+                 	<script>
+				    	document.addMemberfriendFormds.loc.value = document.location.href;
+				    </script>
+				    <!-- 发送信件的提交表单 -->
+				    <form action="/member_Memberinbox_add.action" method="post" name="sendLetterForm">
+				       <input type="hidden" name="send_name" value="{tag:field name='cust_name'/}"/>
+				       <input type="hidden" name="memberinbox.mess_type" value="4"/>
+                 	   <input type="hidden" name="loc" value="" />
+				    </form>
+				    	<script>
+				    	document.sendLetterForm.loc.value = document.location.href;
+				    </script>
+				    <!-- 收藏公司的提交表单 -->
+				     <form action="/member_Collect_add.action" name="collectCompanyForm" method="post">
+    					<input type="hidden" name="collect.title" id="title" value="{tag:field name='cust_name'/}" />	
+    					<input type="hidden" name="collect.link_url" id="link_url1"  />
+    					<input type="hidden" name="loc" value="" />
+   					 </form>
+    				<script>
+    					document.collectCompanyForm.loc.value = document.location.href;
+    					document.getElementById("link_url1").value = document.location.href;
+    				</script>
+                  
+                  </li>
+                 <li><span>电话：{tag:field name="phone"/}</span></li>
+                 <li><span>手机：{tag:field name="contact_cellphone"/}</span></li>
+                 <li><span>地区：{tag:field name="get_all_area_attr"/}</span></li>
+                 <li><span>地址：{tag:field name="address"/}</span></li>
+              </ul>
+              <a href="/showroom/{tag:field name='cust_user_name'/}" target="_blank"><img src="/templets/{tag:sysbase name='cfg_templatestyle'/}/images/into.gif" /></a>
+         </div>
+
+         </div>
+     
+         
+         <div class="sidebar_main">
+                <h2 class="title_text"><span class="title_cont">推荐品牌</span><span class="more">
+                <a href="/brand/list.html">更多>></a></span>  <br class="clear"/></h2>
+                <ul class="sidebar_cont">
+                 <!-- 取推荐品牌信息集合 -->
+                  {tag:brandlist row="4" is_recom="1" imgwidth="116" imgheight="73"}
+                    <li>
+                    <div class="divMiddle" style="width:126px;height:83px;line-height:83px;">
+	                    <a href="[field:brand_detail_url/]" target="_blank" class="AMiddle" style="width:126px;">
+	                    <img src="[field:img_path/]" [field:imgsize/] class="ImgMiddle"/>
+	                    </a>
+                     </div>                       
+                    <p style="margin-top:6px;"><a href="[field:brand_detail_url/]" target="_blank">[field:title?len(12)/]</a></p>
+                    </li>
+                  {/tag:brandlist}  
+                  <div class="clear"></div>     
+                </ul>
+                
+         </div>
+         <div class="sidebar_main">
+                <h2 class="title_text"><span class="title_cont">该企业其他品牌</span><span class="more"><a href="/brand/list.html">更多>></a></span> <br class="clear"/></h2>
+                <ul class="sidebar_cont">
+                   {tag:brandArticleList row="4" cust_id="{tag:field name='cust_id'/}" cat_attr="{tag:field name='cat_attr' /}"  imgwidth="116" imgheight="73"}
+                    <li>
+                    <div class="divMiddle" style="width:126px;height:83px;line-height:83px;">
+	                    <a href="[field:brand_detail_url/]" target="_blank"  class="AMiddle" style="width:126px;">
+	                    <img src="[field:img_path/]" [field:imgsize/] class="ImgMiddle"/></a>                  
+                    </div>  
+                    <p style="margin-top:6px;"><a href="[field:brand_detail_url/]" target="_blank">[field:title?len(12)/]</a></p>
+                    </li>
+                   {/tag:brandArticleList}
+                    <div class="clear"></div>
+                </ul> 
+         </div>
+         
+     </div>
+  
+  </div>
+
+<div class="clear"></div>
+<!-- 公共底部 -->
+{tag:include file="bottom.html" /}
+</body>
+</html>

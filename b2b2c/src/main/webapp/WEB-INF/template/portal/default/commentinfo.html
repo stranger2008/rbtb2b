@@ -1,0 +1,66 @@
+
+<div class="comp_porod_title">
+    <p class="sm">评论信息</P><P class="sm_sj">共6666666666 <span class="red" id="allcount"></span> 条 
+    <a href="###;" onclick="mostcomment()" >
+   [查看全部]</a></P>
+  </div>
+  <div class="clear"></div>
+  <div class="comp_porod_pl">
+       <div class="pl_bfb" >
+          <ul class="pl_g f_left">
+             <li class="pl_1">好评</li>
+             <li class="pl_2">中评</li>
+             <li class="pl_3">差评</li> 
+          </ul>
+          <ul class="lp_100 f_left">
+              <li id="colorgoodcommentli" >
+              <table>
+             <tr  id="colorgoodcomment"></tr>
+             </table>
+              </li>
+             <li id="colormidcommentli">
+             <table  >
+             <tr  id="colormidcomment">
+             </tr>
+             </table>
+             </li>
+             <li id="colorbadcommentli">
+              <table >
+             <tr  id="colorbadcomment" ></tr>
+             </table>
+             </li>
+             
+          </ul>
+          <ul class="l_100 f_left">
+              <li id="pergoodcomment"></li>
+              <li id="permidcomment"></li>
+              <li id="perbadcomment"></li>
+          </ul>
+          <ul class="l_100 f_left">
+              <li id="goodcomment" class="ll_100_1"  style="background-color:#E1F0FB;width:60px;text-align: center;"></li>
+              <li id="midcomment" class="ll_100_2" style="background-color:#F2F8FD;width:60px;text-align: center;"></li>
+              <li id="badcomment" class="ll_100_3" style="background-color:#F9FCFE;width:60px;text-align: center;"></li>
+          </ul>
+       </div>
+       <div class="clear"></div>
+        <ul class="pl_df">
+           <li class="pl_1"><input type="radio" id="goodrdc" name="comm_num" value="1" /> 好评</li>
+           <li class="pl_2"><input type="radio" id="midrdc" name="comm_num" value="0"/> 中评</li>
+           <li class="pl_3"><input type="radio" id="badrdc" name="comm_num" value="-1" /> 差评</li>
+        </ul>
+        <div class="clear"></div>
+        <input type="hidden" name="urls" id="urls" />
+        <input type="hidden" name="membercomment.Info_title" id="meminfo_title" />
+        <textarea name="content" onKeyDown="gbcount();" onKeyUp="gbcount();"
+        id="com_content" cols="" rows="3" class="sry"></textarea>
+         <div style="padding-left:20px;padding-top:5px;">
+         	<span class="fbspan">(评论内容限1至300字)</span> 
+         	<span>当前还可以输入 <span class="red" ><label id="countnum" style="color: red;font-weight: bold;">300</label></span> 字</span>
+         </div>
+        <div class="yzm">验证码：<input type="text" maxlength="4" name="commentrand" id="rands" style="width:50px;" /> 
+        <img src="/imgrand.action" style="vertical-align:middle;" onclick="changeValidateCode(this)"/>
+         </div>
+        <div class="fb">
+        <input type="button" onclick="addcommentss();" value="发表评论" class="fb_pl"/>
+         </div> 
+  </div>

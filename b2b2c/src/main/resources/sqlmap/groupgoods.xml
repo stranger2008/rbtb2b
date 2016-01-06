@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="groupgoods">
+
+	<typeAlias alias="groupgoods" type="com.rbt.model.Groupgoods" />
+
+	<select id="getByPk" parameterClass="java.lang.String"	resultClass="groupgoods">
+		<![CDATA[ 
+	   		SELECT group_id,goods_id,cust_id,group_title,cat_attr,bond,group_price,cust_maxbuy,min_buy,max_buy,buy_num,already_buy,reach_time,saler_address,contact_way,group_desc,group_img,is_seven,is_overdue,is_ship,start_date,end_date,sort_no,give_inter,give_money,info_state,no_reason,user_id,oper_time FROM groupgoods WHERE group_id=$group_id$
+	    ]]>
+	</select>
+
+	<update id="update" parameterClass="groupgoods">
+		UPDATE groupgoods SET group_id=#group_id#,goods_id=#goods_id#,cust_id=#cust_id#,group_title=#group_title#,cat_attr=#cat_attr#,bond=#bond#,group_price=#group_price#,cust_maxbuy=#cust_maxbuy#,min_buy=#min_buy#,max_buy=#max_buy#,buy_num=#buy_num#,already_buy=#already_buy#,reach_time=#reach_time#,saler_address=#saler_address#,contact_way=#contact_way#,group_desc=#group_desc#,group_img=#group_img#,is_seven=#is_seven#,is_overdue=#is_overdue#,is_ship=#is_ship#,start_date=#start_date#,end_date=#end_date#,sort_no=#sort_no#,give_inter=#give_inter#,give_money=#give_money#,info_state=#info_state#,no_reason=#no_reason#,user_id=#user_id#,oper_time=now() WHERE group_id=$group_id$
+	</update>
+
+	<insert id="insert" parameterClass="groupgoods">
+		INSERT INTO groupgoods (group_id,goods_id,cust_id,group_title,cat_attr,bond,group_price,cust_maxbuy,min_buy,max_buy,buy_num,already_buy,reach_time,saler_address,contact_way,group_desc,group_img,is_seven,is_overdue,is_ship,start_date,end_date,sort_no,give_inter,give_money,info_state,no_reason,user_id,oper_time) VALUES (#group_id#,#goods_id#,#cust_id#,#group_title#,#cat_attr#,#bond#,#group_price#,#cust_maxbuy#,#min_buy#,#max_buy#,#buy_num#,#already_buy#,#reach_time#,#saler_address#,#contact_way#,#group_desc#,#group_img#,#is_seven#,#is_overdue#,#is_ship#,#start_date#,#end_date#,#sort_no#,#give_inter#,#give_money#,#info_state#,#no_reason#,#user_id#,now())
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM groupgoods WHERE group_id in ($group_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM groupgoods  gg inner join goods g on gg.goods_id=g.goods_id left join member m on g.cust_id=m.cust_id 
+		left join goodsbrand gb on g.brand_id=gb.brand_id left join memberuser mu on gg.cust_id = mu.cust_id
+		<dynamic prepend="WHERE">
+				 <isNotNull prepend="and" property="cust_id"> 
+			        gg.cust_id=#cust_id#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="group_id"> 
+			        gg.group_id=#group_id#
+			     </isNotNull>
+			      <isNotNull prepend="and" property="area_attr"> 
+			      INSTR(m.area_attr,#area_attr#) >0
+			     </isNotNull>
+				 <isNotNull prepend="and" property="cat_attr"> 
+				    INSTR(gg.cat_attr,#cat_attr#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="title_s"> 
+				    INSTR(gg.group_title,#title_s#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="cust_name_s"> 
+				    INSTR(m.cust_name,#cust_name_s#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="name_s"> 
+				    INSTR(g.goods_name,#name_s#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="ship_s"> 
+				    INSTR(gg.is_ship,#ship_s#) >0
+				 </isNotNull>
+			 	 <isNotNull prepend="and" property="state_s"> 
+				    INSTR(gg.info_state,#state_s#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="state_in"> 
+				    gg.info_state in ($state_in$)
+				 </isNotNull>
+				 <isNotNull prepend="and" property="priceup"> 
+				    $priceup$ >= gg.group_price
+				 </isNotNull>
+				 <isNotNull prepend="and" property="pricedown"> 
+				    gg.group_price >= $pricedown$
+				 </isNotNull>
+				 <isNotNull prepend="and" property="info_state"> 
+				    gg.info_state = $info_state$
+				 </isNotNull>
+				 
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		<![CDATA[ 
+		SELECT gg.group_id,g.goods_id,m.cust_name,gg.group_title,gg.cat_attr,gg.bond,gg.group_price,g.market_price,g.ship_price,g.size_attr,sale_price,
+		gg.cust_maxbuy,gg.min_buy,gg.max_buy,gg.buy_num,gg.already_buy,gg.reach_time,gg.saler_address,gg.no_reason,
+		gg.contact_way,gg.group_desc,gg.group_img,gg.is_seven,gg.is_overdue,gg.is_ship,gg.start_date,gg.end_date,gg.sort_no,
+		gg.give_inter,gg.give_money,gg.info_state,gg.user_id,gg.oper_time,g.goods_name,	m.cust_id,g.now_stock,mu.user_name,
+		IF(TO_DAYS(end_date) > TO_DAYS(NOW()) && TO_DAYS(start_date) < TO_DAYS(NOW()),1,0) AS state_in, 
+		IF(TO_DAYS(start_date) > TO_DAYS(NOW()),1,0) AS state_before, 
+		IF(TO_DAYS(end_date) < TO_DAYS(NOW()),1,0) AS state_after
+		]]>
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY 
+		<isNotNull property="already_buy">
+	    gg.already_buy DESC,
+		</isNotNull>
+		group_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

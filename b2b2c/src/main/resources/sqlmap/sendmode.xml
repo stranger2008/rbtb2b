@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="sendmode">
+
+	<typeAlias alias="sendmode" type="com.rbt.model.Sendmode" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="sendmode">
+		<![CDATA[ 
+    SELECT smode_id,smode_name,smode_desc,is_insured,rate,mix_insured,max_insured,reach_pay,sort_no FROM sendmode WHERE smode_id=$smode_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="sendmode">
+		UPDATE sendmode SET smode_id=#smode_id#,smode_name=#smode_name#,smode_desc=#smode_desc#,is_insured=#is_insured#,rate=#rate#,mix_insured=#mix_insured#,max_insured=#max_insured#,reach_pay=#reach_pay#,sort_no=#sort_no# WHERE smode_id=$smode_id$
+	</update>
+
+	<insert id="insert" parameterClass="sendmode">
+		INSERT INTO sendmode (smode_id,smode_name,smode_desc,is_insured,rate,mix_insured,max_insured,reach_pay,sort_no) 
+		VALUES (#smode_id#,#smode_name#,#smode_desc#,#is_insured#,#rate#,#mix_insured#,#max_insured#,#reach_pay#,#sort_no#)
+	</insert>
+	<!--批量更新sort_no字段 -->
+	<update id="updatesort_no" parameterClass="java.util.HashMap">
+    	UPDATE sendmode SET sort_no=#sort_no# WHERE smode_id=$smode_id$
+	</update>
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM sendmode WHERE smode_id in ($smode_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM sendmode 
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="smode_name">
+				instr(smode_name,#smode_name#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="is_insured">
+				is_insured=#is_insured#
+			</isNotNull>
+			<isNotNull prepend="and" property="rate">
+				rate=#rate#
+			</isNotNull>
+			<isNotNull prepend="and" property="mix_insured">
+				mix_insured=#mix_insured#
+			</isNotNull>
+			<isNotNull prepend="and" property="max_insured">
+				max_insured=#max_insured#
+			</isNotNull>
+			<isNotNull prepend="and" property="reach_pay">
+				reach_pay=#reach_pay#
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT smode_id,smode_name,smode_desc,is_insured,rate,mix_insured,max_insured,reach_pay,sort_no
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY sort_no ASC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

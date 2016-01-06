@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/provide.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /}
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/common.js"></script> 
+<title>{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:chinfo name="meta_keyword"/}" />
+<meta name="description" content="{tag:chinfo name="meta_desc"/}" /> 
+<script type="text/javascript">
+$(document).ready(function(){
+/*排行特效样式*/
+ addnumberstyle(".hot_cp_main",".ico_top",10,"rak_addico_top3","rak_addico_topend");
+});
+</script>
+</head>
+<body>
+ <!-- 公共顶部 -->
+{tag:include file="top.html" /}
+<!-- 中部 -->
+<div class="w960">
+   <div class="cont_main">
+	    <div class="banner">
+	       {tag:advlist row="1" pos_id="36"}
+	         <a href="[field:link_url/]" target="_blank">
+			      <img src="[field:img_path/]" alt="[field:adv_name/]" />
+			 </a>
+	       {/tag:advlist}
+	    </div>
+	    
+	    <div class="supply">
+    	<div class="supply_nav">
+           <P><span class="gyfl f_left">产品分类</span><span class="fbgy f_right"><a href="/member_Product_cate.action">发布产品</a></span></P>
+        </div>
+    	<div class="letter_scramble" id="seachword">
+        	<p>拼音筛选：
+        	
+        	<script type="text/javascript">
+        		var assarr = 'abcdefghijklmnopqrstuvwxyz';
+        		var wordarr = assarr.split('');
+        		for(var i=0;i<wordarr.length;i++){
+        			document.write('<a href="#" onmouseover=showSearch("'+ wordarr[i] +'","seachword","searchDiv") id="'+ wordarr[i] +'" onmouseout=closeSearch("searchDiv")>'+wordarr[i]+'</a>');
+        		}
+        	</script>
+        	</p>
+    	</div>
+    	
+    	 <!--搜索区域开始-->
+
+		<div class="divceng" style="display:none;" id="searchDiv" onmouseover="this.style.display = 'block';"  onmouseout="this.style.display = 'none';">
+			<table align="left" style="width:100px;height:100px;">
+			<tr>
+				<td align="center" colspan="2" style="border:0px;">
+					<input type="button" name="close" value="关闭" onclick="closeSearch('searchDiv')"/>
+				</td>
+			</tr>
+			</table>
+		</div>
+		 <!--搜索区域结束-->
+        
+        <div class="supply_main" id="supply_main">
+          <!-- 显示分类列表 row:显示的行数 cat_level:要显示的分类等级 module_type:分类的模块类型-->
+         {tag:catlist cat_level="1" module_type="product"}
+            <div class="supply_fl">
+                     <h2 class="supply_fl_t"><span class="[field:word_index/]"><a href="[field:product_cat_url/]" target="_blank">[field:cat_name?len(10)/]</a></span></h2>
+            	    <!-- 显示二级分类列表 row:显示的行数 up_cat_id:上一级分类的ID-->
+            	    <div class="supply_deta">
+            	    {tag:twocatlist row="10" up_cat_id="[field:cat_id/]"}
+                    <!-- 显示三级分类列表 row:显示的行数 up_cat_id:上一级分类的ID-->
+			        <span class="[field:two_word_index/]"><a href="[field:product_twocat_url/]" target="_blank">[field:two_cat_name?len(5)/]</a></span>
+                    {/tag:twocatlist}  
+                    </div>
+                    <a href="[field:product_cat_url/]" target="_blank" class="supply_more">更多>></a>
+            </div>   
+    	 {/tag:catlist}   
+    	 <div class="clear"></div>
+        </div>         
+</div>
+    <!--供应市场结束-->
+    
+   </div> 
+    
+   <div class="bar_main">
+    
+	    <div class="zx_cp">
+	      <h2 class="sidebar_title"><div class="ncnav_m"><span class="title_cont">最新产品</span><span class="more">
+	      <a href="/member_Product_cate.action">发布产品</a>
+	      </span></div></h2>
+	      <div class="clear"></div>
+	      <ul>
+	         {tag:productlist row="9"}
+	                    <li><a href='[field:product_detail_url/]' target="_blank">[field:title?len(15)/]</a></li>
+	         {/tag:productlist}
+	      </ul>
+	    </div>
+	    
+	<div class="main_right">
+        <!--最新企业-->
+        <div class="area_for">
+            <h2 class="sidebar_title"><span class="title_cont">按地区搜索</span><span class="more">
+            </span></h2>
+            <div class="clear"></div>
+            <div class="area_for_main">
+            <!-- 提取中国地区 -->
+            {tag:arealist row="100" up_area_id="{tag:sysbase name="cfg_topareaid"/}"}
+          	<a href="[field:product_area_url/]" target="_blank">[field:area_name?len(4)/]</a>
+          	{/tag:arealist}
+            </div>
+        </div>
+        <!--按地区搜索结束-->
+        
+       <div class="advert_buysell">
+         {tag:advlist row="1" pos_id="37"}
+            <a href="[field:link_url/]" target="_blank">
+		         <img src="[field:img_path/]" alt="[field:adv_name/]" width="230"/>
+		    </a>
+         {/tag:advlist}
+       </div>
+        
+        <!--推荐产品-->
+        <div class="recom">
+            <h2 class="sidebar_title"><span class="title_cont">产品推荐</span><span class="more">
+            </span></h2>
+            <div class="clear"></div>
+            <ul class="recom_main">
+               {tag:productlist row="6" is_recom="1"  imgwidth="85" imgheight="85"}
+                <li>
+                  <div class="divMiddle" style="width:95px;height:95px;line-height:95px;">
+		                <a href='[field:product_detail_url/]' target="_blank"  class="AMiddle" style="width:95px;">
+		                   <img src="[field:img_path/]"  [field:imgsize/] class="ImgMiddle" />
+		                </a>
+                    </div>
+                  <p style="margin-top:6px;"><a href='[field:product_detail_url/]' target="_blank" >[field:title?len(7)/]</a></p>
+                </li>
+               {/tag:productlist}
+            </ul>
+            <div class="clear"></div>
+          </div>
+        <!--推荐产品结束-->
+        
+        <div class="advert_buysell">
+          {tag:advlist row="1" pos_id="38"}
+            <a href="[field:link_url/]" target="_blank">
+		        <img src="[field:img_path/]" alt="[field:adv_name/]" width="230"/>
+		    </a>
+          {/tag:advlist}
+        </div>
+        
+        <div class="hot_cp">
+           <h2 class="sidebar_title"><span class="title_cont">热门产品</span><span class="more">
+           </span></h2>
+           <div class="clear"></div>
+           <ul class="hot_cp_main">
+             {tag:productlist row="10" clicknum="0"}
+             <li><span class="ico_top"></span><a href="[field:product_detail_url/]">[field:title?len(14)/]</a></li> 
+             {/tag:productlist}
+           </ul>
+        </div>
+     </div>    
+    
+   </div>
+    
+</div>
+
+<div class="clear"></div>
+<!--banner和最新供应结束-->
+
+
+ <!-- 公共底部 -->
+{tag:include file="bottom.html" /}
+</body>
+</html>
+
+
+
+      

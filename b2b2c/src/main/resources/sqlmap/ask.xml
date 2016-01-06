@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="ask">
+
+	<typeAlias alias="ask" type="com.rbt.model.Ask" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="ask">
+		<![CDATA[ 
+    SELECT ask_id,cust_id,cat_attr,title,img_path,ask_desc,add_desc,infoattr_id,integral,is_recom,info_state,no_reason,answer_state,in_date,clicknum,fare,user_id FROM ask WHERE ask_id=$ask_id$
+    ]]>
+	</select>
+   <update id="updateclicknum" parameterClass="java.lang.String">
+     UPDATE ask SET clicknum=(clicknum+1) WHERE ask_id=#ask_id#
+    </update>
+    
+	<update id="update" parameterClass="ask">
+		UPDATE ask SET cat_attr=#cat_attr#,title=#title#,img_path=#img_path#,ask_desc=#ask_desc#,add_desc=#add_desc#,integral=#integral#,is_recom=#is_recom#,info_state=#info_state#,no_reason=#no_reason#,answer_state=#answer_state#,clicknum=#clicknum#,fare=#fare#,infoattr_id=#infoattr_id# WHERE ask_id=$ask_id$
+	</update>
+	
+	<update id="updateState" parameterClass="java.util.HashMap">
+		UPDATE ask SET info_state=#info_state#,no_reason=#no_reason# WHERE ask_id=$ask_id$
+	</update>
+    
+    <!--批量修改-->
+	<update id="updateisrecom" parameterClass="java.util.HashMap">
+		UPDATE ask SET is_recom=#is_recom# WHERE ask_id=$ask_id$
+	</update>
+    
+	<insert id="insert" parameterClass="ask">
+		INSERT INTO ask (ask_id,cust_id,cat_attr,title,img_path,ask_desc,add_desc,integral,is_recom,info_state,no_reason,answer_state,in_date,clicknum,fare,user_id,infoattr_id) VALUES (#ask_id#,#cust_id#,#cat_attr#,#title#,#img_path#,#ask_desc#,#add_desc#,#integral#,#is_recom#,#info_state#,#no_reason#,#answer_state#,now(),#clicknum#,#fare#,#user_id#,#infoattr_id#)
+	</insert>
+
+	<insert id="insertGetPk" parameterClass="ask">
+		INSERT INTO ask (ask_id,cust_id,cat_attr,title,img_path,ask_desc,add_desc,integral,is_recom,info_state,no_reason,answer_state,in_date,clicknum,fare,user_id,infoattr_id) VALUES (#ask_id#,#cust_id#,#cat_attr#,#title#,#img_path#,#ask_desc#,#add_desc#,#integral#,#is_recom#,#info_state#,#no_reason#,#answer_state#,now(),#clicknum#,#fare#,#user_id#,#infoattr_id#)
+		 <selectKey resultClass="java.lang.String" keyProperty="ask_id">
+            <!-- 此处不区分大小写 -->
+            SELECT @@IDENTITY AS ID
+        </selectKey>  
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM ask WHERE ask_id in ($ask_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM ask
+		<dynamic prepend="WHERE">
+		    <isNotNull prepend="and" property="cust_id">
+				cust_id=#cust_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="title">
+				INSTR(title,#title#) >0
+			</isNotNull>
+			<isNotNull prepend="and" property="cat_attr">
+				INSTR(cat_attr,#cat_attr#) >0
+			</isNotNull>
+			<isNotNull prepend="and" property="integral">
+				integral=#integral#
+			</isNotNull>
+			<isNotNull prepend="and" property="is_recom">
+			    is_recom=#is_recom#
+			</isNotNull>
+			<isNotNull prepend="and" property="info_state">
+				info_state=#info_state#
+			</isNotNull>
+			<isNotNull prepend="and" property="infostate">
+				info_state in ($infostate$)
+			</isNotNull>
+			<isNotNull prepend="and" property="answer_state">
+				answer_state=#answer_state#
+			</isNotNull>
+			<isNotNull prepend="and" property="in_date">
+				DATE(in_date)>=#in_date#
+			</isNotNull>
+			<isNotNull prepend="and" property="end_date">
+				#end_date#>=DATE(in_date)
+			</isNotNull>
+			     <isNotNull prepend="and" property="today">
+		             DAY(in_date)=DAY(NOW()) AND MONTH(in_date)=MONTH(NOW()) AND YEAR(in_date)=YEAR(NOW())
+		         </isNotNull>	
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT ask_id,cust_id,cat_attr,title,img_path,infoattr_id,ask_desc,add_desc,is_recom,info_state,no_reason,answer_state,in_date,clicknum,fare,user_id,
+		(select para_key from commpara where para_code='integral_type' and para_value=integral) as integral
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY in_date desc
+		<isNotNull prepend="LIMIT" property="start">
+		$start$,$limit$
+		</isNotNull>
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+	
+		<sql id="getWebCommon">
+		 FROM ask  where info_state='1' 
+		<dynamic >
+		    <isNotNull prepend="and" property="is_recom">
+				is_recom=$is_recom$
+			</isNotNull>
+			<isNotNull prepend="and" property="cat_attr">
+				INSTR(cat_attr,#cat_attr#) >0
+			</isNotNull>
+			<isNotNull prepend="and" property="title">
+				INSTR(title,#title#) >0
+			</isNotNull>
+			<isNotNull prepend="and" property="answer_state">
+				answer_state=$answer_state$
+			</isNotNull>
+			<isNotNull prepend="and" property="integral">
+				integral>#integral#
+			</isNotNull>
+			<isNotNull prepend="and" property="starttime">
+				DATE(in_date)>=#starttime#
+			</isNotNull>
+			<isNotNull prepend="and" property="endtime">
+				#endtime#>=DATE(in_date)
+			</isNotNull>
+		</dynamic>
+	</sql>
+	
+	
+	<select id="getWebAskList" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
+		SELECT (SELECT COUNT(*) FROM answer WHERE ask_id=ask.ask_id ) AS num,ask_id,title,is_recom,info_state,answer_state,in_date,fare,integral
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+		<isNotNull property="num">
+			HAVING num>#num#
+		</isNotNull>
+		order by ask.in_date desc
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+	
+	<select id="getWebAskCount" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+	</select>
+	
+</sqlMap>
+

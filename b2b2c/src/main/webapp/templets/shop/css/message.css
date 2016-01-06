@@ -1,0 +1,152 @@
+.reply1{
+	width:980px;
+	padding-top:5px;
+	padding-bottom:10px;
+	background-color:#F4F9FF;
+}
+.reply1 span{
+	margin-right:10px;
+	margin-left:20px;
+}
+.reply1 p{
+	height:24px;
+	line-height:24px;
+	line-height:24px;
+}
+
+
+.reply{
+	width:980px;
+	padding-top:5px;
+	padding-bottom:10px;
+	background-color:#FFFBE8;
+}
+.reply span{
+	margin-right:10px;
+	margin-left:20px;
+}
+.reply p{
+	height:24px;
+	line-height:24px;
+	line-height:24px;
+}
+.qtion{
+	background:url(../images/qt_03.gif) no-repeat 10px center;
+	padding-left:30px;
+}
+.answer{
+	background:url(../images/hd_03.gif) no-repeat 10px center;
+	padding-left:30px;
+	color:#D75509;
+}
+
+.message{
+	width:980px;
+	padding-top:60px;
+}
+.mesh2{
+	width:970px;
+	height:28px;
+	line-height:28px;
+	font-size:12px;
+	padding-left:10px;
+	background:#c7e6f5;
+	color:#005a9e;
+	border-top:#3d8ac4 solid 1px;
+}
+.mescont{
+	width:980px;
+	background:#f8fbff;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.mescont span{
+	padding-left:5px;
+	padding-right:5px;
+}
+.mescont p{
+	width:930px;
+	padding-left:20px;
+	line-height:22px;
+	padding-top:10px;
+}
+.mestarea{
+	width:480px;
+	height:50px;
+}
+
+/*翻页*/
+.page_main{
+	width:600px;
+	height:56px;
+	float:right;
+	padding-top:20px;
+	}
+.page_main p{
+	height:40px;
+	margin-left:10px;
+	display:inline;
+	}
+	
+.page_main .page_up{
+	border:1px solid #dcdcdc;
+	background:url(../images/next.gif) no-repeat;
+	background-position:5px 1px;
+	padding-left:15px;
+	*margin-top:-2px;
+	margin-top:0;
+	}
+.page_main .page_up:hover{
+	border:1px solid #2953a6;
+	color:#2953a6;
+	background:url(../images/next.gif) no-repeat;
+	background-position:5px 1px;
+	padding-left:15px;
+	}	
+.page_main .page_next{
+	border:1px solid #dcdcdc;
+	background:url(../images/next.gif) no-repeat;
+	background-position:47px -44px;
+	padding-right:15px;
+	height:18px;
+	line-height:18px;
+	}
+.page_main .page_next:hover{
+	border:1px solid #2953a6;
+	background:url(../images/next.gif) no-repeat;
+	background-position:47px -44px;
+	padding-right:15px;
+	color:#2953a6;
+	}			
+	
+.page_main a{
+	height:18px;
+	border:1px solid #cccccc;
+	display:inline-block;
+	margin-right:8px;
+	padding:0 6px;
+	line-height:18px;
+	}
+
+	
+.page_main a:hover{
+	border:1px solid #2953a6;
+	background:#e5eeff;
+	color:#2953a6;
+	display:inline-block;
+	}
+	
+.page_main_input{
+	width:60px;
+	height:15px;
+	border:1px solid #ccc;
+	margin:0 5px;
+	}	
+.pageButtom{
+	border:0;
+	width:40px;
+	height:20px;
+	cursor:pointer;
+	margin-left:2px;
+	background:url(../images/pageButtom.gif) no-repeat;
+}	

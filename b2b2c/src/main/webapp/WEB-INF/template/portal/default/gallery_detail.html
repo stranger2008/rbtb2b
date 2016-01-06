@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/picture_detailed.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /}
+{tag:include file="/include/components/gallerypic/inc.html"/}
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/addcomments_detail.js"></script>
+<title>{tag:field name="title" /}-{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:field name="title" /}" />
+<meta name="description" content="{tag:field name="content" len="30" /}" /> 
+</head>
+
+<body>
+{tag:include file="top.html" /}
+<!--导航结束-->
+<div class="position"><P>当前位置: {tag:field name="page_position"/}正文</P></div>
+
+
+<div class="cont">
+   <div class="pic_m_t"> 
+      <p class="pic_m_tt">
+      <span class="pic_m_title">{tag:field name="title"/}</span><br/>
+      <span>{tag:field name="in_date" len="10"/}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+       <span>
+        	浏览次数：<script src="/include/clicknum.jsp?t=gallery&n=gal_id&v={tag:field name='info_id'/}"></script>次
+       </span>
+       </p>
+   </div>
+   <div class="pic_cont">
+       <div class="pic_cont_left">
+		     <div id="agallery" class="ad-gallery">
+		      <div class="ad-image-wrapper"></div>
+		      <div class="ad-controls"></div>
+		      <div class="ad-nav">
+		        <div class="ad-thumbs">
+		          <ul class="ad-thumb-list">
+		          {tag:gallerypicArticleList gal_id="{tag:field name="info_id" /}"}
+		           <li>
+		              <a href="[field:img_path/]"> 
+		                <img src="[field:img_path/]" alt="[field:pic_desc/]" width="88" height="88"/>
+		              </a>
+		            </li>
+		          {/tag:gallerypicArticleList}
+		          </ul>
+		        </div>
+		      </div>
+		    </div>  		
+	   </div>
+   </div>
+</div>
+
+<div class="w960">
+  <div class="comp_porod_title">
+    <p class="sm">图库说明</P>
+  </div>
+  <div class="qtcp_cont">
+      {tag:field name="gal_desc"/}
+  </div>
+</div>
+
+<div class="w960">
+  <div class="comp_porod_title">
+    <p class="sm">同类图片浏览</P><P class="sm_sj">    
+    <a href="/gallery/list.html?cat_id={tag:field name='same_cat_attr'/}">[查看更多]</a>
+    </P>
+  </div>
+  <div class="qtcp_cont">
+      <ul>
+          {tag:galleryArticleList row="6" cat_attr="{tag:field name="cat_attr"/}"  imgwidth="120" imgheight="120"}
+          <li>
+           <div class="divMiddle" style="width:130px;height:130px;line-height:130px;">
+	          <a href="[field:gallery_detail_url/]"  class="AMiddle" style="width:130px;">
+	              <img src="[field:img_path/]" [field:imgsize/] class="ImgMiddle" />
+	          </a>        
+	       </div>  
+           <p style="margin-top:6px;"><a href="[field:gallery_detail_url/]">[field:title?len(8)/]</a></p>          
+          </li>
+          {/tag:galleryArticleList}
+      </ul>
+      <div class="clear"></div>
+  </div>
+</div>
+<div class="w960">
+  <!-- 评论信息标签的开始位置 -->
+  <a name="comment"></a>
+  <form action="/portal/membercomment!addcomments.action" name="commentForm" method="post" validate="true">
+  <input type="hidden" name="infoids" id="infoids" value="{tag:field name="info_id"/}" />
+  <input type="hidden" name="commtitle" id="comment_title" value="{tag:field name="title"/}" />
+  <input type="hidden" name="infotype" id="info_type" value="gallery" />
+  <input type="hidden" id="idwidth" value="650" />
+  {tag:include file="commentinfo.html" /}
+  </form>
+ <!-- 评论信息标签的结束位置 -->
+</div>
+
+<div class="clear"></div>
+{tag:include file="bottom.html" /}
+</body>
+</html>
+
+

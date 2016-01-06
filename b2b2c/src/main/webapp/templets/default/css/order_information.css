@@ -1,0 +1,205 @@
+/*
+ ISConsole Copyright 2011 ruibaotong COMPANY, Co.ltd . 
+ All rights reserved.
+ FileName: order_information.css
+ */
+ 
+.a_title{
+	background:url(../images/orderdot.gif) no-repeat left center;
+	font-size:14px;
+	color:#333333;
+	font-weight:bold;
+	padding-left:12px;
+	margin-top:10px;
+}
+.use_adr{
+	width:958px;
+	padding-bottom:10px;
+	margin-top:10px;
+}
+.use_adr .li1{
+	width:950px;
+	padding-left:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+	background-color:#fafdff;
+	border:#e5eeff 1px solid;
+}
+.use_adr .li2{
+	width:960px;
+	padding-left:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.use_adr1{
+	width:958px;
+	padding-bottom:10px;
+	margin-top:10px;
+	background-color:#fafdff;
+	border:#e5eeff 1px solid;
+}
+.fill_adr{
+	width:960px;
+	background-color:#fafdff;
+	border:#e5eeff 1px solid;
+}
+.rad_pad{
+	background:url(../images/hxz_dot.gif) no-repeat left center;
+	margin-top:10px;
+	margin-right:20px;
+	padding-left:10px;
+}
+.rad_pad2{
+	padding-left:15px;
+	padding-top:10px;
+}
+.s_table{
+	margin-top:10px;
+	margin-left:20px;
+}
+.td_1{
+	background:url(../images/hxz_dot.gif) no-repeat left center;
+	width:70px;
+	height:33px;
+	line-height:33px;
+	padding-left:10px;
+}
+.td_2{
+	width:70px;
+	height:33px;
+	line-height:33px;
+	padding-left:10px;
+}
+.td_text1{
+	width:150px;
+	color:#959191;
+	border:#c4cacf 1px solid;
+	height:22px;
+	line-height:22px;
+}
+.td_text2{
+	width:295px;
+	*width:250px;
+	color:#959191;
+	border:#c4cacf 1px solid;
+	height:22px;
+	line-height:22px;
+}
+.td_w{
+	width:660px;
+}
+/*支付方式*/
+.zhif{
+	padding-top:5px;
+	padding-left:10px;
+}
+.c_zhif{
+	color:#666666;
+}
+/*订购信息确定*/
+.busin{
+	padding-top:10px;
+	padding-left:15px;
+}
+.f_busin{
+	color:#0066cc;
+}
+.order{
+	width:960px;
+	padding-bottom:10px;
+	padding-top:10px;
+}
+.or_pic{
+	width:80px;
+	height:28px;
+	background:url(../images/order_title.gif) repeat-x;
+	text-align:center;
+	border:#e3e3e3 solid 1px;
+	border-right:none;
+	
+}
+.or_titel{
+	width:405px;
+	height:28px;
+	background:url(../images/order_title.gif) repeat-x;
+	text-align:center;
+	border:#e3e3e3 solid 1px;
+	border-left:none;
+	border-right:none;
+}
+.or_tite2{
+	width:115px;
+	height:28px;
+	background:url(../images/order_title.gif) repeat-x;
+	text-align:center;
+	border:#e3e3e3 solid 1px;
+	border-left:none;
+	border-right:none;
+}
+.or_tite3{
+	width:115px;
+	height:28px;
+	background:url(../images/order_title.gif) repeat-x;
+	text-align:center;
+	border:#e3e3e3 solid 1px;
+	border-left:none;
+}
+.or_manipic{
+	width:80px;
+	height:65px;
+	border:#e3e3e3 solid 1px;
+	border-right:none;
+	border-top:none;
+}
+.or_mani{
+	width:405px;
+	height:65px;
+	border-bottom:#e3e3e3 solid 1px;
+}
+.or_mani2{
+	width:115px;
+	height:65px;
+	border-bottom:#e3e3e3 solid 1px;
+	text-align:center;
+}
+.or_mani3{
+	width:115px;
+	height:65px;
+	border:#e3e3e3 solid 1px;
+	border-left:none;
+	border-top:none;
+	color:#ff7300;
+	font-weight:bold;
+	text-align:center;
+}
+.area { 
+     border:1px solid #a8acad; 
+	 overflow:auto;
+	 width:300px; 
+	 height:50px;
+}
+.select_pic{
+	margin-left:10px;
+}
+.f_name{
+	padding-left:10px;
+	color:#0066cc;
+}
+.num_text{
+	width:40px;
+	border:#a8acad 1px solid;
+	margin-left:5px;
+	margin-right:5px;
+}
+.liuyan{
+	width:960px;
+	padding-bottom:20px;
+}
+.lly{
+	width:600px;
+}
+.rly{
+	width:300px;
+	text-align:right;
+	line-height:22px;
+}

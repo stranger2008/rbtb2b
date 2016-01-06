@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/information_detailed.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /}
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/addcomments_detail.js"></script>
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/common.js"></script> 
+<title>{tag:field name="title" /}-{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:field name="title" /}" />
+<meta name="description" content="{tag:field name="content" len="30" htm="false"/}" />
+<script type="text/javascript">
+$(document).ready(function(){
+/*排行特效样式111*/
+ addnumberstyle(".ph_main",".ico_top",10,"rak_addico_top3","rak_addico_topend");
+});
+</script>
+</head>
+
+<body>
+{tag:include file="top.html" /}
+<div class="clear"></div>
+<!--导航结束-->
+<div class="position"><P>当前位置: {tag:field name="page_position"/}正文 </P></div>
+<div class="w960">
+   <div class="left_main f_left">
+     <div class="flll_main">
+       <h2 class="left_title">{tag:field name="title"/}</h2>
+       <div class="date">
+         <p>
+         	<span class="date_text">文章来源：<a href="{tag:field name="sourcelink"/}" target="_blank">{tag:field name="source"/}</a></span>
+         	<span class="date_text">发布日期：{tag:field name="in_date" len="19"/}</span>
+         	<span class="date_text">浏览次数：<span id="clicks">
+         	<script src="/include/clicknum.jsp?t=news&n=news_id&v={tag:field name='info_id'/}"></script>
+         	</span></span>
+         </p>
+      </div>
+      
+      <div class="news_desc" id="news_desc_div">{tag:field name="description"/}</div>
+       
+      <script>
+      	if(document.getElementById('news_desc_div').innerHTML == ''){
+      		document.getElementById('news_desc_div').style.display = 'none';
+      	}
+      </script>
+       
+         <div class="exhi_mian">
+          {tag:field name="content"/}
+        </div>
+        
+        <div class="exhi_mian" style="text-align:right;">
+          作者：{tag:field name="author"/}
+        </div>
+        
+        <div class="exhi_mian" style="text-align:left;">
+        	<script>
+        		var tagv = '{tag:field name="tag"/}';
+        		var tags = tagv.split(',');
+        		var disVal = '';
+        		if(tags.length > 0){
+        			disVal += '标签：';
+        			for(var i=0;i<tags.length;i++){
+        				var linkUrl = '/portal/news!list.action?wd='+encodeURIComponent(encodeURIComponent(tags[i]));
+        				disVal += '<a href="'+linkUrl+'" target="_blank" style="color:#CC0000;">'+tags[i]+'</a>&nbsp;';
+        			}
+        		}
+        		document.write(disVal);
+        	</script>
+        </div>
+        
+        
+        
+        <div class="xianggyd">
+        	<h2>相关阅读:</h2>
+        	<ul>
+        	  {tag:newsArticleList keyword="{tag:field name="keyword"/}" row="5"}
+             <li><a href="[field:news_detail_url/]">[field:title?len(30)/]</a>&nbsp;&nbsp;[field:in_date?len(19)/]</li>
+             {/tag:newsArticleList}
+          	</ul>
+        </div>
+     </div>
+     
+     
+     
+    
+    
+   <!-- 评论开始 -->     
+     
+  <div class="spjs">
+  <form action="/portal/membercomment!addcomments.action" name="commentForm" method="post" validate="true">
+  <input type="hidden" name="comment" id="comment" value="{tag:field name="COMMENT"/}" />
+  <input type="hidden" name="infoids" id="infoids" value="{tag:field name="info_id"/}" />
+  <input type="hidden" name="commtitle" id="comment_title" value="{tag:field name="title"/}" />
+  <input type="hidden" name="infotype" id="info_type" value="news" />
+  <input type="hidden" id="idwidth" value="350" />
+  {tag:include file="commentinfo.html" /}
+  </form>
+</div>   
+  
+<!-- 评论结束 -->     
+
+
+
+
+
+   </div>
+   <div class="right_main f_right">
+       <div class="f_pic f_left">
+          <div class="area_title"><h2 class="title_text">推荐图文</h2></div>
+          <div class="p_main">
+             <ul>
+                {tag:newslist  row="4" news_attr="c"  imgwidth="90" imgheight="80"}
+                <li>
+                 <p class="divMiddle" style="width:110px;height:90px;line-height:90px;">
+                 <a href='[field:news_detail_url/]' target="_blank" class="AMiddle" style="width:110px;">
+                   <img src="[field:img_path/]"  [field:imgsize/] class="ImgMiddle" /></a>
+                 </p>
+                  <p><a href='[field:news_detail_url/]' target="_blank">[field:title?len(7)/]</a></p>
+                 </li>
+                {/tag:newslist}
+            </ul>
+             <div class="clear"></div>
+          </div> 
+        </div>
+        
+        <div class="clear"></div>
+       
+       
+       
+   
+   
+   
+      <div class="area_title"><h2 class="title_text">推荐资讯</h2></div>
+      <ul class="area_main">
+           {tag:newslist row="10" news_attr="c"}
+          <li><a href="[field:news_detail_url/]">[field:title?len(19)/]</a></li>
+          {/tag:newslist}
+      </ul>
+      
+      
+      
+      
+      <div class="area_title"><h2 class="title_text">热门排行</h2></div>
+      <ul class="ph_main">
+            {tag:newslist row="10" clicknum="0"}
+          <li><span class="ico_top"></span><a href="[field:news_detail_url/]">[field:title?len(16)/] </a></li>
+           {/tag:newslist}
+   </ul>
+   <div class="ad">
+     {tag:advlist row="1" pos_id="78"}
+       <a href="[field:link_url/]" target="_blank">
+		   <img src="[field:img_path/]" alt="[field:adv_name/]" width="268"/>
+	   </a>
+     {/tag:advlist}
+   </div>
+   <div class="ad">
+     {tag:advlist row="1" pos_id="79"}
+       <a href="[field:link_url/]" target="_blank">
+		    <img src="[field:img_path/]" alt="[field:adv_name/]" width="268"/>
+	   </a>
+     {/tag:advlist}
+   </div>
+   
+   </div>
+</div>
+
+
+<div class="clear"></div>
+
+{tag:include file="bottom.html" /}
+</body>
+</html>

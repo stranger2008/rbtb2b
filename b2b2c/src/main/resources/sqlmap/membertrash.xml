@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="membertrash">
+
+	<typeAlias alias="membertrash" type="com.rbt.model.Membertrash" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="membertrash">
+		<![CDATA[ 
+    SELECT info_id,box_id,info_type,cust_id,mess_type,title,content,get_cust_id,send_cust_id,in_date FROM membertrash WHERE info_id=$info_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="membertrash">
+		UPDATE membertrash SET info_id=#info_id#,box_id=#box_id#,info_type=#info_type#,cust_id=#cust_id#,mess_type=#mess_type#,title=#title#,content=#content#,get_cust_id=#get_cust_id#,in_date=#in_date# WHERE info_id=$info_id$
+	</update>
+
+	<insert id="insert" parameterClass="membertrash">
+		INSERT INTO membertrash (info_id,box_id,info_type,cust_id,mess_type,title,content,get_cust_id,in_date,send_cust_id) VALUES (#info_id#,#box_id#,#info_type#,#cust_id#,#mess_type#,#title#,#content#,#get_cust_id#,#in_date#,#send_cust_id#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM membertrash WHERE info_id in ($info_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM membertrash 
+		<dynamic prepend="WHERE">
+			 <isNotNull prepend="and" property="cust_id"> 
+			        membertrash.cust_id=#cust_id#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="title"> 
+       			    INSTR(membertrash.title,#title#) >0
+			     </isNotNull>
+			     <isNotNull prepend="and" property="mess_type"> 
+			        mess_type=#mess_type#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="get_cust_id"> 
+			        get_cust_id=#get_cust_id#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="send_cust_id"> 
+			        send_cust_id=#send_cust_id#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="trash_info_id"> 
+			        info_id=#box_info_id#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="search_starttime"> 
+				   membertrash.in_date BETWEEN #search_starttime#
+				 </isNotNull>
+				 <isNotNull prepend="and" property="search_endtime"> 
+				   #search_endtime#
+				 </isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT info_id,box_id,info_type,membertrash.cust_id,mess_type,membertrash.title,membertrash.content,get_cust_id,send_cust_id,membertrash.in_date
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY info_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

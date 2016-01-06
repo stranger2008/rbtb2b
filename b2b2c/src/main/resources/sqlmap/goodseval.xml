@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="goodseval">
+
+	<typeAlias alias="goodseval" type="com.rbt.model.Goodseval" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="goodseval">
+		<![CDATA[ 
+    SELECT trade_id,goods_id,cust_id,user_id,g_eval,g_comment,eval_date,explan_cust_id,explan_man,explan_content,explan_date,is_enable,is_two FROM goodseval WHERE trade_id=$trade_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="goodseval">
+		UPDATE goodseval SET explan_cust_id=#explan_cust_id#,explan_man=#explan_man#,explan_content=#explan_content#,g_eval=#g_eval#,explan_date=now(),is_enable=#is_enable#,is_two=#is_two# WHERE trade_id=$trade_id$
+	</update>
+	
+	<update id="updateistwo" parameterClass="goodseval">
+		UPDATE goodseval SET is_two=#is_two# WHERE trade_id=$trade_id$
+	</update>
+
+	<insert id="insert" parameterClass="goodseval">
+		INSERT INTO goodseval (goods_id,cust_id,user_id,g_eval,g_comment,eval_date,is_two) VALUES (#goods_id#,#cust_id#,#user_id#,#g_eval#,#g_comment#,now(),#is_two#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM goodseval WHERE trade_id in ($trade_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM goodseval 
+			left join goods on goodseval.goods_id=goods.goods_id 
+				left join memberuser on memberuser.user_id=goodseval.user_id
+					 left join mallmemlevel on mallmemlevel.cust_id=goodseval.cust_id
+					 	  left join malllevelset on malllevelset.level_id=mallmemlevel.level_id and malllevelset.mem_type="1"
+					 	      left join member on member.cust_id = goodseval.cust_id
+		<dynamic prepend="WHERE">
+		    <isNotNull prepend="and" property="cust_id">
+		    goods.cust_id=#cust_id#
+		    </isNotNull>
+		    <isNotNull prepend="and" property="area_attr"> 
+			INSTR(member.area_attr,#area_attr#)>0
+			</isNotNull>
+		    <isNotNull prepend="and" property="buy_cust_id">
+		    goodseval.cust_id=#buy_cust_id#
+		    </isNotNull>
+			 <isNotNull prepend="and" property="goods_name">
+		    INSTR(goods_name,#goods_name#)>0
+		    </isNotNull>
+		    <isNotNull prepend="and" property="goods_id">
+		    	goodseval.goods_id=#goods_id#
+		    </isNotNull>
+		    <isNotNull prepend="and" property="g_eval">
+		   	 g_eval=#g_eval#
+		    </isNotNull>
+		    <isNotNull prepend="and" property="ismentnull">
+		      g_comment!=''
+		    </isNotNull>
+		     <isNotNull prepend="and" property="is_enable">
+		    is_enable=#is_enable#
+		    </isNotNull>
+			<isNotNull prepend="and" property="start_time"> 
+		    DATE(eval_date)>=#start_time#
+			</isNotNull>
+			<isNotNull prepend="and" property="end_time"> 
+			#end_time#>=DATE(eval_date)
+			</isNotNull>
+			<isNotNull prepend="and" property="rstart_time"> 
+		    DATE(explan_date)>=#rstart_time#
+			</isNotNull>
+			<isNotNull prepend="and" property="rend_time"> 
+			#rend_time#>=DATE(explan_date)
+			</isNotNull>
+			<isNotNull prepend="and" property="eval_date"> 
+				eval_date is null
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT trade_id,goodseval.goods_id,goodseval.cust_id,goodseval.user_id,g_eval,g_comment,
+		eval_date,DATE_FORMAT(eval_date,'%Y-%c-%d %h:%i:%s') AS evalcom_data,explan_cust_id,explan_man,explan_content,explan_date,is_enable,
+		       goods_name,user_name,img_url,sale_price
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY trade_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+	
+	
+	<select id="getevalCount" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct 	FROM goodseval 	
+			<isNotNull property="goods_id">
+		      where	goodseval.goods_id=#goods_id#
+		    </isNotNull>
+	</select>
+
+</sqlMap>
+

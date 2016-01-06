@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="video">
+
+	<typeAlias alias="video" type="com.rbt.model.Video" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="video">
+		<![CDATA[ 
+    SELECT video_id,cust_id,title,img_path,cat_attr,video_path,video_desc,keyword,is_recom,infoattr_id,info_state,no_reason,in_date,clicknum,fare,user_id FROM video WHERE video_id=$video_id$
+    ]]>
+	</select>
+ <update id="updateclicknum" parameterClass="java.lang.String">
+     UPDATE video SET clicknum=(clicknum+1) WHERE video_id=#video_id#
+    </update>
+	<update id="update" parameterClass="video">
+		UPDATE video SET title=#title#,img_path=#img_path#,cat_attr=#cat_attr#,infoattr_id=#infoattr_id#,video_path=#video_path#,video_desc=#video_desc#,keyword=#keyword#,is_recom=#is_recom#,user_id=#user_id#,info_state=#info_state#,clicknum=#clicknum# WHERE video_id=$video_id$
+	</update>
+	
+	<update id="updateaudit" parameterClass="video">
+		UPDATE video SET info_state=#info_state#,no_reason=#no_reason# WHERE video_id=$video_id$
+	</update>
+	
+	
+	<!--批量修改-->
+	<update id="updateisrecom" parameterClass="java.util.HashMap">
+		UPDATE video SET is_recom=#is_recom# WHERE video_id=$video_id$
+	</update>
+
+	<insert id="insert" parameterClass="video">
+		INSERT INTO video (video_id,cust_id,title,img_path,cat_attr,video_path,video_desc,keyword,is_recom,info_state,no_reason,in_date,clicknum,fare,user_id,infoattr_id) VALUES (#video_id#,#cust_id#,#title#,#img_path#,#cat_attr#,#video_path#,#video_desc#,#keyword#,#is_recom#,#info_state#,#no_reason#,now(),#clicknum#,#fare#,#user_id#,#infoattr_id#)
+	</insert>
+
+	<insert id="insertGetPk" parameterClass="video">
+		INSERT INTO video (video_id,cust_id,title,img_path,cat_attr,video_path,video_desc,keyword,is_recom,info_state,no_reason,in_date,clicknum,fare,user_id,infoattr_id) VALUES (#video_id#,#cust_id#,#title#,#img_path#,#cat_attr#,#video_path#,#video_desc#,#keyword#,#is_recom#,#info_state#,#no_reason#,now(),#clicknum#,#fare#,#user_id#,#infoattr_id#)
+		 <selectKey resultClass="java.lang.String" keyProperty="video_id">
+            <!-- 此处不区分大小写 -->
+            SELECT @@IDENTITY AS ID
+        </selectKey>  
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM video WHERE video_id in ($video_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM video  LEFT JOIN member on member.cust_id=video.cust_id
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="cust_id"> 
+			    video.cust_id=#cust_id#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="cust_name"> 
+			     cust_name=#cust_name#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="title"> 
+			     INSTR(title,#title#) > 0
+			 </isNotNull>
+			 <isNotNull prepend="and" property="user_id"> 
+			     user_id=#user_id#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="is_recom"> 
+			     is_recom=#is_recom#
+			 </isNotNull>  
+			  <isNotNull prepend="and" property="starttime"> 
+			     DATE(video.in_date)>=#starttime#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="endtime"> 
+			     #endtime#>=DATE(video.in_date)
+			 </isNotNull>
+			 <isNotNull prepend="and" property="cat_attr"> 
+				INSTR(video.cat_attr,#cat_attr#) >0
+			 </isNotNull>
+			 <isNotNull prepend="and" property="info_state"> 
+			     video.info_state=#info_state#
+			 </isNotNull> 
+	         <isNotNull prepend="and" property="info_state_in">
+			 video.info_state in($info_state_in$)
+		     </isNotNull>
+		     <isNotNull prepend="and" property="today">
+		       DAY(video.in_date)=DAY(NOW()) AND MONTH(video.in_date)=MONTH(NOW()) AND YEAR(video.in_date)=YEAR(NOW())
+		    </isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT video_id,member.cust_id,cust_name,title,img_path,video.cat_attr,video.infoattr_id,video_path,video_desc,keyword,is_recom,video.info_state,no_reason,video.in_date,clicknum,fare,user_id
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY video.in_date desc
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+    <select id="getIndexList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+          select * from video  where video_id not in (select info_id FROM index_history where table_name='video')	
+	</select>
+	
+	<sql id="getWebCommon">
+		FROM video left join member on member.cust_id=video.cust_id
+		<dynamic prepend="WHERE">
+			 <isNotNull prepend="and" property="is_recom"> 
+			     is_recom=#is_recom#
+			 </isNotNull>  
+			<isNotNull prepend="and" property="title">
+				INSTR(title,#title#) >0
+			</isNotNull>
+			 <isNotNull prepend="and" property="info_state"> 
+			     video.info_state=#info_state#
+			 </isNotNull> 
+			 <isNotNull prepend="and" property="cat_attr"> 
+			     instr(video.cat_attr,#cat_attr#)>0
+			 </isNotNull>  
+		</dynamic>
+	</sql>
+	
+	<select id="getWebVideoList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT video_id,title,img_path,video_path,clicknum,video.in_date
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+		<isNotNull  property="clicknum"> 
+			 order by clicknum desc
+		</isNotNull> 
+		<isNotNull  property="in_date"> 
+			 order by video.in_date desc
+		</isNotNull> 
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getWebVideoCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+	</select>
+	
+	
+</sqlMap>
+

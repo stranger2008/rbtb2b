@@ -1,0 +1,937 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/default/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/default/css/index.css" rel="stylesheet" type="text/css" />
+<link href="/templets/default/css/js.css" rel="stylesheet" type="text/css" />
+<link href="/templets/default/css/images.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/include/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="/include/js/top.js"></script>
+<script type="text/javascript" src="/include/js/jquery.select.js"></script>
+<link href="/templets/default/css/propublic.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="/include/js/images.js"></script> 
+<script type="text/javascript" src="/templets/default/js/index.js"></script> 
+<script type="text/javascript" src="/include/js/ScrollPic.js"></script> 
+<title>瑞宝通 B2B网站系统|B2B(电子商务)行业门户解决方案</title>
+<meta name="keywords" content="B2B网站系统，B2B行业门户系统，B2B解决方案，Destoon，B2B，电子商务" />
+<meta name="description" content="瑞宝通 B2B网站系统是基于JAVA+MySQL的B2B(电子商务)行业门户解决方案" />
+</head>
+<body>
+<div class="user_top">
+  <div class="user">
+     <p class="welcome f_left">
+     	您好，欢迎来到瑞宝通B2B演示站
+     	<script src="/include/islogin.jsp"></script>
+     </p>
+     <div class="help f_right">
+         	 <a href="/memberindex.action">会员中心</a>
+         	 <!-- 搜索排行榜 -->
+         	 <a href="/a//spread.html" target="_blank">搜索排行榜</a>
+             <a href="/classified_cat.html" target="_self">分类信息</a>
+            <a href="###;" onclick="setMyHome();">设为首页</a>
+            <a href="###;" onClick="addFavorite();">加入收藏</a>
+     </div>
+     <div class="clear"></div>
+  </div>
+</div>
+<!--头部user结束-->
+<div class="logo_top w960">
+   <a href="/"><img src="/templets/default/images/logo.gif"  class="logo f_left"/></a>
+<!--头部logo-->
+ 	
+<!--头部广告-->
+</div>
+<div class="clear"></div>
+<div class="nav w960">
+
+  <div class="nav_l f_left"></div>
+  <ul id="navlist" class="nav_c f_left">
+	  <li id=""><a href="/index.html" target="_self">首页</a></li><li id="supply"><a href="/a/supply/index.html" target="_self">供应</a></li><li id="buy"><a href="/a/buy/index.html" target="_self">求购</a></li><li id="product"><a href="/a/product/index.html" target="_self">产品</a></li><li id="company"><a href="/a/company/index.html" target="_self">企业</a></li><li id="showinfo"><a href="/a/showinfo/index.html" target="_self">展会</a></li><li id="news"><a href="/a/news/index.html" target="_self">资讯</a></li><li id="resume"><a href="/a/resume/index.html" target="_self">人才</a></li><li id="know"><a href="/a/know/index.html" target="_self">知道</a></li><li id="subject"><a href="/a/subject/index.html" target="_self">专题</a></li><li id="gallery"><a href="/a/gallery/index.html" target="_self">图库</a></li><li id="video"><a href="/a/video/index.html" target="_self">视频</a></li><li id="download"><a href="/a/download/index.html" target="_self">下载</a></li><li id="goods123"><a href="/mallindex.html" target="_self">商城</a></li><li id="brand"><a href="/a/brand/index.html" target="_self">品牌</a></li>
+   </ul>
+   <div class="nav_r f_left"></div>
+</div>
+
+<!--导航结束-->    
+ <div class="search_s">
+         <ul class="search_s_m">         
+              <li class="select_li">           
+				    <select id="modselect" class="selcss">
+						 <option value="supply">供应</option><option value="buy">求购</option><option value="classified">分类信息</option><option value="product">产品</option><option value="showinfo">展会</option><option value="goods">商品</option><option value="job">招聘</option><option value="resume">人才</option><option value="know">知道</option><option value="subject">专题</option><option value="gallery">图库</option><option value="video">视频</option><option value="download">下载</option><option value="brand">品牌</option><option value="company">企业</option><option value="news">资讯</option>
+					</select>
+                   <input type="hidden" id="modvalue"/>
+              </li>            
+              <li class="text">
+              <input id="searchText" type="text" class="index_text" value="请输入搜索内容"/>
+              <input type="hidden" id="searchTextVal" value="${searchText?if_exists}">
+              </li>  
+                 <input type="hidden" id="wd" name="wd"/>             
+                 <li class="submit"><input id="searchButton" type="button" value=" " class="button" /></li>
+          </ul>         
+    
+	   
+       <input id="modtype" type="hidden">
+	   <div id="hotsearch"> 	   
+	   	<div id="supply" style="display:none;">
+	   			<P class="hot_search"><b>热门搜索：</b>
+		  	 	<a href="###;">111</a><a href="###;">u</a><a href="###;">1</a><a href="###;">是士大夫</a><a href="###;">a</a><a href="###;">秋天</a> 
+		  		</P>
+		  	</div><div id="buy" style="display:none;">
+	   			<P class="hot_search"><b>热门搜索：</b>
+		  	 	<a href="###;">1</a><a href="###;">凤凰</a><a href="###;">12</a><a href="###;">凤凰阁</a><a href="###;">黄金</a><a href="###;">11</a> 
+		  		</P>
+		  	</div><div id="product" style="display:none;">
+	   			<P class="hot_search"><b>热门搜索：</b>
+		  	 	<a href="###;">1</a><a href="###;">凤凰阁</a><a href="###;">231231</a><a href="###;">213</a><a href="###;">213213</a><a href="###;">蔡依</a> 
+		  		</P>
+		  	</div><div id="company" style="display:none;">
+	   			<P class="hot_search"><b>热门搜索：</b>
+		  	 	<a href="###;">1</a><a href="###;">123213</a><a href="###;">111111</a><a href="###;">111111</a><a href="###;">木材</a><a href="###;">213213</a> 
+		  		</P>
+		  	</div><div id="news" style="display:none;">
+	   			<P class="hot_search"><b>热门搜索：</b>
+		  	 	<a href="###;">1</a><a href="###;">123213</a><a href="###;">事实上</a><a href="###;">123213</a><a href="###;">成功故事测试</a><a href="###;">凤凰</a> 
+		  		</P>
+		  	</div><div id="showinfo" style="display:none;">
+	   			<P class="hot_search"><b>热门搜索：</b>
+		  	 	<a href="###;">受打击发生的</a><a href="###;">1</a><a href="###;">凤凰阁</a><a href="###;">213213</a><a href="###;">受打击发生的</a><a href="###;">`</a> 
+		  		</P>
+		  	</div><div id="job" style="display:none;">
+	   			<P class="hot_search"><b>热门搜索：</b>
+		  	 	<a href="###;">1</a><a href="###;">a</a><a href="###;">小样</a><a href="###;">凤凰阁</a><a href="###;">11</a><a href="###;">123123</a> 
+		  		</P>
+		  	</div><div id="resume" style="display:none;">
+	   			<P class="hot_search"><b>热门搜索：</b>
+		  	 	<a href="###;">1</a><a href="###;">3</a><a href="###;">21321</a><a href="###;">国有企业</a><a href="###;">b</a><a href="###;">111</a> 
+		  		</P>
+		  	</div><div id="know" style="display:none;">
+	   			<P class="hot_search"><b>热门搜索：</b>
+		  	 	<a href="###;">1</a><a href="###;">分</a><a href="###;">搜酷的哦</a><a href="###;">2</a><a href="###;">234231</a><a href="###;">123</a> 
+		  		</P>
+		  	</div><div id="subject" style="display:none;">
+	   			<P class="hot_search"><b>热门搜索：</b>
+		  	 	<a href="###;">1</a><a href="###;">凤凰</a><a href="###;">2</a><a href="###;">自古以来</a><a href="###;">5646</a><a href="###;">undefi</a> 
+		  		</P>
+		  	</div><div id="gallery" style="display:none;">
+	   			<P class="hot_search"><b>热门搜索：</b>
+		  	 	<a href="###;">1</a><a href="###;">qqqq</a><a href="###;">凤凰</a><a href="###;">122</a><a href="###;">图片11月1</a><a href="###;">123213</a> 
+		  		</P>
+		  	</div><div id="video" style="display:none;">
+	   			<P class="hot_search"><b>热门搜索：</b>
+		  	 	<a href="###;">1</a><a href="###;">木材</a><a href="###;">aaa</a><a href="###;">是东方时代</a><a href="###;">黄金</a><a href="###;">测试之钓鱼岛</a> 
+		  		</P>
+		  	</div><div id="download" style="display:none;">
+	   			<P class="hot_search"><b>热门搜索：</b>
+		  	 	<a href="###;">312312</a><a href="###;">1</a><a href="###;">111</a><a href="###;">aaa</a><a href="###;">213213</a><a href="###;">zzzzzz</a> 
+		  		</P>
+		  	</div><div id="brand" style="display:none;">
+	   			<P class="hot_search"><b>热门搜索：</b>
+		  	 	<a href="###;">是的士大夫</a><a href="###;">1</a><a href="###;">凤凰</a><a href="###;">hhhhhh</a><a href="###;">NBA</a><a href="###;">111111</a> 
+		  		</P>
+		  	</div>	   
+      </div>
+ </div>
+<div class="clear"></div>
+<!--search结束-->
+
+
+
+<div class="w960">
+  <div class="compr f_left">
+  <!-- 取资讯资讯信息 栏目信息 -->  
+  <h2 class="compr_title"><span class="title_main">行业资讯</span>
+     <span class="more"><a href="/a/news/index.html" target="_blank">更多+</a></span></h2>
+    
+   <div class="compr_main"> 
+      <div class="compr_main_pic">
+      	
+      	<a href='/a/news/2011/0817/45.html' target="_blank">
+           <img src="/include/images/nopic.jpg" width="73" height="71" class="f_left"/></a>
+
+        <ul class="compr_pic_ul f_left">
+            <!-- 取出资讯信息 row：取出前三行-->
+            <li><a href='/a/news/2011/0817/45.html' target="_blank"><font color="#1d1363">确有治航班</font></a></li><li><a href='/a/news/2011/0823/52.html' target="_blank">行业资讯测试</a></li><li><a href='/a/news/2011/0823/55.html' target="_blank">07月19日国内石化企业</a></li>
+        </ul>
+      </div>
+      <ul class="compr_ul">
+          <!-- 取出资讯信息 row：取出六条数据，start:从第3条开始取数据-->
+         <li><a href="/a/news/2011/0721/20.html" target="_blank">测试一下150</a></li><li><a href="/a/news/2011/0721/17.html" target="_blank"><font color="#ff0">测试一下</font></a></li><li><a href="/a/news/2011/0817/54.html" target="_blank">成功故事测试</a></li><li><a href="/a/news/2012/0911/197.html" target="_blank">凤凰阁2</a></li><li><a href="/a/news/2012/0911/196.html" target="_blank">凤凰阁1</a></li><li><a href="/a/news/2012/0910/195.html" target="_blank">错错错错错错</a></li>
+      </ul>
+   </div>
+</div>
+  <!--综合信息结束-->
+ <div class="banner_purch f_left">
+ 
+     <div class="banner">
+		    <div id="slides">
+			      <div class="slides_container" >
+			       <a href="http://www.ruibaotong.net" target="_blank">
+		               <img src="/templets/default/images/2a.jpg" alt="首页-行业资讯右边轮播图片广告" />
+		              </a><a href="http://www.ruibaotong.net" target="_blank">
+		               <img src="/templets/default/images/1a.jpg" alt="首页-行业资讯右边轮播图片广告" />
+		              </a><a href="http://www.ruibaotong.net" target="_blank">
+		               <img src="/templets/default/images/3a.jpg" alt="首页-行业资讯右边轮播图片广告" />
+		              </a><a href="http://www.ruibaotong.net" target="_blank">
+		               <img src="/templets/default/images/4a.jpg" alt="首页-行业资讯右边轮播图片广告" />
+		              </a>
+			      </div>
+		    </div>
+     </div>
+     
+     <div class="infor">
+        <div class="infor_t">
+           <ul class="infor_c f_left">
+              <li id="hotsup" class="infor_h"><a href="###;">热点供应</a></li>
+              <li id="hotbuy"><a href="###;">热点求购</a></li>
+           </ul>
+           <ul class="infor_l f_right">
+              <li><a href="/member_Supply_cate.action">新增供应</a></li>
+              <li><a href="/member_Buy_cate.action">新增采购</a></li>
+           </ul>
+        </div>
+        <!-- 热点供应 -->
+        <div class="infor_main" id="taghotdiv">
+           <ul class="infor_ul">
+              <!-- 取出热点供应 row：取出3条数据，-->
+              <li><a href="/a/supply/2012/0921/418.html" target="_blank">gdfgd</a></li><li><a href="/a/supply/2012/0914/417.html" target="_blank">凤凰1119</a></li><li><a href="/a/supply/2012/0914/416.html" target="_blank">凤凰1118</a></li>
+           </ul>
+           <ul class="infor_ul">
+               <!-- 取出热点供应 row：取出3条数据，start:从第3条开始取数据-->
+              <li><a href="/a/supply/2012/0914/415.html" target="_blank">凤凰1117</a></li><li><a href="/a/supply/2012/0914/414.html" target="_blank">凤凰1116</a></li><li><a href="/a/supply/2012/0914/413.html" target="_blank">凤凰1115</a></li>
+           </ul>
+           <ul>
+               <!-- 取出热点供应 row：取出6条数据，start:从第3条开始取数据-->
+              <li><a href="/a/supply/2012/0914/412.html" target="_blank">凤凰1114</a></li><li><a href="/a/supply/2012/0914/411.html" target="_blank">凤凰1113</a></li><li><a href="/a/supply/2012/0914/410.html" target="_blank">凤凰1112</a></li>
+           </ul>
+        </div>
+        <!-- 热点求购 -->
+        <div class="infor_main" id="tagbuydiv" >
+           <ul class="infor_ul">          
+               <!-- 取出热点求购 row：取出3条数据，orderby:按点击量排序-->
+              <li><a href="/a/buy/2012/0911/156.html" target="_blank">凤凰阁2</a></li><li><a href="/a/buy/2012/0911/157.html" target="_blank">凤凰阁1</a></li>
+           </ul>
+           <ul class="infor_ul">
+              <!-- 取出热点求购 row：取出3条数据，start：从第三条开始取数据，orderby:按点击量排序-->
+              
+           </ul>
+           <ul>
+              <!-- 取出热点求购 row：取出6条数据，start：从第三条开始取数据，orderby:按点击量排序-->
+              
+           </ul>
+        </div>
+     </div>
+  </div>
+  
+  <div class="sj f_right">
+      <ul class="dl">
+         <li><a href="/login.html">会员登录</a></li>
+         <li><a href="/register.html">免费注册</a></li>
+         <li><a href="/member_Supply_cate.action">发布供应</a></li>
+      </ul>
+      <div class="fw">
+         <ul class="gy">
+            <li class="fw_title">供应商服务</li>
+            <li><a href="/member_Supply_list.action">管理供应信息</a></li>
+            <li><a href="/member_Membertemplate_list.action">开通企业商铺</a></li>
+            <li><a href="/member_Memberinbox_list.action">查看商机询价</a></li>
+         </ul>
+         <ul>
+            <li class="fw_title">采购商服务</li>
+            <li><a href="/member_Buy_cate.action">发布采购信息</a></li>
+            <li><a href="/member_Subscribe_add.action">订阅最新供应</a></li>
+            <li><a href="/member_Buy_list.action">采购信息管理</a></li>
+         </ul>
+      </div>
+      <div class="clear"></div>
+      <a href="http://www.ruibaotong.net" target="_blank">
+		   <img src="/include/images/adv/250.gif" alt="首页-最新企业上方广告" class="fw_pic"/>
+		</a>
+  </div>
+</div>
+<div class="clear"></div>
+<!--综合信息——登录结束-->
+   
+   <div class="w960">
+    
+    <div class="cp">
+       <div class="cp_title" id="seachword">
+          <p>
+          	<!-- 
+          	<a href="#">a</a><a href="#" class="cp_hover">b</a><a href="#">c</a><a href="#">d</a><a href="#">e</a><a href="#">f</a><a href="#">g</a><a href="#">h</a><a href="#">i</a><a href="#">j</a><a href="#">k</a><a href="#">l</a><a href="#">m</a><a href="#">n</a><a href="#">o</a><a href="#">p</a><a href="#">q</a><a href="#">r</a><a href="#">s</a><a href="#">t</a><a href="#">u</a><a href="#">v</a><a href="#">w</a><a href="#">x</a><a href="#">y</a><a href="#">z</a>
+          	 -->
+          	 <script type="text/javascript" src="/templets/default/js/common.js"></script> 
+          	<script type="text/javascript">
+        		var assarr = 'abcdefghijklmnopqrstuvwxyz';
+        		var wordarr = assarr.split('');
+        		for(var i=0;i<wordarr.length;i++){
+        			document.write('<a href="#" onmouseover=showWordDiv("'+ wordarr[i] +'","seachword","searchDiv",this) id="'+ wordarr[i] +'" onmouseout=closeWordDiv("searchDiv",this)>'+wordarr[i]+'</a>');
+        		}
+        	</script>
+          </p>
+       </div>
+       <div class="cp_py"  id="searchDiv" onmouseover="this.style.display = 'block';"  onmouseout="this.style.display = 'none';"></div>
+       
+        <div class="cp_cont" id="supply_main">
+        
+        
+        	<div class="cp_main">
+	              <h2><span class="1"><a href="/supply/cat-7673516462.html" target="_blank">1232121321</a></span></h2>
+	              <P>
+	              	
+	              	<a href="/supply/cat-7673516462.html" target="_blank" class="cp_more">更多>></a>
+	              </P>
+	           </div><div class="cp_main">
+	              <h2><span class="a"><a href="/supply/cat-7553635747.html" target="_blank">aaaaaa</a></span></h2>
+	              <P>
+	              	
+	              	<a href="/supply/cat-7553635747.html" target="_blank" class="cp_more">更多>></a>
+	              </P>
+	           </div><div class="cp_main">
+	              <h2><span class="j"><a href="/supply/cat-6163271374.html" target="_blank">家具</a></span></h2>
+	              <P>
+	              	<span class="b"><a href="/supply/cat-3558854667.html"  target="_blank">办公桌椅</a></span><span class="h"><a href="/supply/cat-8217215237.html"  target="_blank">花花1</a></span><span class="s"><a href="/supply/cat-3186654777.html"  target="_blank">伸缩靠椅</a></span>
+	              	<a href="/supply/cat-6163271374.html" target="_blank" class="cp_more">更多>></a>
+	              </P>
+	           </div><div class="cp_main">
+	              <h2><span class="g"><a href="/supply/cat-6162562778.html" target="_blank">供应飞机</a></span></h2>
+	              <P>
+	              	
+	              	<a href="/supply/cat-6162562778.html" target="_blank" class="cp_more">更多>></a>
+	              </P>
+	           </div><div class="cp_main">
+	              <h2><span class="d"><a href="/supply/cat-5876617622.html" target="_blank">大炮</a></span></h2>
+	              <P>
+	              	
+	              	<a href="/supply/cat-5876617622.html" target="_blank" class="cp_more">更多>></a>
+	              </P>
+	           </div><div class="cp_main">
+	              <h2><span class="c"><a href="/supply/cat-3875844158.html" target="_blank">测试分类长度一</a></span></h2>
+	              <P>
+	              	
+	              	<a href="/supply/cat-3875844158.html" target="_blank" class="cp_more">更多>></a>
+	              </P>
+	           </div><div class="cp_main">
+	              <h2><span class="c"><a href="/supply/cat-3825286277.html" target="_blank">测试分类长度三</a></span></h2>
+	              <P>
+	              	
+	              	<a href="/supply/cat-3825286277.html" target="_blank" class="cp_more">更多>></a>
+	              </P>
+	           </div><div class="cp_main">
+	              <h2><span class="s"><a href="/supply/cat-3615565526.html" target="_blank">sadfasdf</a></span></h2>
+	              <P>
+	              	
+	              	<a href="/supply/cat-3615565526.html" target="_blank" class="cp_more">更多>></a>
+	              </P>
+	           </div><div class="cp_main">
+	              <h2><span class="d"><a href="/supply/cat-3133847216.html" target="_blank">大炮</a></span></h2>
+	              <P>
+	              	
+	              	<a href="/supply/cat-3133847216.html" target="_blank" class="cp_more">更多>></a>
+	              </P>
+	           </div><div class="cp_main">
+	              <h2><span class="a"><a href="/supply/cat-2877551637.html" target="_blank">奥拓</a></span></h2>
+	              <P>
+	              	
+	              	<a href="/supply/cat-2877551637.html" target="_blank" class="cp_more">更多>></a>
+	              </P>
+	           </div>
+           
+        </div>
+       
+    
+    </div>
+    
+   
+   
+      <!--产品分类结束-->
+   <div class="company_talents f_right">
+       <div class="company">
+          <div class="talents_t">
+           <ul class="infor_c f_left">
+              <li class="infor_h" id="vipmem"><a href="###;"><b>VIP企业</b></a></li>
+              <li id="newmem"><a href="###;"><b>最新企业</b></a></li>
+           </ul>
+           
+            <p class="f_right more_1"><a href="/a/company/index.html" target="_blank">更多+</a></p>
+           
+           
+        </div>
+          <ul class="company_main" id="vipmemdiv">
+          
+          	<!-- level_code 4:企业VIP -->
+          	<li><a href="/showroom/qqqq" target="_blank" >安森科技</a> </li><li><a href="/showroom/gmail" target="_blank" >google+ goog</a> </li><li><a href="/showroom/ccc" target="_blank" >sadfasd</a> </li><li><a href="/showroom/253937499" target="_blank" >厦门第一家JAVAB2B</a> </li><li><a href="/showroom/stranger" target="_blank" >厦门瑞宝通信息科技有限公</a> </li><li><a href="/showroom/user" target="_blank" >厦门金万富亚黄金交易有限</a> </li><li><a href="/showroom/ruibaotong" target="_blank" >运营商</a> </li>
+
+          </ul>
+          
+          <ul class="company_main" id="newmemdiv">
+          
+          	<li><a href="/showroom/lcc12" target="_blank" >凤凰阁</a> </li><li><a href="/showroom/qqqq" target="_blank" >安森科技</a> </li><li><a href="/showroom/llllli" target="_blank" >llli</a>阿尔及</li><li><a href="/showroom/kkkkk" target="_blank" >kk</a>中国</li><li><a href="/showroom/xiaoge3" target="_blank" >xxxxxxxxxxxx</a>阿塞拜</li><li><a href="/showroom/xiao" target="_blank" >dfsdafdsfsda</a>奥地利</li><li><a href="/showroom/sasasa" target="_blank" >assasasaaasa</a>阿富汗</li><li><a href="/showroom/ssssss" target="_blank" >dddddddddddd</a>阿富汗</li><li><a href="/showroom/ljaljalja" target="_blank" >1111111111</a>阿塞拜</li>
+
+          </ul>
+          
+       </div>
+       <!--最新注册企业结束-->
+       <div class="talents">
+         <div class="talents_t" >
+           <ul class="infor_c f_left">
+              <li class="infor_h" id="rempro"><a href="###;"><b>推荐产品</b></a></li>
+              <li id="newpro"><a href="###;"><b>最新产品</b></a></li>
+           </ul>
+           <p class="f_right more_1"><a href="/a/product/index.html" target="_blank">更多+</a></p>
+        </div>
+         <ul class="talents_main" id="remprodiv">         
+         	<li>            
+               <div class="divMiddle" style="width:110px;height:70px;line-height:70px;">
+	               <a href="/a/product/2012/0919/166.html" target="_blank" class="AMiddle" style="width:110px;">
+		               <img src="/uploads/images/20120919/165915009.jpg"  width="0"  class="ImgMiddle2"/>
+		           </a>
+		       </div> 
+	            <p style="margin-top:3px;"><a href="/a/product/2012/0919/166.html" target="_blank">kgbvgt</a></p>
+	         </li><li>            
+               <div class="divMiddle" style="width:110px;height:70px;line-height:70px;">
+	               <a href="/a/product/2012/0919/164.html" target="_blank" class="AMiddle" style="width:110px;">
+		               <img src="/uploads/images/20120919/165806540.jpg"  width="0"  class="ImgMiddle2"/>
+		           </a>
+		       </div> 
+	            <p style="margin-top:3px;"><a href="/a/product/2012/0919/164.html" target="_blank">fdfdfdfd</a></p>
+	         </li><li>            
+               <div class="divMiddle" style="width:110px;height:70px;line-height:70px;">
+	               <a href="/a/product/2012/0919/163.html" target="_blank" class="AMiddle" style="width:110px;">
+		               <img src="/uploads/images/20120919/165732727.jpg"  width="0"  class="ImgMiddle2"/>
+		           </a>
+		       </div> 
+	            <p style="margin-top:3px;"><a href="/a/product/2012/0919/163.html" target="_blank">fedfd</a></p>
+	         </li><li>            
+               <div class="divMiddle" style="width:110px;height:70px;line-height:70px;">
+	               <a href="/a/product/2012/0919/162.html" target="_blank" class="AMiddle" style="width:110px;">
+		               <img src="/uploads/images/20120919/165542368.jpg"  width="0"  class="ImgMiddle2"/>
+		           </a>
+		       </div> 
+	            <p style="margin-top:3px;"><a href="/a/product/2012/0919/162.html" target="_blank">fdf</a></p>
+	         </li><li>            
+               <div class="divMiddle" style="width:110px;height:70px;line-height:70px;">
+	               <a href="/a/product/2012/0911/161.html" target="_blank" class="AMiddle" style="width:110px;">
+		               <img src="/uploads/images/20120919/144641102.jpg"  width="0"  class="ImgMiddle2"/>
+		           </a>
+		       </div> 
+	            <p style="margin-top:3px;"><a href="/a/product/2012/0911/161.html" target="_blank">凤凰阁2</a></p>
+	         </li><li>            
+               <div class="divMiddle" style="width:110px;height:70px;line-height:70px;">
+	               <a href="/a/product/2012/0911/160.html" target="_blank" class="AMiddle" style="width:110px;">
+		               <img src="/uploads/images/20120919/144735665.jpg"  width="0"  class="ImgMiddle2"/>
+		           </a>
+		       </div> 
+	            <p style="margin-top:3px;"><a href="/a/product/2012/0911/160.html" target="_blank">凤凰阁1</a></p>
+	         </li>
+         </ul>
+         
+         
+         
+         <ul class="talents_main" id="newprodiv">
+            <li>
+            <div class="divMiddle" style="width:110px;height:70px;line-height:70px;">
+	            <a href="/a/product/2012/0919/166.html" target="_blank" class="AMiddle" style="width:110px;">
+	               <img src="/uploads/images/20120919/165915009.jpg"   width="0"  class="ImgMiddle2" />
+	            </a>            
+	       </div> 
+	             <p style="margin-top:3px;"><a href="/a/product/2012/0919/166.html" target="_blank">kgbvgt</a></p>
+            </li><li>
+            <div class="divMiddle" style="width:110px;height:70px;line-height:70px;">
+	            <a href="/a/product/2012/0919/164.html" target="_blank" class="AMiddle" style="width:110px;">
+	               <img src="/uploads/images/20120919/165806540.jpg"   width="0"  class="ImgMiddle2" />
+	            </a>            
+	       </div> 
+	             <p style="margin-top:3px;"><a href="/a/product/2012/0919/164.html" target="_blank">fdfdfdfd</a></p>
+            </li><li>
+            <div class="divMiddle" style="width:110px;height:70px;line-height:70px;">
+	            <a href="/a/product/2012/0919/163.html" target="_blank" class="AMiddle" style="width:110px;">
+	               <img src="/uploads/images/20120919/165732727.jpg"   width="0"  class="ImgMiddle2" />
+	            </a>            
+	       </div> 
+	             <p style="margin-top:3px;"><a href="/a/product/2012/0919/163.html" target="_blank">fedfd</a></p>
+            </li><li>
+            <div class="divMiddle" style="width:110px;height:70px;line-height:70px;">
+	            <a href="/a/product/2012/0919/162.html" target="_blank" class="AMiddle" style="width:110px;">
+	               <img src="/uploads/images/20120919/165542368.jpg"   width="0"  class="ImgMiddle2" />
+	            </a>            
+	       </div> 
+	             <p style="margin-top:3px;"><a href="/a/product/2012/0919/162.html" target="_blank">fdf</a></p>
+            </li><li>
+            <div class="divMiddle" style="width:110px;height:70px;line-height:70px;">
+	            <a href="/a/product/2012/0911/161.html" target="_blank" class="AMiddle" style="width:110px;">
+	               <img src="/uploads/images/20120919/144641102.jpg"   width="0"  class="ImgMiddle2" />
+	            </a>            
+	       </div> 
+	             <p style="margin-top:3px;"><a href="/a/product/2012/0911/161.html" target="_blank">凤凰阁2</a></p>
+            </li><li>
+            <div class="divMiddle" style="width:110px;height:70px;line-height:70px;">
+	            <a href="/a/product/2012/0911/160.html" target="_blank" class="AMiddle" style="width:110px;">
+	               <img src="/uploads/images/20120919/144735665.jpg"   width="0"  class="ImgMiddle2" />
+	            </a>            
+	       </div> 
+	             <p style="margin-top:3px;"><a href="/a/product/2012/0911/160.html" target="_blank">凤凰阁1</a></p>
+            </li>
+         </ul>
+         
+       </div>
+   </div>
+</div>
+<div class="clear"></div>
+<!--产品_招聘信息结束-->
+
+<div class="w960">
+<a href="http://www.ruibaotong.net" target="_blank">
+	<img src="/include/images/adv/960.gif" alt="首页-行业回答上方的横幅图片广告" />
+  </a>
+</div>
+<div class="w960">
+   <div class="know f_left">
+       <h2 class="title_2"><span class="title_main_2">行业问答</span><span class="more_2">
+	      <a href="/a/know/index.html"  target="_blank">更多+</a></span></h2>
+      <div class="clear"></div>
+      <ul>
+         <!-- 取出行情知道 row：取出11条数据，is_recom：是否推荐-->
+        <li><a href="/a/know/2012/0911/80.html" target="_blank" >凤凰阁2</a></li><li><a href="/a/know/2012/0911/79.html" target="_blank" >的风格凤凰阁灌灌灌灌灌</a></li><li><a href="/a/know/2012/0611/70.html" target="_blank" >gggggggggggggggg</a></li><li><a href="/a/know/2011/1215/64.html" target="_blank" >广东汕尾市代市长吴紫骊14日在此</a></li><li><a href="/a/know/2011/1207/59.html" target="_blank" >我是认证</a></li>      
+      </ul>
+   </div>
+   <!--行情知道结束-->
+   <div class="exhi f_left">
+        <h2 class="titel_3"><span class="title_main_3">展会信息</span>
+      <span class="more_1 f_right"><a href="/a/showinfo/index.html"  target="_blank">更多+</a></span></h2>
+      <div class="exhi_main">
+           <div class="exhi_pic">
+             <a  href="http://www.ruibaotong.net"  target="_blank">
+    		<img src="/include/images/adv/200.gif" width="202px" height="79px"  alt="首页-展会信息标题下方的左边图片广告" />
+  			</a>
+             <a href="http://www.ruibaotong.net" target="_blank">
+    		 <img src="/include/images/adv/200.gif" width="202px" height="79px" alt="首页-展会信息标题下方的右边图片广告" />
+  			 </a>
+           </div>
+           <ul>
+            <!-- 取出展会信息 row：取出7条数据，is_recom：是否推荐-->
+            <li><span class="exhi_span">[花会]</span>
+             <span class="exhi_a">
+                <a href="/a/showinfo/2012/0921/77.html" target="_blank">fdsfdsfdsfsf</a></span>2012-09-21</li><li><span class="exhi_span">[花会]</span>
+             <span class="exhi_a">
+                <a href="/a/showinfo/2012/0911/75.html" target="_blank">凤凰阁2</a></span>2012-09-11</li><li><span class="exhi_span">[花会]</span>
+             <span class="exhi_a">
+                <a href="/a/showinfo/2012/0911/74.html" target="_blank">凤凰阁1</a></span>2012-09-11</li><li><span class="exhi_span">[汽车]</span>
+             <span class="exhi_a">
+                <a href="/a/showinfo/2011/1215/55.html" target="_blank">广东汕尾市代市长吴紫骊14日在此间举行的</a></span>2011-12-15</li><li><span class="exhi_span">[消费品]</span>
+             <span class="exhi_a">
+                <a href="/a/showinfo/2011/1215/54.html" target="_blank">撒大法师的士大夫的萨菲是大法师打时尚大方</a></span>2011-12-15</li><li><span class="exhi_span">[手机开发]</span>
+             <span class="exhi_a">
+                <a href="/a/showinfo/2011/1207/46.html" target="_blank">Android开发，IOS系统开发</a></span>2011-12-07</li><li><span class="exhi_span">[消费品]</span>
+             <span class="exhi_a">
+                <a href="/a/showinfo/2011/1104/39.html" target="_blank">中国汽车亮相南非约翰内斯堡国际汽车展</a></span>2011-11-04</li>      
+           </ul>
+      </div>
+   </div>
+   <!--展会信息结束-->
+   <div class="information f_right">
+      <h2 class="title_2"><span class="title_main_2">企业新闻</span>
+      <span class="more_2"><a href="/membernews/list.html"  target="_blank">更多+</a></span></h2>
+      <div class="clear"></div>
+      <div class="information_main">         
+         <ul style="padding-top:0px;">
+          <!-- 取出行情资讯信息 row：取出6条数据，start:从第几个开始取数据-->
+          <li><a href="/showroom/ruibaotong/news/detail_63.html" target="_blank">cvfghsdf</a></li><li><a href="/showroom/ruibaotong/news/detail_60.html" target="_blank">sfdsdfxzczxc</a></li><li><a href="/showroom/cyc/news/detail_53.html" target="_blank">青青岛钢结构和国外服务费</a></li><li><a href="/showroom/cyc/news/detail_52.html" target="_blank">收拾收拾收拾收拾迭代大幅度费是多少</a></li><li><a href="/showroom/cyc/news/detail_51.html" target="_blank">是的防守打法士大夫</a></li><li><a href="/showroom/cyc/news/detail_50.html" target="_blank">你们是好样的</a></li><li><a href="/showroom/ruibaotong/news/detail_40.html" target="_blank">这条新闻怎么样呢，</a></li><li><a href="/showroom/qjy009/news/detail_36.html" target="_blank">国内弹簧业一路走来 产业结构暗存隐</a></li><li><a href="/showroom/qjy009/news/detail_35.html" target="_blank">美国对华聚酯薄膜反倾销案</a></li><li><a href="/showroom/qjy009/news/detail_34.html" target="_blank">自主品牌份额下滑 须提升紧凑型车竞</a></li>
+         </ul>
+      </div>
+   </div>
+</div>
+<div class="clear"></div>
+<!--行情知道——行情资讯结束-->
+
+<div class="w960">
+<a href="http://www.ruibaotong.net" target="_blank">
+    <img src="/include/images/adv/960.gif" alt="首页-最新专题上方的横幅图片广告" />
+  </a>
+</div>
+
+<div class="w960">
+
+<div class="project f_left">
+ <h2 class="title_3"><span class="title_main_2">最新专题</span>
+  <span class="more_2"><a href="/a/subject/index.html"  target="_blank">更多+</a></span></h2>
+  <div class="project_main">
+     <div class="project_main_d">        
+        <!-- 取出最新专题 row：取出1条数据，is_recom：是否推荐-->
+        <div class="f_left" style="width:180px;height:112px;line-height:112px;">      
+	       <div class="divMiddle" style="width:180px;height:112px;line-height:112px;">        
+		         <a class="AMiddle"  href="/a/subject/2012/0911/153.html" target="_blank" style="width:180px;">
+		            <img src="/uploads/images/20120918/165042259.jpg"  width="0"   class="ImgMiddle2"/>
+		         </a>	         
+		   </div>           
+	   </div>   
+        <ul class="f_left">
+            <!-- 取出最新专题 row：取出5条数据，start:从第几条开始取数据,is_recom：是否推荐-->
+           <li><a  href="/a/subject/2012/0911/152.html" target="_blank">凤凰阁1</a></li><li><a  href="/a/subject/2012/0830/142.html" target="_blank">凤凰3</a></li><li><a  href="/a/subject/2012/0830/141.html" target="_blank">凤凰2</a></li><li><a  href="/a/subject/2012/0830/140.html" target="_blank">凤凰1</a></li> 
+        </ul>        
+     </div>
+     <div class="clear"></div>
+     
+     <div class="project_main_d">      
+       <!-- 取出最新专题 row：取出1条数据，start:从第几条开始取数据,is_recom：是否推荐-->  
+           
+        <ul class="f_left">
+            <!-- 取出最新专题 row：取出5条数据，start:从第几条开始取数据,is_recom：是否推荐-->
+            
+        </ul>
+     </div>
+     <div class="clear"></div>
+  </div>
+</div>
+<!--最新专题结束-->
+<div class="project f_right">
+ <h2 class="title_3"><span class="title_main_2">推荐视频</span>
+  <span class="more_2"><a href="/a/video/index.html"  target="_blank">更多+</a></span></h2>
+  <div class="project_main">
+     <div class="video">
+         <!-- 取出推荐视频 row：取出3条数据，orderby:以什么条件进行排序，is_recom：是否推荐-->
+     	 <div style="width:130px;height:120px;float:left;margin-left:22px;text-align:center;display:inline;"> 	 
+           <div class="divMiddle" style="width:116px;height:90px;line-height:90px;">
+	         <a href="/a/video/2012/0911/65.html" target="_blank" class="AMiddle"  style="width:120px;">	         
+		         <img src="/uploads/images/20120919/145224618.jpg"  width="0"  class="ImgMiddle2" />		         
+		     </a>		     
+	       </div>	
+	       <p style="margin-top:6px;"><a href="/a/video/2012/0911/65.html" target="_blank">凤凰阁2</a></p>       	               	 
+	     </div><div style="width:130px;height:120px;float:left;margin-left:22px;text-align:center;display:inline;"> 	 
+           <div class="divMiddle" style="width:116px;height:90px;line-height:90px;">
+	         <a href="/a/video/2012/0911/64.html" target="_blank" class="AMiddle"  style="width:120px;">	         
+		         <img src="/uploads/images/20120911/093414687.jpg"  width="0"  class="ImgMiddle2" />		         
+		     </a>		     
+	       </div>	
+	       <p style="margin-top:6px;"><a href="/a/video/2012/0911/64.html" target="_blank">凤凰阁1</a></p>       	               	 
+	     </div><div style="width:130px;height:120px;float:left;margin-left:22px;text-align:center;display:inline;"> 	 
+           <div class="divMiddle" style="width:116px;height:90px;line-height:90px;">
+	         <a href="/a/video/2012/0910/63.html" target="_blank" class="AMiddle"  style="width:120px;">	         
+		         <img src="/uploads/images/20120919/145242399.jpg"  width="0"  class="ImgMiddle2" />		         
+		     </a>		     
+	       </div>	
+	       <p style="margin-top:6px;"><a href="/a/video/2012/0910/63.html" target="_blank">最新钓鱼岛事件</a></p>       	               	 
+	     </div>
+         <br class="clear"/>
+      </div>
+      
+      <div class="clear"></div>
+      
+      <div class="video">
+         <!-- 取出推荐视频 row：取出5条数据，start:从第几条开始取数据,orderby:以什么条件进行排序，is_recom：是否推荐-->
+         <div style="width:130px;height:120px;margin-left:22px;float:left;text-align:center;display:inline;"> 	 
+           <div class="divMiddle" style="width:116px;height:90px;line-height:90px;">
+	         <a href="/a/video/2012/0910/62.html" target="_blank" class="AMiddle"  style="width:120px;">	         
+		         <img src="/uploads/images/20120910/094625812.gif"  width="0"  class="ImgMiddle2" />		         
+		     </a>		     
+	       </div>	
+	       <p style="margin-top:6px;"><a href="/a/video/2012/0910/62.html" target="_blank" >测试之钓鱼岛事件</a></p>       	               	 
+	     </div><div style="width:130px;height:120px;margin-left:22px;float:left;text-align:center;display:inline;"> 	 
+           <div class="divMiddle" style="width:116px;height:90px;line-height:90px;">
+	         <a href="/a/video/2011/1031/32.html" target="_blank" class="AMiddle"  style="width:120px;">	         
+		         <img src="/uploads/images/20111228/130214234.jpg"  width="0"  class="ImgMiddle2" />		         
+		     </a>		     
+	       </div>	
+	       <p style="margin-top:6px;"><a href="/a/video/2011/1031/32.html" target="_blank" >第70亿人今日空降</a></p>       	               	 
+	     </div><div style="width:130px;height:120px;margin-left:22px;float:left;text-align:center;display:inline;"> 	 
+           <div class="divMiddle" style="width:116px;height:90px;line-height:90px;">
+	         <a href="/a/video/2011/0930/24.html" target="_blank" class="AMiddle"  style="width:120px;">	         
+		         <img src="/uploads/images/20111228/130327546.jpg"  width="0"  class="ImgMiddle2" />		         
+		     </a>		     
+	       </div>	
+	       <p style="margin-top:6px;"><a href="/a/video/2011/0930/24.html" target="_blank" >刘谦害羞承认与嫩模</a></p>       	               	 
+	     </div>
+         <br class="clear"/>
+      </div> 
+        
+  </div>
+</div>
+<!--推荐视频结束-->
+</div>
+<div class="clear"></div>
+
+<!--最新专题——推荐视频-->
+
+<div class="w960">
+<a href="http://www.ruibaotong.net" target="_blank">
+    <img src="/include/images/adv/960.gif" alt="首页-图库信息上方的大张横幅图片广告" />
+  </a>
+</div>
+
+<div class="w960">
+  <div class="atlas f_left">
+    <h2 class="title_4"><span class="title_main_3">图库信息</span>
+    <span class="more_1 f_right"><a href="/a/gallery/index.html"  target="_blank">更多+</a></span></h2>
+<div class=case_cont>
+	<div class=main_l id=LeftArr></div>
+	<div class=cont id=ISL_Cont_1><!-- 图片列表 begin -->
+	      <!-- 取出图库信息 row：取出10条数据，is_recom：是否推荐-->
+	    <div class="box" style="width:130px;height:146px;">
+	      <a href="/a/gallery/2012/0921/109.html" target="_blank">
+	      <!--class="divMiddle"  -->
+          <div  style="width:130px;height:110px;line-height:110px; border:1px solid #e1e2e3;">
+	          <img src="/uploads/images/20120921/145501640.jpg"  width="0" />             
+          </div>
+          </a> 
+          <p><a href="/a/gallery/2012/0921/109.html" target="_blank">er</a></p>
+        </div><div class="box" style="width:130px;height:146px;">
+	      <a href="/a/gallery/2012/0921/108.html" target="_blank">
+	      <!--class="divMiddle"  -->
+          <div  style="width:130px;height:110px;line-height:110px; border:1px solid #e1e2e3;">
+	          <img src="/uploads/images/20120921/145358359.jpg"  width="0" />             
+          </div>
+          </a> 
+          <p><a href="/a/gallery/2012/0921/108.html" target="_blank">5</a></p>
+        </div><div class="box" style="width:130px;height:146px;">
+	      <a href="/a/gallery/2012/0911/91.html" target="_blank">
+	      <!--class="divMiddle"  -->
+          <div  style="width:130px;height:110px;line-height:110px; border:1px solid #e1e2e3;">
+	          <img src="/uploads/images/20120918/162954478.jpg"  width="0" />             
+          </div>
+          </a> 
+          <p><a href="/a/gallery/2012/0911/91.html" target="_blank">凤凰阁2</a></p>
+        </div><div class="box" style="width:130px;height:146px;">
+	      <a href="/a/gallery/2012/0911/90.html" target="_blank">
+	      <!--class="divMiddle"  -->
+          <div  style="width:130px;height:110px;line-height:110px; border:1px solid #e1e2e3;">
+	          <img src="/uploads/images/20120921/170814484.jpg"  width="0" />             
+          </div>
+          </a> 
+          <p><a href="/a/gallery/2012/0911/90.html" target="_blank">凤凰阁1</a></p>
+        </div><div class="box" style="width:130px;height:146px;">
+	      <a href="/a/gallery/2012/0611/75.html" target="_blank">
+	      <!--class="divMiddle"  -->
+          <div  style="width:130px;height:110px;line-height:110px; border:1px solid #e1e2e3;">
+	          <img src="/uploads/images/20120921/170905000.jpg"  width="0" />             
+          </div>
+          </a> 
+          <p><a href="/a/gallery/2012/0611/75.html" target="_blank">qqqqq</a></p>
+        </div><div class="box" style="width:130px;height:146px;">
+	      <a href="/a/gallery/2012/0528/74.html" target="_blank">
+	      <!--class="divMiddle"  -->
+          <div  style="width:130px;height:110px;line-height:110px; border:1px solid #e1e2e3;">
+	          <img src="/uploads/images/20120921/170915296.jpg"  width="0" />             
+          </div>
+          </a> 
+          <p><a href="/a/gallery/2012/0528/74.html" target="_blank">rrr</a></p>
+        </div><div class="box" style="width:130px;height:146px;">
+	      <a href="/a/gallery/2012/0419/72.html" target="_blank">
+	      <!--class="divMiddle"  -->
+          <div  style="width:130px;height:110px;line-height:110px; border:1px solid #e1e2e3;">
+	          <img src="/uploads/images/20120921/170753812.jpg"  width="0" />             
+          </div>
+          </a> 
+          <p><a href="/a/gallery/2012/0419/72.html" target="_blank">是东方时代</a></p>
+        </div><div class="box" style="width:130px;height:146px;">
+	      <a href="/a/gallery/2012/0417/63.html" target="_blank">
+	      <!--class="divMiddle"  -->
+          <div  style="width:130px;height:110px;line-height:110px; border:1px solid #e1e2e3;">
+	          <img src="21321"  width="0" />             
+          </div>
+          </a> 
+          <p><a href="/a/gallery/2012/0417/63.html" target="_blank">123</a></p>
+        </div>
+    </div>
+   <div class= main_r id=RightArr></div>
+</div>
+<div class="clear"></div>
+<script language="javascript" type="text/javascript">
+		<!--//--><![CDATA[//><!--
+		var scrollPic_02 = new ScrollPic();
+		scrollPic_02.scrollContId   = "ISL_Cont_1"; //内容容器ID
+		scrollPic_02.arrLeftId      = "LeftArr";//左箭头ID
+		scrollPic_02.arrRightId     = "RightArr"; //右箭头ID
+
+		scrollPic_02.frameWidth     = 625;//显示框宽度
+		scrollPic_02.pageWidth      = 138; //翻页宽度
+
+		scrollPic_02.speed          = 15; //移动速度(单位毫秒，越小越快)
+		scrollPic_02.space          = 15; //每次移动像素(单位px，越大越快)
+		scrollPic_02.autoPlay       = false; //自动播放
+		scrollPic_02.autoPlayTime   = 3; //自动播放间隔时间(秒)
+
+		scrollPic_02.initialize(); //初始化
+							
+		//--><!]]>
+</script>
+  </div>
+  
+  <div class="download f_right">
+      <h2 class="title_2"><span class="title_main_2">下载专区</span>
+    <span class="more_2"><a href="/a/download/index.html"  target="_blank">更多+</a></span></h2>
+    <div class="clear"></div>
+    <ul class="download_cont">
+        <!-- 取出下载专区 row：取出7条数据，start:从第几条开始取数据,orderby:以什么条件进行排序，is_recom：是否推荐-->
+        <li><a href="/a/download/2012/0911/101.html" target="_blank">凤凰阁2 </a></li><li><a href="/a/download/2012/0911/100.html" target="_blank">凤凰阁1 </a></li><li><a href="/a/download/2012/0910/99.html" target="_blank">错错错错错错 </a></li><li><a href="/a/download/2012/0801/94.html" target="_blank">金山毒霸 </a></li><li><a href="/a/download/2012/0618/90.html" target="_blank">tyty </a></li><li><a href="/a/download/2012/0618/89.html" target="_blank">ttttt </a></li><li><a href="/a/download/2012/0615/88.html" target="_blank">676 </a></li>
+    </ul>
+  </div>
+</div>
+<div class="clear"></div>
+<!--图库——下载专区结束-->
+
+
+
+<div class="w960">
+    <div class="new_recruit f_left">
+         <div class="title_4">
+            <ul class="infor_c f_left">
+              <li class="infor_h" id="newjob"><a href="javascript:void(0);"><b>最新招聘</b></a></li>
+              <li id="newresume"><a href="javascript:void(0);"><b>最新求职</b></a></li>
+           </ul>
+           
+           <p class="f_right more_1"><a href="/a/resume/index.html" target="_blank">更多+</a></p>
+           
+         </div>
+          <div id="rec_main1">
+          
+          	 <!-- 取出招聘信息 row：取出6条数据-->
+           <ul>
+               <li><a href="/a/job/2012/0911/63.html" target="_blank">凤凰阁2</a></li>
+               <li>运营商</li>
+               <li class="rli">2000~3000</li>
+               <li class="rli2">福建</li>
+             </ul><ul>
+               <li><a href="/a/job/2012/0911/62.html" target="_blank">凤凰阁1</a></li>
+               <li>运营商</li>
+               <li class="rli">2000~3000</li>
+               <li class="rli2">江苏</li>
+             </ul><ul>
+               <li><a href="/a/job/2012/0910/61.html" target="_blank">信息标题111</a></li>
+               <li>运营商</li>
+               <li class="rli">5000~10000</li>
+               <li class="rli2">江西</li>
+             </ul><ul>
+               <li><a href="/a/job/2012/0830/60.html" target="_blank">保护好11</a></li>
+               <li>运营商</li>
+               <li class="rli">2000~3000</li>
+               <li class="rli2">河南</li>
+             </ul><ul>
+               <li><a href="/a/job/2012/0830/59.html" target="_blank">风格11</a></li>
+               <li>运营商</li>
+               <li class="rli">1000~2000</li>
+               <li class="rli2">北京</li>
+             </ul><ul>
+               <li><a href="/a/job/2012/0830/58.html" target="_blank">多发点11</a></li>
+               <li>运营商</li>
+               <li class="rli">1000~2000</li>
+               <li class="rli2">西藏</li>
+             </ul>
+          
+             <br class="clear"/>
+             
+          </div>
+          <div id="rec_main2">
+             <ul>
+             
+             <ul>
+               <li><a href="/a/resume/2012/0911/52.html" target="_blank">大大的(男)</a></li>
+               <li>凤凰阁2</li>
+               <li class="rli">2000~3000</li>
+               <li class="rli2">天津</li>
+             </ul><ul>
+               <li><a href="/a/resume/2012/0911/51.html" target="_blank">多发点(男)</a></li>
+               <li>凤凰阁1</li>
+               <li class="rli">1000~2000</li>
+               <li class="rli2">新疆</li>
+             </ul><ul>
+               <li><a href="/a/resume/2012/0910/50.html" target="_blank">123213(男)</a></li>
+               <li>人才管理111</li>
+               <li class="rli">2000~3000</li>
+               <li class="rli2">香港</li>
+             </ul><ul>
+               <li><a href="/a/resume/2012/0711/48.html" target="_blank">林泽(男)</a></li>
+               <li>软件工程师</li>
+               <li class="rli">2000~3000</li>
+               <li class="rli2">中国</li>
+             </ul><ul>
+               <li><a href="/a/resume/2012/0709/47.html" target="_blank">蔡毅存(男)</a></li>
+               <li>是的防守打法</li>
+               <li class="rli">2000~3000</li>
+               <li class="rli2">阿尔及</li>
+             </ul><ul>
+               <li><a href="/a/resume/2012/0521/46.html" target="_blank">发货的发货你(男)</a></li>
+               <li>当官的凤凰</li>
+               <li class="rli">1000~2000</li>
+               <li class="rli2"> </li>
+             </ul>
+             
+             </ul>  
+             <br class="clear"/>
+          </div>
+    </div>
+    <form action="/portal/vote!update.action" method="post" name="searchForm">
+    <div class="download f_right">
+    <h2 class="title_2"><span class="title_main_2">投票调查</span><span class="more_2"><a href="/vote/list.html">更多+</a></span></h2>
+    <div class="clear"></div>
+    <div class="tc">
+    	<p><b>你是怎么知道瑞宝B2B?</b></p>
+        <ul class="tc_main">
+          <li>           
+        	<input type="checkbox" name="chkbtvalue" id="67" value="67" />     	
+        	通过百度获得
+          </li><li>           
+        	<input type="checkbox" name="chkbtvalue" id="68" value="68" />     	
+        	通过朋友介绍
+          </li><li>           
+        	<input type="checkbox" name="chkbtvalue" id="69" value="69" />     	
+        	通过谷歌搜索
+          </li>
+         <li class="tc_button">
+         	<input type="hidden" id="ismultis" name="vote_is_multi"  value="checkbox" />
+    		<input type="hidden" id="voteids" name="vote_id"  value="21" />
+         	<input type="button" onclick="addvotes();"  value="投 票"/>
+         	<input type="button" onclick="showvoteresut('21');"  value="结 果"/>
+         </li>
+        </ul>
+    </div>
+     
+  </div>
+  </form>
+
+</div>
+<div class="clear"></div>
+
+
+
+
+
+
+<div class="w960 link">
+  <div class="link_title f_left"></div>
+  <div class="link_cont f_left">
+     <!-- 取出友情链接 row：取出30条数据-->
+     <a href="kkk" target="_blank">pppppp</a><a href="kkk" target="_blank">llllll</a><a href="00" target="_blank">00000</a><a href="hghg" target="_blank">hgfh</a><a href="http://www.ruibaotong.net " target="_blank">放假后高房价</a><a href="http://bbs.ruibaotong.net" target="_blank">商城链接3</a><a href="http://bbs.ruibaotong.net" target="_blank">商城链接2</a><a href="http://www.ruibaotong.com " target="_blank">北京瑞宝通</a><a href="http://www.mt58.com" target="_blank">aaa</a><a href="http://www.mt58.com" target="_blank">aaaaaa</a><a href="http://www.mt58.com" target="_blank">aaaaaa</a><a href="http://www.mt58.com" target="_blank">aaaaaa</a><a href="http://cn.bing.com/" target="_blank">分组管理</a><a href="http://www.mt58.com" target="_blank">你好</a><a href="http://www.mt58.com" target="_blank">是士大夫</a><a href="http://www.mt58.com" target="_blank">阿四大四大</a><a href="http://www.mt58.com" target="_blank">煤炭行业网</a>
+  </div>
+</div>
+<div class="clear"></div>
+<!--链接结束-->
+<div class="map">
+  <P>
+  	  <a href="/" target="_self">网站首页</a><a href="/aboutus_1.html" target="_self">关于我们</a><a href="/aboutus_2.html" target="_self">联系方式</a><a href="/a/websitemap.html" target="_blank">网站地图</a><a href="/aboutus_3.html" target="_self">使用协议</a><a href="/aboutus_5.html" target="_self">服务报价</a><a href="/portal/message.action" target="_blank">网站留言</a><a href="/advpos_all.html" target="_blank">广告服务</a>
+  </P>
+  <!-- 去除最后一条竖线 -->
+  <style type="text/css">
+	  .map .last_map{
+		border:0;
+	  }	
+   </style>
+  <script type="text/javascript">
+     $(document).ready(function(){
+       $(".map p a:last").addClass("last_map");        
+     });
+  </script>
+</div>
+<div class="bottom w960">
+  <P>电话：0592-6036010  传真：0592-6012583</P>
+  <P>©2008-2010 瑞宝通 B2B SYSTEM All Rights Reserved 备案号ICP******</P>
+  <div class="bottom_pic">
+    <img src="/templets/default/images/bottom1.gif" /> <img src="/templets/default/images/bottom2.gif" /> <img src="/templets/default/images/bottom3.gif" />
+    <br/>Powered by <a href="http://www.ruibaotong.net" target="_blank">瑞宝通B2B系统</a>
+  </div>
+</div>
+
+
+</body>
+</html>
+

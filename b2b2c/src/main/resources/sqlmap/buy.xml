@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="buy">
+	<typeAlias alias="buy" type="com.rbt.model.Buy" />
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="buy">
+		<![CDATA[ 
+    SELECT buy_id,cust_id,title,img_path,buy_type,cat_attr,area_attr,infoattr_id,content,buy_num,price,standard,pack,end_date,is_recom,info_state,no_reason,in_date,clicknum,fare,user_id FROM buy WHERE buy_id=$buy_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="buy">
+		UPDATE buy SET infoattr_id=#infoattr_id#,area_attr=#area_attr#,buy_id=#buy_id#,cust_id=#cust_id#,title=#title#,img_path=#img_path#,buy_type=#buy_type#,cat_attr=#cat_attr#,content=#content#,buy_num=#buy_num#,price=#price#,standard=#standard#,pack=#pack#,end_date=#end_date#,is_recom=#is_recom#,info_state=#info_state#,no_reason=#no_reason#,clicknum=#clicknum#,fare=#fare#,user_id=#user_id# WHERE buy_id=$buy_id$
+	</update>
+	
+    <update id="updateclicknum" parameterClass="java.lang.String">
+     UPDATE buy SET clicknum=(clicknum+1) WHERE buy_id=#buy_id#
+    </update>
+    
+	<insert id="insert" parameterClass="buy">
+		INSERT INTO buy (buy_id,cust_id,title,img_path,buy_type,cat_attr,content,buy_num,price,standard,pack,end_date,is_recom,info_state,no_reason,in_date,clicknum,fare,user_id,area_attr,infoattr_id) VALUES (#buy_id#,#cust_id#,#title#,#img_path#,#buy_type#,#cat_attr#,#content#,#buy_num#,#price#,#standard#,#pack#,#end_date#,#is_recom#,#info_state#,#no_reason#,now(),#clicknum#,#fare#,#user_id#,#area_attr#,#infoattr_id#)
+	</insert>
+
+	<insert id="insertGetPk" parameterClass="buy">
+		INSERT INTO buy (buy_id,cust_id,title,img_path,buy_type,cat_attr,content,buy_num,price,standard,pack,end_date,is_recom,info_state,no_reason,in_date,clicknum,fare,user_id,area_attr,infoattr_id) VALUES (#buy_id#,#cust_id#,#title#,#img_path#,#buy_type#,#cat_attr#,#content#,#buy_num#,#price#,#standard#,#pack#,#end_date#,#is_recom#,#info_state#,#no_reason#,now(),#clicknum#,#fare#,#user_id#,#area_attr#,#infoattr_id#)
+		 <selectKey resultClass="java.lang.String" keyProperty="buy_id">
+            <!-- 此处不区分大小写 -->
+            SELECT @@IDENTITY AS ID
+        </selectKey>  
+	</insert>
+
+    <!--批量修改-->
+	<update id="updateisrecom" parameterClass="java.util.HashMap">
+		UPDATE buy SET is_recom=#is_recom# WHERE buy_id=$buy_id$
+	</update>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM buy WHERE buy_id in ($buy_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM buy left join member on buy.cust_id=member.cust_id
+		<dynamic prepend="WHERE">
+				<isNotNull prepend="and" property="cust_id"> 
+			        buy.cust_id=#cust_id#
+			    </isNotNull>
+			    <isNotNull prepend="and" property="title"> 
+				    INSTR(title,#title#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="buy_type"> 
+				    INSTR(buy_type,#buy_type#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="is_recom"> 
+				    INSTR(is_recom,#is_recom#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="info_state"> 
+				    INSTR(buy.info_state,#info_state#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="search_fare_start"> 
+				    price BETWEEN #search_fare_start#
+				 </isNotNull>
+				 <isNotNull prepend="and" property="search_fare_last"> 
+				   #search_fare_last#
+				 </isNotNull>				 
+				 <isNotNull prepend="and" property="search_starttime"> 
+				   TO_DAYS(buy.in_date) > TO_DAYS(#search_starttime#)
+				 </isNotNull>
+				 <isNotNull prepend="and" property="search_endtime"> 
+				   TO_DAYS(#search_endtime#) > TO_DAYS(buy.in_date)
+				 </isNotNull>
+				 <isNotNull prepend="and" property="cat_attr"> 
+				    INSTR(buy.cat_attr,#cat_attr#) >0
+				 </isNotNull>	
+				 <isNotNull prepend="and" property="area_attr"> 
+				    INSTR(buy.area_attr,#area_attr#) >0
+				 </isNotNull>		
+				 <isNotNull prepend="and" property="area_filter"> 
+				    INSTR(buy.area_attr,#area_filter#) >0
+				 </isNotNull>		 
+		         <isNotNull prepend="and" property="info_state_in">
+				    buy.info_state in($info_state_in$)
+			     </isNotNull>		     
+			     <isNotNull prepend="and" property="today">
+		            DAY(buy.in_date)=DAY(NOW()) AND MONTH(buy.in_date)=MONTH(NOW()) AND YEAR(buy.in_date)=YEAR(NOW())
+		         </isNotNull>	
+		          <isNotNull prepend="and" property="starttime"> 
+				   TO_DAYS(buy.in_date) >= TO_DAYS(#starttime#)
+				 </isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT buy_id,buy.cust_id,member.cust_name,title,buy.infoattr_id,img_path,buy_type,buy.cat_attr,buy.area_attr,content,buy_num,price,standard,pack,end_date,is_recom,buy.info_state,buy.no_reason,buy.in_date,clicknum,fare,user_id
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		  ORDER BY in_date DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+    <select id="getIndexList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+          select * from buy  where buy_id not in (select info_id FROM index_history where table_name='buy')	
+	</select>
+	
+	
+	<sql id="getWebCommon">
+		FROM buy left join member on buy.cust_id=member.cust_id 
+		left join memberuser on memberuser.cust_id=member.cust_id  and memberuser.user_type="1"
+		    left join memberinter on memberinter.cust_id=memberuser.cust_id		
+				 left join levelinfo l on buy.cust_id=l.cust_id
+				 	 left join memberlevel b ON b.level_id=l.level_code 
+				         left join membercredit c on buy.cust_id=c.cust_id
+          <dynamic prepend="WHERE">
+				<isNotNull prepend="and" property="title"> 
+				    INSTR(title,#title#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="cat_attr"> 
+				    INSTR(buy.cat_attr,#cat_attr#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="area_attr"> 
+				    INSTR(buy.area_attr,#area_attr#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="buy_type"> 
+				    buy_type=#buy_type#
+				 </isNotNull>				 
+				 <isNotNull prepend="and" property="info_state">
+				   buy.info_state =$info_state$
+			     </isNotNull>
+			     <isNotNull prepend="and" property="img_path">
+				    img_path !=#img_path#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="level_code">
+				    l.level_code =#level_code#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="date_in_date">
+				    buy.in_date >= (SELECT SUBDATE(NOW(),INTERVAL $date_in_date$ DAY)) 
+			     </isNotNull>		     
+		  </dynamic>
+		  	
+	</sql>
+	
+	
+	<select id="getWebBuyList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+          select buy_id,title,content,buy.price,member.contact_qq,member.contact_msn,member.email,member.cust_name,
+          buy.in_date,buy.end_date,buy.cat_attr,buy.area_attr,fare,img_path,memberuser.user_name,c_num,member.client_status as status_id
+          <isParameterPresent>
+			<include refid="getWebCommon" />
+		  </isParameterPresent>
+		  <isNotNull property="in_date">
+				 order by buy.end_date $in_date$
+		  </isNotNull>
+		  <isNotNull  property="c_num"> 
+			 ORDER BY c_num $c_num$
+		  </isNotNull>
+		  <isNotNull property="SortType">
+			ORDER BY level_code DESC,fund_num DESC,buy.in_date DESC 
+		  </isNotNull>	
+		  <isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+	
+	<select id="getWebBuyCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+        SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+	</select>
+	
+		<sql id="getCatCommon">
+	  from buy
+	  <dynamic prepend="WHERE">
+	      <isNotNull prepend="and" property="cust_id"> 
+			cust_id=#cust_id#
+		  </isNotNull>
+	  </dynamic>
+	</sql>
+	
+	<select id="getCatBuyList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+          select DISTINCT SUBSTRING(cat_attr,12,10) as cat_attr
+          <isParameterPresent>
+			<include refid="getCatCommon" />
+		  </isParameterPresent>
+	</select>
+</sqlMap>
+

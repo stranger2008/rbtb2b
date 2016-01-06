@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="showinfo">
+
+	<typeAlias alias="showinfo" type="com.rbt.model.Showinfo" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="showinfo">
+		<![CDATA[ 
+    SELECT exh_id,cust_id,title,img_path,cat_attr,host_unit,sponsor,
+    contact_man,phone,cellphone,contact_addr,fax,email,msn,qq,start_date,
+    end_date,area_attr,address,hall_name,exh_desc,remark,is_recom,info_state,infoattr_id,
+    no_reason,in_date,clicknum,fare,user_id FROM showinfo WHERE exh_id=$exh_id$
+    ]]>
+	</select>
+      <update id="updateclicknum" parameterClass="java.lang.String">
+     UPDATE showinfo SET clicknum=(clicknum+1) WHERE exh_id=#exh_id#
+    </update>
+     <update id="updaterecommend" parameterClass="java.util.HashMap">
+     UPDATE showinfo SET is_recom=#is_recom# WHERE exh_id=#exh_id#
+    </update>
+	<update id="update" parameterClass="showinfo">
+		UPDATE showinfo SET cust_id=#cust_id#,
+		title=#title#,img_path=#img_path#,cat_attr=#cat_attr#,
+		host_unit=#host_unit#,sponsor=#sponsor#,contact_man=#contact_man#,
+		phone=#phone#,cellphone=#cellphone#,contact_addr=#contact_addr#,
+		fax=#fax#,email=#email#,msn=#msn#,qq=#qq#,start_date=#start_date#,
+		end_date=#end_date#,area_attr=#area_attr#,address=#address#,
+		hall_name=#hall_name#,exh_desc=#exh_desc#,remark=#remark#,
+		is_recom=#is_recom#,info_state=#info_state#,no_reason=#no_reason#,
+		clicknum=#clicknum#,fare=#fare#,user_id=#user_id#,infoattr_id=#infoattr_id#
+		 WHERE exh_id=$exh_id$
+	</update>
+
+	<insert id="insert" parameterClass="showinfo">
+		INSERT INTO showinfo (cust_id,title,img_path,cat_attr,
+		host_unit,sponsor,contact_man,phone,cellphone,contact_addr,
+		fax,email,msn,qq,start_date,end_date,area_attr,address,
+		hall_name,exh_desc,remark,is_recom,info_state,no_reason,
+		in_date,clicknum,fare,user_id ,infoattr_id) VALUES 
+		(#cust_id#,#title#,#img_path#,#cat_attr#,#host_unit#,
+		#sponsor#,#contact_man#,#phone#,#cellphone#,#contact_addr#,
+		#fax#,#email#,#msn#,#qq#,#start_date#,#end_date#,#area_attr#,
+		#address#,#hall_name#,#exh_desc#,#remark#,#is_recom#,#info_state#,
+		#no_reason#,now(),#clicknum#,#fare#,#user_id# ,#infoattr_id# )
+	</insert>
+ 
+ 	<insert id="insertGetPk" parameterClass="showinfo">
+		INSERT INTO showinfo (cust_id,title,img_path,cat_attr,
+		host_unit,sponsor,contact_man,phone,cellphone,contact_addr,
+		fax,email,msn,qq,start_date,end_date,area_attr,address,
+		hall_name,exh_desc,remark,is_recom,info_state,no_reason,
+		in_date,clicknum,fare,user_id ,infoattr_id) VALUES 
+		(#cust_id#,#title#,#img_path#,#cat_attr#,#host_unit#,
+		#sponsor#,#contact_man#,#phone#,#cellphone#,#contact_addr#,
+		#fax#,#email#,#msn#,#qq#,#start_date#,#end_date#,#area_attr#,
+		#address#,#hall_name#,#exh_desc#,#remark#,#is_recom#,#info_state#,
+		#no_reason#,now(),#clicknum#,#fare#,#user_id# ,#infoattr_id# )
+		 <selectKey resultClass="java.lang.String" keyProperty="exh_id">
+            <!-- 此处不区分大小写 -->
+            SELECT @@IDENTITY AS ID
+        </selectKey>  
+	</insert>
+ 
+    <update id="updatestate" parameterClass="java.util.HashMap">
+		UPDATE showinfo SET info_state=#info_state# ,no_reason=#no_reason#
+		WHERE exh_id=#exh_id# 
+	</update>
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM showinfo WHERE exh_id in ($exh_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM showinfo 
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="title">
+				instr(title,#title#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="cat_attr">
+			  instr(cat_attr,#cat_attr#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="area_attr">
+			  instr(area_attr,#area_attr#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="area_filter"> 
+				 INSTR(area_attr,#area_filter#) >0
+			 </isNotNull>	
+			<isNotNull prepend="and" property="host_unit">
+				instr(host_unit,#host_unit#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="hall_name">
+				instr(hall_name,#hall_name#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="sponsor">
+				sponsor=#sponsor#
+			</isNotNull>
+			<isNotNull prepend="and" property="in_date">
+				DATE(in_date)>=#in_date#
+			</isNotNull>
+			<isNotNull prepend="and" property="enddate">
+				#enddate#>=DATE(in_date)
+			</isNotNull>
+			<isNotNull prepend="and" property="info_state">
+				info_state=#info_state#
+			</isNotNull>
+			<isNotNull prepend="and" property="info_state_in">
+			 info_state in($info_state_in$)
+			</isNotNull>
+			<isNotNull prepend="and" property="cust_id">
+				cust_id=#cust_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="fare">
+				fare=#fare#
+			</isNotNull>
+			<isNotNull prepend="and" property="clicknum">
+				clicknum=#clicknum#
+			</isNotNull>
+			<isNotNull prepend="and" property="user_name">
+				user_name=#user_name#
+			</isNotNull>
+		
+			<isNotNull prepend="and" property="start_date">
+				DATE(start_date)>=#start_date#
+			</isNotNull>
+			<isNotNull prepend="and" property="endstart_date">
+				#endstart_date#>=DATE(start_date)
+			</isNotNull>
+			<isNotNull prepend="and" property="end_date">
+				DATE(end_date)>=#end_date#
+			</isNotNull>
+			<isNotNull prepend="and" property="endend_date">
+				#endend_date#>=DATE(end_date)
+			</isNotNull>
+			<isNotNull prepend="and" property="today">
+		          DAY(in_date)=DAY(NOW()) AND MONTH(in_date)=MONTH(NOW()) AND YEAR(in_date)=YEAR(NOW())
+		    </isNotNull>	
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT exh_id,cust_id,(SELECT cust_name FROM member WHERE cust_id=showinfo.cust_id)as cust_name ,title,img_path,cat_attr,host_unit,
+		sponsor,contact_man,phone,cellphone,contact_addr,
+		fax,email,msn,qq,start_date,end_date,area_attr,
+		address,hall_name,exh_desc,remark,is_recom,info_state,no_reason,in_date,clicknum,fare,user_id,
+		(SELECT user_name FROM sysuser
+		WHERE user_id=showinfo.user_id) AS user_name,infoattr_id
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY in_date DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+    
+    <sql id="getWebCommon">
+		FROM showinfo 
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="title">
+				instr(title,#title#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="cat_attr">
+				instr(cat_attr,#cat_attr#)>0
+			</isNotNull>
+			<isNotNull prepend="and" property="area_attr">
+				instr(area_attr,#area_attr#)>0
+			</isNotNull>			
+			<isNotNull prepend="and" property="info_state">
+				info_state=#info_state#
+			</isNotNull>	
+		</dynamic>
+		
+	</sql>
+    
+    <select id="getWebShowinfoList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		<!-- if语句用来判断日期是否在其中，是的话则为真1，否则为假0 -->	
+		<![CDATA[ 
+		SELECT title,host_unit,address,start_date,cat_attr,end_date,area_attr,img_path,exh_id,in_date,
+		IF(TO_DAYS(end_date) > TO_DAYS(NOW()) && TO_DAYS(start_date) < TO_DAYS(NOW()),1,0) AS state_in, 
+		IF(TO_DAYS(start_date) > TO_DAYS(NOW()),1,0) AS state_before, 
+		IF(TO_DAYS(end_date) < TO_DAYS(NOW()),1,0) AS state_after,infoattr_id
+		]]>
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+		<isNotNull  property="clicknum">
+			order by $clicknum$ desc
+		</isNotNull>
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+
+	<select id="getWebShowinfoCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+	</select>
+   
+</sqlMap>
+

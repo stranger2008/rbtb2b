@@ -1,0 +1,288 @@
+/*
+ ISConsole Copyright 2011 ruibaotong COMPANY, Co.ltd . 
+ All rights reserved.
+ FileName: talents.css
+ */
+
+.l_w650{
+	width:650px;
+}
+.r_300{
+	width:300px;
+}
+
+/*�˲ţ�ְλ����*/
+.rz_search{
+	width:650px;
+}
+.sea_tistal{
+	width:648px;
+	height:26px;
+	border:#c8c8c8 1px solid;
+	border-bottom:none;
+	background:url(../images/hxztitle.gif) repeat-x;
+}
+.sea_tistal li{
+	width:79px;
+	float:left;
+}
+#pos_main{
+	padding-bottom:5px;
+	border:#c8c8c8 1px solid;
+	border-top:none;
+}
+
+.rz_but1{
+	width:75px;
+	height:26px;
+	background:url(../images/rz_but1.gif) no-repeat;
+	color:#2a2a2a;
+	display:inline-block;
+	font-size:12px;
+	font-weight:bold;
+	text-align:center;
+	line-height:26px;
+}
+.rz_but2{
+	width:75px;
+	height:26px;
+	color:#19477c;
+	font-size:12px;
+	font-weight:normal;
+	display:inline-block;
+	text-align:center;
+	line-height:26px;
+}
+.pos_text{
+	width:330px;
+	height:18px;
+	line-height:18px;
+	margin-right:5px;
+}
+.pos_p{
+	padding-left:25px;
+	padding-top:20px;
+	color:#333333;
+}
+.pos_p2{
+	padding-left:25px;
+	padding-top:15px;
+	color:#333333;
+}
+.pos_select{
+	margin-left:5px;
+	margin-right:10px;
+}
+.posp2_a{
+	margin-left:70px;
+	margin-right:20px;
+	display:inline-block;
+}
+.posp2_a2{
+	margin-left:180px;
+	display:inline-block;
+}
+
+/*������Ƹ/�Ƽ���Ƹ*/
+.new_recruit{
+	width:650px;
+	margin-top:10px;
+}
+#rec_main1{
+	padding-bottom:5px;
+	border:#c8c8c8 1px solid;
+	border-top:none;
+}
+#rec_main2{
+	padding-bottom:5px;
+	border:#c8c8c8 1px solid;
+	border-top:none;
+	display:none;
+}
+#rec_main1 ul{
+	margin:0 0; 
+	line-height:22px;
+	padding-left:15px;
+	padding-top:5px;
+	color:#333333;
+}
+#rec_main1 li{
+	width:200px;
+	float:left;
+}
+#rec_main1 .rli{
+	width:130px;
+}
+#rec_main1 .rli2{
+	width:50px;
+}
+#rec_main2 ul{
+	line-height:22px;
+	padding-left:15px;
+	padding-top:5px;
+	color:#333333;
+}
+#rec_main2 li{
+	width:200px;
+	float:left;
+}
+#rec_main2 .rli{
+	width:130px;
+}
+#rec_main2 .rli2{
+	width:50px;
+}
+/*���¼���/�Ƽ����*/
+.new_resume{
+	width:650px;
+	margin-top:10px;
+}
+#res_main1{
+	padding-bottom:5px;
+	border:#c8c8c8 1px solid;
+	border-top:none;
+}
+#res_main2{
+	padding-bottom:5px;
+	border:#c8c8c8 1px solid;
+	border-top:none;
+	display:none;
+}
+#res_main1 ul{
+	line-height:22px;
+	padding-left:15px;
+	padding-top:5px;
+	color:#333333;
+}
+#res_main1 li{
+	width:200px;
+	float:left;
+}
+#res_main1 .rli{
+	width:130px;
+}
+#res_main1 .rli2{
+	width:50px;
+}
+#res_main2 ul{
+	line-height:22px;
+	padding-left:15px;
+	padding-top:5px;
+	color:#333333;
+}
+#res_main2 li{
+	width:200px;
+	float:left;
+}
+#res_main2 .rli{
+	width:130px;
+}
+#res_main2 .rli2{
+	width:50px;
+}
+
+/*����ҵ���*/
+.industry{
+	width:300px;
+}
+.ind_title{
+	height:29px;
+	background:url(../images/hxztitle_1_03.gif) repeat-x;
+	border:#3d97ff 1px solid;
+	border-bottom:none;
+	font-size:14px;
+	color:#FFF;
+	line-height:29px;
+	
+}
+.indpad{
+	padding-left:10px;
+}
+.ind_main{	
+    width:298px;
+	padding-bottom:5px;
+	border:#3d97ff 1px solid;
+}
+.ind_top{
+	width:260px;
+	height:26px;
+	margin-top:10px;
+	margin-left:10px;
+	padding-left:20px;
+	background:url(../images/ind_topbar.gif) no-repeat bottom;
+}
+.ind_top li{
+	width:52px;
+	float:left;
+}
+.indbut1{
+	width:52px;
+	height:26px;
+	background:url(../images/ind_top.gif) no-repeat;
+	color:#2a2a2a;
+	display:inline-block;
+	font-size:12px;
+	font-weight:bold;
+	text-align:center;
+	line-height:26px;
+}
+.indbut2{
+	width:52px;
+	height:26px;
+	color:#19477c;
+	font-size:12px;
+	font-weight:normal;
+	display:inline-block;
+	text-align:center;
+	line-height:26px;
+}
+#in_mains1{
+	width:280px;
+	line-height:22px;
+	margin-left:10px;
+	margin-top:8px;
+}
+#in_mains2{
+	width:280px;
+	line-height:22px;
+	margin-left:10px;
+	margin-top:8px;
+	display:none;
+}
+#in_mains1 a{
+	width:140px;
+	display:inline-block;
+}
+#in_mains2 a{
+	width:140px;
+	display:inline-block;
+}
+/*���������*/
+.area{
+	width:300px;
+	margin-top:10px;
+}
+#are_mains1{
+	width:280px;
+	line-height:22px;
+	margin-top:8px;
+	margin-left:10px;
+}
+#are_mains2{
+	width:280px;
+	line-height:22px;
+	margin-top:8px;
+	margin-left:10px;
+	display:none;
+}
+#are_mains1 a{
+	width:70px;
+	display:inline-block;
+}
+#are_mains2 a{
+	width:70px;
+	display:inline-block;
+}
+.select{
+	margin-right:10px;
+}

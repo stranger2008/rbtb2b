@@ -1,0 +1,68 @@
+
+#container {
+	width:440px;
+	padding:0 0 0 0;
+	margin:0 0 0 0;
+	position:relative;
+	z-index:0;
+    top: 0px;
+    left: 0px;
+    height: 160px;
+}
+
+
+
+#ribbon {
+	position:absolute;
+	top:-3px;
+	left:-15px;
+	z-index:500;
+    height: 82px;
+    width: 86px;
+}
+
+#frame {
+	position:absolute;
+	z-index:0;
+	width:440px;
+	height:160px;
+	top:-11px;
+	left:-17px;
+}
+
+
+.slides_container {
+	width:440px;
+	height:155px;
+	overflow:hidden;
+}
+
+
+
+.pagination {
+
+}
+
+.pagination li {
+	margin:0 1px ;
+	float:right;
+}
+
+.pagination li a {
+	position:relative;
+    top: -18px;
+	display:block;
+	width:12px;
+	height:0;
+	padding-top:12px;
+	background-image:url(../images/pagination.png);
+	background-position:0 0;
+	overflow:hidden;
+	z-index:9999;
+}
+
+.pagination li.current a {
+	background-position:0 -12px;
+}
+
+

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="membercat">
+
+	<typeAlias alias="membercat" type="com.rbt.model.Membercat" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="membercat">
+		<![CDATA[ 
+    SELECT cat_id,cust_id,cat_name,cat_type,sort_no,in_date,img_path,is_recom,up_cat_id,cat_level FROM membercat WHERE cat_id=$cat_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="membercat">
+		UPDATE membercat SET cat_id=#cat_id#,cust_id=#cust_id#,cat_name=#cat_name#,cat_type=#cat_type#,sort_no=#sort_no#,in_date=now()
+		,img_path=#img_path#,is_recom=#is_recom#,up_cat_id=#up_cat_id#,cat_level=#cat_level#
+		 WHERE cat_id=$cat_id$
+	</update>
+
+	<insert id="insert" parameterClass="membercat">
+		INSERT INTO membercat (cat_id,cust_id,cat_name,cat_type,sort_no,in_date,img_path,is_recom,up_cat_id,cat_level) 
+		VALUES (#cat_id#,#cust_id#,#cat_name#,#cat_type#,#sort_no#,now(),#img_path#,#is_recom#,#up_cat_id#,#cat_level#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM membercat WHERE cat_id in ($cat_id$)
+	</delete>
+    <update id="updatesort_no" parameterClass="java.util.HashMap">
+		UPDATE membercat SET sort_no=#sort_no#
+		WHERE cat_id=#cat_id#
+	</update>
+	<update id="updateall" parameterClass="java.util.HashMap">
+		UPDATE membercat SET cat_name=#cat_name#,sort_no=#sort_no#,in_date=now()
+		WHERE cat_id=$cat_id$
+	</update>
+	<sql id="getCommon">
+		FROM membercat 
+		<dynamic prepend="WHERE">
+		<isNotNull prepend="and" property="cust_id">
+				cust_id=#cust_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="cat_name">
+				instr(cat_name,#cat_name#)>0
+			</isNotNull>	
+			<isNotNull prepend="and" property="cat_type">
+				cat_type=#cat_type#
+			</isNotNull>
+			<isNotNull prepend="and" property="cat_id">
+				cat_id=#cat_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="is_recom">
+				is_recom=#is_recom#
+			</isNotNull>
+			<isNotNull prepend="and" property="up_cat_id">
+				up_cat_id=#up_cat_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="cat_level">
+				cat_level=#cat_level#
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT cat_id,cust_id,cat_name,cat_type,sort_no,in_date,img_path,is_recom,up_cat_id,cat_level
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY sort_no ASC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

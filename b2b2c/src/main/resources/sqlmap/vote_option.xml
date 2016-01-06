@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="vote_option">
+
+	<typeAlias alias="vote_option" type="com.rbt.model.Vote_option" />
+	
+	<select id="getByPk" parameterClass="java.lang.String" resultClass="vote_option">
+	<![CDATA[ 
+        SELECT option_id,vote_id,option_name,option_count FROM vote_option WHERE option_id=$VALUE$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="vote_option">
+    	UPDATE vote_option SET option_name=#option_name#,option_count=#option_count# WHERE option_id=$option_id$
+	</update>
+    <update id="updateoptioncount" parameterClass="java.util.HashMap">
+     UPDATE vote_option SET option_count=(option_count+1) WHERE option_id=#option_id#
+    </update>
+	<insert id="insert" parameterClass="vote_option">
+		INSERT INTO vote_option (vote_id,option_name,option_count) 
+		VALUES (#vote_id#,#option_name#,#option_count#)
+	</insert>
+	
+	<delete id="delete" parameterClass="java.lang.String">
+		delete from vote_option where option_id in ($value$)
+	</delete>
+	
+	<sql id="getCommon">
+	   FROM vote_option 
+     	<dynamic prepend="WHERE">
+			 <isNotNull prepend="and" property="option_name"> 
+			     instr(option_name,#option_name#)>0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="vote_id"> 
+			     vote_id=#vote_id#
+			 </isNotNull>
+		</dynamic>
+ 	</sql>
+	
+	<select id="getList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+         SELECT option_id,vote_id,option_name,option_count
+	    <isParameterPresent>
+          <include refid="getCommon"/>
+        </isParameterPresent>
+          order by option_count DESC
+	 	<isNotNull prepend="LIMIT" property="start">
+		  $start$,$limit$
+		</isNotNull>
+	</select>
+	
+	<select id="getCount" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+	     select count(*) ct
+	    <isParameterPresent>
+          <include refid="getCommon"/>
+        </isParameterPresent>
+	</select>  
+ 	
+</sqlMap>

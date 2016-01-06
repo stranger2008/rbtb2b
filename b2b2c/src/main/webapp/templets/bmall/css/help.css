@@ -1,0 +1,132 @@
+.contL{
+	width:234px;
+	float:left;
+	}
+.Sidebar{
+	margin-bottom:10px;
+	}	
+.Sidebar h2{
+	font-size:14px;
+	padding-left:15px;
+	color:#2953a6;
+	height:33px;
+	width:217px;
+	background:#f7f7f7;
+	line-height:33px;
+	border:1px solid #e1e1e1;
+	}	
+.Sidebar ul{
+	border:1px solid #e1e1e1;
+	border-top:0;
+	width:232px;
+	padding:10px 0;
+	}
+.Sidebar .sideFl{
+	padding-left:20px;
+	width:212px;
+	}	
+.sideFl li{
+	color:#c6c6c6;
+	height:25px;
+	padding-left:40px;
+	line-height:25px;
+	}	
+.sideFl .zk{
+	font-weight:bold;
+	background:url(../images/1_03.gif) no-repeat left center;
+	padding-left:20px;
+	}
+.sideFl a,.contP a{
+	font-size:12px;
+	color:#2953a6;
+	}
+.sideFl a:hover,.contP a:hover{
+	font-size:12px;
+	text-decoration:underline;
+	color:#2953a6;
+	}
+.sideFl .sq{
+	font-weight:bold;
+	background:url(../images/2_07.gif) no-repeat left center;
+	padding-left:20px;
+	}
+.hotC li{
+	width:201px;
+	line-height:25px;
+	margin:0 auto;
+	padding:7px 0 7px 0;
+	}
+.hotC li P{
+	padding-top:7px;
+	}	
+.hotC li span{
+	font-size:14px;
+	color:#9e0000;
+	padding-top:10px;
+	}	
+	
+/*左边结束*/
+.position{
+	height:33px;
+	line-height:33px;
+	background:url(../images/position_03.gif) no-repeat left center;
+	padding-left:20px;
+	border-bottom:1px solid #dcdcdc;
+	width:960px;
+	margin:0 auto;
+	}
+	
+.contR{
+	width:730px;
+	float:right;
+	line-height:25px;
+	}
+	
+.tag{width:730px;}
+.tab_content{width:700px;}
+.tab_bg0{width:700px;height:36px;line-height:36px;background:url(../images/news_bghover.gif) 0px 0px;cursor:pointer;}
+.tab_bg1{width:700px;height:36px;line-height:36px;background:url(../images/news_bghover.gif) 0px -36px;cursor:pointer;}
+.tab_bg2{width:700px;height:36px;line-height:36px;background:url(../images/news_bghover.gif) 0px -72px;cursor:pointer;}
+.tab_bg3{width:700px;height:36px;line-height:36px;background:url(../images/news_bghover.gif) 0px -108px;cursor:pointer;}
+.tab_bg4{width:700px;height:36px;line-height:36px;background:url(../images/news_bghover.gif) 0px -144px;cursor:pointer;}
+.tab_current{width:140px;height:36px;line-height:36px;float:left;text-align:left;cursor:pointer;color:#ffffff;text-indent:10px;}
+.tab_current a{color:#ffffff;margin-left:30px;}
+.tab_current a:hover{color:#FFF;margin-left:30px;}
+.tab_common{width:140px;height:36px;line-height:36px;float:left;text-align:left;cursor:pointer;text-indent:10px;}
+.tab_common a{color:#000;margin-left:30px;}
+.tab_common a:hover{color:#000;margin-left:30px;}
+
+
+
+.service{
+	padding-top:20px;
+	line-height:25px;
+	}
+.service ul{
+	width:730x;
+	margin-top:10px;
+	height:140px;
+	background:#f7f7f7;
+	border:1px solid #dcdcdc;
+	}
+.service li{
+	float:left;
+	margin:15px 0 0 20px;
+	width:280px;
+	background:url(../images/Lx_03.gif) no-repeat;
+	}	
+.service .kf{
+	background-position:0 12px;
+	padding-left:50px;
+	}
+.service .rb{
+	background-position:0 -50px;
+	padding-left:50px;
+	}
+.service  a{
+	color:#A10000;
+	}
+.service  a:hover{
+	color:#A10000;
+	text-decoration:underline;
+	}				

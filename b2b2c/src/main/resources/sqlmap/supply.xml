@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="supply">
+
+	<typeAlias alias="supply" type="com.rbt.model.Supply" />
+
+	<select id="getByPk" parameterClass="java.lang.String" resultClass="supply">
+		<![CDATA[ 
+    SELECT supply_id,supply.cust_id,title,cat_id,supply.img_path,cat_name,supply_type,cat_attr,infoattr_id,area_attr,self_cat_id,model,standard,brand,content,unit,price,min_order,max_supply,send_day,mem_recom,end_date,supply.is_recom,supply.info_state,no_reason,supply.in_date,clicknum,fare,user_id,onlineorder,shipfee FROM supply left join membercat on  supply.self_cat_id=membercat.cat_id where supply_id=$supply_id$
+    ]]>
+	</select>
+    <update id="updateclicknum" parameterClass="java.lang.String">
+     UPDATE supply SET clicknum=(clicknum+1) WHERE supply_id=#supply_id#
+    </update>
+	<update id="update" parameterClass="supply">
+		UPDATE supply SET onlineorder=#onlineorder#,shipfee=$shipfee$,supply_id=#supply_id#,title=#title#,img_path=#img_path#,supply_type=#supply_type#,cat_attr=#cat_attr#,infoattr_id=#infoattr_id#,area_attr=#area_attr#,self_cat_id=#self_cat_id#,model=#model#,standard=#standard#,brand=#brand#,content=#content#,unit=#unit#,price=#price#,min_order=#min_order#,max_supply=#max_supply#,send_day=#send_day#,mem_recom=#mem_recom#,end_date=#end_date#,is_recom=#is_recom#,supply.info_state=#info_state#,no_reason=#no_reason#,clicknum=#clicknum#,fare=#fare#,user_id=#user_id# WHERE supply_id=$supply_id$
+	</update>
+
+	<insert id="insert" parameterClass="supply">
+		INSERT INTO supply (supply_id,cust_id,title,img_path,supply_type,cat_attr,infoattr_id,area_attr,self_cat_id,model,standard,brand,content,unit,price,min_order,max_supply,send_day,mem_recom,end_date,is_recom,info_state,no_reason,in_date,clicknum,fare,user_id,onlineorder,shipfee) VALUES (#supply_id#,#cust_id#,#title#,#img_path#,#supply_type#,#cat_attr#,#infoattr_id#,#area_attr#,#self_cat_id#,#model#,#standard#,#brand#,#content#,#unit#,#price#,#min_order#,#max_supply#,#send_day#,#mem_recom#,#end_date#,#is_recom#,#info_state#,#no_reason#,now(),#clicknum#,#fare#,#user_id#,#onlineorder#,$shipfee$)
+	</insert>
+	
+	<insert id="insertGetPk" parameterClass="supply">
+		INSERT INTO supply (supply_id,cust_id,title,img_path,supply_type,cat_attr,infoattr_id,area_attr,self_cat_id,model,standard,brand,content,unit,price,min_order,max_supply,send_day,mem_recom,end_date,is_recom,info_state,no_reason,in_date,clicknum,fare,user_id,onlineorder,shipfee) VALUES (#supply_id#,#cust_id#,#title#,#img_path#,#supply_type#,#cat_attr#,#infoattr_id#,#area_attr#,#self_cat_id#,#model#,#standard#,#brand#,#content#,#unit#,#price#,#min_order#,#max_supply#,#send_day#,#mem_recom#,#end_date#,#is_recom#,#info_state#,#no_reason#,now(),#clicknum#,#fare#,#user_id#,#onlineorder#,$shipfee$)
+		 <selectKey resultClass="java.lang.String" keyProperty="supply_id">
+            <!-- 此处不区分大小写 -->
+            SELECT @@IDENTITY AS ID
+        </selectKey>  
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM supply WHERE supply_id in ($supply_id$)
+	</delete>
+   
+   	<!--批量修改-->
+	<update id="updateisrecom" parameterClass="java.util.HashMap">
+		UPDATE supply SET is_recom=#is_recom# WHERE supply_id=$supply_id$
+	</update>
+
+	<sql id="getCommon">
+		FROM supply left join member on supply.cust_id=member.cust_id 
+          <dynamic prepend="WHERE">
+           		 <isNotNull prepend="and" property="info_id_str"> 
+			        supply.supply_id  in (#info_id_str#)
+			     </isNotNull>
+                 <isNotNull prepend="and" property="cust_id"> 
+			        supply.cust_id=#cust_id#
+			     </isNotNull>
+				 <isNotNull prepend="and" property="title"> 
+				    INSTR(title,#title#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="cat_attr"> 
+				    INSTR(supply.cat_attr,#cat_attr#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="area_attr"> 
+				    INSTR(supply.area_attr,#area_attr#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="area_filter"> 
+				    INSTR(supply.area_attr,#area_filter#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="supply_type"> 
+				    INSTR(supply_type,#supply_type#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="brand"> 
+				    INSTR(brand,#brand#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="info_state"> 
+				    INSTR(supply.info_state,#info_state#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="mem_recom"> 
+				    INSTR(mem_recom,#mem_recom#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="is_recom"> 
+				    INSTR(is_recom,#is_recom#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="search_fare_start"> 
+				    fare BETWEEN #search_fare_start#
+				 </isNotNull>
+				 <isNotNull prepend="and" property="search_fare_last"> 
+				   #search_fare_last#
+				 </isNotNull>				 
+				 <isNotNull prepend="and" property="search_starttime"> 
+				    supply.in_date BETWEEN #search_starttime#
+				 </isNotNull>
+				 <isNotNull prepend="and" property="search_endtime"> 
+				   #search_endtime#
+				 </isNotNull>
+			     <isNotNull prepend="and" property="today">
+		            DAY(supply.in_date)=DAY(NOW()) AND MONTH(supply.in_date)=MONTH(NOW()) AND YEAR(supply.in_date)=YEAR(NOW())
+		         </isNotNull>	
+		         <isNotNull prepend="and" property="info_state_in">
+				    supply.info_state in($info_state_in$)
+			     </isNotNull>
+			      <isNotNull prepend="and" property="starttime"> 
+				   TO_DAYS(supply.in_date) >= TO_DAYS(#starttime#)
+				 </isNotNull>
+		  </dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT supply_id,supply.cust_id,title,supply.img_path,member.cust_name,supply_type,supply.cat_attr,
+			supply.infoattr_id,supply.area_attr,self_cat_id,model,	standard,brand,content,unit,price,min_order,max_supply,send_day,
+				mem_recom,end_date,is_recom,supply.info_state,supply.no_reason,supply.in_date,clicknum,fare,user_id
+					
+		
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY in_date DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+        SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+	
+	<sql id="getWebCommon">
+		FROM supply LEFT JOIN member m ON supply.cust_id=m.cust_id
+		 LEFT JOIN memberuser u ON u.cust_id=m.cust_id  AND u.user_type="1" 
+		    LEFT JOIN memberinter t ON t.cust_id=u.cust_id		
+			   LEFT JOIN levelinfo l ON supply.cust_id=l.cust_id
+			 	    LEFT JOIN memberlevel b ON b.level_id=l.level_code 
+			 	       LEFT JOIN membercredit c on supply.cust_id=c.cust_id
+			 	       		LEFT JOIN infoattr i on i.infoattr_id=supply.infoattr_id 
+          <dynamic prepend="WHERE">   
+          
+         		 <isNotNull prepend="and" property="info_id_str"> 
+				    supply.supply_id in(info_id_str)
+				 </isNotNull>
+				 
+				 
+                 <isNotNull prepend="and" property="title"> 
+				    INSTR(title,#title#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="cat_attr"> 
+				    INSTR(supply.cat_attr,#cat_attr#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="area_attr"> 
+				    INSTR(supply.area_attr,#area_attr#) >0
+				 </isNotNull>
+				 <isNotNull prepend="and" property="supply_type"> 
+				    supply.supply_type=#supply_type#
+				 </isNotNull>				 
+				 <isNotNull prepend="and" property="info_state">
+				   supply.info_state =#info_state#
+			     </isNotNull>
+			     <!-- 单字段多条件查询语句,加1=1语句才能正确运行 -->
+			     <isNotNull  prepend=""  property="attrString"> 
+			       $attrString$
+			     </isNotNull>		
+			     
+			     <isNotNull prepend="and" property="price">
+				   price !=0
+			     </isNotNull>
+			     <isNotNull prepend="and" property="img_path">
+				    supply.img_path !=#img_path#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="min_order">
+				    $min_order$>supply.min_order
+			     </isNotNull>
+			     <isNotNull prepend="and" property="lowwer_price"> 
+			         supply.price>=$lowwer_price$
+			     </isNotNull>
+			     <isNotNull prepend="and" property="height_price"> 
+			         $height_price$>=supply.price
+			     </isNotNull>
+			     <isNotNull prepend="and" property="level_code">
+				    l.level_code =#level_code#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="client_status">
+			       INSTR(m.client_status,#client_status#)
+			     </isNotNull>
+			     <isNotNull prepend="and" property="date_in_date">
+				   supply.in_date >= (SELECT SUBDATE(NOW(),INTERVAL $date_in_date$ DAY)) 
+			     </isNotNull>
+			     
+			     
+		     
+		  </dynamic>
+	</sql>
+
+	<select id="getWebSupplyList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+          SELECT distinct supply_id,supply.cust_id,title,content,m.contact_qq,m.contact_msn,m.email,
+          		m.cust_name,supply.cat_attr,supply.area_attr,fare,img_path,onlineorder,min_order,u.user_name,price,unit,
+          				onlineorder,shipfee,level_name,IF(level_code IS NULL,0,level_code) level_code,fund_num,supply.in_date,
+          				c_num,m.client_status as status_id 
+          <isParameterPresent>
+			<include refid="getWebCommon" />
+		  </isParameterPresent>		  
+		  <isNotNull property="fareSort">
+				 order by price $fareSort$
+		  </isNotNull>
+		  <isNotNull property="in_date">
+				 order by supply.in_date $in_date$
+		  </isNotNull>
+		  <isNotNull property="clicknum">
+				 order by  $clicknum$ desc
+		  </isNotNull>	
+		  <isNotNull property="SortType">
+				 ORDER BY level_code DESC,fund_num DESC,supply.in_date DESC 
+		  </isNotNull>		
+		  <isNotNull  property="c_num"> 
+			 ORDER BY c_num $c_num$
+		  </isNotNull>
+		  <isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		  </isNotNull>
+	</select>
+	
+	<select id="getWebSupplyCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+        SELECT  COUNT(distinct supply_id) ct
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+	</select>
+	
+	<sql id="getCatCommon">
+	  from supply
+	  <dynamic prepend="WHERE">
+	      <isNotNull prepend="and" property="cust_id"> 
+			cust_id=#cust_id#
+		  </isNotNull>
+	  </dynamic>
+	</sql>
+	
+	<select id="getCatSupplyList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+          select DISTINCT SUBSTRING(cat_attr,12,10) as cat_attr
+          <isParameterPresent>
+			<include refid="getCatCommon" />
+		  </isParameterPresent>
+	</select>
+	
+	<select id="getWebSupplyAdsList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+       select supply_id,title,content,member.contact_qq,member.contact_msn,member.email,member.cust_name,supply.in_date,
+           supply.cat_attr,supply.area_attr,fare,img_path,min_order,memberuser.user_name,price,unit,onlineorder,shipfee
+           FROM supply left join member on supply.cust_id=member.cust_id left join memberuser on memberuser.cust_id=member.cust_id  
+           and memberuser.user_type="1" where supply_id
+           IN ( SELECT d.info_id FROM advinfo d,advpos p where  p.pos_id = d.pos_id and  d.adv_state="0" and  d.iscount="0"  
+		   <isNotNull prepend="and" property="keywordName">
+				d.keyword=#keywordName#
+		   </isNotNull>	
+           and NOW() BETWEEN d.start_date AND d.end_date) order by supply.in_date desc		
+	</select>
+	
+</sqlMap>

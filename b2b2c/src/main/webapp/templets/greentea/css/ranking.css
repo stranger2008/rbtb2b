@@ -1,0 +1,60 @@
+.ranking_cont{
+	width:960px;
+	margin:10px auto 0;
+	background:#F6F5F5;
+	padding-bottom:10px;
+	}
+.ranking{
+	width:306px;
+	float:left;
+	padding-left:10px;
+	padding-top:10px;
+	}	
+.ranking_title{
+	width:294px;
+	height:33px;
+	background:url(../images/flll_bg.gif) repeat-x;
+	font-size:14px;
+	line-height:33px;
+	padding-left:10px;
+	border:1px solid #e5e5e5;
+	border-bottom:0;
+	}	
+	
+.ranking_main{
+	width:304px;
+	border:1px solid #e5e5e5;
+	border-top:none;
+	padding-top:5px;
+	overflow:hidden;
+	height:280px;
+	color:#999;
+	background:#FFF;
+	}
+.ranking_main li{
+	padding-left:10px;
+	line-height:27px;
+	}
+.ranking_main a{
+	padding-left:10px;
+	display:inline-block;
+	width:235px;
+	}			
+.n1{
+	text-align:center;
+	color:#FFF;
+	display:inline-block;
+	width:14px;
+	line-height:27px;
+	background:url(../images/gy_hot_li.gif) no-repeat;
+	background-position:left 7px;
+	}
+.n2{
+	text-align:center;
+	color:#000;
+	display:inline-block;
+	width:14px;
+	line-height:27px;
+	background:url(../images/gy_hot_li.gif) no-repeat;
+	background-position:left -20px;
+	}	

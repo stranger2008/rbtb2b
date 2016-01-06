@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css"/>
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/subject_detailed.css" rel="stylesheet" type="text/css"/>
+{tag:include file="jsinclude.html" /}
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/addcomments_detail.js"></script>
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/subject_detail.js"></script>
+<title>{tag:field name="title" /}-{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:field name="title" /}" />
+<meta name="description" content="{tag:field name="content" len="30" /}" />
+</head>
+<body>
+
+{tag:include file="top.html" /}
+<!--导航结束-->
+
+<div class="w960">
+	<img src="{tag:field name="header_path" /}" width="960" height="120"/>
+</div>
+<div class="w960">
+       <div class="l_sub f_left">
+         <img src="{tag:field name="img_path" /}"  width="340" height="200"/>
+      </div>
+      <div class="m_sub f_left">
+          
+         <ul>
+         	{tag:newsArticleList row="1" news_attr="{tag:field name="news_attr"/}"}
+            	<li><a href="[field:news_detail_url/]" target="_blank" class="sub_text">[field:title?len(15)/]</a></li>
+            {/tag:newsArticleList}
+            
+            {tag:newsArticleList row="6" start="1" news_attr="{tag:field name="news_attr"/}"}
+            	<li><a href="[field:news_detail_url/]" target="_blank">[field:title?len(20)/]</a></li>
+            {/tag:newsArticleList}
+            
+         </ul>
+      </div>
+      <div class="r_sub f_right">
+         <div class="title"><h2 class="subject">专题简介</h2></div>
+       <div class="jianjie">
+           {tag:field name="sub_desc" /}
+           <span style="display:none;"><script src="/include/clicknum.jsp?t=subject&n=sub_id&v={tag:field name='info_id'/}"></script></span>
+         </div>
+      </div>
+</div>
+<div class="clear"></div>
+
+<div class="w960">
+  <div class="comp_porod_title">
+    <p class="sm">图片报道</P><P class="sm_sj"></P>
+    <input type="hidden" id="aboutnewsimg" value="{tag:field name="img_news_attr" /}" />
+  </div>
+  <div class="qtcp_cont">
+      <!-- 绑定图片报道开始 -->
+      <ul id="imgnews">
+      	{tag:newsArticleList row="6" news_attr="{tag:field name="img_news_attr" /}"}
+	      	<li>
+	      		<a href="[field:news_detail_url/]" target="_blank">
+	      			<img src="[field:img_path/]" width="130px" height="140px" />
+	      		</a>
+	      		<br />
+	      		<a href="[field:news_detail_url/]" target="_blank">[field:title?len(10)/]</a>
+	      	</li>
+        {/tag:newsArticleList}
+       
+      </ul>
+      <!-- 绑定图片报道结束 -->
+      <div class="clear"></div>
+  </div>
+</div>
+<div class="w960">
+  <div class="comp_porod_title">
+    <p class="sm">关联资讯</P><P class="sm_sj"></P>
+  </div>
+  <div class="qtcp_cont">
+      <!-- 绑定图片报道开始 -->
+      
+      
+      {tag:catArticleList link_cat_attr="{tag:field name="link_cat"/},"}
+      
+      
+       <div class="r_sub f_left">
+         <div class="title"><h2 class="subject"><a href="[field:news_cat_url/]" target="_blank">[field:cat_name/]</h2></div>
+       	<div class="r_content" >
+          <ul>
+          	{tag:newsArticleList row="6" info_state="1" cat_attr="[field:cat_id/]"}
+            <li><a href="[field:news_detail_url/]" target="_blank">[field:title?len(20)/]</a></li>
+            {/tag:newsArticleList}
+          </ul>
+         </div>
+      </div>
+
+	{/tag:catArticleList}
+
+        <!-- 绑定图片报道结束 -->
+      <div class="clear"></div>
+  </div>
+</div>
+<div class="w960">
+ <!-- 评论信息标签的开始位置 -->
+  <form action="/portal/membercomment!addcomments.action" name="commentForm" method="post" validate="true">
+  <input type="hidden" name="infoids" id="infoids" value="{tag:field name="info_id"/}" />
+  <input type="hidden" name="commtitle" id="comment_title" value="{tag:field name="title"/}" />
+  <input type="hidden" name="infotype" id="info_type" value="subject" />
+  <input type="hidden" id="idwidth" value="650" />
+  {tag:include file="commentinfo.html" /}
+  </form>
+ <!-- 评论信息标签的结束位置 -->
+</div>
+
+
+
+
+<div class="clear"></div>
+
+{tag:include file="bottom.html" /}
+
+</body>
+</html>

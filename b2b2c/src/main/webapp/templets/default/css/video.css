@@ -1,0 +1,409 @@
+.video_ad1{
+	width:960px;
+	height:90px;
+	margin:0 0;
+	}
+	
+/*视频导航*/	
+.video_nav{
+	height:32px;
+	width:960px;
+	margin:10px auto 0;
+	line-height:32px;
+	background:url(../images/video_nav_bg.gif) no-repeat;
+	}
+.video_nav .last_nav{
+	background:none;
+	}
+.video_nav li{
+	float:left;
+	width:87px;
+	height:32px;
+	line-height:32px;
+	text-align:center;
+	font-size:14px;
+	background:url(../images/video_nav_li.gif) no-repeat right center;
+	}	
+.video_nav  a{
+	color:#000;
+	}
+.video_nav  a:hover{
+	text-decoration:underline;
+	color:#000;
+	}	
+
+.video_big{
+	width:318px;
+	height:267px;
+	border:1px solid #e4f1ff;
+}	
+	
+.videonews{
+	width:371px;
+	height:265px;
+	border:1px solid #e4f1ff;
+	margin:auto 10px;}
+	
+.videonews ul{
+	padding:1px;
+	width:369px;
+	height:263px;
+	background:url(../images/videonews_bg.gif) repeat-x;
+	line-height:26px;
+	text-align:center;}
+	
+.videonews_bt{
+	font-size:18px;
+	font-family: "微软雅黑";
+	color:#1550c8;
+	padding-top:8px;
+    }
+.videonews_bt a{
+	color:#1550c8;
+	padding-top:8px;
+	}
+	
+/*所有右侧标题背景*/	
+.video_right_title{
+	width:247px;
+	height:31px;
+	background:url(../images/video_left_bg.gif) no-repeat;
+	}
+	
+/*推荐视频*/
+.tj_video{
+	width:247px;
+	}
+
+	
+.title_text{
+	font-size:12px;
+	font-weight:bold;
+	color:#000;
+	line-height:30px;
+	padding-left:10px;
+	float:left;}
+	
+.more_1{
+	float:right;
+	padding-right:10px;
+	font-size:12px;
+	line-height:30px;
+	}	
+	
+.more_1 a{
+	color:#000;
+	font-weight:100;
+	}
+	
+.more_1 a:hover{
+	color:#000;
+	text-decoration:underline;
+	font-weight:100;
+	}
+	
+.tj_video_main{
+	width:245px;
+	height:234px;
+	border:1px solid #d2e4fa;
+	border-top:0;
+	line-height:22px;
+	}
+.video_main_div{
+	padding:6px 3px 0px 6px;
+	height:72px;
+}	
+
+.tj_video_pic{
+	border:1px solid #ccc;
+	padding:1px;
+	margin-right:10px;
+	}
+		
+.tj_video_name{
+	padding:1px 0px 0px 106px;
+	}	
+	
+.tj_video_name a{
+	color:#0377d9;
+	font-weight:bold;}
+
+/*今日关注*/
+.today_attention{
+	width:703px;
+	}
+	
+.today_attention_title{
+	width:703px;
+	height:31px;
+	background:url(../images/video_jrgz_bg.gif) no-repeat;
+	}
+	
+.today_attention_main{
+	width:701px;
+	height:353px;
+	border:1px solid #d9e4f3;
+	border-top:0;
+	}
+
+.today_attention_video{
+	width:701px;
+	height:150px;
+	padding-top:10px;
+	}	
+
+.today_attention_video_title{
+	color:#4473d3;
+	line-height:22px;
+	}
+	
+.today_attention_main ul{
+	width:330px;
+	line-height:25px;
+	padding-left:15px;
+	padding-top:15px;
+	}
+
+.today_attention_main a{
+	padding-left:5px;
+	}
+/*热门排行*/
+.hot_video_main{
+	width:235px;
+	height:344px;
+	border:1px solid #d2e4fa;
+	border-top:0;
+	padding-top:8px;
+	color:#797979;
+	}
+.hot_video_main{
+	 padding:5px 5px 5px 5px;
+	}
+.hot_video_main div .first_span{
+	background:url(../images/rank.gif) no-repeat;
+	display:block;
+	float:left;
+	width:17px;
+	height:20px;
+	text-align:center;
+	color:#FFF;
+	background-position:5px 0px;
+	padding:3px 0 0 5px;
+	}	
+.hot_video_main ul{
+	clear:both;
+	}	
+.hot_video_main li{
+	padding-left:5px;
+	border-bottom:1px dotted #CCC;
+	line-height:30px;
+	line-height:29px;
+	}
+.hot_video_main li a{
+	display:inline-block;
+	width:160px;}	
+.hot_video_main li span{
+	background:url(../images/rank.gif) no-repeat;
+	display:inline-block;
+	width:17px;
+	text-align:center;
+	color:#FFF;
+	background-position:0 -20px;
+	}
+.hot_video_main  .white{
+	background:url(../images/rank.gif) no-repeat;
+	display:inline-block;
+	width:17px;
+	text-align:center;
+	background-position:0 5px;
+	}
+	
+.hot_video_main .last_nav{
+	border-bottom:none;
+	}
+	
+.hot_video_pic{
+	padding:1px;
+	border:1px solid #ccc;
+	margin-left:10px;
+	width:60px;
+	height:60px;
+    }
+.hot_video_name{
+	width:120px;
+	padding-right:10px;
+	position:relative;
+	left:-10px;
+	line-height:20px;
+	}	
+.ul_ico_top a{
+    padding-left:8px;
+	}
+
+.hot_video_main ul li a{
+	padding-left:8px;
+	}
+
+/*电视*/
+.tv{
+	width:703px;
+	}
+	
+.tv_title{
+	width:703px;
+	height:31px;
+	background:url(../images/video_tv_bg.gif) no-repeat;}
+	
+.title_text1{
+	font-size:14px;
+	font-weight:bold;
+	color:#fff;
+	padding-left:33px;
+	padding-top:9px;
+	float:left;}
+
+.tv_main{
+	width:701px;
+	height:352px;
+	border:1px solid #d9e4f3;
+	border-top:none;
+	}
+	
+.tv_main_left{
+	width:300px;
+	line-height:32px;
+	text-align:center;
+	margin-top:8px;
+	margin-left:10px;
+	}
+	
+
+
+.tv_main_left p{
+	line-height:22px;
+	}	
+
+.tv_main_left_bt{
+	font-size:14px;
+	color:#4473d3;
+	font-weight:bold;
+	padding-top:10px;
+	}
+
+	
+.tv_main_left_de{
+	color:#4473d3;
+	}
+
+.tv_mid{
+	padding-left:12px;
+	line-height:20px;
+	margin-top:8px;
+	}
+	
+.tv_mid P{
+	padding:5px 0 0 10px;
+	}
+.tv_mid a{
+	color:#4473d3;
+	}		
+
+
+
+	
+/*图片轮播区域样式开始*/
+.mF_liuzg{
+	position:relative;
+	width:318px;
+	height:267px;
+	overflow:hidden;font:12px/1.5 Verdana,Geneva;
+	background:#fff;
+}
+.mF_liuzg .loading{
+	position:absolute;
+	z-index:9999;
+	width:100%;
+	height:100%;
+	color:#666;
+	text-align:center;
+	padding-top:90px;
+	background:#fff url(/jscss/demoimg/loading1.gif) center -40px no-repeat;
+	}/*载入画面*/
+.mF_liuzg .pic li{
+	width:318px;
+	position:relative;
+	overflow:hidden;
+	*margin-top:-2px;
+	}
+.mF_liuzg .pic li p{
+	width:318px;
+	position:absolute;
+	}
+.mF_liuzg .pic li p a{
+	display:block;
+	}/*图片和焦点图框架一样大小*/
+.mF_liuzg .pic li p img{
+	width:318px;
+	height:267px;
+	}
+.mF_liuzg .txt li{
+	position:absolute;
+	z-index:2;
+	bottom:0;
+	width:318px;
+	height:36px;
+	line-height:34px;
+	overflow:hidden;
+	display:none;
+	}
+.mF_liuzg .txt li a{
+	display:block;
+	color:#fff;
+	padding:2px 0 0 16px;
+	font-size:14px;
+	font-weight:bold;
+	text-decoration:none;
+	}/*标题样式*/
+.mF_liuzg .txt-bg{
+	position:absolute;
+	bottom:0;
+	z-index:1;
+	width:318px;
+	height:36px;
+	overflow:hidden;
+	background:#000;
+	filter:alpha(opacity=40);
+	opacity:0.4;
+	}/*标题背景*/
+.mF_liuzg .num{
+	position:absolute;
+	z-index:3;
+	bottom:8px;
+	right:8px;
+	color:#333;
+	}/*按钮样式*/
+.mF_liuzg .num li{
+	float:left;
+	width:22px;
+	height:18px;
+	position:relative;
+	border:1px solid #333;
+	line-height:18px;
+	text-align:center;
+	margin-right:3px;
+	cursor:pointer;
+	background:#aaa;
+	filter:alpha(opacity=90);
+	opacity:0.9;
+	}
+.mF_liuzg .num li.current,.mF_liuzg .num li.hover{
+	background:#f60;
+	color:#fff;
+	font-weight:bold;
+	height:20px;
+	line-height:
+	20px;top:-2px;
+}
+/*图片轮播区域样式结束*/
+	
+			

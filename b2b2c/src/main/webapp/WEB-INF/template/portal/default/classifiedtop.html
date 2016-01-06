@@ -1,0 +1,36 @@
+<script type="text/javascript" src="/include/js/classifiedtop.js"></script>
+<div class="top_first">
+   <p class="user_top_main">
+     <#if isviewarea?if_exists=='0'>
+     <span class="area"><a href="/classified/${en_name?if_exists}/country.html"><b>${country?if_exists}</b> [切换国家]</a></span>
+      <#if country?if_exists!=area_name?if_exists> 
+     <span class="area"> <a href="/classified/${en_name?if_exists}/area.html"><b>${area_name?if_exists}</b> [切换城市]</a></span></#if>
+     </#if>
+     <span class="user_1">您好，欢迎来到{tag:sysbase name="cfg_webname"/}<script src="/include/islogin.jsp"></script></span>
+     </p>
+  </div> 
+  
+<!--头部user结束-->
+<div class="top_main">
+          <a href="/"><img src="/templets/${templateStyle?if_exists}/images/logo.gif"  class="f_left"/></a>
+          <div class="search_fb f_right">
+              <div class="search_1 f_left">
+                 <input id="searchText" type="text"  class="sear_text" value="请输入类别名称或关键字"/>
+                 <input id="searchButton" type="button" name=""  value=" " class="sear_button" />
+                 <P class="senior">
+              </div>
+              <ul class="operation f_left">
+                 <li class="fb"><a href="/member_Classified_cate.action" class="fb_main f_left">免费发布信息</a></li>
+                 <li class="sc"><a href="/member_Classified_list.action" class="shuc";>修改/删除信息</a></li>
+              </ul>
+              <br  class="clear"/>
+              <div class="hot_sear"><p class="f_left">
+              <span>热门搜索：</span>
+              {tag:keywordlist row="6" limit="6" module_type="classified"}
+	          <a href="/portal/classified!list.action?wd=[field:key_name?len(6)/]">[field:key_name?len(6)/]</a>
+	          {/tag:keywordlist}
+              </P>
+          </div>
+          </div>
+          <br class="clear" />
+</div>

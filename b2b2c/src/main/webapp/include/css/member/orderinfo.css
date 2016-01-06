@@ -1,0 +1,95 @@
+.comm_div{
+   margin-top:6px;
+   border:1px solid #CDD1D4;
+   margin-bottom:10px;
+}
+.comm_goods{
+	min-height:136px;
+	_height:136px;  
+}
+.comm_goods_d1{
+    float:left;
+    margin-left:10px;
+}
+.comm_goods_d2{
+	width:300px;
+	height:105px;
+	float:left;
+    margin-left:8px;
+    
+}
+.comm_goods_d2_top{
+   width:300px;
+   height:60px;
+   line-height:20px;
+   padding-top:10px;
+   padding-right:16px;
+}
+.comm_goods_d3{
+   padding-top:6px;
+   width:350px;
+   float:left;
+}
+.comm_goods_d3 span{
+  margin-left:11px;
+  float:left;
+  width:100px;
+}
+.comm_goods_d4{
+	width:300px;
+	height:105px;
+	float:left;
+    margin-left:8px;
+}
+.comm_content{
+   color:#979797;
+   font-size:12px;
+   width:300px;
+}
+
+.dong{
+   color:#FF0000;
+   font-weight:600;
+}
+.f_busin{
+
+}
+
+.is_score{
+   color:#AC9999;
+   font-size:11px;
+   font-weight:400;
+   margin-left:-6px;
+}
+
+.good_comm{
+   background:url(/include/images/member/icon_comm.gif) no-repeat;
+   color:red;
+   margin-left:30px;
+   font-weight:bold;
+   padding-left:28px;
+   width:100px;
+   height:30px;
+   background-position:-235px -100px;
+}
+.same_comm{
+	background:url(/include/images/member/icon_comm.gif) no-repeat;
+	color:#D3A60E;
+	margin-left:30px;
+	font-weight:bold;
+	padding-left:28px;
+	width:60px;
+	height:30px;
+	background-position:-235px -240px;
+	}
+.bad_comm{
+	background:url(/include/images/member/icon_comm.gif) no-repeat;
+	color:#2F3030;
+	margin-left:30px;
+	font-weight:bold;
+	padding-left:28px;
+	width:60px;
+	height:30px;
+	background-position:-235px -168px;
+	}
+		

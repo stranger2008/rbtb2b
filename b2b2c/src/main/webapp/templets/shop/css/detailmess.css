@@ -1,0 +1,76 @@
+.reply1{
+	width:735px;
+	padding-top:5px;
+	padding-bottom:10px;
+	background-color:#F4F9FF;
+}
+.reply1 span{
+	margin-right:10px;
+	margin-left:20px;
+}
+.reply1 p{
+	height:24px;
+	line-height:24px;
+	line-height:24px;
+}
+
+
+.reply{
+	width:735px;
+	padding-top:5px;
+	padding-bottom:10px;
+	background-color:#FFFBE8;
+}
+.reply span{
+	margin-right:10px;
+	margin-left:20px;
+}
+.reply p{
+	height:24px;
+	line-height:24px;
+	line-height:24px;
+}
+.qtion{
+	background:url(../images/qt_03.gif) no-repeat 10px center;
+	padding-left:30px;
+}
+.answer{
+	background:url(../images/hd_03.gif) no-repeat 10px center;
+	padding-left:30px;
+	color:#D75509;
+}
+
+.message{
+	width:735px;
+	padding-top:60px;
+}
+.mesh2{
+	width:725px;
+	height:28px;
+	line-height:28px;
+	font-size:12px;
+	padding-left:10px;
+	background:#c7e6f5;
+	color:#005a9e;
+	border-top:#3d8ac4 solid 1px;
+}
+.mescont{
+	width:735px;
+	background:#f8fbff;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.mescont span{
+	padding-left:5px;
+	padding-right:5px;
+}
+.mescont p{
+	width:685px;
+	padding-left:20px;
+	line-height:22px;
+	padding-top:10px;
+}
+.mestarea{
+	width:480px;
+	height:50px;
+}

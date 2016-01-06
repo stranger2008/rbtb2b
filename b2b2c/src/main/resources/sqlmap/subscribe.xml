@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="subscribe">
+
+	<typeAlias alias="subscribe" type="com.rbt.model.Subscribe" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="subscribe">
+		<![CDATA[ 
+    SELECT sub_id,cust_id,info_type,keyword,cat_attr,area_attr,period,send_type,enabled,in_date FROM subscribe WHERE sub_id=$sub_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="subscribe">
+		UPDATE subscribe SET sub_id=#sub_id#,cust_id=#cust_id#,info_type=#info_type#,keyword=#keyword#,cat_attr=#cat_attr#,area_attr=#area_attr#,period=#period#,send_type=#send_type#,enabled=#enabled#,in_date=now() WHERE sub_id=$sub_id$
+	</update>
+	
+	<!-- 批量更新是否可用 -->
+	<update id="updateenabled" parameterClass="java.util.HashMap">
+    	UPDATE subscribe SET enabled=#enabled# WHERE sub_id=$sub_id$
+	</update>
+
+	<insert id="insert" parameterClass="subscribe">
+		INSERT INTO subscribe (sub_id,cust_id,info_type,keyword,cat_attr,area_attr,period,send_type,enabled,in_date) VALUES (#sub_id#,#cust_id#,#info_type#,#keyword#,#cat_attr#,#area_attr#,#period#,#send_type#,#enabled#,now())
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM subscribe WHERE sub_id in ($sub_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM subscribe left join member on subscribe.cust_id=member.cust_id
+		<dynamic prepend="WHERE">
+		      <isNotNull prepend="and" property="cust_id"> 
+			        subscribe.cust_id=#cust_id#
+			  </isNotNull>
+		     <isNotNull prepend="and" property="starttime"> 
+			    subscribe.in_date BETWEEN #starttime#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="endtime"> 
+			     #endtime#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="info_type"> 
+			     info_type=#info_type#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="send_type"> 
+			     send_type=#send_type#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="enabled"> 
+			     enabled=#enabled#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="cust_name"> 
+			     cust_name=#cust_name#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="keyword"> 
+			     keyword=#keyword#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="today">
+		        DAY(subscribe.in_date)=DAY(NOW()) AND MONTH(subscribe.in_date)=MONTH(NOW()) AND YEAR(subscribe.in_date)=YEAR(NOW())
+		     </isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT sub_id,subscribe.cust_id,cust_name,info_type,keyword,subscribe.cat_attr,subscribe.area_attr,period,send_type,enabled,subscribe.in_date
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY sub_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

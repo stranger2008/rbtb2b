@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="memberfriend">
+
+	<typeAlias alias="memberfriend" type="com.rbt.model.Memberfriend" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="memberfriend">
+		<![CDATA[ 
+    SELECT info_id,cust_id,f_cust_id,cat_id,cust_name,name,career,phone,cellphone,website,email,qq,aliwang,msn,skype,remark,in_date FROM memberfriend WHERE info_id=$info_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="memberfriend">
+		UPDATE memberfriend SET info_id=#info_id#,cust_id=#cust_id#,f_cust_id=#f_cust_id#,cat_id=#cat_id#,cust_name=#cust_name#,name=#name#,career=#career#,phone=#phone#,cellphone=#cellphone#,website=#website#,email=#email#,qq=#qq#,aliwang=#aliwang#,msn=#msn#,skype=#skype#,remark=#remark#,in_date=now() WHERE info_id=$info_id$
+	</update>
+
+	<insert id="insert" parameterClass="memberfriend">
+		INSERT INTO memberfriend (info_id,cust_id,f_cust_id,cat_id,cust_name,name,career,phone,cellphone,website,email,qq,aliwang,msn,skype,remark,in_date) VALUES (#info_id#,#cust_id#,#f_cust_id#,#cat_id#,#cust_name#,#name#,#career#,#phone#,#cellphone#,#website#,#email#,#qq#,#aliwang#,#msn#,#skype#,#remark#,now())
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM memberfriend WHERE info_id in ($info_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM memberfriend left join membercat on memberfriend.cat_id=membercat.cat_id
+		<dynamic prepend="WHERE">
+			     <isNotNull prepend="and" property="cust_id"> 
+			        memberfriend.cust_id=#cust_id#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="cust_name"> 
+			        INSTR(cust_name,#cust_name#) >0
+			     </isNotNull>
+			     <isNotNull prepend="and" property="company_name"> 
+			        cust_name=#company_name#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="name"> 
+       			    INSTR(name,#name#) >0
+			     </isNotNull>
+			     <isNotNull prepend="and" property="cellphone"> 
+			        cellphone=#cellphone#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="cat_id"> 
+			        memberfriend.cat_id=#cat_id#
+			     </isNotNull>
+			     <isNotNull prepend="and" property="search_starttime"> 
+				   memberfriend.in_date BETWEEN #search_starttime#
+				 </isNotNull>
+				 <isNotNull prepend="and" property="search_endtime"> 
+				   #search_endtime#
+				 </isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT info_id,memberfriend.cust_id,cat_name,f_cust_id,memberfriend.cat_id,cust_name,name,career,phone,cellphone,website,email,qq,aliwang,msn,skype,remark,memberfriend.in_date
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY info_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

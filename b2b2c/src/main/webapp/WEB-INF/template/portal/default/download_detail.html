@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/download_detailed.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /}
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/addcomments_detail.js"></script>
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/common.js"></script> 
+<title>{tag:field name="title" /}-{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:field name="title" /}" />
+<meta name="description" content="{tag:field name="content" len="30" /}" />
+<script type="text/javascript">
+$(document).ready(function(){
+/*排行特效样式111*/
+ addnumberstyle(".download_ranking_cont",".ico_top",10,"rak_addico_top3","rak_addico_topend");
+ //页面加载的时候，加载下载次数
+ getdownnumber();
+});
+
+function dlFile(path,id){
+	if(path==null||path==""){
+	     alert("该文件资源不存在！");
+	}else{
+	    $.ajax({  	 
+	        type: "post",    	     
+	        url: "/portal/download!updatedownnum.action?id="+id,       
+	        datatype:"json",
+	        async:false,
+	        success: function(data){   
+	       		$("#downids").html(data);
+	       }
+	    });
+	    $("#downpath").val(path);
+		$("#downid").val(id);
+		$("#downForm").submit();
+	}
+}
+
+//异步加载下载次数
+function getdownnumber()
+{
+  var id=$("#infoids").val();
+	$.ajax({  	 
+        type: "post",    	     
+        url: "/portal/download!Getdownnum.action?id="+id,       
+        datatype:"json",
+        success: function(data){  
+        	$("#downids").html(data);
+       }
+    }); 
+}
+</script>
+</head>
+
+<body>
+{tag:include file="top.html" /}
+<div class="clear"></div>
+<!--导航结束-->
+<div class="position"><P>当前位置: {tag:field name="page_position"/}正文</P></div>
+<!--当前位置结束-->
+<div class="w960">
+	<div class="cont_l f_left">
+    	<div class="pro_sort">
+            <h2 class="psort_nav">下载分类</h2>
+            <div class="pro_sort_p">
+                    {tag:catlist  cat_level="1" module_type="download" row="8" }
+                	<a href="[field:download_cat_url/]">[field:cat_name/]</a> 
+                    {/tag:catlist}
+        	</div>
+        </div>
+        <!--产品分类结束-->
+        <div class="download_advert">
+            {tag:advlist row="1" pos_id="85"}
+              <a href="[field:link_url/]" target="_blank">
+		           <img src="[field:img_path/]" alt="[field:adv_name/]" />
+		      </a>
+            {/tag:advlist}
+            {tag:advlist row="1" pos_id="86"}
+              <a href="[field:link_url/]" target="_blank">
+		          <img src="[field:img_path/]" alt="[field:adv_name/]" />
+		      </a>
+            {/tag:advlist}
+		</div>
+       	<div class="download_ranking">
+            <h2 class="dload_nav"><div class="dloadnav_m"><span class="title_cont">下载排行</span></div></h2>
+            <ul class="download_ranking_cont">
+                 {tag:downloadlist row="10" down_num="0"}
+                 <li><span class="ico_top"></span><a href="[field:download_detail_url/]">[field:title?len(15)/]</a></li>
+                 {/tag:downloadlist}
+            </ul>
+        </div> 
+        <!--本周下载排行结束-->
+    </div>
+    <div class="cont_r f_right"   >
+    	<h2 class="dlpro_main_nav">
+            <div class="dlpmainnav_m"><span class="title_cont1">{tag:field name="title" /}</span><span ></span></div>
+        </h2>
+        <div class="clear"></div>
+    	<div class="dlpro_main_cont" >
+        	<div class="mm"  >
+                <div class="dlpro_main_cont_l f_left">
+                    <div class="clear"></div>
+                    <div class="smallimag">
+                    	<img src="{tag:field name="img_path" /}" alt="{tag:field name="title" /}" width="150" height="147px"/>
+                    </div>
+                    <div class="introduction">
+                         <table width="320" border="0" bgcolor="#DBE5F4" cellspacing="1" style="float:right">
+                              <tr>
+                                <td>文件大小：{tag:field name="file_size" /} {tag:field name="size_unit" /} </td>
+                                <td>文件版本：{tag:field name="version" /}</td>
+                              </tr>
+                              <tr>
+                                <td>更新时间：{tag:field name="update_time" len="10" /}</td>
+                                <td>文件类别：{tag:field name="get_cats_attr" /}</td>
+                              </tr>
+                              <tr>
+                                <td>下载次数：<span id="downids"></span> </td>
+                                <td>点击次数：<span id="clicks"><script src="/include/clicknum.jsp?t=download&n=down_id&v={tag:field name='info_id'/}"></script></span></td>
+                              </tr>
+                       </table>
+                       <div class="bo">
+                        <div class="downlaod_m" >
+                          <div class="downlaod_help f_left" >
+                          <a href="###;" onclick="dlFile('{tag:field name='file_path' /}','{tag:field name='info_id' /}')" >立即下载</a>
+
+                          <form id="downForm" action="/portal/download!downloadFile.action">
+                            <input id="downpath" name="downpath" type="hidden" />
+                            <input id="downid" name="downid" type="hidden" />
+                          </form>
+                          </div>
+                            <div class="downlaod_collect f_left" >
+                            <a href="###;"  onclick="document.collectDownForm.submit();">收藏下载</a></div>
+                            <div class="downlaod_comments f_left" ><a href="#mycomment">网友评论</a></div>
+                             <!-- 收藏公司的提交表单 -->
+				     <form action="/member_Collect_add.action" name="collectDownForm" method="post">
+    					<input type="hidden" name="collect.title" id="title" value="{tag:field name='cust_name'/}" />	
+    					<input type="hidden" name="collect.link_url" id="link_url1"  />
+    					<input type="hidden" name="loc" value="" />
+   					 </form>
+    				<script>
+    					document.collectDownForm.loc.value = document.location.href;
+    					document.getElementById("link_url1").value = document.location.href;
+    				</script>
+                      	</div>
+                        <div class="clear"></div>
+                        </div>
+                  </div>
+                    <div class="clear"></div>
+                    <div class="soft_intro">
+                        <h2 class="softint_title" >文件介绍：</h2>
+                        <p>
+                         {tag:field name="down_desc"/}
+                        </p>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="dlpro_main_cont_r f_right" >
+					{tag:advlist row="1" pos_id="90"}
+                       <a href="[field:link_url/]" target="_blank">
+		               <img src="[field:img_path/]" alt="[field:adv_name/]" />
+		              </a>
+                    {/tag:advlist}
+					{tag:advlist row="1" pos_id="91"}
+                       <a href="[field:link_url/]" target="_blank">
+		               <img src="[field:img_path/]" alt="[field:adv_name/]" />
+		              </a>
+                    {/tag:advlist}
+                    {tag:advlist row="1" pos_id="92"}
+                       <a href="[field:link_url/]" target="_blank">
+		               <img src="[field:img_path/]" alt="[field:adv_name/]" />
+		              </a>
+                    {/tag:advlist}
+              </div>
+            </div>
+            <div class="clear"></div>
+            
+            {tag:advlist row="1" pos_id="93"}
+                <div style="width:710px;height:102px;"><a href="[field:link_url/]" target="_blank">
+		               <img src="[field:img_path/]" alt="[field:adv_name/]" />
+		        </a>
+		        </div>
+              {/tag:advlist}
+            <div class="relate"  >
+                <div class="relate_soft f_left">
+                    <h1 class="soft_title">相关下载:</h1>
+                    <ul>
+                       {tag:downloadArticleList row="5" keyword="{tag:field name="keyword" /}"}
+                       <li ><a href="[field:download_detail_url/]">[field:title?len(25)/]</a></li>
+                       {/tag:downloadArticleList}
+                    </ul>
+                </div>
+                <div class="relate_soft f_right">
+                    <h1 class="soft_title">相关阅读:</h1>
+                    <ul>
+                     {tag:newsArticleList row="5" keyword="{tag:field name="keyword" /}"}
+                       <li><a href="[field:news_detail_url/]" target="_blank">[field:title?len(25)/]</a></li>
+                       {/tag:newsArticleList}
+                    </ul>
+                </div>
+			</div>
+        </div>
+    </div>
+   <!--下载产品内容结束-->
+</div>
+<div class="clear"></div>
+
+<div class="w960">
+<div class="tjxz">
+<h2 class="tj_title">推荐下载</h2>
+<ul class="tj_cont">
+   {tag:downloadlist row="10" is_recom="1" }
+   <li><a href="[field:download_detail_url/]">[field:title?len(16)/]</a></li>
+   {/tag:downloadlist} 
+</ul>
+
+<div class="tj_pic">
+     {tag:advlist row="1" pos_id="87"}
+       <a href="[field:link_url/]" target="_blank">
+		    <img src="[field:img_path/]" alt="[field:adv_name/]" />
+	  </a>
+     {/tag:advlist}</div>
+
+
+
+</div>
+
+
+<!--评论信息开始 -->
+<a name="mycomment" id="comment"></a><!-- 锚点链接 -->
+<div class="spjs">
+  <form action="/portal/membercomment!addcomments.action" name="commentForm" method="post" validate="true">
+  <input type="hidden" name="infoids" id="infoids" value="{tag:field name="info_id"/}" />
+  <input type="hidden" name="commtitle" id="comment_title" value="{tag:field name="title"/}" />
+  <input type="hidden" name="infotype" id="info_type" value="download" />
+  <input type="hidden" id="idwidth" value="350" />
+  {tag:include file="commentinfo.html" /}
+  </form>
+</div>
+
+<!--评论信息结束 -->
+
+
+</div>
+
+
+
+
+<div class="clear"></div>
+
+{tag:include file="bottom.html" /}
+
+
+</body>
+</html>

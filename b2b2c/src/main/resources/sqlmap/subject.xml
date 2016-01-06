@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="subject">
+
+	<typeAlias alias="subject" type="com.rbt.model.Subject" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="subject">
+		<![CDATA[ 
+    SELECT sub_id,cust_id,cat_attr,title,img_path,header_path,infoattr_id,sub_desc,news_attr,img_news_attr,link_cat,is_comment,temp_path,is_recom,info_state,no_reason,in_date,clicknum,fare,user_id FROM subject WHERE sub_id=$sub_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="subject">
+		UPDATE subject SET cust_id=$cust_id$,cat_attr=#cat_attr#,infoattr_id=#infoattr_id#,title=#title#,img_path=#img_path#,header_path=#header_path#,sub_desc=#sub_desc#,news_attr=#news_attr#,img_news_attr=#img_news_attr#,link_cat=#link_cat#,is_comment=#is_comment#,temp_path=#temp_path#,is_recom=#is_recom#,info_state=#info_state#,no_reason=#no_reason#,clicknum=#clicknum#,fare=#fare#,user_id=#user_id# WHERE sub_id=$sub_id$
+	</update>
+	
+	<!--批量修改-->
+	<update id="updateisrecom" parameterClass="java.util.HashMap">
+		UPDATE subject SET is_recom=#is_recom# WHERE sub_id=$sub_id$
+	</update>
+	
+	<insert id="insert" parameterClass="subject">
+		INSERT INTO subject (sub_id,cust_id,cat_attr,title,img_path,header_path,sub_desc,news_attr,img_news_attr,link_cat,is_comment,temp_path,is_recom,info_state,no_reason,in_date,clicknum,fare,user_id,infoattr_id) VALUES (#sub_id#,#cust_id#,#cat_attr#,#title#,#img_path#,#header_path#,#sub_desc#,#news_attr#,#img_news_attr#,#link_cat#,#is_comment#,#temp_path#,#is_recom#,#info_state#,#no_reason#,now(),#clicknum#,#fare#,#user_id#,#infoattr_id#)
+	</insert>
+
+	<insert id="insertGetPk" parameterClass="subject">
+		INSERT INTO subject (sub_id,cust_id,cat_attr,title,img_path,header_path,sub_desc,news_attr,img_news_attr,link_cat,is_comment,temp_path,is_recom,info_state,no_reason,in_date,clicknum,fare,user_id,infoattr_id) VALUES (#sub_id#,#cust_id#,#cat_attr#,#title#,#img_path#,#header_path#,#sub_desc#,#news_attr#,#img_news_attr#,#link_cat#,#is_comment#,#temp_path#,#is_recom#,#info_state#,#no_reason#,now(),#clicknum#,#fare#,#user_id#,#infoattr_id#)
+		 <selectKey resultClass="java.lang.String" keyProperty="sub_id">
+            <!-- 此处不区分大小写 -->
+            SELECT @@IDENTITY AS ID
+        </selectKey>  
+	</insert>
+
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM subject WHERE sub_id in ($sub_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM subject
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="title">
+				INSTR(title,#title#) >0
+			</isNotNull>
+			<isNotNull prepend="and" property="subids">
+				sub_id in($subids$)
+			</isNotNull>
+			<isNotNull prepend="and" property="img_path">
+				img_path!=""
+			</isNotNull>
+			<isNotNull prepend="and" property="cat_attr">
+				INSTR(cat_attr,#cat_attr#) >0
+			</isNotNull>
+			<isNotNull prepend="and" property="is_recom">
+			    is_recom=#is_recom#
+			</isNotNull>
+			<isNotNull prepend="and" property="info_state">
+				info_state=#info_state#
+			</isNotNull>
+			<isNotNull prepend="and" property="in_date">
+				DATE(in_date)>=#in_date#
+			</isNotNull>
+			<isNotNull prepend="and" property="last_date">
+				#last_date#>=DATE(in_date)
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT sub_id,cust_id,cat_attr,title,img_path,header_path,infoattr_id,sub_desc,news_attr,img_news_attr,link_cat,
+		is_comment,temp_path,is_recom,info_state,no_reason,in_date,DATE_FORMAT(in_date,'%Y-%c-%d %h:%i:%s') AS in_date_data,
+		clicknum,fare,user_id
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY in_date DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+    <select id="getIndexList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+          select * from subject  where sub_id not in (select info_id FROM index_history where table_name='subject')	
+	</select>
+	
+	<sql id="getWebCommon">
+		FROM subject
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="is_recom">
+			    is_recom=#is_recom#
+			</isNotNull>
+			<isNotNull prepend="and" property="title">
+				INSTR(title,#title#) >0
+			</isNotNull>
+			<isNotNull prepend="and" property="info_state">
+				info_state=#info_state#
+			</isNotNull>
+			<isNotNull prepend="and" property="cat_attr">
+				INSTR(cat_attr,#cat_attr#) >0
+			</isNotNull>
+		</dynamic>
+	</sql>
+	
+	<select id="getWebSubjectList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT sub_id,title,in_date,clicknum,sub_desc
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+		<isNotNull  property="clicknum">
+			order by clicknum DESC
+		</isNotNull>
+		<isNotNull  property="in_date">
+			order by in_date DESC
+		</isNotNull>
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getWebSubjectCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+	</select>
+	
+	
+</sqlMap>
+

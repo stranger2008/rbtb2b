@@ -1,0 +1,386 @@
+.position{
+	height:33px;
+	background:#f6f5f5;
+	width:960px;
+	margin:10px auto 0;
+	line-height:33px;
+	font-size:14px;
+	}
+.position p{
+	padding-left:20px;
+	}
+
+.main{
+	width:650px;
+	float:left;
+	}
+.brank_jm{
+	width:648px;
+	min-height:120px;
+	_height:120px;
+	height:auto;
+	border:1px solid #E5E5E5;
+	line-height:25px;
+	color:#333;
+	border-top:2px solid #A0DDFF;
+	}
+.brank_jm ul{	
+	padding:10px 0 0 20px;
+	}
+.brank_jm ul{	
+	 width:450px;
+	}
+.brank_jm  img{
+	float:right;
+	margin:20px 20px 0 0;
+	border:1px solid #ccc;
+	}		
+
+.brand_js{
+	width:650px;
+	margin-top:10px;
+	padding-top:10px;
+	border:1px solid #E5E5E5;
+	}
+.brand_js h2{
+	width:628px;
+	height:32px;
+	line-height:32px;
+	font-size:12px;
+	padding-left:20px;
+	background:url(../images/porod_title.gif) repeat-x;
+	}
+.brand_main{
+	width:648px;
+	line-height:25px;
+	font-size:12px;
+	border:1px solid #e5e5e5;
+	border-top:0;
+	padding:5px 0;
+	color:#333;
+	}
+.brand_main p{
+	text-indent:24px;
+	padding:5px 10px 5px 10px;
+	}
+.brand_main	.brank_link	{
+	text-align:center;
+	}
+.brand_main	.brank_link	 a{
+	color:#003278;
+	margin-left:10px;
+	}
+.brand_main	.brank_link	 a:hover{
+	color:#F30;
+	}				
+.spjs{
+	width:650px;
+	padding-top:10px;
+}
+.comp_porod_title{
+	width:648px;
+	height:32px;
+	border:1px solid #e5e5e5;
+	background:url(../images/porod_title.gif) repeat-x;
+	}	
+.sm{
+	width:400px;
+	line-height:32px; 
+	padding-left:20px;
+	font-weight:bold;
+	float:left;
+	}		
+.qtcp_cont{
+	width:678px;
+	border:1px solid #e5e5e5;
+	border-top:0;
+	padding-bottom:10px;
+	}
+.qtcp_cont p{
+	width:640px;
+	margin:0 auto;
+	line-height:22px;
+	padding-top:10px;
+	text-indent:24px;
+	}
+	
+	
+	
+.sm_sj{
+	float:right;
+    padding-right:20px;
+	padding-top:8px;
+	}	
+.comp_porod_sm,.comp_porod_pl{
+	width:648px;
+	border:1px solid #e5e5e5;
+	border-top:none;
+	padding-bottom:15px;
+	}	
+.comp_porod_sm p{
+	text-indent:24px;
+	line-height:22px;
+	padding:15px 20px 0  20px;
+	}	
+	
+	
+.pl_bfb{
+	width:620px;
+	height:105px;
+	border-bottom:1px solid #e5e5e5;
+	margin:0 auto;
+	line-height:30px;
+	}	
+	
+.pl_g{
+	padding:10px 0 0 20px;
+	font-weight:bold;
+	width:75px;
+	}	
+.pl_1{
+	height:30px;
+	background:url(../images/pl_1.gif) no-repeat right center;
+	}
+.pl_2{
+	background:url(../images/pl_2.gif) no-repeat right center;
+	height:30px;
+	}
+.pl_3{
+	background:url(../images/pl_3.gif) no-repeat right center;
+	height:30px;
+	
+	}		
+.lp_100,.l_100{
+	padding:10px 0 0 20px;
+	}	
+.ll_100{
+	padding:15px 0 0 20px;
+	}		
+.lp_100 li{
+	width:285px;
+	margin-top:2px;
+	overflow:hidden;
+	}	
+.ll_100_1{
+	width:76px;
+	height:26px;
+	line-height:26px;
+	text-align:center;
+	background:url(../images/ll_100.gif) no-repeat center;
+	background-position:0 1px;
+	}
+.ll_100_2{
+	width:76px;
+	height:26px;
+	line-height:26px;
+	text-align:center;
+	background:url(../images/ll_100.gif) no-repeat center;
+	background-position:0 -32px;
+	}
+.ll_100_3{
+	width:76px;
+	height:26px;
+	line-height:26px;
+	text-align:center;
+	background:url(../images/ll_100.gif) no-repeat center;
+	background-position:0 -65px;
+	}		
+
+.pl_df{
+	padding-top:15px;
+	}
+.pl_df li{
+	float:left;
+	height:25%;
+	width:90px;
+	padding-left:20px;
+	line-height:30px;
+	}	
+	
+.sry{
+	width:615px;
+	margin:10px 0 0 20px;
+	}	
+.yzm{
+	padding:10px 0 0 20px;
+	}	
+.yzm_img{
+	padding-left:10px;
+	}	
+
+
+.fb{
+	padding:20px 0 0 20px;
+	}
+.fb_pl{
+	width:100px;
+	height:29px;
+	border:none;
+	color:#FFF;
+	font-weight:bold;
+	cursor:pointer;
+	background:url(../images/fb.gif) no-repeat;
+	margin-right:20px;
+	}	
+	
+.fb span{
+	padding-left:20px;
+	}	
+.fb .red{
+	padding:0;
+	}	
+/*侧栏开始*/
+.sidebar{
+	width:300px;
+	float:right;
+	}
+.comp_prof{
+	padding:50px 20px 0 0;}	
+.comp_prof_t{
+	width:288px;
+	height:30px;
+	line-height:30px;
+	padding-left:10px;
+	color:#FFF;
+	font-size:14px;
+	background:url(../images/comp_prof_t.gif) no-repeat;
+	}	
+.comp_prof_cont{
+	width:296px;
+	border:1px solid #ff7300;
+	border-top:none;
+	height:270px;
+	padding-top:10px;
+	}	
+	
+.comp_prof_name{
+	font-size:14px;
+	font-weight:bold;
+	color:#07519a;
+	text-align:center;
+	line-height:22px;
+	}
+.contact{
+	width:280px;
+	margin:0 auto;
+	}
+ .contact li{
+	line-height:30px;
+    height:30px;
+	padding-left:10px;
+	background:url(../images/dot_pic.jpg) repeat-x bottom
+	}	
+.comp_prof_cont span{
+		color:#07519a;
+		}	
+.comp_prof_cont img	{
+	width:122px;
+	margin:20px 0 0 90px;
+	}
+
+
+.no{
+	width:260px;
+	margin:0 auto;
+	margin-top:10px;
+	height:28px;
+	line-height:28px;
+	background:#FFFEBF;
+	border:1px solid #FFC600;
+	}
+.no b{
+	background:url(../images/no.gif) no-repeat 10px center;
+	padding-left:30px;
+	}
+.user_dl {
+	width:280px;
+	margin:15px auto 0;
+	}	
+.user_dl input{
+	width:95px;
+	margin-left:10px;
+	} 
+.user_dl .but{
+	width:43px;
+	height:23px;
+	border:0;
+	background:url(../images/user_login.gif) no-repeat;
+	cursor:pointer;
+	}
+.other{
+	width:260px;
+	height:30px;
+	line-height:30px;
+	margin:10px auto 0;
+	color:#333;
+	border-bottom:1px solid #EEEEEE;
+	}
+.comp_xx{
+	width:270px;
+	color:#1B4C7A;
+	}						
+.comp_xx li{
+	width:120px;
+	float:left;
+	height:28px;
+	line-height:28px;
+	margin-left:10px;
+	margin-top:10px;
+	line-height:28px;
+	_padding-top:6px;
+	background:url(../images/user_can.gif) no-repeat;
+	}	
+.comp_xx img{
+	vertical-align:middle;
+	line-height:28px;
+	padding:0 10px;
+	}
+.go_zc{
+	width:260px;
+	height:26px;
+	margin:15px auto 0;
+	}
+
+.sidebar_main{
+	padding-top:10px;
+	}	
+.title_text{
+	font-size:12px;
+	color:#333333;
+	line-height:26px;
+	width:296px;
+	border:1px solid #e5e5e5;
+	background:url(../images/area_title_bg.gif) repeat-x;
+	}
+.title_cont{
+	float:left;
+	padding-left:10px;
+	}
+.more{
+	float:right;
+	font-size:12px;
+	padding-right:10px;
+	}
+.more a{
+	text-decoration:none;
+	font-weight:100;
+	}
+.more a:hover{
+	text-decoration:underline;
+	color:#07519a;
+	font-weight:100;
+}	
+
+.sidebar_cont{
+	width:296px;
+	border:1px solid #e5e5e5;
+	border-top:0;
+	padding-bottom:10px;
+	}
+.sidebar_cont li{
+	float:left;
+	text-align:center;
+	padding-top:10px;
+	padding-left:12px;
+	}
+								

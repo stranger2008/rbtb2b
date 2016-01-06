@@ -1,0 +1,723 @@
+<tagbody>
+	<tag id="linklist">
+		select link_name,url from link where is_display='0' 
+		[link_group]
+	    and link_group=[link_group_value/]
+	    [/link_group]
+		order by
+		sort_no asc
+	</tag>
+	
+	<tag id="advlist">
+		select adv_code,img_path,flash_url,adv_name,link_url,title,content,adv_desc from advinfo where adv_state='0' and 
+		[pos_id]
+			pos_id = '[pos_id_value/]' and 
+		[/pos_id]
+		TO_DAYS(NOW()) > TO_DAYS(start_date) AND  TO_DAYS(end_date) > TO_DAYS(NOW())
+	</tag>
+	
+	<!-- 取出导航列表-->
+	<tag id="navlist">
+	  SELECT nav_id,nav_name,link_url,isopen,nav_code,plat_type FROM nav WHERE isshow=0 
+	  [nav_post]
+	    and nav_post=[nav_post_value/]
+	  [/nav_post]
+	  [plat_type]
+	   and plat_type='[plat_type_value/]'
+	  [/plat_type]	 
+	  order by sort_no asc
+	</tag>	
+	
+	<tag id="sysmodulelist">
+	  SELECT module_type,module_name from sysmodule WHERE state_code='0' ORDER BY sort_no ASC
+	</tag>	
+	
+	<!-- 取出栏目列表信息-->
+	<tag id="channellist">
+	   SELECT save_dir,file_name,ch_name FROM channel WHERE 1=1
+	  [ch_id]
+	    and ch_id=[ch_id_value/]
+	  [/ch_id]	 
+	</tag>	
+	<!-- 取出模块列表信息-->
+	<tag id="modulelist">
+	   SELECT para_key AS module_name,para_value AS module_code FROM commpara WHERE para_code='module_type' and enabled='0'  
+	   ORDER BY sort_no ASC
+	    [limit]
+	    LIMIT [limit_value/]
+	   [/limit]
+	</tag>	
+	
+	<!-- 取分类信息，处嵌套标签时用于取一级标签 -->
+	<tag id="catlist">
+		SELECT cat_id,cat_name,en_name,LOWER(word_index) AS word_index FROM category where
+		[module_type]
+			module_type = '[module_type_value/]' and 
+		[/module_type]
+		[cat_level]
+			cat_level = '[cat_level_value/]' and 
+		[/cat_level]
+		[up_cat_id]
+			up_cat_id = '[up_cat_id_value/]' and 
+		[/up_cat_id]
+		[cat_id]
+			cat_id = '[cat_id_value/]' and 
+		[/cat_id]
+		[mem_type]
+			mem_type = '[mem_type_value/]' and 
+		[/mem_type]
+		is_display = '1' order by sort_no asc
+	</tag>
+	
+	
+	<!-- 取二级分类信息-->
+	<tag id="twocatlist">
+		SELECT cat_id AS two_cat_id,cat_id,cat_name AS two_cat_name,en_name AS two_en_name,LOWER(word_index) AS two_word_index FROM category where
+		[up_cat_id]
+			up_cat_id = '[up_cat_id_value/]' and 
+		[/up_cat_id]
+		[mem_type]
+			mem_type = '[mem_type_value/]' and 
+		[/mem_type]
+		is_display = '1' order by sort_no asc
+	</tag>
+	
+	<!-- 取三级分类信息-->
+	<tag id="threecatlist">
+		SELECT cat_id AS three_cat_id,cat_name AS three_cat_name,cat_id,en_name AS three_en_name,LOWER(word_index) AS three_word_index FROM category where
+		[up_cat_id]
+			up_cat_id = '[up_cat_id_value/]' and 
+		[/up_cat_id]
+		[mem_type]
+			mem_type = '[mem_type_value/]' and 
+		[/mem_type]
+		is_display = '1' order by sort_no asc
+	</tag>
+	
+	<!-- 取视频信息-->
+	<tag id="videolist">
+		SELECT video_id,video_id as info_id,title,in_date,img_path,video_path,clicknum,cat_attr AS cate_attr,cat_attr AS cat_id,video_desc,in_date FROM video where
+		[is_recom]
+			is_recom = '[is_recom_value/]' and 
+		[/is_recom]
+		[cat_attr]
+		    INSTR(cat_attr,'[cat_attr_value/]')>0 and
+		[/cat_attr]
+		info_state = '1'
+		[orderby]
+			order by [orderby_value/] desc
+		[/orderby]
+	</tag>
+	
+	<!-- 取会员信息-->
+	<tag id="memberlist">
+		SELECT mem_type, member.cust_id,member.cust_id as info_id,cust_name,area_attr,main_product,logo_path,member.cust_desc,
+		logo_path as img_path,client_status ,member.in_date FROM member left join memberuser on memberuser.cust_id=member.cust_id 
+		left join levelinfo on member.cust_id=levelinfo.cust_id left join memberconfig on member.cust_id=memberconfig.cust_id
+		 where 1=1
+		[mem_type]
+		 and mem_type = '[mem_type_value/]' 
+		[/mem_type]
+		[is_recommend]
+		  and member.recommend = '[is_recommend_value/]' 
+		[/is_recommend]
+		[cat_attr]
+		 and   INSTR(member.cat_attr,'[cat_attr_value/]')>0 
+		[/cat_attr]
+		
+		[level_code]
+		 and level_code = '[level_code_value/]'
+		[/level_code]
+		and member.info_state = '1' order by
+		 [loc_num]
+		  loc_num [loc_num_value/] ,
+		 [/loc_num]
+		 [recommend]
+		 member.recommend DESC,
+		 [/recommend]
+		 member.in_date DESC
+	</tag>
+	
+	<!-- 取会员信息-->
+	<tag id="membernewslist">
+		SELECT t1.cert_id,t1.cust_id,t1.title,t1.content,t1.news_state,t1.no_reason,t1.in_date,t2.cust_name,t3.user_name
+		FROM membernews AS t1 left join member AS t2 on t1.cust_id=t2.cust_id left join memberuser AS t3 on t1.cust_id=t3.cust_id and user_type="1"
+		where 1=1 and t1.news_state = '0' order by t1.in_date DESC
+	</tag>
+    
+    <!--分类信息表信息提取-->
+	<tag id="classifiedlist">
+	 SELECT info_id,title,img_path,cat_attr,cat_attr as cate_attr,area_attr,cust_id,in_date FROM classified where
+	 [cat_attr]
+	  INSTR(cat_attr,'[cat_attr_value/]')>0 and
+	 [/cat_attr]
+	 info_state='1'
+	  order by 
+	  in_date desc
+	</tag>
+	
+	<!-- 取求购信息-->
+	<tag id="buylist">
+		SELECT title,buy_id as info_id, in_date,img_path,SUBSTRING(content,1,15) AS content,
+		cat_attr,cat_attr as cate_attr,area_attr,buy_num FROM buy where
+		[is_recom]
+			is_recom = '[is_recom_value/]' and 
+		[/is_recom]
+		[cat_attr]
+		  instr(cat_attr,'[cat_attr_value/]')>0 and 
+		[/cat_attr]
+		[buy_type]
+			buy_type = '[buy_type_value/]' and 
+		[/buy_type]
+	   [buy_type_Abroad]
+	     buy_type !='[buy_type_Abroad_value/]' and
+	   [/buy_type_Abroad]
+		info_state = '1'
+		[orderby]
+			order by [orderby_value/] desc
+		[/orderby]
+	</tag>
+	
+	
+	
+	
+	
+	<!-- 取关键字信息-->
+	<tag id="keywordlist">
+		SELECT key_name,module_type,num AS key_num FROM keyword where 1=1
+    	[module_type]
+		  and	module_type = '[module_type_value/]'
+		[/module_type]
+		order by num desc
+	</tag>
+	
+	<!--资讯表信息提取-->
+	<tag id="newslist">
+	 SELECT news_id ,news_id as info_id ,title,out_link ,TO_DAYS(sort_no)-TO_DAYS(NOW()) AS daynum ,litpic,litpic as img_path,cat_attr as cate_attr,area_attr,description 
+		,cust_id,news_attr,in_date ,SUBSTRING(in_date,6,5) AS pdate ,content,title_color
+		FROM news where
+	 [cat_attr]
+	  INSTR(cat_attr,'[cat_attr_value/]')>0 and
+	 [/cat_attr]
+	 [news_attr]
+	  INSTR(news_attr,'[news_attr_value/]')>0 and
+	 [/news_attr]
+	 [litpic]
+	  litpic!="" and
+	 [/litpic]
+	 info_state='1' 
+	 order by 
+	 [clicknum]
+	   clicknum desc ,
+	 [/clicknum]
+	 daynum desc ,in_date desc
+	
+	</tag>
+	
+	<!--供应表信息提取-->
+	<tag id="supplylist">
+	   SELECT supply_id,supply_id as info_id,title,in_date,img_path ,cat_attr ,max_supply
+	   ,supply_type,cat_attr as cate_attr ,area_attr FROM supply where info_state="1" 	
+	   [is_recom]
+	    and is_recom=[is_recom_value/] 
+	   [/is_recom]
+	    [cat_attr]
+	   and instr(cat_attr,'[cat_attr_value/]')>0
+	   [/cat_attr]
+	   [supply_type]
+	    and supply_type='[supply_type_value/]'  
+	   [/supply_type]
+	   [supply_type_Abroad]
+	    and supply_type !='[supply_type_Abroad_value/]' 
+	   [/supply_type_Abroad]
+       order by 
+	   [clicknum]
+	     clicknum desc,
+	   [/clicknum]
+	   in_date desc
+	</tag>
+	
+	
+	
+	
+	<!--企业按地区查找-->
+	<tag id="arealist">
+	SELECT area_id,area_name,en_name FROM area WHERE 1=1 
+	   [area_level]
+	    AND area_level=[area_level_value/]
+	   [/area_level]
+	   [area_levels]
+	    AND area_level in([area_levels_value/])
+	   [/area_levels]
+	   [up_area_id]
+	    AND up_area_id= '[up_area_id_value/]'
+	   [/up_area_id]
+	   [is_city]
+	    AND is_city= '[is_city_value/]'
+	   [/is_city]	
+	   order by sort_no asc
+	</tag>	
+	<!--求职简历信息提取-->
+	<tag id="resumelist">
+		SELECT resume_id,resume_id as info_id,resume_name,real_name,spec,education,technical,work_exper,birth,TIMESTAMPDIFF(YEAR,birth,CURDATE()) as age,
+		img_path,in_date,sex,salary,area_attr,cat_attr as cate_attr FROM resume where
+		[is_recom]
+			is_recom = '[is_recom_value/]' and 
+		[/is_recom]
+		[cat_attr]
+	     instr(cat_attr,'[cat_attr_value/]')>0  and
+	    [/cat_attr]
+		info_state="1" order by in_date desc
+	</tag>
+	<!--招聘信息提取-->
+	<tag id="joblist">
+		SELECT job_id,job_id as info_id,title,job_type,workexper,org_name,cust_name,enducation,salary,clicknum,job.cust_id ,job.in_date,job.area_attr  FROM job
+		left join member on job.cust_id=member.cust_id where
+		[is_recom]
+			is_recom = '[is_recom_value/]' and 
+		[/is_recom]
+		[cat_attr]
+	      instr(job.cat_attr,'[cat_attr_value/]')>0 and
+	    [/cat_attr]
+		  job.info_state="1" order by
+		[clicknum]
+		   clicknum desc,
+		[/clicknum]
+		 in_date desc
+	</tag>
+	<!--展会信息提取-->
+	<tag id="showinfolist">
+		SELECT exh_id,exh_id as info_id,title,img_path,cat_attr as category,in_date ,start_date,phone
+		,host_unit,address,in_date as publicdate,end_date,area_attr,cat_attr as cate_attr
+		 FROM showinfo where
+		[info_state]
+			info_state = '[info_state_value/]' and 
+		[/info_state]
+		[cat_attr]
+	    INSTR(cat_attr,'[cat_attr_value/]')>0 and
+	    [/cat_attr]
+	    [is_recom]
+			is_recom = '[is_recom_value/]' and 
+		[/is_recom]
+		info_state="1" order by 
+		[clicknum]
+		clicknum desc,
+		[/clicknum]
+		in_date desc
+	</tag>	
+
+    <!-- 获取知道统计信息 -->
+     <tag id="countasklist">
+     SELECT (SELECT COUNT(*) FROM ask WHERE answer_state="0" and info_state='1') AS countwjj 
+     , (SELECT COUNT(*) FROM ask WHERE answer_state="1" and info_state='1') AS countjj ,
+      COUNT(*) AS countall FROM ask WHERE answer_state!='2' and info_state='1'
+    </tag>
+
+	<!--下载专区信息提取-->
+	<tag id="downloadlist">
+		SELECT down_id,down_desc,down_id as info_id,title,img_path,file_type, cat_attr as cate_attr,in_date FROM download where
+		[is_recom]
+			is_recom = '[is_recom_value/]' and 
+		[/is_recom]
+		[cat_attr]
+	    INSTR(cat_attr,'[cat_attr_value/]')>0 and
+	    [/cat_attr]
+		info_state="1" order by
+		 [down_num]
+		  down_num desc ,
+		 [/down_num]
+		 [clicknum]
+		 clicknum desc ,
+		 [/clicknum]
+		 in_date desc
+	</tag>	
+	
+	<!--产品信息提取-->
+	<tag id="productlist">
+	    SELECT title,product_id as info_id,img_path,in_date FROM product WHERE
+	    [is_recom]
+			is_recom = '[is_recom_value/]' and 
+		[/is_recom]
+		[cat_attr]
+	    INSTR(cat_attr,'[cat_attr_value/]')>0 and
+	    [/cat_attr]
+	     info_state="1" 
+	    [img_path]
+	      and img_path!=""
+	    [/img_path]
+	       order by clicknum,in_date DESC 
+	</tag>
+	<!--最新专题信息提取-->
+	<tag id="subjectlist">
+		SELECT sub_id,sub_id as info_id, title,img_path,in_date,cat_attr,sub_desc FROM subject where 1=1
+		[cat_attr]
+	    and INSTR(cat_attr,'[cat_attr_value/]')>0 
+	    [/cat_attr]
+		[is_recom]
+		and is_recom = '[is_recom_value/]' 
+		[/is_recom]
+	    and info_state="1" order by
+		[clicknum]
+		 clicknum desc,
+		[/clicknum]
+		 in_date desc
+	</tag>	
+	<!--图库信息提取-->
+	<tag id="gallerylist">
+		SELECT gal_id,gal_id as info_id,title,img_path,cat_attr,in_date FROM gallery where
+		[is_recom]
+			is_recom = '[is_recom_value/]' and 
+		[/is_recom]
+		[cat_attr]
+			INSTR(cat_attr,'[cat_attr_value/]')>0 and 
+		[/cat_attr]
+		info_state="1" order by 
+		[clicknum]
+		clicknum desc,
+		[/clicknum]
+		in_date desc
+	</tag>
+	<!--品牌信息提取-->
+	<tag id="brandlist">
+		SELECT brand_id,brand_id as info_id,title,img_path,cat_attr,in_date FROM brand where
+		[is_recom]
+			is_recom = '[is_recom_value/]' and 
+		[/is_recom]
+		[cat_attr]
+			INSTR(cat_attr,'[cat_attr_value/]')>0 and 
+		[/cat_attr]
+		info_state="1" order by 
+		[clicknum]
+		     clicknum desc,
+		[/clicknum]
+		in_date desc
+	</tag>		
+	<!-- 获取投票标题列表 -->
+	<tag id="votelist">
+		SELECT vote_id,vote_title,start_date,NOW() AS DATEA,end_date,is_multi,vote_count,user_id,in_date FROM vote
+		WHERE 1=1 AND TO_DAYS(NOW())>=TO_DAYS(start_date) AND TO_DAYS(end_date)>=TO_DAYS(NOW())
+		ORDER BY in_date DESC
+	</tag>	
+	
+	<!-- 获取投票选项列表 -->
+	<tag id="voteoptionlist">
+		SELECT option_id,vote_id,option_name,option_count  FROM vote_option  where 1=1
+		[vote_id]
+		   and vote_id = '[vote_id_value/]' 
+		[/vote_id]
+
+	</tag>	
+	
+	<!-- 获取城市 -->
+	<tag id="areacity">
+	 SELECT area_name ,area_id FROM area WHERE up_area_id="1111111111" ORDER BY area_name ASC
+	</tag>
+	<!--系统参数设置提取-->
+	<tag id="sysbase">
+		SELECT var_value FROM sysconfig WHERE [var_name] var_name = '[var_name_value/]' and  [/var_name] 1=1
+	</tag>
+	
+	<!-- 详细页的标签sql开始 -->
+	
+	<!-- 供应详细页标签sql -->
+	<tag id="supply-model"><!-- 供应详细页 -->
+		SELECT supply_id AS info_id,title,supply.in_date AS in_date,img_path,max_supply,unit,send_day,memberuser.user_name
+		,model,standard,brand,content,min_order,end_date,supply.cust_id,price,clicknum,c_num
+		,member.cust_name,member.contact_name,member.contact_cellphone,member.phone,member.contact_sex,member.contact_job,
+		member.contact_qq,member.contact_msn,member.area_attr,member.address,supply.cat_attr
+		 FROM supply LEFT JOIN member on supply.cust_id=member.cust_id LEFT JOIN memberuser on member.cust_id=memberuser.cust_id 
+		 LEFT JOIN membercredit c on supply.cust_id=c.cust_id
+		  WHERE 1=1 [info_id] and supply_id = '[info_id_value/]' [/info_id] order by supply.in_date desc
+	</tag>
+	<tag id="product-model"><!-- 产品详细页 -->
+		SELECT product_id AS info_id,title,product.in_date AS in_date,img_path,product.cat_attr ,attr_desc
+		,model,standard,brand,content,self_cat_id,product.cust_id,clicknum,c_num
+		,member.cust_name,member.contact_name,member.contact_cellphone,member.phone,member.contact_sex,member.contact_job,
+		member.contact_qq,member.contact_msn,member.area_attr,member.address,memberuser.user_name
+		FROM product LEFT JOIN member ON product.cust_id=member.cust_id LEFT JOIN memberuser on member.cust_id=memberuser.cust_id 
+		LEFT JOIN membercredit c on product.cust_id=c.cust_id
+		 WHERE 1=1 [info_id] and product_id = '[info_id_value/]' [/info_id] order by product.in_date desc
+	</tag>
+	<tag id="buy-model"><!-- 求购详细页 -->
+	 SELECT buy_id AS info_id,title,buy.in_date,img_path,buy.cat_attr 
+     ,buy_num,price,standard,content,pack,buy.cust_id,clicknum,end_date,memberuser.user_name
+     ,member.cust_name,member.contact_name,member.contact_cellphone,member.phone,member.contact_sex,member.contact_job,
+     member.contact_qq,member.contact_msn,member.area_attr,member.address,c_num
+     FROM buy LEFT JOIN member ON buy.cust_id=member.cust_id LEFT JOIN memberuser on member.cust_id=memberuser.cust_id 
+     LEFT JOIN membercredit c on buy.cust_id=c.cust_id
+      WHERE 1=1  [info_id] and buy_id = '[info_id_value/]' [/info_id] order by buy.in_date desc
+	</tag> 
+	<tag id="showinfo-model"><!-- 展会详细页 -->
+	 SELECT exh_id AS info_id ,title,in_date,img_path,cat_attr,host_unit,sponsor,contact_man,cellphone,contact_addr,fax,email,msn,qq,
+     phone,contact_addr,address,end_date,start_date,area_attr,hall_name,exh_desc,clicknum,remark
+     FROM showinfo  WHERE 1=1   [info_id] and exh_id = '[info_id_value/]' [/info_id] order by in_date desc
+	</tag>
+	<tag id="news-model"><!-- 资讯详细页 -->
+	SELECT news_id AS info_id ,title,news_attr,out_link,source,tag,litpic,sourcelink
+   ,author,cat_attr,content,COMMENT,title_color,clicknum,in_date,description,keyword FROM news
+    WHERE 1=1  [info_id] and news_id = '[info_id_value/]' [/info_id] order by in_date desc
+	</tag>
+	<tag id="download-model"><!-- 下载详细页 -->
+	SELECT down_id AS info_id ,title,img_path ,cat_attr, file_path,file_size,size_unit
+    ,version,update_time,file_type,down_desc,in_date,down_num,clicknum,keyword
+    FROM  download  WHERE 1=1 [info_id] and down_id = '[info_id_value/]' [/info_id] order by in_date desc
+	</tag>
+	<tag id="video-model"><!-- 视频详细页 -->
+	SELECT video_id AS info_id ,title,img_path,cat_attr ,video_path,video_desc,keyword,in_date,clicknum
+    FROM video  WHERE 1=1 [info_id] and video_id = '[info_id_value/]' [/info_id] order by in_date desc
+	</tag>
+	<tag id="gallery-model"><!-- 图库详细页 -->
+	SELECT gal_id AS info_id ,title,img_path,cat_attr,gal_desc,in_date,clicknum
+    FROM gallery WHERE 1=1 [info_id] and gal_id = '[info_id_value/]' [/info_id] order by in_date desc
+	</tag>
+	<tag id="resume-model"><!-- 简历详细页 -->
+	SELECT resume_id AS info_id,resume_name,real_name,img_path,sex,marry,area_attr,
+    birth,height,weight,education,college,spec,salary,job_type,work_exper,self_desc,technical,
+    language,cellphone,email,phone,address,qq,msn,skype,clicknum,
+    in_date FROM resume WHERE 1=1 [info_id] and resume_id = '[info_id_value/]' [/info_id] order by in_date desc
+	</tag>
+	<tag id="job-model"><!-- 招聘详细页 -->
+	   SELECT job_id AS info_id,job.cust_id ,(SELECT cust_type FROM member WHERE  cust_id=job.cust_id) AS para_value,
+       title,job.cat_attr,org_name,job_num,salary,job.area_attr,job_type,sex,
+       marry,enducation,birth,workexper,job_desc,job.contact_name,job.phone,job.email,cellphone,job.address,qq,msn,
+       skype,end_date,job.info_state,clicknum,job.in_date,member.address,fax,website
+       FROM job left join member on job.cust_id=member.cust_id  WHERE 1=1 [info_id] and job_id = '[info_id_value/]' [/info_id]
+       order by job.in_date desc
+	</tag>
+	<tag id="know-model"><!-- 知道详细页 -->
+	  SELECT ask_id as info_id,cust_id,cat_attr,title,img_path,
+	  (select user_name from memberuser where cust_id=ask.cust_id and user_type='1' LIMIT 1) AS companyusername,
+      ask_desc,add_desc,(select para_key from commpara where para_code='integral_type' AND para_value=ask.integral ) as integrals,is_recom,answer_state,in_date,
+      clicknum ,info_state,user_id FROM ask WHERE 1=1 [info_id] and ask_id = '[info_id_value/]' [/info_id] order by in_date desc
+	</tag>
+	<tag id="subject-model"><!-- 专题详细页 -->
+	SELECT sub_id AS info_id ,cat_attr,title,img_path,
+	header_path,sub_desc,news_attr,img_news_attr,
+	link_cat,is_comment,temp_path,is_recom,in_date,clicknum,
+	user_id FROM subject WHERE 1=1 [info_id] and sub_id = '[info_id_value/]' [/info_id] order by in_date desc
+	</tag>
+	<tag id="brand-model"><!-- 品牌详细页 -->
+	SELECT t1.brand_id AS info_id,t1.cust_id,t1.title,t1.img_path,t1.cat_attr,t1.area_attr,
+	t1.web_url,t1.content,t1.in_date,t1.clicknum,t1.fare,t1.user_id,
+	t2.cust_name,t2.contact_name,t2.contact_cellphone,t2.phone,t2.area_attr,t2.address 
+	FROM brand AS t1 LEFT JOIN member AS t2 ON t1.cust_id=t2.cust_id WHERE 1=1 [info_id] and t1.brand_id = '[info_id_value/]' [/info_id] order by t1.in_date desc
+	</tag>
+	<tag id="classified-model"><!-- 分类信息详细页 -->
+	SELECT info_id,title,info_desc,cat_attr,cat_attr as cate_attr,area_attr,img_path,contact,qqmsn,address,phone,clicknum,in_date
+	 FROM classified WHERE 1=1 [info_id] and info_id = '[info_id_value/]' [/info_id] order by in_date desc
+	</tag>
+	<!-- 详细页的标签sql结束 -->
+	
+	<!--知道详细条数信息提取-->
+	<tag id="askcountlist">
+		SELECT count(*) as askcount FROM ask where  1=1
+		[close_answer_state]
+		and	answer_state != '[close_answer_state_value/]'  
+		[/close_answer_state]
+		[answer_state]
+		 and answer_state = '[answer_state_value/]' 	
+		[/answer_state]	
+		
+	</tag>
+	<!--答案详细条数信息提取-->
+	<tag id="answercountlist">
+		SELECT COUNT(*) AS askcount FROM answer WHERE  1=1 AND info_state='1' 
+		[ask_id]
+         AND ask_id='[ask_id_value/]'
+        [/ask_id]
+	</tag>
+	<!--知道列表信息提取-->
+	<tag id="asklist">
+		SELECT ask.ask_id,ask.ask_id as info_id, title,integral,COUNT(answer.ask_id) AS answercount,ask.in_date FROM ask
+		LEFT JOIN  answer ON answer.ask_id=ask.ask_id WHERE 1=1  and  ask.info_state='1' 
+		[answer_state]
+		 and answer_state = '[answer_state_value/]' 	
+		[/answer_state]	
+		[inter]
+		 and integral >='[inter_value/]'
+		[/inter]
+		[is_recom]
+		 and is_recom = '[is_recom_value/]' 	
+		[/is_recom]	
+		GROUP BY ask.ask_id order by ask.in_date desc
+	</tag>
+	<!-- 热门企业信息列表 -->
+	<tag id="memberinterlist">
+       SELECT member.cust_id,member.cust_id AS info_id,member.cust_name,memberinter.fund_num,member.in_date 
+        FROM memberinter,member WHERE memberinter.cust_id=member.cust_id 
+        ORDER BY fund_num desc
+	</tag>
+	
+	<!-- 详细页标签列表开始 -->
+	<!-- 供应详细页列表标签 -->
+	<tag id="supplyArticleList" type="articleList">
+        SELECT supply_id,supply_id as info_id ,title,in_date,img_path FROM supply where info_state="1" 	
+	    [is_recom] and is_recom=[is_recom_value/] [/is_recom]
+	    [cust_id] and cust_id='[cust_id_value/]' [/cust_id]
+	    [cat_attr] and INSTR(cat_attr,'[cat_attr_value/]')>0 [/cat_attr]
+        order by 
+	    [clicknum] clicknum desc ,[/clicknum]
+	    in_date desc
+	</tag>
+	<!-- 产品详细页列表标签 -->
+	<tag id="productArticleList" type="articleList">
+        SELECT product_id,product_id as info_id ,title,in_date,img_path  FROM product where info_state="1" 	
+	    [is_recom] and is_recom=[is_recom_value/] [/is_recom]
+	    [cust_id] and cust_id='[cust_id_value/]' [/cust_id]
+	    [cat_attr] and cat_attr='[cat_attr_value/]' [/cat_attr]
+        order by 
+	    [clicknum] clicknum desc ,[/clicknum]
+	    in_date desc
+	</tag>
+	
+	<!-- 取分类信息，处嵌套标签时用于取一级标签 -->
+	<tag id="catArticleList" type="articleList">
+		SELECT cat_id,cat_name FROM category where
+		[link_cat_attr]
+			INSTR('[link_cat_attr_value/]',cat_id)>0 and
+		[/link_cat_attr]
+		is_display = '1' order by sort_no asc
+	</tag>
+	<!-- 获取下载的相关下载软件 -->
+	<tag id="downloadArticleList" type="articleList">
+	 SELECT title,down_id as info_id,cat_attr as cate_attr,in_date FROM download WHERE 1=1
+	 [keyword]
+	  and  title like'%[keyword_value/]%'
+	 [/keyword] 
+	 order by in_date desc
+	</tag>
+	<!-- 获取下载的相关下载资讯7243232267 -->
+	<tag id="newsArticleList" type="articleList">
+	SELECT title,news_id as info_id,cat_attr as cate_attr,cat_attr,litpic as img_path,in_date FROM news WHERE  1=1
+	[keyword]
+	 and title like'%[keyword_value/]%'
+	[/keyword]
+	[info_state]
+	 and info_state='[info_state_value/]'
+	[/info_state]
+	[cat_attr]
+	 and cat_attr like '%[cat_attr_value/]%'
+	[/cat_attr]
+	[news_attr]
+	 and news_id in ([news_attr_value/])
+	[/news_attr]
+	order by in_date desc
+	</tag>
+	<!-- 获取图库图片 -->
+	<tag id="gallerypicArticleList" type="articleList">
+	SELECT gal_id,gal_id as info_id ,img_path,pic_desc ,in_date FROM gallerypic WHERE 1=1 
+	[gal_id]
+	 and gal_id ='[gal_id_value/]'
+	[/gal_id]
+	</tag>
+	<!-- 相关求购列表标签 -->
+	<tag id="buyArticleList" type="articleList">
+        SELECT buy_id,buy_id as info_id ,title,in_date,img_path FROM buy where info_state="1" 	
+	    [is_recom] 
+	        and is_recom=[is_recom_value/] 
+	    [/is_recom]
+	    [cust_id] 
+	        and cust_id='[cust_id_value/]'
+	    [/cust_id]
+	    [cat_attr] 
+	      and INSTR(cat_attr,'[cat_attr_value/]')>0 
+	    [/cat_attr]
+        order by 
+	    [clicknum] clicknum desc ,[/clicknum]
+	    in_date desc
+	</tag>
+	<!-- 获取公司信息 -->
+	<tag id="memberArticleList" type="articleList">
+	SELECT address,website,fax,staff_num,cust_id ,cat_attr AS cate_attr FROM member
+	WHERE  1=1  
+	[cust_id]
+	 and cust_id='[cust_id_value/]'
+	[/cust_id]
+	</tag>
+	
+	<!-- 获取答案列表 -->
+	<tag id="answtArticleList" type="articleList">
+	 SELECT answer_id,answer_id as info_id, answer_desc, refer_data, isselect,  in_date, user_id
+     FROM answer  WHERE info_state='1' AND isselect='0' 
+	[ask_id]
+	 and ask_id='[ask_id_value/]'
+	[/ask_id]
+	</tag>
+	<!-- 获取相关问题列表 -->
+	<tag id="askArticleList" type="articleList">
+	SELECT ask_id,ask_id as info_id ,title,in_date ,cat_attr FROM ask WHERE 1=1
+	[cat_attr]
+	 and cat_attr LIKE'%[cat_attr_value/]%'
+	[/cat_attr]	 
+	</tag>
+	
+	<!--图库详细信息提取-->
+	<tag id="galleryArticleList" type="articleList">
+		SELECT gal_id,gal_id as info_id,title,img_path,cat_attr,in_date FROM gallery where
+		[cat_attr]
+			INSTR(cat_attr,'[cat_attr_value/]')>0 and 
+		[/cat_attr]
+		info_state="1" order by in_date desc
+	</tag>	
+	
+	<!-- 企业相关品牌列表标签 -->
+	<tag id="brandArticleList" type="articleList">
+        SELECT brand_id,brand_id as info_id ,title,img_path,in_date FROM brand where info_state="1" 	
+	    [is_recom] 
+	        and is_recom=[is_recom_value/] 
+	    [/is_recom]
+	    [cust_id] 
+	        and cust_id='[cust_id_value/]'
+	    [/cust_id]
+	    [cat_attr] 
+	      and INSTR(cat_attr,'[cat_attr_value/]')>0 
+	    [/cat_attr]
+        order by 
+	    in_date desc
+	</tag>
+	
+	<!--详细页供应信息提取-->
+	<tag id="supplyArticleList" type="articleList">
+	   SELECT supply_id,supply_id as info_id,title,in_date,img_path ,cat_attr FROM supply where info_state="1" 	
+	   [is_recom]
+	    and is_recom=[is_recom_value/]
+	   [/is_recom]
+	   [cust_id]
+	    and cust_id=[cust_id_value/]
+	   [/cust_id]
+	   [cat_attr]
+	   and instr(cat_attr,'[cat_attr_value/]')>0
+	   [/cat_attr]
+       order by in_date desc
+	</tag>
+	<!--详细页相关视频信息提取-->
+	<tag id="videoArticleList" type="articleList">
+	    SELECT title,video_id as info_id,cat_attr,img_path,in_date FROM video WHERE info_state="1" 
+		[cat_attr]
+	      and INSTR(cat_attr,'[cat_attr_value/]')>0
+	    [/cat_attr]
+	    order by in_date DESC 
+	</tag>
+	<!--最新专题信息提取-->
+	<tag id="subjectArticleList"  type="articleList">
+		SELECT sub_id,sub_id as info_id, title,img_path,in_date,cat_attr,sub_desc FROM subject where 1=1
+		[cat_attr]
+	   		and INSTR(cat_attr,'[cat_attr_value/]')>0 
+	    [/cat_attr]
+	    [news_attr]
+	    	and  sub_id in ([news_attr_value/])
+	    [/news_attr]
+	    [img_news_attr]
+	    	and  sub_id in ([img_news_attr_value/])
+	    [/img_news_attr]
+		[is_recom]
+			and is_recom = '[is_recom_value/]' 
+		[/is_recom]
+	    	and info_state="1" order by
+		[clicknum]
+			 clicknum desc,
+		[/clicknum]
+			 in_date desc
+	</tag>	
+	
+</tagbody>

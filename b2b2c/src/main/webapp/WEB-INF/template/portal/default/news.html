@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/zixun.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /}
+<script type="text/javascript" src="/include/js/lb.js"></script>
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/common.js"></script> 
+<title>{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:chinfo name="meta_keyword"/}" />
+<meta name="description" content="{tag:chinfo name="meta_desc"/}" />
+
+<script type="text/javascript">
+$(document).ready(function(){
+/*排行特效样式*/
+ addnumberstyle(".ranking_main",".ico_top",10,"rak_addico_top3","rak_addico_topend");
+});
+</script>
+</head>
+<body>
+  {tag:include file="top.html" /}
+<!--导航结束-->
+<div class="clear"></div>
+<!--行业导航结束-->
+<div class="w960">
+ 
+    <div class="l_w720 f_left">
+         <div class="img_news f_left">
+              <!-- 绑定放灯片图片 -->
+		      <div id="myFocus" class="mF_liuzg">
+		        <div class="loading"><span>正在载入图片……</span></div><!--载入画面-->
+		        <ul class="pic"><!--内容列表-->
+		          {tag:advlist row="3" pos_id="43"}
+		         <li><a href="[field:link_url/]" target="_blank">
+		         <img src="[field:img_path/]" alt="[field:adv_name/]" />
+		         </a>
+		         </li>
+		         {/tag:advlist}
+		        </ul>
+		      </div>
+         </div>   
+          <div class="news_main f_left">
+              <ul>
+               {tag:newslist row="1"}
+                <li class="li1"><a href='[field:news_detail_url/]' target="_blank">[field:title?len(16)/]</a></li>
+                <li class="li2">[field:description?len(50)/]</li>
+               {/tag:newslist}
+               {tag:newslist row="6" start="1"}
+                <li><a href='[field:news_detail_url/]' target="_blank">[field:title?len(20)/]</a>[field:in_date?len(5,10)/]</li>
+               {/tag:newslist}
+             </ul>
+        </div>
+         
+       {tag:catlist cat_level="1" module_type="news"}
+        <div class="l_cont f_left">
+        <h2 class="l_title"><span class="f_title f_left">[field:cat_name/]</span><span class="more_1"><a href="[field:news_cat_url/]" target="_blank">更多+</a></span></h2>
+        <div class="l_main">
+            <ul>
+              {tag:newslist cat_attr="[field:cat_id/]" row="8"}
+              <li><a href='[field:news_detail_url/]' target="_blank">[field:title?len(20)/]</a>[field:in_date?len(5,10)/]</li>
+              {/tag:newslist}
+            </ul>
+        </div> 
+        </div>
+        {/tag:catlist}
+       <div class="clear"></div>  
+                 
+    </div><!--l_w720 end-->
+
+    
+    <div class="r_w240 f_left">
+    
+      <div class="r_class">
+  <h2 class="P_title"><span class="pf_title f_left">按分类浏览</span></h2>
+             <div class="cla_main">
+                <ul class="pau">
+                   {tag:catlist cat_level="1" row="10" module_type="news"}
+                   <li><a href="[field:news_cat_url/]" target="_blank">[field:cat_name/]</a></li>
+                   {/tag:catlist}
+               </ul>
+               <div class="clear"></div>
+             </div>
+        </div>
+        
+        <div class="f_pic f_left">
+          <h2 class="P_title"><span class="pf_title f_left">推荐图文</span></h2>
+          <div class="p_main">
+             <ul>
+                {tag:newslist  row="4" news_attr="c"  imgwidth="100" imgheight="80"}
+                <li>
+                 <p class="divMiddle" style="width:120px;height:90px;line-height:90px;">
+                 <a href='[field:news_detail_url/]' target="_blank" class="AMiddle" style="width:120px;">
+                   <img src="[field:img_path/]"  [field:imgsize/] class="ImgMiddle" /></a>
+                 </p>
+                  <p><a href='[field:news_detail_url/]' target="_blank">[field:title?len(7)/]</a></p>
+                 </li>
+                {/tag:newslist}
+            </ul>
+             <div class="clear"></div>
+          </div> 
+        </div>
+        <div class="clear"></div>
+         
+         
+         
+        <div class="f_pic f_left">
+          <h2 class="P_title"><span class="pf_title f_left">点击排行</span></h2>
+          <div class="cli_rank">
+          <ul class="ranking_main">
+               {tag:newslist row="10" clicknum="0"}
+               <li><span class="ico_top"></span><a href='[field:news_detail_url/]' target="_blank">[field:title?len(15)/]</a></li>
+               {/tag:newslist}
+             </ul>
+          </div> 
+       </div>
+         
+         
+  </div>
+    
+</div>
+<div class="clear"></div>
+
+{tag:include file="bottom.html" /}
+</body>
+</html>

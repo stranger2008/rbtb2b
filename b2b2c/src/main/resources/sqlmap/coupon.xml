@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="coupon">
+
+	<typeAlias alias="coupon" type="com.rbt.model.Coupon" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="coupon">
+		<![CDATA[ 
+    SELECT c_id,cust_id,c_name,c_img,c_type,c_inter,c_money,c_discount,coupon_times,start_time,end_time,is_every FROM coupon WHERE c_id=$c_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="coupon">
+		UPDATE coupon SET c_id=#c_id#,cust_id=#cust_id#,c_name=#c_name#,c_img=#c_img#,c_type=#c_type#,c_inter=#c_inter#,c_money=#c_money#,c_discount=#c_discount#,coupon_times=#coupon_times#,start_time=#start_time#,end_time=#end_time#,is_every=#is_every# WHERE c_id=$c_id$
+	</update>
+
+	<insert id="insert" parameterClass="coupon">
+		INSERT INTO coupon (cust_id,c_name,c_img,c_type,c_inter,c_money,c_discount,coupon_times,start_time,end_time,is_every) VALUES (#cust_id#,#c_name#,#c_img#,#c_type#,#c_inter#,#c_money#,#c_discount#,#coupon_times#,#start_time#,#end_time#,#is_every#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM coupon WHERE c_id in ($c_id$)
+	</delete>
+	
+		<!--批量修改-->
+	<update id="updateisevery" parameterClass="java.util.HashMap">
+		UPDATE coupon SET is_every=#is_every# WHERE c_id=$c_id$
+	</update>
+	
+
+	<sql id="getCommon">
+		FROM coupon 
+		<dynamic prepend="WHERE">
+		   <isNotNull prepend="and" property="c_name"> 
+			        INSTR(c_name,#c_name#)>0
+		   </isNotNull>
+		   <isNotNull prepend="and" property="c_type">
+			        c_type=#c_type#
+		   </isNotNull>
+		   <isNotNull prepend="and" property="is_every">
+			        is_every=#is_every#
+		   </isNotNull>		   
+		   <isNotNull prepend="and" property="start_time"> 
+		    DATE(coupon.start_time)>=#start_time#
+			</isNotNull>
+			<isNotNull prepend="and" property="start_time_e_s"> 
+		    #start_time_e_s#>=DATE(coupon.start_time)
+			</isNotNull>			
+			<isNotNull prepend="and" property="end_time"> 
+			 DATE(coupon.end_time)>=#end_time#
+			</isNotNull>
+			<isNotNull prepend="and" property="end_time_e_s">
+			#end_time_e_s#>=DATE(coupon.end_time)
+			</isNotNull>
+			<isNotNull prepend="and" property="cust_id"> 
+				cust_id=#cust_id#
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT c_id,cust_id,c_name,c_img,c_type,c_inter,c_money,c_discount,coupon_times,start_time,end_time,is_every
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY c_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

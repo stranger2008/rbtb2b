@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="download">
+
+	<typeAlias alias="download" type="com.rbt.model.Download" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="download">
+		<![CDATA[ 
+    SELECT down_id,cust_id,title,img_path,cat_attr,file_path,file_size,size_unit,version,update_time,file_type,down_desc,keyword,is_recom,info_state,no_reason,in_date,clicknum,fare,user_id,down_num,infoattr_id FROM download WHERE down_id=$down_id$
+    ]]>
+	</select>
+     <update id="updateclicknum" parameterClass="java.lang.String">
+     UPDATE download SET clicknum=(clicknum+1) WHERE down_id=#down_id#
+    </update>
+     <update id="updatedownnum" parameterClass="java.lang.String">
+     UPDATE download SET down_num=(down_num+1) WHERE down_id=#down_id#
+    </update>
+	<update id="update" parameterClass="download">
+		UPDATE download SET down_id=#down_id#,cust_id=#cust_id#,title=#title#,img_path=#img_path#,cat_attr=#cat_attr#,file_path=#file_path#,file_size=#file_size#,size_unit=#size_unit#,version=#version#,file_type=#file_type#,down_desc=#down_desc#,keyword=#keyword#,info_state=#info_state#,is_recom=#is_recom#,clicknum=#clicknum#,fare=#fare#,user_id=#user_id#,down_num=#down_num#,infoattr_id=#infoattr_id# WHERE down_id=$down_id$
+	</update>
+	
+	<update id="updateaudit" parameterClass="download">
+		UPDATE download SET info_state=#info_state#,no_reason=#no_reason# WHERE down_id=$down_id$
+	</update>
+	
+	<!--批量修改-->
+	<update id="updateisrecom" parameterClass="java.util.HashMap">
+		UPDATE download SET is_recom=#is_recom# WHERE down_id=$down_id$
+	</update>
+
+	<insert id="insert" parameterClass="download">
+		INSERT INTO download (down_id,cust_id,title,img_path,cat_attr,file_path,file_size,size_unit,version,update_time,file_type,down_desc,keyword,is_recom,in_date,clicknum,fare,user_id,down_num,info_state) VALUES (#down_id#,#cust_id#,#title#,#img_path#,#cat_attr#,#file_path#,#file_size#,#size_unit#,#version#,now(),#file_type#,#down_desc#,#keyword#,#is_recom#,now(),#clicknum#,#fare#,#user_id#,#down_num#,#info_state#)
+	</insert>
+
+	<insert id="insertGetPk" parameterClass="download">
+		INSERT INTO download (down_id,cust_id,title,img_path,cat_attr,file_path,file_size,size_unit,version,update_time,file_type,down_desc,keyword,is_recom,in_date,clicknum,fare,user_id,down_num,info_state,infoattr_id) VALUES (#down_id#,#cust_id#,#title#,#img_path#,#cat_attr#,#file_path#,#file_size#,#size_unit#,#version#,now(),#file_type#,#down_desc#,#keyword#,#is_recom#,now(),#clicknum#,#fare#,#user_id#,#down_num#,#info_state#,#infoattr_id#)
+		 <selectKey resultClass="java.lang.String" keyProperty="down_id">
+            <!-- 此处不区分大小写 -->
+            SELECT @@IDENTITY AS ID
+        </selectKey>  
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM download WHERE down_id in ($down_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM download left join member on member.cust_id=download.cust_id
+		<dynamic prepend="WHERE">
+		    <isNotNull prepend="and" property="cust_id"> 
+			     download.cust_id=#cust_id#
+			</isNotNull>
+		    <isNotNull prepend="and" property="file_type"> 
+			     file_type=#file_type#
+			</isNotNull>
+			<isNotNull prepend="and" property="cust_name"> 
+			     cust_name=#cust_name#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="title"> 
+			     INSTR(title,#title#)>0
+			 </isNotNull>
+			 <isNotNull prepend="and" property="user_id"> 
+			     user_id=#user_id#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="is_recom"> 
+			     is_recom=#is_recom#
+			 </isNotNull>  
+			 <isNotNull prepend="and" property="info_state_in">
+				download.info_state in($info_state_in$)
+			</isNotNull>
+			<isNotNull prepend="and" property="cat_attr"> 
+				INSTR(download.cat_attr,#cat_attr#) >0
+			</isNotNull>
+			  <isNotNull prepend="and" property="info_state"> 
+			     download.info_state=#info_state#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="starttime"> 
+			     DATE(download.in_date)>=#starttime#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="endtime"> 
+			     #endtime#>=DATE(download.in_date)
+			 </isNotNull>
+			 <isNotNull prepend="and" property="today">
+		    DAY(download.in_date)=DAY(NOW()) AND MONTH(download.in_date)=MONTH(NOW()) AND YEAR(download.in_date)=YEAR(NOW())
+		    </isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT down_id,member.cust_id,cust_name,title,img_path,download.cat_attr,file_path,file_size,size_unit,version,update_time,file_type,down_desc,keyword,is_recom,download.info_state,no_reason,download.in_date,clicknum,fare,download.user_id,down_num
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY in_date desc
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+    
+   	<sql id="getWebCommon">
+		FROM download
+		<dynamic prepend="WHERE">
+			 <isNotNull prepend="and" property="title"> 
+		       INSTR(title,#title#)>0
+			 </isNotNull>
+			 <isNotNull prepend="and" property="is_recom"> 
+			     is_recom=#is_recom#
+			 </isNotNull>  
+			  <isNotNull prepend="and" property="info_state"> 
+			     download.info_state=#info_state#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="cat_attr"> 
+			   INSTR(download.cat_attr,#cat_attr#)>0
+		     </isNotNull>
+		</dynamic>
+	</sql>
+
+   <select id="getWebDownloadList" parameterClass="java.util.HashMap"
+	  resultClass="java.util.HashMap">
+		SELECT down_id,title,file_path,file_size,size_unit,version,update_time,file_type,down_desc,download.in_date,clicknum,fare,down_num
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+		<isNotNull  property="clicknum"> 
+			 order by clicknum DESC
+		</isNotNull>
+		<isNotNull  property="in_date"> 
+			 order by in_date DESC
+		</isNotNull>
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+	</select>
+
+	<select id="getWebDownloadCount" parameterClass="java.util.HashMap"	
+		 resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getWebCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

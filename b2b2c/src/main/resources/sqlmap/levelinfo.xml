@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="levelinfo">
+
+	<typeAlias alias="levelinfo" type="com.rbt.model.Levelinfo" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="levelinfo">
+		<![CDATA[ 
+    SELECT cust_id,level_code,start_date,end_date,in_date,user_id FROM levelinfo WHERE cust_id=$cust_id$
+    ]]>
+	</select>
+	
+	<select id="getByTime" parameterClass="java.lang.String"
+		resultClass="java.util.HashMap">
+		<![CDATA[ 
+   Select * from(SELECT cust_id,level_code,YEAR(now())-YEAR(start_date)+1 AS years FROM levelinfo WHERE cust_id=$cust_id$) as leveltable
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="levelinfo">
+		UPDATE levelinfo SET level_code=#level_code#
+		<isNotNull prepend="" property="start_date"> 
+	        ,start_date=#start_date#
+	    </isNotNull>
+	    <isNotNull prepend="" property="end_date">
+	        ,end_date=#end_date#
+	    </isNotNull>
+	    <isNotNull prepend="" property="in_date"> 
+	        ,in_date=#in_date#
+	    </isNotNull>
+	    <isNotNull prepend="" property="user_id"> 
+	        ,user_id=#user_id#
+	    </isNotNull>
+		 WHERE cust_id=$cust_id$
+	</update>
+
+	<insert id="insert" parameterClass="levelinfo">
+		INSERT INTO levelinfo (cust_id,level_code,start_date,end_date,in_date,user_id) VALUES (#cust_id#,#level_code#,#start_date#,#end_date#,now(),#user_id#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM levelinfo WHERE cust_id in ($cust_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM levelinfo 
+		<dynamic prepend="WHERE">
+			
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT cust_id,(SELECT level_name FROM memberlevel where level_id=levelinfo.level_code) AS level_code,start_date,end_date,in_date,user_id
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY cust_id ASC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/public.css" rel="stylesheet" type="text/css" />
+<link href="/templets/{tag:sysbase name='cfg_templatestyle'/}/css/video_detailed.css" rel="stylesheet" type="text/css" />
+{tag:include file="jsinclude.html" /}
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/addcomments_detail.js"></script>
+<title>{tag:field name="title" /}-{tag:chinfo name="ch_title"/}-{tag:sysbase name="cfg_webname"/}</title>
+<meta name="keywords" content="{tag:field name="title" /}" />
+<meta name="description" content="{tag:field name="content" len="30" /}" />
+<script type="text/javascript" src="/templets/{tag:sysbase name='cfg_templatestyle'/}/js/common.js"></script> 
+<script type="text/javascript">
+$(document).ready(function(){
+/*排行特效样式111*/
+ addnumberstyle(".ph_main",".ico_top",10,"rak_addico_top3","rak_addico_topend");
+});
+</script>
+</head>
+
+<body>
+{tag:include file="top.html" /}
+<div class="clear"></div>
+<!--导航结束-->
+<div class="position"><P>当前位置:{tag:field name="page_position"/}正文</P></div>
+<div class="w960">
+   <div class="left_main f_left">
+      <div class="industry_main">
+         <h2 class="left_title">{tag:field name="title"/}</h2>
+         <div class="date">
+           <p><span class="date_text">上传时间：{tag:field name="in_date" len="10"/}</span>
+           <span class="date_text">播放次数：<span id="clicks"> 
+           <script src="/include/clicknum.jsp?t=video&n=video_id&v={tag:field name='info_id'/}"></script></span></span></p>
+         </div>
+         <div class="vidcontent">
+          <embed src="{tag:field name="video_path"/}" width="480" 
+          height="400" type="application/x-shockwave-flash" 
+          extendspage="http://get.adobe.com/flashplayer/" 
+          autostart="true" quality="high" allowfullscreen="true">
+          </embed>
+         </div>
+      </div>
+   <div class="spjs">
+      <div class="comp_porod_title">
+        <p class="sm">视频介绍</P>
+      </div>
+      <div class="qtcp_cont">
+         {tag:field name="video_desc"/}
+      </div>
+   </div> 
+  
+   
+ <div class="spjs">
+ <form action="/portal/membercomment!addcomments.action" name="commentForm" method="post" validate="true">
+ <input type="hidden" name="infoids" id="infoids" value="{tag:field name="info_id"/}" />
+ <input type="hidden" name="commtitle" id="comment_title" value="{tag:field name="title"/}" />
+ <input type="hidden" name="infotype" id="info_type" value="video" />
+ <input type="hidden" id="idwidth" value="350" />
+ {tag:include file="commentinfo.html" /}
+ </form>
+</div>   
+  
+   </div>
+
+   <div class="right_main f_right">
+      <div class="area_title">
+        <h2 class="title_text">推荐视频</h2>
+      </div>
+       <div class="hotpic_main">
+          <div class="hotpic_main_1">
+             {tag:videolist row="2" is_recom="1" orderby="in_date"}
+             <div><a href="[field:video_detail_url/]"><img src="[field:img_path/]" width="100px" height="80px" /><P>[field:title?len(8)/]</P></a></div>
+             {/tag:videolist}
+          </div>
+          <div class="hotpic_main_1">
+          {tag:videolist row="2" is_recom="1" start="2" orderby="in_date"}
+             <div><a href="[field:video_detail_url/]"><img src="[field:img_path/]" width="100px" height="80px" /><P>[field:title?len(8)/]</P></a></div>
+          {/tag:videolist}
+          </div>
+          <div class="hotpic_main_1">
+          {tag:videolist row="2" is_recom="1" start="4" orderby="in_date"}
+            <div><a href="[field:video_detail_url/]"><img src="[field:img_path/]" width="100px" height="80px" /><P>[field:title?len(8)/]</P></a></div>
+           {/tag:videolist}
+          </div>
+       </div>
+      
+      <div class="area_title"><h2 class="title_text">点击排行</h2></div>
+      <ul class="ph_main">
+         {tag:videolist row="10"  orderby="clicknum"}
+         <li><span class="ico_top"></span><a href="[field:video_detail_url/]">[field:title?len(18)/] </a></li>
+         {/tag:videolist}   
+         <script type="text/javascript">addicos('ph_main','ico_top');</script>
+      </ul>
+   <div class="ad">
+      {tag:advlist row="1" pos_id="83"}
+       <a href="[field:link_url/]" target="_blank">
+		  <img src="[field:img_path/]" alt="[field:adv_name/]" width="268"/>
+	   </a>
+      {/tag:advlist}
+   </div>
+   <div class="ad">
+     {tag:advlist row="1" pos_id="84"}
+       <a href="[field:link_url/]" target="_blank">
+		   <img src="[field:img_path/]" alt="[field:adv_name/]" width="268"/>
+	   </a>
+     {/tag:advlist}
+   </div>
+</div>
+</div>
+
+
+<div class="clear"></div>
+
+{tag:include file="bottom.html" /}
+</body>
+</html>

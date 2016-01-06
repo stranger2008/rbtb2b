@@ -1,0 +1,182 @@
+body {
+    margin:0;
+    padding:20px 0 0 0;
+    font-size: 12px;
+    font-family: "瀹嬩綋";
+	color:#333;
+	background:white;
+}
+ 
+
+div, ul,li, p, h2,h3 ,table{
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+a{
+	text-decoration:none;
+	color:#333;
+	}	
+a:hover{
+	text-decoration:underline;
+	color:#FF7300;
+	}	
+.f_left{
+	float:left;
+	}
+.f_right{
+	float:right;
+	}	
+img {
+    border: 0;
+}	
+.clear {
+    clear: both;
+}
+
+
+
+.top{
+	width:960px;
+	margin:0 auto;
+	}
+.logo{
+	float:left;
+	padding:10px 0 0 10px;
+	}	
+.top_right{
+	float:right;
+	text-align:right; 
+	line-height:30px;
+	}	
+.top_right span{
+	font-family:"寰蒋闆呴粦";
+	font-size:16px;
+	color:#088cfc;
+	}	
+	
+	
+.cont{
+	width:960px;
+	margin:20px auto 0;
+	}
+.cont_adv{
+    width:555px;float:left;
+}
+.pic{
+	float:left;
+	}	
+.cont_main{
+	float:right;
+	}	
+.login_main{
+	width:370px;
+	height:315px;
+	background:#fafafa;
+	border:1px solid #cacaca;
+	}		
+.login_main a{
+	color:#0066cc;
+	}
+.login_main a:hover{
+	color:#FF7300;
+	}	
+.title{
+	font-size:14px;
+	padding:40px 35px 0 35px;
+	}
+.name{
+	margin:20px 0 0 35px;
+	}		
+	
+	
+.text{
+	width:185px;
+	border:1px solid #b5b5b5; 
+	height:24px;
+	line-height:23px;
+	margin:0 10px;
+	padding-left:5px;
+	}	
+.buttom{
+	padding:20px 0 0 70px;
+	}	
+.dl{
+	width:87px;
+	height:30px;
+	border:0; 
+	background:url(../images/dl.gif) no-repeat; 
+	color:#FFF; 
+	font-weight:bold;
+	}
+.zc{
+	width:87px;
+	height:30px;
+	border:0; 
+	background:url(../images/zc.gif) no-repeat;
+	}	
+.other{
+	margin:10px 0 0 35px;
+	line-height:80px;
+	background:url(../images/other.gif) no-repeat 20px top;
+	}	
+	
+.bottom{
+	width:960px;
+	margin:0 auto;
+	margin-top:10px;
+	text-align:center;
+	line-height:25px;
+	}	
+.web_map{
+	padding-top:18px;
+	}	
+.web_map a {
+	text-decoration:none;
+	padding:0 15px;
+	border-right:1px solid #000;
+	}
+.web_map a:hover{
+	text-decoration:underline;
+	}		
+.tipDiv{
+	margin-top:5px;
+	margin-left:65px;
+	width:190px;
+	height:auto;
+	}
+.errorSpan{
+	width:190px;
+	height:25px;
+	padding-left:10px;
+	line-height:25px;
+	border:1px solid #ED8F8F;
+	background:#FFF2F2;
+	color:#C53032;
+	display:block;
+	}	
+.map{
+	height:30px;
+	margin-top:10px;
+	line-height:30px;
+	background:url(../images/map.gif) repeat-x;
+	}	
+.map p{
+	width:960px;
+	margin:0 auto;
+	text-align:center;
+	}
+.map a{
+	color:#07519a;
+	margin-right:10px;
+	padding-right:10px;
+	border-right:1px solid #07519a;
+	}		
+.map .last_map{
+	border:0;
+	}
+
+.usersize{
+   color:#A9A9A9;
+   font-size:12px;
+}

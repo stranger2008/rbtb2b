@@ -1,0 +1,516 @@
+/*
+ ISConsole Copyright 2012 ruibaotong COMPANY, Co.ltd . 
+ All rights reserved.
+ FileName: backstage.css
+ */
+.title_nav{
+	width:980px;
+	height:30px;
+	background:url(/include/images/bmall/title_nav_back.gif) repeat-x bottom;
+}
+.title_nav ul{
+	
+}
+.title_nav li{
+	
+	width:87px;
+	height:30px;
+	background:url(/include/images/bmall/ht_title.gif) no-repeat;
+	float:left;
+	background-position:0 -37px;
+	line-height:30px;
+	font-weight:bold;
+	text-align:center;
+	
+}
+.winput{
+  width:130px;
+}
+.title_nav a{
+	color:#cc3300;
+}
+.title_nav .title_navli{
+	width:83px;
+	height:30px;
+	background:url(/include/images/bmall/ht_title.gif) no-repeat;
+	background-position:0 0;
+}
+.title_nav .title_navli a{
+	color:#FFF;
+}
+
+.postion{
+	margin-left:180px;
+	margin-bottom:3px;
+	padding:3px;
+}
+.postion a{
+	color:#100f0f;
+}
+.postion a:hover{
+	color:#c80101;
+}
+.postion span{
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.leftside{
+	width:170px;
+	border:#c9c8c8 solid 1px;
+	border-top:none;
+}
+.lsul{
+	font-weight:bold;
+	line-height:29px;
+}
+.lsul li{
+	width:170px;
+	background:url(/include/images/bmall/lefttul.gif) repeat-x;
+}
+.lsul .lsli{
+	width:170px;
+	background:url(/include/images/bmall/leftulh.gif) repeat-x;
+}
+.lsul .up{
+	padding-left:10px;
+	width:150px;
+	display:inline-block;
+	background:url(/include/images/bmall/up.gif) no-repeat right;
+}
+.lsul .down{
+	padding-left:10px;
+	width:150px;
+	display:inline-block;
+	background:url(/include/images/bmall/down.gif) no-repeat right;
+}
+.lsul a:hover{
+	color:#352d2d;
+}
+.lsul .lsul2{
+	width:140px;
+	font-weight:normal;
+}
+.lsul .lsul2 li{
+	height:29px;
+	background:url(/include/images/bmall/ul2li.gif) no-repeat bottom;
+}
+.lsul .lsul2 .lsul2nli{
+	background:none;
+}
+.lsul .lsul2 a{
+	padding-left:15px;
+}
+.lsul .lsul2 a:hover{
+	color:#cc0000;
+}
+
+.rightside{
+	width:800px;
+}
+.rpostion{
+	width:798px;
+	height:27px;
+	border:#c9c8c8 solid 1px;
+	line-height:27px;
+}
+.rpostion h2{
+	font-size:14px;
+	color:#cc0000;
+	padding-left:10px;
+}
+
+.ropot{
+	width:798px;
+	padding-bottom:10px;
+	border:#c9c8c8 solid 1px;
+	margin-top:10px;
+	border-top:none;
+}
+.rotitle{
+	height:33px;
+	background:url(/include/images/bmall/rtitle.gif) repeat-x;
+	line-height:33px;
+}
+.rotitle span{
+	font-size:14px;
+	padding-left:10px;
+}
+.rosearch{
+	padding-left:490px;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.rosearch2{
+	padding-left:420px;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.srtext{
+	width:235px;
+	height:21px;
+	border:#c2c2c2 solid 1px;
+	line-height:21px;
+	color:#9d9d9d;
+}
+.sbut{
+	width:56px;
+	height:24px;
+	background:url(/include/images/bmall/ht_title.gif) no-repeat;
+	background-position:0 -140px;
+	border:none;
+	cursor:pointer;
+}
+.fthstyle1{
+	height:33px;
+	line-height:33px;
+	text-align:center;
+	background:url(/include/images/bmall/ta-th2012.gif);
+	padding-left:5px;
+}
+
+.fthstyle2{
+	height:33px;
+	line-height:33px;
+	text-align:center;
+	background:url(/include/images/bmall/ta-th2012.gif);
+	padding-left:5px;
+}
+
+.thstyle2{
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	background:#f7f7f7;
+}
+
+.manadiv{
+	background-color:#F3F3F3;
+	border:1px solid #C9C8C8;
+	height:30px;
+}
+
+.sthstyle1{
+	width:140px;
+	height:24px;
+	line-height:26px;
+	text-align:center;
+}
+.sthstyle2{
+	width:228px;
+	height:24px;
+	line-height:24px;
+	text-align:center;
+}
+
+
+/*��ť*/
+.but{
+	padding-top:20px;
+	padding-left:340px;
+	padding-bottom:10px;
+}
+.but a{
+	margin-left:2px;
+	margin-right:2px;
+}
+.prew{
+	width:54px;
+	height:17px;
+	background:url(/include/images/bmall/but.gif) no-repeat;
+	background-position:0 -24px;
+	text-align:center;
+	display:inline-block;
+	line-height:17px;
+	color:#000000;
+}
+.next{
+	width:54px;
+	height:17px;
+	background:url(/include/images/bmall/but.gif) no-repeat;
+	background-position:0 -48px;
+	text-align:center;
+	display:inline-block;
+	line-height:17px;
+	color:#000000;
+}
+.selecty{
+	width:18px;
+	height:14px;
+	background:url(/include/images/bmall/but.gif) no-repeat;
+	background-position:0 -99px;
+	text-align:center;
+	color:#FFF;
+	display:inline-block;
+	line-height:14px;
+}
+.selectn{
+	width:18px;
+	height:14px;
+	background:url(/include/images/bmall/but.gif) no-repeat;
+	background-position:0 -120px;
+	text-align:center;
+	color:#000000;
+	display:inline-block;
+	line-height:14px;
+}
+.selbut{
+	width:44px;
+	height:20px;
+	background:url(/include/images/bmall/but.gif) no-repeat;
+	background-position:0 -72px;
+	text-align:center;
+	color:#FFF;
+	display:inline-block;
+	line-height:20px;
+}
+.buttext{
+	width:20px;
+	height:15px;
+	border:#e1e1e1 solid 1px;
+}
+
+/*�˻���Ϣ*/
+.base_infor{
+	width:770px;
+	margin-top:5px;
+	margin-left:15px;
+	padding-bottom:10px;
+}
+.base_title{
+	width:750px;
+	height:29px;
+	border-bottom:#c9c8c8 solid 1px;
+	line-height:29px;
+	padding-left:20px;
+	font-size:14px;
+}
+.table_infor1{
+	width:630px;
+	padding-top:5px;
+}
+.table_infor1 span1{
+	font-weight:bold;
+	padding-right:30px;
+}
+.firsttd{
+	width:140px;
+	height:29px;
+	text-align:right;
+	color:#666666;
+	line-height:29px;
+}
+.firsttd2{
+	width:125px;
+	height:29px;
+	text-align:right;
+	color:#666666;
+	line-height:29px;
+	background:url(/include/images/bmall/mi.gif) no-repeat 35px 8px;
+}
+.firsttd3{
+	width:125px;
+	height:29px;
+	text-align:right;
+	color:#666666;
+	line-height:29px;
+	background:url(/include/images/bmall/mi.gif) no-repeat 10px 8px;
+}
+.rega{
+	height:16px;
+	color:#005aa0;
+	background:url(/include/images/bmall/rega.gif) no-repeat left;
+	padding-left:20px;
+	display:inline-block;
+}
+.changea{
+	color:#005aa0;
+}
+.ftext{
+	border-top:#aaaaaa solid 1px;
+	border-left:#aaaaaa solid 1px;
+	border-right:#dddddd solid 1px;
+	border-bottom:#dddddd solid 1px;
+}
+.stext{
+	width:300px;
+	height:16px;
+	border-top:#aaaaaa solid 1px;
+	border-left:#aaaaaa solid 1px;
+	border-right:#dddddd solid 1px;
+	border-bottom:#dddddd solid 1px;
+}
+.tabbut{
+	width:76px;
+	height:25px;
+	background:url(/include/images/bmall/ht_title.gif) no-repeat;
+	background-position:0 -75px;
+	border:none;
+	margin-left:20px;
+	cursor:pointer;
+}
+.wselect{
+	width:100px;
+}
+.basepic{
+	padding-top:10px;
+	text-align:center;
+}
+.basepic p{
+	padding-top:10px;
+}
+.basepic a{
+	color:#005aa0;
+}
+.xqah{
+	padding-top:10px;
+	padding-left:22px;
+	color:#666666;
+}
+.texta{
+	margin-top:10px;
+	margin-left:2px;
+}
+.submitbut{
+	width:69px;
+	height:26px;
+	background:url(/include/images/bmall/ht_title.gif) no-repeat;
+	background-position:0 -105px;
+	border:none;
+	cursor:pointer;
+	line-height:26px;
+	color:#cc3300;
+}
+.psub{
+	padding-top:10px;
+	padding-left:85px;
+}
+
+/*�ҵĶ���*/
+.myorder{
+	width:800px;
+	margin-top:10px;
+}
+.mytitle{
+	width:800px;
+	height:28px;
+	background:url(/include/images/bmall/myotback.gif) repeat-x bottom;
+}
+.mytitle li{
+	float:left;
+	margin-right:10px;
+}
+.mytitle ul{
+	padding-left:20px;
+}
+/*��ʾ�İ�ť*/
+.indbut1
+{
+	width:77px;
+	height:28px;
+	background:url(/include/images/bmall/myotitle1.gif) no-repeat;
+	line-height:28px;
+	font-weight:bold;
+	text-align:center;
+	color:#1f231f;
+	cursor:pointer;
+}
+.indnut2{
+	width:77px;
+	height:28px;
+	background:url(/include/images/bmall/myotitle2.gif) no-repeat;
+	line-height:28px;
+	text-align:center;
+	cursor:pointer;
+}
+.clsmain1{
+	width:798px;
+	padding-bottom:10px;
+	border:#c9c8c8 solid 1px;
+	border-top:none;
+}
+.clsmain2{
+	width:798px;
+	padding-bottom:10px;
+	border:#c9c8c8 solid 1px;
+	border-top:none;
+	display:none;
+}
+.orderp{
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:20px;
+}
+.orders{
+	padding-top:10px;
+	padding-bottom:10px;
+	margin-right:10px;
+}
+.order_cont{
+	width:798px;
+}
+.ocont_title{
+	width:798px;
+	height:33px;
+	background:url(/include/images/bmall/order_contback.gif) repeat-x;
+}
+.order_cont ul{
+	line-height:33px;
+	color:#888888;
+}
+.order_cont li{
+	float:left;
+	width:100px;
+	text-align:center;
+}
+.order_cont .ocli{
+	
+	width:145px;
+}
+.order_cont p{
+	margin-top:20px;
+	text-align:center;
+	color:#7d7d7d;
+}
+.txtinput{
+  width: 350px;
+}
+.errorSpan{
+	color:red;
+	border:1px solid red;
+	height:22px;
+	display:inline-block;
+	line-height:22px;
+	background:url(/include/images/mood.jpg) no-repeat 10px center;
+	padding:0 30px 0 30px;
+}
+.sellerscore_desrci{
+	font-weight:bold;
+	width:140px;
+	height:30px;
+	line-height:30px;
+	text-align:right;
+	background:#f7f7f7;
+}
+.sellerscore_score{
+    color:#D17427 ;
+    font-weight:bold;
+    
+}
+
+.bmall_list_table{
+	width:100%;	
+}
+
+.bmall_list_table td{
+	height:32px;
+	padding-left:5px;
+}
+.nonediv{
+ display:none;
+}
+.blockdiv{
+  display:block;
+}
+
+

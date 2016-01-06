@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.1//EN"
+        "http://tuckey.org/res/dtds/urlrewrite3.1.dtd">
+<urlrewrite>	
+
+	<!-- /////////////////////////////企业站Url重写开始///////////////////////////// -->
+
+    <!-- 列表页 -->
+    <rule>
+        <from>/showroom/([a-zA-Z0-9]+)/([a-zA-Z]+).html</from>
+        <to type="forward">company$2.action?user_name=$1</to>
+    </rule>      
+     
+    <!-- 分类列表页 -->
+    <rule>
+        <from>/showroom/([a-zA-Z0-9]+)/([a-zA-Z]+)/cat_([0-9]+).html</from>
+        <to type="forward">company$2.action?user_name=$1&amp;cat_id=$3</to>
+    </rule>      
+    <!-- 详细页 -->
+    <rule>
+        <from>/showroom/([a-zA-Z0-9]+)/([a-zA-Z]+)/detail_([0-9]+).html</from>
+        <to type="forward">company$2content.action?user_name=$1&amp;$2_id=$3</to>
+    </rule>    
+    
+    <!-- 首页 -->
+    <rule>
+        <from>/showroom/([a-zA-Z0-9]+)</from>
+        <to type="forward">companytemplate.action?user_name=$1</to>
+    </rule>
+   
+    <!-- /////////////////////////////企业站Url重写结束///////////////////////////// -->
+    
+    
+    
+    <!-- /////////////////////////////前台页面Url重写开始///////////////////////////// -->
+    
+ 	<!--自定义项目列表页模版URL重写  -->
+	<rule>
+        <from>/([a-zA-Z]+)-spurl-([a-zA-Z0-9]+).html</from>
+        <to type="forward">/portal/$1!list.action?selfTemplate=$2</to>
+    </rule>
+    <!--自定义项目列表页模版URL重写  -->
+	<rule>
+        <from>/([a-zA-Z]+)-([a-zA-Z]+)-spurl-([a-zA-Z0-9]+)-([a-zA-Z0-9]+).html</from>
+        <to type="forward">/$1/$2!$3.action?selfTemplate=$4</to>
+    </rule>
+	<!-- 会员登陆 -->
+	<rule>
+        <from>/login.html</from>
+        <to type="forward">/portal/memberuser!login.action</to>
+    </rule>
+    
+    <!-- 会员注册 -->
+	<rule>
+        <from>/register.html</from>
+        <to type="forward">/portal/member!joinus.action</to>
+    </rule>
+    
+    <!-- 关于我们列表 -->
+    <rule>
+        <from>/aboutus_([0-9]+).html</from>
+        <to type="forward">/portal/aboutus.action?ch_id=$1</to>
+    </rule>   
+    
+     <!-- 关于我们详细页 -->
+    <rule>
+        <from>/aboutus_detail_([0-9]+).html</from>
+        <to type="forward">/portal/aboutus.action?info_id=$1</to>
+    </rule> 
+    
+    <!-- 通用分类列表页 -->
+    <rule>
+        <from>/([a-zA-Z]+)/cat-([a-zA-Z0-9]+).html</from>
+        <to type="forward">/portal/$1!list.action?cat_id=$2</to>
+    </rule>
+    
+    <!-- 通用地区列表页 -->
+    <rule>
+        <from>/([a-zA-Z]+)/area-([a-zA-Z0-9]+).html</from>
+        <to type="forward">/portal/$1!list.action?area_id=$2</to>
+    </rule>
+    
+     <rule>
+        <from>/([a-zA-Z]+)/areas-([a-zA-Z0-9]+).html</from>
+        <to type="forward">/portal/$1!arealist.action?area_id=$2</to>
+    </rule>
+    
+    
+    <rule>
+        <from>/areas-([a-zA-Z0-9]+).html</from>
+        <to type="forward">/portal/classified!arealist.action?en_name=$1</to>
+    </rule>
+    
+    <!-- 分类筛选信息  -->
+    <rule>
+        <from>/([a-zA-Z]+)/([a-zA-Z]+)-([a-zA-Z0-9]+).html</from>
+        <to type="forward">/portal/$1!$2list.action?cat_id=$3</to>
+    </rule>    
+   
+   
+    
+     <!-- 分类信息地区子站首页 -->
+    <rule>
+        <from>/classified_cat.html</from>
+        <to type="forward">/portal/classified!dirlist.action</to>
+    </rule>
+    
+     <!-- 分类信息国家地区切换页面 -->
+    <rule>
+        <from>/classified/([a-zA-Z0-9]+)/([a-zA-Z0-9]+).html</from>
+        <to type="forward">/portal/classified!countylist.action?en_name=$1&amp;type=$2</to>
+    </rule>
+       
+    <!-- 通用详细页 -->
+    <rule>
+        <from>/([a-zA-Z]+)/detail_([a-zA-Z0-9]+).html</from>
+        <to type="forward">/portal/$1!detail.action?info_id=$2</to>
+    </rule>
+
+	<!-- 分类/地区/通用信息详细页，根据分类、地区、模型和信息标识找出一条信息 -->
+    <rule>
+        <from>/([a-zA-Z]+)/([0-9]+)-([a-zA-Z0-9]+)-([0-9]+).html</from>
+        <to type="forward">/portal/$1!getcontent.action?info_id=$2&amp;cat_id=$4&amp;area_id=$3</to>
+    </rule>
+    
+    <!-- 分类/地区列表页 -->
+    <rule>
+        <from>/([a-zA-Z]+)/cat-([a-zA-Z0-9]+)/area-([a-zA-Z0-9]+).html</from>
+        <to type="forward">/portal/$1!list.action?cat_id=$2&amp;area_id=$3</to>
+    </rule>
+
+	<!-- 通用列表页 -->
+    <rule>
+        <from>/([a-zA-Z]+)/list.html</from>
+        <to type="forward">/portal/$1!list.action</to>
+    </rule>
+
+    <!-- 供应订单页面 -->
+    <rule>
+        <from>/order_([0-9]+).html</from>
+        <to type="forward">/portal/order.action?supplyid=$1</to>
+    </rule>
+    
+     <!-- 广告位购买页面 -->
+    <rule>
+        <from>/advpos_([a-zA-Z]+).html</from>
+        <to type="forward">/portal/advpos!list.action?pos_type_s=$1</to>
+    </rule>
+     <!-- 企业列表页过滤会员类型 -->
+    <rule>
+        <from>/([a-zA-Z]+)/list_([0-9]+).html</from>
+        <to type="forward">/portal/$1!list.action?memtype=$2</to>
+    </rule>
+    <!-- /////////////////////////////前台页面Url重写结束///////////////////////////// -->
+
+    <!-- /////////////////////////////商城前台页面Url重写开始///////////////////////////// -->
+    
+    <!-- 会员登陆页面 -->
+    <rule>
+        <from>/signin.html</from>
+        <to type="forward">/mall/memberuser!signin.action</to>
+    </rule>
+    
+    <!-- 会员注册 -->
+	<rule>
+        <from>/joinus.html</from>
+        <to type="forward">/mall/member!malljoinus.action</to>
+    </rule>
+    <!-- 服务条款 -->
+	<rule>
+        <from>/service.html</from>
+        <to type="forward">/mall/member!service.action</to>
+    </rule>
+    <!-- 首页 -->
+    <rule>
+        <from>/mallindex.html</from>
+        <to type="forward">/mall/goods!indexlist.action</to>
+    </rule>
+    <!-- 商品详细页 -->
+    <rule>
+        <from>/mall-goodsdetail-([0-9]+).html</from>
+        <to type="forward">/mall/goods!detail.action?gid=$1</to>
+    </rule>
+     <!-- 列表页 -->
+    <rule>
+        <from>/mall-goodslist-([a-zA-Z0-9]+).html</from>
+        <to type="forward">/mall/goods!list.action?en_name=$1</to>
+    </rule>
+    <!-- 文章列表页-->
+     <rule>
+        <from>/mallarticle.html</from>
+        <to type="forward">/mall/goods!articleList.action</to>
+    </rule>
+     <!-- 文章详细页 -->
+     <rule>
+        <from>/mallarticle-([a-zA-Z0-9]+)-([0-9]+).html</from>
+        <to type="forward">/mall/goods!articleDetail.action?nid=$1&amp;num=$2</to>
+    </rule>  
+    <!-- 帮助中心 -->
+     <rule>
+        <from>/mallhelp.html</from>
+        <to type="forward">/mall/goods!helplistIndex.action</to>
+    </rule>
+    <!-- 帮助中心详细页 -->
+     <rule>
+        <from>/mallhelp-([a-zA-Z0-9]+).html</from>
+        <to type="forward">/mall/goods!helplistIndex.action?aboutus_id=$1</to>
+    </rule>  
+    <!-- 支付页面跳转 -->
+     <rule>
+        <from>/mallpay-([a-zA-Z0-9]+).html</from>
+        <to type="forward">/include/components/payment/mallpay/index.jsp?order_id=$1</to>
+    </rule>  
+    <!-- 更多品牌页面跳转 -->
+    <rule>
+        <from>/mallbrand.html</from>
+        <to type="forward">/mall/goods!brandInfo.action</to>
+    </rule>  
+        <!-- 商品所有分类页 -->
+    <rule>
+    <from>/mallcate.html</from>
+        <to type="forward">/mall/goods!allCate.action</to>
+    </rule>  
+     <!-- 店铺列表页 -->
+    <rule>
+        <from>/mall-shoplist.html</from>
+        <to type="forward">/mall/goods!shopList.action</to>
+    </rule>
+     <!-- 商城分类信息国家地区切换页面 -->
+    <rule>
+        <from>/mall/([a-zA-Z0-9]+)/([a-zA-Z0-9]+).html</from>
+        <to type="forward">/mall/goods!countylist.action?en_name=$1&amp;type=$2</to>
+    </rule>
+     <rule>
+        <from>/mallareas-([a-zA-Z0-9]+).html</from>
+        <to type="forward">/mall/goods!arealist.action?en_name=$1</to>
+    </rule>
+    <rule>
+        <from>/mall/([a-zA-Z0-9]+)/([a-zA-Z0-9]+).html</from>
+        <to type="forward">/mall/goods!countylist.action?en_name=$1&amp;type=$2</to>
+    </rule>
+      <!--商城地区选择URL重写规则 -->
+    <rule>
+     <from>/mallindex-([a-zA-Z0-9]+).html</from>
+     <to type="forward">/mall/goods!indexlist.action?en_name=$1</to>
+    </rule> 
+    <!-- /////////////////////////////商城前台页面Url重写结束///////////////////////////// -->
+    <!-- /////////////////////////////商城店铺Url重写开始///////////////////////////// -->
+
+    <!-- 列表页 -->
+    <rule>
+        <from>/shop/([a-zA-Z0-9]+)/([a-zA-Z]+).html</from>
+        <to type="forward">$2.action?user_name=$1</to>
+    </rule>           
+    <!-- 首页 -->
+    <rule>
+        <from>/shop/([a-zA-Z0-9]+).html</from>
+        <to type="forward">shopindex.action?user_name=$1</to>
+    </rule>
+     <!-- 分类列表页 -->
+    <rule>
+        <from>/shop/([a-zA-Z0-9]+)/([a-zA-Z]+)/cat_([0-9]+).html</from>
+        <to type="forward">$2.action?user_name=$1&amp;cat_id=$3</to>
+    </rule>     
+    
+    
+     <!-- 团购页面 -->
+    <rule>
+        <from>/groupgoods.html</from>
+        <to type="forward">/mall/goods!groupList.action</to>
+    </rule>
+   
+    <!-- /////////////////////////////商城店铺Url重写结束///////////////////////////// -->
+    
+    <!-- //////////////////////////////////////////////////////////以上为核心版Url重写规则////////////////////////////////////////////////////////// -->
+    
+</urlrewrite>

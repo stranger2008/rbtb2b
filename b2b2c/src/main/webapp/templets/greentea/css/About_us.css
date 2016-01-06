@@ -1,0 +1,122 @@
+.position{
+	height:33px;
+	background:#f6f5f5;
+	width:960px;
+	margin:10px auto 0;
+	line-height:33px;
+	font-size:14px;
+	}
+.position p{
+	padding-left:20px;
+	}
+
+
+
+
+
+.about_us{
+	width:152px;
+	float:left;
+	border:1px solid #eaf0f6;
+	}
+.about_us li{
+	width:102px;
+	height:33px;
+	line-height:33px;
+	padding-left:50px;
+	font-weight:bold;
+	color:#333;
+	background:url(../images/About_us_li.gif) no-repeat left center;
+	}
+.about_us .about_hover{
+	width:102px;
+	height:33px;
+	line-height:33px;
+	padding-left:50px;
+	background:url(../images/About_us_hover.gif) no-repeat left center;
+	}
+
+
+
+.about_main{
+	float:right;
+	width:794px;
+	border:1px solid #e5e5e5;
+	border-top:2px solid #a0ddff;
+	color:#333333;
+	}	
+.about_main_title{
+	padding-top:10px;
+	width:760px;
+	margin:0 auto;
+	font-size:16px;
+	line-height:40px;
+	border-bottom:1px solid #e5e5e5;
+	}	
+.about_main_list a{
+	display:inline-block;
+	width:670px;
+	}
+.about_main_list {
+	width:760px;
+	margin:0 auto;
+	line-height:30px;
+	padding-top:10px;
+	}		
+		
+		
+.page_main_r{
+	width:600px;
+	height:40px;
+	text-align:center;
+	padding-top:30px;
+	}
+	
+.page_next{
+	width:59px;
+	height:19px;
+	border:1px solid #abb2bd;
+	background:url(../images/page_next1.gif) no-repeat;
+	margin-right:8px;
+	display:inline-block;
+	line-height:19px;
+	text-align:center;
+	}
+.page_next1{
+	width:59px;
+	height:19px;
+	border:1px solid #abb2bd;
+	background:url(../images/page_next.gif) no-repeat;
+	margin-right:8px;
+	display:inline-block;
+	line-height:19px;
+	text-align:center;
+	}	
+	
+.page_n1{
+	width:18px;
+	height:18px;
+	border:1px solid #abb2bd;
+	background:url(../images/number_bg.gif) repeat-x;
+	display:inline-block;
+	margin-right:8px;
+	line-height:18px;
+	text-align:center;
+	}
+	
+.page_n2{
+	width:28px;
+	height:18px;
+	border:1px solid #abb2bd;
+	background:url(../images/number_bg.gif) repeat-x;
+	display:inline-block;
+	margin-right:8px;
+	line-height:19px;
+	text-align:center;
+	}
+	
+.page_main_r a:hover{
+	border:1px solid #F60;
+	display:inline-block;
+
+	}	

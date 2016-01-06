@@ -1,0 +1,93 @@
+/*¡–±Ì“≥*/
+.lnewsback{
+	width:235px;
+	height:34px;
+	background:url(../images/othertitle_03.gif) no-repeat;
+	background-position:0 -80px;
+	float:left;
+}
+.news{
+}
+.news ul{
+	padding-top:10px;
+	padding-left:10px;
+	line-height:28px;
+}
+.news li{
+	background:url(../images/newsli_03.gif) no-repeat left center;
+	padding-left:15px;
+}
+.news li a{
+	width:450px;
+	display:inline-block;
+}
+
+/*∞¥≈•*/
+.but{
+	padding-left:10px;
+	margin-top:20px;
+}
+.but a{
+	text-align:center;
+	line-height:20px;
+	margin-right:10px;
+}
+.but span{
+	text-align:center;
+	line-height:20px;
+	margin-right:10px;
+}
+.but a:hover{
+	border:#fb4e0b solid 1px;
+}
+.but .page{
+	width:60px;
+	height:20px;
+	border:#cccccc solid 1px;
+	display:inline-block;
+}
+.but .pagenum{
+	width:20px;
+	height:20px;
+	border:#cccccc solid 1px;
+	display:inline-block;
+}
+.but .buttext{
+	width:30px;
+	border:#cccccc solid 1px;
+}
+.but .surebut{
+	width:40px;
+	height:20px;
+	background:url(../images/button.gif) no-repeat;
+	background-position:0 -56px;
+	border:none;
+	cursor:pointer;
+}
+
+/*œÍœ∏“≥*/
+.newscont{
+	width:680px;
+	padding-left:10px;
+	margin-top:15px;
+}
+.newsth2{
+	width:680px;
+	text-align:center;
+	font-size:16px;
+	height:28px;
+	border-bottom:#e2e1e0 solid 1px;
+}
+.newscont p{
+	line-height:24px;
+	text-indent:2em;
+}
+.newscont span{
+	padding-left:15px;
+}
+.newscont .time{
+	text-align:right;
+	color:#9e9e9e;
+	line-height:28px;
+	height:28px;
+}

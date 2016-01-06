@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="membercomment">
+
+	<typeAlias alias="membercomment" type="com.rbt.model.Membercomment" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="membercomment">
+		<![CDATA[ 
+    SELECT comm_id,cust_id,ip,content,back_con,in_date,comm_state,
+    up_num,down_num,info_id,info_title,info_url,comm_num,info_type,user_name
+     FROM membercomment WHERE comm_id=$comm_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="membercomment">
+		UPDATE membercomment SET comm_id=#comm_id#,back_con=#back_con#,comm_state=#comm_state#,user_name=#user_name# WHERE comm_id=$comm_id$
+	</update>
+    <update id="updateupnum" parameterClass="java.lang.String">
+		UPDATE membercomment SET up_num=up_num+1 WHERE comm_id=$comm_id$
+	</update>
+	 <update id="updatedownnum" parameterClass="java.lang.String">
+		UPDATE membercomment SET  down_num=down_num+1 WHERE  comm_id=$comm_id$
+	</update>
+	<insert id="insert" parameterClass="membercomment">
+		INSERT INTO membercomment (comm_id,cust_id,ip,content,back_con,in_date,comm_state,
+		up_num,down_num,info_id,info_title,info_url,comm_num ,info_type,user_name) VALUES
+		 (#comm_id#,#cust_id#,#ip#,#content#,#back_con#,now(),
+		 #comm_state#,#up_num#,#down_num#,#info_id#,#info_title#,#info_url#,#comm_num#,#info_type#,#user_name#)
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM membercomment WHERE comm_id in ($comm_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM membercomment LEFT JOIN member ON member.cust_id=membercomment.cust_id
+		<dynamic prepend="WHERE">
+			 <isNotNull prepend="and" property="starttime"> 
+			   DATE(membercomment.in_date)>=#starttime#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="endtime"> 
+			   #endtime#>=DATE(membercomment.in_date)
+			 </isNotNull>
+			  <isNotNull prepend="and" property="comm_state"> 
+			    comm_state = #comm_state#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="info_title"> 
+			    INSTR(info_title,#info_title#) >0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="ip"> 
+			    ip = #ip#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="cust_name"> 
+			    cust_name = #cust_name#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="info_type"> 
+			    info_type = #info_type#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="comm_num"> 
+			    comm_num = #comm_num#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="info_id"> 
+			    info_id = #info_id#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="today">
+		        DAY(membercomment.in_date)=DAY(NOW()) AND MONTH(membercomment.in_date)=MONTH(NOW()) AND YEAR(membercomment.in_date)=YEAR(NOW())
+		    </isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT user_name AS username,user_name, comm_id,member.cust_id,ip,cust_name, content,back_con,membercomment.in_date,
+		comm_state,up_num,down_num,info_id,info_title,info_url,comm_num,info_type 
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY comm_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+    
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

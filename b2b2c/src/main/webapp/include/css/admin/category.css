@@ -1,0 +1,124 @@
+#modletype {
+	position: relative;
+	left: 18px;
+	top: 12px;
+}
+
+#divlist {
+	border: 0px solid #555222;
+	width: 100%;
+	height: 100%;
+	background-color: #FFFFFF;
+}
+
+.parentdiv {
+	width: 300px;
+	height: 346px;
+	margin: 20px 0px 0px 15px;
+	border: 1px solid #d3d3d3;
+	float: left;
+	background-color: #FFFFFF;
+}
+
+.parentdiv h3 {
+	height: 32px;
+	line-height: 32px;
+	margin: 0px;
+	padding: 0 4px;
+	border-bottom: 1px dotted #d3d3d3;
+	background: #f7f7f7
+}
+
+.catelist {
+	width: 100%;
+	height: 280px;
+	overflow: auto;
+}
+
+.cateli {
+	display: inline-block;
+	list-style-type: none;
+	line-height: 25px;
+	font-family: "宋体";
+	font-size: 14px;
+	border-bottom: 1px dotted #999999;
+}
+
+.spantitle {
+	width: 300px;
+	overflow: hidden;
+}
+
+.cat_name {
+	cursor: pointer;
+	border: 1px solid #FFF;
+	overflow: hidden;
+	margin-top: -26px;
+	margin-left: 43px;
+}
+
+.textsort {
+	width: 30px;
+	display: inline-block;
+	margin: 3px 0px 3px 3px;
+}
+
+.onlycat_name {
+	cursor: pointer;
+	border: 1px solid #FFF;
+	width: 190px;
+	float: left;
+	margin: 
+}
+
+.spanoper {
+	float: left;
+	margin: -24px 0px 0px 180px;
+	width: 80px;
+	display: inline-block;
+}
+
+.catebox {
+	float: left;
+	margin: 5px 0px 0px 5px;
+}
+
+.cateli img.del {
+	cursor: pointer;
+	margin: 5px 3px auto;
+	float: right;
+}
+
+.cateli img.edit {
+	cursor: pointer;
+	margin: 5px 3px auto;
+	float: right;
+}
+
+.cateli img.look {
+	cursor: pointer;
+	margin: 5px 3px auto;
+	float: right;
+}
+
+.cateli img.attr {
+	cursor: pointer;
+	margin: 5px 3px auto;
+	float: right;
+}
+
+.oks {
+	cursor: pointer;
+	margin: 5px 3px auto;
+}
+
+.cal {
+	cursor: pointer;
+	margin: 5px 3px auto;
+}
+
+.addclass {
+	cursor: pointer;
+	margin: 8px auto 3px;
+	margin-right: 5px;
+}

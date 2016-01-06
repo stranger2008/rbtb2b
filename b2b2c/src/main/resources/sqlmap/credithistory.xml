@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="credithistory">
+
+	<typeAlias alias="credithistory" type="com.rbt.model.Credithistory" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="credithistory">
+		<![CDATA[ 
+    SELECT trade_id,cust_id,c_num,r_type,reason,now_num,in_date FROM credithistory WHERE trade_id=$trade_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="credithistory">
+		UPDATE credithistory SET trade_id=#trade_id#,cust_id=#cust_id#,c_num=#c_num#,r_type=#r_type#,reason=#reason#,now_num=#now_num#,in_date=now() WHERE trade_id=$trade_id$
+	</update>
+
+	<insert id="insert" parameterClass="credithistory">
+		INSERT INTO credithistory (trade_id,cust_id,c_num,r_type,reason,now_num,in_date) VALUES (#trade_id#,#cust_id#,#c_num#,#r_type#,#reason#,#now_num#,now())
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM credithistory WHERE trade_id in ($trade_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM credithistory c left join member m on c.cust_id=m.cust_id
+		<dynamic prepend="WHERE">
+			<isNotNull prepend="and" property="cust_id">
+				c.cust_id=#cust_id#
+			</isNotNull>
+			<isNotNull prepend="and" property="cust_name">
+				INSTR(cust_name,#cust_name#) > 0
+			</isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT trade_id,c.cust_id,c_num,r_type,c.reason,now_num,c.in_date,cust_name
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY trade_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

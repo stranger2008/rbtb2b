@@ -1,0 +1,243 @@
+.nav1 a{
+	color:#0b70a8;}
+	
+.nav1 a:hover{
+	color:#0b70a8;
+	}
+
+.position{
+	height:33px;
+	background:#f6f5f5;
+	width:960px;
+	margin:10px auto 0;
+	line-height:33px;
+	font-size:14px;
+	}
+.position p{
+	padding-left:20px;
+	}
+	
+.left_main{
+	width:684px;
+	}
+/*按行业浏览*/
+.industry_main{
+	width:680px;
+	border:1px solid #e5e5e5;
+	border-top:2px solid  #a0ec9f;
+	padding-bottom:10px;
+	}
+.dis_more{
+   overflow:hidden;
+}
+
+.display_more{
+	margin-top:-20px;
+	margin-left:26px;		
+}
+.display_more a{
+	color:#990000;
+	font-size:12px;
+	font-size:600;
+	}	
+.industry_title{
+	font-size:14px;
+	color:#0F870E;
+	line-height:22px;
+	height:22px;
+	padding-left:30px;
+	padding-top:10px;
+	padding-left:30px;
+	}	
+	
+.title_tb{
+	padding-top:10px;
+	padding-right:5px;
+	}
+.industry_main div {
+	line-height:30px;
+	padding-left:30px;
+	padding-top:10px;
+	}
+.industry_main div a{
+	display:inline-block;
+	width:210px;
+	}
+
+/*详细产品浏览*/
+.flll_main{
+	width:680px;
+	border:1px solid #e5e5e5;
+	border-top:2px solid  #a0ec9f;	
+	}	
+.infor_mat{
+	width:640px;
+	margin:0 auto;
+	line-height:30px;
+	padding:15px 0;
+	color:#666;
+	}	
+.infor_mat a{
+	display:inline-block;
+	width:560px;
+	}	
+
+/*分页*/	
+.page_main{
+	width:660px;
+	height:56px;
+	margin-left:10px;
+	marign-top:20px;
+	}
+
+.page_main_r{
+	width:450px;
+	height:40px;
+	margin-left:80px;
+	_margin-left:30px;
+	}
+	
+.page_next{
+	width:59px;
+	height:19px;
+	border:1px solid #abb2bd;
+	background:url(../images/page_next1.gif) no-repeat;
+	margin-right:8px;
+	display:inline-block;
+	line-height:19px;
+	text-align:center;
+	}
+.page_next1{
+	width:59px;
+	height:19px;
+	border:1px solid #abb2bd;
+	background:url(../images/page_next.gif) no-repeat;
+	margin-right:8px;
+	display:inline-block;
+	line-height:19px;
+	text-align:center;
+	}	
+	
+.page_n1{
+	width:18px;
+	height:18px;
+	border:1px solid #abb2bd;
+	background:url(../images/number_bg.gif) repeat-x;
+	display:inline-block;
+	margin-right:8px;
+	line-height:18px;
+	text-align:center;
+	}
+	
+.page_n2{
+	width:28px;
+	height:18px;
+	border:1px solid #abb2bd;
+	background:url(../images/number_bg.gif) repeat-x;
+	display:inline-block;
+	margin-right:8px;
+	line-height:19px;
+	text-align:center;
+	}
+	
+.page_main_r a:hover{
+	border:1px solid #F60;
+	display:inline-block;
+
+	}
+	
+.page_main_input{
+	width:50px;
+	height:15px;
+	border:1px solid #abc7ff;
+	margin:auto 10px;
+	}
+
+/*右边部分主题*/	
+.right_main{
+	width:268px;
+	}	
+/*按地区浏览*/
+.area_title{
+	width:266px;
+	height:26px;
+	border:1px solid #e5e5e5;
+	background:url(../images/area_title_bg.gif) repeat-x;
+	}
+.title_text{
+	font-size:12px;
+	font-weight:bold;
+	color:#333333;
+	line-height:26px;
+	padding-left:10px;
+	float:left;
+	}
+		
+.area_main{
+	width:256px;
+	border:1px solid #e5e5e5;
+	border-top:0;
+	height:auto;
+	line-height:25px;
+	margin-bottom:10px;
+	padding:10px 0 10px 10px;
+	}
+.area_main li{
+	background:url(../images/li.gif) no-repeat left center;
+	padding-left:10px;
+	}	
+
+	
+/*搜索排行*/
+.ph_main{
+	width:266px;
+	height:auto;
+	border:1px solid #e5e5e5;
+	border-top:0;
+	}
+	
+.ph_main li{
+	padding-left:12px;
+	line-height:28px;
+	}
+.n1{
+	text-align:center;
+	color:#FFF;
+	display:inline-block;
+	width:14px;
+	line-height:28px;
+	background:url(../images/pic_ph_bg01.gif) no-repeat;
+	background-position:left 7px;
+	}
+	
+.n2{
+	text-align:center;
+	color:#000;
+	display:inline-block;
+	width:14px;
+	line-height:28px;
+	background:url(../images/pic_ph_bg01.gif) no-repeat;
+	background-position:left -20px;
+	}
+	
+.ph_main a{
+    padding-left:8px;
+	}
+
+.ad{
+	margin-top:10px;}
+	
+.text_ad{
+	padding-top:20px;
+	padding-left:5px;
+	line-height:22px;
+	}
+	
+.ad_text{
+	color:#bf0303;
+	}
+/*
+ ISConsole Copyright 2011 ruibaotong COMPANY, Co.ltd . 
+ All rights reserved.
+ FileName: index.css
+ */

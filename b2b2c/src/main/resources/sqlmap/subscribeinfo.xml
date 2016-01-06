@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="subscribeinfo">
+
+	<typeAlias alias="subscribeinfo" type="com.rbt.model.Subscribeinfo" />
+
+	<select id="getByPk" parameterClass="java.lang.String"
+		resultClass="subscribeinfo">
+		<![CDATA[ 
+    SELECT send_id,cust_id,sub_id,info_type,info_attr,in_date FROM subscribeinfo WHERE send_id=$send_id$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="subscribeinfo">
+		UPDATE subscribeinfo SET send_id=#send_id#,cust_id=#cust_id#,sub_id=#sub_id#,info_type=#info_type#,info_attr=#info_attr#,in_date=now() WHERE send_id=$send_id$
+	</update>
+
+	<insert id="insert" parameterClass="subscribeinfo">
+		INSERT INTO subscribeinfo (send_id,cust_id,sub_id,info_type,info_attr,in_date) VALUES (#send_id#,#cust_id#,#sub_id#,#info_type#,#info_attr#,now())
+	</insert>
+
+	<delete id="delete" parameterClass="java.lang.String">
+		DELETE FROM subscribeinfo WHERE send_id in ($send_id$)
+	</delete>
+
+	<sql id="getCommon">
+		FROM subscribeinfo left join member on member.cust_id=subscribeinfo.cust_id left join subscribe on subscribe.sub_id=subscribeinfo.sub_id
+		<dynamic prepend="WHERE">
+			 <isNotNull prepend="and" property="starttime"> 
+			    subscribe.in_date BETWEEN #starttime#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="endtime"> 
+			     #endtime#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="cust_name"> 
+			     cust_name=#cust_name#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="keyword"> 
+			     keyword=#keyword#
+			 </isNotNull>
+			  <isNotNull prepend="and" property="info_type"> 
+			     subscribeinfo.info_type=#info_type#
+			 </isNotNull>
+			 <isNotNull prepend="and" property="sub_id"> 
+			     subscribeinfo.sub_id=#sub_id#
+			 </isNotNull>
+		</dynamic>
+	</sql>
+
+	<select id="getList" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT send_id,member.cust_id,cust_name,keyword,subscribe.sub_id,subscribeinfo.info_type,info_attr,subscribeinfo.in_date
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+		ORDER BY send_id DESC
+		<isNotNull prepend="LIMIT" property="start">
+			$start$,$limit$
+		</isNotNull>
+
+	</select>
+
+	<select id="getCount" parameterClass="java.util.HashMap"
+		resultClass="java.util.HashMap">
+		SELECT COUNT(*) ct
+		<isParameterPresent>
+			<include refid="getCommon" />
+		</isParameterPresent>
+	</select>
+
+</sqlMap>
+

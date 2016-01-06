@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap 
+    PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="vote_log">
+
+	<typeAlias alias="vote_log" type="com.rbt.model.Vote_log" />
+	
+	<select id="getByPk" parameterClass="java.lang.String" resultClass="vote_log">
+	<![CDATA[ 
+        SELECT log_id,vote_id,ip_addr,log_date,option_attr FROM vote_log WHERE log_id=$VALUE$
+    ]]>
+	</select>
+
+	<update id="update" parameterClass="vote_log">
+    	UPDATE vote_log SET vote_id=#vote_id#,ip_addr=#ip_addr#,option_attr=#option_attr#,log_date=now() WHERE log_id=$log_id$
+	</update>
+
+	<insert id="insert" parameterClass="vote_log">
+		INSERT INTO vote_log (vote_id,ip_addr,log_date,option_attr) 
+		VALUES (#vote_id#,#ip_addr#,now(),#option_attr#)
+	</insert>
+	
+	<delete id="delete" parameterClass="java.lang.String">
+		delete from vote_log where log_id in ($value$)
+	</delete>
+	
+	<sql id="getCommon">
+	   FROM vote_log left join vote on vote_log.vote_id=vote.vote_id
+     	<dynamic prepend="WHERE">
+			 <isNotNull prepend="and" property="ip_addr"> 
+			     instr(ip_addr,#ip_addr#)>0
+			 </isNotNull>
+			 <isNotNull prepend="and" property="vote_id"> 
+			     vote.vote_id=#vote_id#
+			 </isNotNull>
+		</dynamic>
+ 	</sql>
+	
+	<select id="getList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+         SELECT log_id,vote.vote_id as vote_id,ip_addr,log_date,vote_title,option_attr
+	    <isParameterPresent>
+          <include refid="getCommon"/>
+        </isParameterPresent>
+          order by log_date DESC
+	 	<isNotNull prepend="LIMIT" property="start">
+		  $start$,$limit$
+		</isNotNull>
+	</select>
+	
+	<sql id="getCommonO">
+	   FROM vote_option left join vote on vote_option.vote_id=vote.vote_id
+     	<dynamic prepend="WHERE">
+			 <isNotNull prepend="and" property="option_name"> 
+			     instr(option_name,#option_name#)>0
+			 </isNotNull>
+			  <isNotNull prepend="and" property="vote_id"> 
+			     vote.vote_id=#vote_id#
+			 </isNotNull>
+		</dynamic>
+ 	</sql>
+	
+	<select id="getoptionList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+         SELECT  vote.vote_id,option_id,option_name,option_count,is_multi
+	    <isParameterPresent>
+          <include refid="getCommonO"/>
+        </isParameterPresent>
+          order by option_id ASC
+	 	<isNotNull prepend="LIMIT" property="start">
+		  $start$,$limit$
+		</isNotNull>
+	</select>
+	
+	
+	<select id="getCount" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+	     select count(*) ct
+	    <isParameterPresent>
+          <include refid="getCommon"/>
+        </isParameterPresent>
+	</select>  
+ 	
+</sqlMap>
